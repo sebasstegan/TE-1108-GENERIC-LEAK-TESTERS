@@ -58,7 +58,7 @@ END_VAR
 ACT_Write();
 ACT_CSVSettings();
 
-rWriteCSV( CLK := bWriteCSV);
+
 rWriteData( CLK := bWriteData);
 
 IF NOT bFirstScan THEN
@@ -79,7 +79,7 @@ END_IF
 
 sFileName 								:= CONCAT(sFileNamePath,CONCAT( STR1 := '_', STR2 := CONCAT( STR1:= sCSVDate, STR2 := '.csv')));
 
-i													:= 0;
+
 IF rWriteData.Q THEN
 	
 	FOR i := 0 TO aDataHistoryArrayLength DO
@@ -96,6 +96,8 @@ IF rWriteData.Q THEN
 
 				
 	END_FOR
+	
+	i													:= 0;
 
 	
 
@@ -110,7 +112,8 @@ END_IF
     </Action>
     <Action Name="ACT_Write" Id="{3cb6e3fa-a131-4ef4-92c3-536f8043665e}">
       <Implementation>
-        <ST><![CDATA[CASE step OF
+        <ST><![CDATA[rWriteCSV( CLK := bWriteCSV);
+CASE step OF
 	0:	(* Wait for rising edge at bWrite variable *)
 		IF rWriteCSV.Q THEN
 				
@@ -150,8 +153,8 @@ END_IF
 				sCSVField := STRING_TO_CSVFIELD( database[ nRow, nColumn ], FALSE );(* TODO: Get field value from your application *)
 
 				(* Add new field to the record buffer *)
-				fbWriter( 	pBuffer := ADR( sCSVLine ), cbBuffer := SIZEOF( sCSVLine ) - 1, putValue := sCSVField, pValue := 0, cbValue := 0,
-							bCRLF := ( nColumn = nMAX_CSV_COLUMNS ) );(* bCRLF == TRUE => Write CRLF after the last field value *)
+				fbWriter( 	pBuffer := ADR( sCSVLine ), cbBuffer := SIZEOF( sCSVLine ) - 1, putValue := sCSVField, pValue := 0, cbValue := 0(*,
+							bCRLF := ( nColumn = nMAX_CSV_COLUMNS )*) );(* bCRLF == TRUE => Write CRLF after the last field value *)
 				IF fbWriter.bOk THEN
 					fbWriter.eCmd := eEnumCmd_Next;(* Write next field value *)
 				ELSE(* Error *)
@@ -247,6 +250,7 @@ END_CASE
       <LineId Id="242" Count="0" />
       <LineId Id="246" Count="1" />
       <LineId Id="239" Count="0" />
+      <LineId Id="257" Count="1" />
       <LineId Id="236" Count="1" />
       <LineId Id="235" Count="0" />
       <LineId Id="234" Count="0" />
@@ -258,6 +262,7 @@ END_CASE
       <LineId Id="1" Count="0" />
     </LineIds>
     <LineIds Name="FB_WriteDataToCSV.ACT_Write">
+      <LineId Id="125" Count="0" />
       <LineId Id="2" Count="2" />
       <LineId Id="106" Count="0" />
       <LineId Id="6" Count="6" />

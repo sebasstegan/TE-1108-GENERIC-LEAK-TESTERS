@@ -8,6 +8,7 @@ STRUCT
 	sType										: STRING(255);
 	sDate										: STRING(255);
 	sTime										: STRING(255);
+	nEventsAmount								: DINT;
 	abType										: DINT;					//1:Alarm
 																		//2:Alert
 																		//3:Message
