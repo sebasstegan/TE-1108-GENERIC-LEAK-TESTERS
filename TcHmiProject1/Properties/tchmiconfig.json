@@ -121,6 +121,13 @@
       "preloadBindings": false
     },
     {
+      "url": "Contents/4_Events.content",
+      "preload": false,
+      "keepAlive": false,
+      "loadSync": false,
+      "preloadBindings": false
+    },
+    {
       "url": "Contents/7_Statistics.content",
       "preload": false,
       "keepAlive": false,
@@ -136,6 +143,34 @@
     },
     {
       "url": "Contents/1_Main.content",
+      "preload": false,
+      "keepAlive": false,
+      "loadSync": false,
+      "preloadBindings": false
+    },
+    {
+      "url": "Contents/Events/Messages_CycleStopReq.content",
+      "preload": false,
+      "keepAlive": false,
+      "loadSync": false,
+      "preloadBindings": false
+    },
+    {
+      "url": "Contents/Events/CycleStopFaults.content",
+      "preload": false,
+      "keepAlive": false,
+      "loadSync": false,
+      "preloadBindings": false
+    },
+    {
+      "url": "Contents/Events/ImmediateFaults.content",
+      "preload": false,
+      "keepAlive": false,
+      "loadSync": false,
+      "preloadBindings": false
+    },
+    {
+      "url": "Contents/Events/History.content",
       "preload": false,
       "keepAlive": false,
       "loadSync": false,
@@ -178,41 +213,6 @@
     },
     {
       "url": "Contents/Settings/1_SettingsStation1.content",
-      "preload": false,
-      "keepAlive": false,
-      "loadSync": false,
-      "preloadBindings": false
-    },
-    {
-      "url": "Contents/4_Events.content",
-      "preload": false,
-      "keepAlive": false,
-      "loadSync": false,
-      "preloadBindings": false
-    },
-    {
-      "url": "Contents/Events/History.content",
-      "preload": false,
-      "keepAlive": false,
-      "loadSync": false,
-      "preloadBindings": false
-    },
-    {
-      "url": "Contents/Events/ImmediateFaults.content",
-      "preload": false,
-      "keepAlive": false,
-      "loadSync": false,
-      "preloadBindings": false
-    },
-    {
-      "url": "Contents/Events/CycleStopFaults.content",
-      "preload": false,
-      "keepAlive": false,
-      "loadSync": false,
-      "preloadBindings": false
-    },
-    {
-      "url": "Contents/Events/Messages_CycleStopReq.content",
       "preload": false,
       "keepAlive": false,
       "loadSync": false,

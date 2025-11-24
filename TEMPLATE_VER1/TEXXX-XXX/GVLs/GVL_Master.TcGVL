@@ -22,8 +22,8 @@
 																	//1: STATION 2
 																	//3: STATION 3
 	astActiveEvents				: ARRAY [0..50] OF ST_ActiveEvents;
-	astEventsHistory			: ARRAY[0..200] OF ST_EventsHistory;
-	
+	stEventsAssigment			: ST_EventsAssigmentGeneral;
+
 /////////////////////////////////////////////////////////////////////////////////////MACHINE CONTROL////////////////////////////////////////////////////////////////////////////
 	
 	stMachineStatus					: ST_MachineStatus;	
@@ -38,7 +38,6 @@
 	bResetTest								: BOOL;
 	tonResetTest							: TON;
 	
-	stEventsAssigment						: ST_EventsAssigmentGeneral;	
 END_VAR]]></Declaration>
   </GVL>
 </TcPlcObject>

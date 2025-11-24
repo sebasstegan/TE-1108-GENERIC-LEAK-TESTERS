@@ -27,6 +27,12 @@ VAR
 	
 	fbSystemTime							: NT_GetTime;
 	
+////////////////////////////////////////////////////////////////////////////////////CSV////////////////////////////////////////////////////////////////////////////	
+
+	stEventsCSVProcess						:  ST_CSVProcess;
+	fbWriteDataToCSV_Events					: FB_WriteDataToCSV;
+	i										: DINT;
+	
 
 	
 END_VAR
@@ -35,6 +41,7 @@ END_VAR
       <ST><![CDATA[/////////////////////////////////////////////////////////////////////////////////////GENERAL/////////////////////////////////////////////////////////////////////////////////////
 A_3_PRG_FaultHandling();
 a_ACT_ButtonsLamps();
+b_ACT_CSV();
 d_ACT_ShutdownAndQuit();
 e_ACT_UserLog();
 f_ACT_TerminalInfo();
@@ -42,7 +49,8 @@ g_ACT_Manual();
 h_ACT_Statistics();
 
 C_1_PRG_MainHMI();
-D_1_WriteDataToCSV();
+//D_1_1_PROG_Write_Data_To_CSV();
+//D_2_1_PROG_Write_Data_To_CSV();
 
 PRG_Puls();
 
@@ -126,6 +134,29 @@ rtrigButton[3](CLK						:=);
 
 //GVL_IO.dw_T11_EL2809.qRESETButton_Indicator := stPuls.bFlash2Hz AND (NOT stMachineStatus.bInitialising AND NOT stMachineStatus.bAutoCycle AND NOT stMachineStatus.bManualMode AND NOT stMachineStatus.bReadyToStart) ;
 //GVL_IO.dw_T11_EL2809.qStartButton_Indicator := (stPuls.bFlash2Hz AND stMachineStatus.bReadyToStart) OR (stMachineStatus.bManualMode AND stPuls.bFlash4Hz ) ;]]></ST>
+      </Implementation>
+    </Action>
+    <Action Name="b_ACT_CSV" Id="{eda48c17-c939-4052-a903-aa51ced32374}">
+      <Implementation>
+        <ST><![CDATA[
+stEventsCSVProcess.sFileNamePath						:= 'C:\Users\Sebastian.Ulloa\Desktop\GIT PROJECTS\TEMPLATES\TEMPLATE_VER1\CSV\EVENTS\';
+
+
+
+
+fbWriteDataToCSV_Events( 	bWriteData					:= stEventsCSVProcess.bWriteData,
+							bWriteCSV					:= stEventsCSVProcess.bWriteCSV,
+							sFileNamePath				:= stEventsCSVProcess.sFileNamePath,
+							sDate						:= stEventsCSVProcess.sDate,
+							aDataHistoryArrayLength		:= stEventsCSVProcess.aDataHistoryArrayLength,
+							nMAX_CSV_ROWS				:= stEventsCSVProcess.nMAX_CSV_ROWS,
+							nMAX_CSV_COLUMNS			:= stEventsCSVProcess.nMAX_CSV_COLUMNS,
+							
+							bBusy						=> stEventsCSVProcess.bBusy,
+							bError						=> stEventsCSVProcess.bError,
+							nErrId						=>,
+							aDataHistory				:= astEventsHistory);
+							]]></ST>
       </Implementation>
     </Action>
     <Action Name="d_ACT_ShutdownAndQuit" Id="{b7dac9a1-fefc-426e-a57f-b21e21205edc}">
@@ -248,29 +279,11 @@ END_IF
       </Implementation>
     </Action>
     <LineIds Name="A_1_PRG_Main_Master">
-      <LineId Id="443" Count="2" />
-      <LineId Id="447" Count="3" />
-      <LineId Id="579" Count="0" />
-      <LineId Id="521" Count="0" />
-      <LineId Id="451" Count="0" />
-      <LineId Id="550" Count="0" />
-      <LineId Id="519" Count="0" />
-      <LineId Id="518" Count="0" />
-      <LineId Id="452" Count="20" />
-      <LineId Id="636" Count="6" />
-      <LineId Id="676" Count="0" />
-      <LineId Id="643" Count="2" />
-      <LineId Id="483" Count="1" />
-      <LineId Id="498" Count="2" />
-      <LineId Id="513" Count="0" />
-      <LineId Id="501" Count="0" />
-      <LineId Id="625" Count="0" />
-      <LineId Id="628" Count="0" />
-      <LineId Id="630" Count="5" />
-      <LineId Id="626" Count="0" />
-      <LineId Id="512" Count="0" />
-      <LineId Id="508" Count="2" />
-      <LineId Id="502" Count="3" />
+      <LineId Id="677" Count="2" />
+      <LineId Id="753" Count="0" />
+      <LineId Id="680" Count="7" />
+      <LineId Id="746" Count="0" />
+      <LineId Id="688" Count="57" />
       <LineId Id="373" Count="0" />
     </LineIds>
     <LineIds Name="A_1_PRG_Main_Master.a_ACT_ButtonsLamps">
@@ -279,6 +292,21 @@ END_IF
       <LineId Id="22" Count="0" />
       <LineId Id="19" Count="1" />
       <LineId Id="1" Count="0" />
+    </LineIds>
+    <LineIds Name="A_1_PRG_Main_Master.b_ACT_CSV">
+      <LineId Id="16" Count="1" />
+      <LineId Id="31" Count="0" />
+      <LineId Id="33" Count="0" />
+      <LineId Id="32" Count="0" />
+      <LineId Id="4" Count="0" />
+      <LineId Id="3" Count="0" />
+      <LineId Id="40" Count="0" />
+      <LineId Id="5" Count="0" />
+      <LineId Id="36" Count="3" />
+      <LineId Id="34" Count="0" />
+      <LineId Id="10" Count="2" />
+      <LineId Id="14" Count="0" />
+      <LineId Id="13" Count="0" />
     </LineIds>
     <LineIds Name="A_1_PRG_Main_Master.d_ACT_ShutdownAndQuit">
       <LineId Id="2" Count="8" />

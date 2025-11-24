@@ -168,9 +168,6 @@
     <Compile Include="POUs\C_HMI\C_1_PRG_MainHMI.TcPOU">
       <SubType>Code</SubType>
     </Compile>
-    <Compile Include="POUs\D_CSV\D_1_WriteDataToCSV.TcPOU">
-      <SubType>Code</SubType>
-    </Compile>
     <Compile Include="POUs\MAIN.TcPOU">
       <SubType>Code</SubType>
     </Compile>
@@ -187,6 +184,9 @@
       <SubType>Code</SubType>
     </Compile>
     <Compile Include="POUs\Utilities\FB_TimeControl.TcPOU">
+      <SubType>Code</SubType>
+    </Compile>
+    <Compile Include="POUs\Utilities\FB_WriteDataToCSV.TcPOU">
       <SubType>Code</SubType>
     </Compile>
     <Compile Include="POUs\Utilities\PRG_Puls.TcPOU">

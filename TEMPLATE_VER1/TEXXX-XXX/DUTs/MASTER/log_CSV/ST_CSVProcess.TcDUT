@@ -3,13 +3,23 @@
   <DUT Name="ST_CSVProcess" Id="{69c53c48-021c-4aea-9833-ec2a6a27b5b9}">
     <Declaration><![CDATA[TYPE ST_CSVProcess :
 STRUCT
+	
 	//INPUTS
 	bWriteData			: BOOL;
-	sFileName1			: T_MaxString := 'C:\Users\Sebastian.Ulloa\Desktop\CSV_TEST\TemplateTest\CSV\Csv_Test';
-	sFileName2			: T_MaxString := '.csv';
+	bWriteCSV			: BOOL;
+	sFileNamePath		: STRING(255);
+	sDate				: STRING(255);
+	aDataHistoryArrayLength : DINT;
+	nMAX_CSV_ROWS		: UDINT;
+	nMAX_CSV_COLUMNS	: UDINT;
+
 	//OUTPUTS
 	bError				: BOOL;
 	bBusy				: BOOL;
+	
+	
+	
+	
 END_STRUCT
 END_TYPE
 ]]></Declaration>
