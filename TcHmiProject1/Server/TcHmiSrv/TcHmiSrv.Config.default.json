@@ -470,6 +470,11 @@
             "REQUIRED": true,
             "STARTUPTYPE": 1
         },
+        "Beckhoff.TwinCAT.HMI.Server.Engineering": {
+            "ENABLED": false,
+            "NAME": "",
+            "STARTUPTYPE": 1
+        },
         "TcHmiLua": {
             "ENABLED": true,
             "NAME": "TcHmiLua",

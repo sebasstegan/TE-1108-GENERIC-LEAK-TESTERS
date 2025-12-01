@@ -62,22 +62,17 @@
       "type": "JavaScript"
     },
     {
-      "name": "Contents/CSS_JAVA/relatori.js",
-      "description": "",
-      "type": "JavaScript"
-    },
-    {
-      "name": "Contents/CSS_JAVA/filterFunc.js",
-      "description": "",
-      "type": "JavaScript"
-    },
-    {
       "name": "Contents/CSS_JAVA/CodeBehindJs1.js",
       "description": "",
       "type": "JavaScript"
     },
     {
-      "name": "Contents/CSS_JAVA/jspdf.min.js",
+      "name": "Contents/CSS_JAVA/PDF Maker/relatori.js",
+      "description": "",
+      "type": "JavaScript"
+    },
+    {
+      "name": "Contents/CSS_JAVA/PDF Maker/jspdf.min.js",
       "description": "",
       "type": "JavaScript"
     }

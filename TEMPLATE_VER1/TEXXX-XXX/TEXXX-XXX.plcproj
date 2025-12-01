@@ -69,6 +69,18 @@
     <Compile Include="DUTs\MASTER\ST_StatisticsHMI.TcDUT">
       <SubType>Code</SubType>
     </Compile>
+    <Compile Include="DUTs\PDFMaker\ST_EventsPDF.TcDUT">
+      <SubType>Code</SubType>
+    </Compile>
+    <Compile Include="DUTs\PDFMaker\ST_EventsPdfConstants.TcDUT">
+      <SubType>Code</SubType>
+    </Compile>
+    <Compile Include="DUTs\PDFMaker\ST_JavasCriptPDF.TcDUT">
+      <SubType>Code</SubType>
+    </Compile>
+    <Compile Include="DUTs\PDFMaker\ST_PDFMaker.TcDUT">
+      <SubType>Code</SubType>
+    </Compile>
     <Compile Include="DUTs\STATIONS\STATION_1\E_Station1_State.TcDUT">
       <SubType>Code</SubType>
     </Compile>
@@ -174,6 +186,9 @@
     <Compile Include="POUs\Utilities\FB_EventsManager.TcPOU">
       <SubType>Code</SubType>
     </Compile>
+    <Compile Include="POUs\Utilities\FB_PDFMaker.TcPOU">
+      <SubType>Code</SubType>
+    </Compile>
     <Compile Include="POUs\Utilities\FB_UserLog.TcPOU">
       <SubType>Code</SubType>
     </Compile>
@@ -200,6 +215,7 @@
     <Folder Include="DUTs\IO" />
     <Folder Include="DUTs\MASTER\log_CSV" />
     <Folder Include="DUTs\HMI" />
+    <Folder Include="DUTs\PDFMaker" />
     <Folder Include="DUTs\STATIONS" />
     <Folder Include="DUTs\STATIONS\STATION_1" />
     <Folder Include="DUTs\STATIONS\STATION_2" />

@@ -113,6 +113,7 @@
   <Target Name="Clean" DependsOnTargets="$(CleanDependsOn)" />
   <Target Name="ReBuild" DependsOnTargets="Clean; Build" />
   <ItemGroup>
+    <Folder Include="Contents\CSS_JAVA\PDF Maker" />
     <Folder Include="Contents\Manual" />
     <Folder Include="Contents\CSS_JAVA" />
     <Folder Include="Contents\Events" />
@@ -164,13 +165,10 @@
     <Content Include="Contents\CSS_JAVA\CssBehind1.css">
       <SubType>Content</SubType>
     </Content>
-    <Content Include="Contents\CSS_JAVA\filterFunc.js">
+    <Content Include="Contents\CSS_JAVA\PDF Maker\jspdf.min.js">
       <SubType>Content</SubType>
     </Content>
-    <Content Include="Contents\CSS_JAVA\jspdf.min.js">
-      <SubType>Content</SubType>
-    </Content>
-    <Content Include="Contents\CSS_JAVA\relatori.js">
+    <Content Include="Contents\CSS_JAVA\PDF Maker\relatori.js">
       <SubType>Content</SubType>
     </Content>
     <Content Include="Contents\CSS_JAVA\RowClassesProvider.function.json">
