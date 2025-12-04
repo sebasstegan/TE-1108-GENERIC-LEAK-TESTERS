@@ -15,6 +15,7 @@ VAR_GLOBAL PERSISTENT
 	aDataHistory				: ARRAY[0..200] OF ST_CycleData;
 	nIndexDataHistory			: DINT;
 	astEventsHistory			: ARRAY[0..200] OF ST_EventsHistory;
+	stJavasCriptPDF				: ST_JavasCriptPDF;
 
 
 END_VAR]]></Declaration>

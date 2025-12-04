@@ -158,7 +158,7 @@ fbPDFMaker(
 							sMachineName				:= 'example',
 							
 							bDataWrited					=> stPDFMaker.bDataWrited,
-							stJavasCriptPDF				=> stPDFMaker.stJavaScriptPDF
+							stJavasCriptPDF				=> stJavasCriptPDF
 							);
 
 (*stPDFMaker.sDate			:= 	CONCAT( STR1 := WORD_TO_STRING(stSystemTime.wDay), STR2 := 

@@ -28,6 +28,22 @@
     "DEFAULTTIMEZONE": "client",
     "DEFAULTUSERGROUP": "__SystemUsers",
     "DEFINITIONS": {
+        "PLC1.ARRAY_0..2000_OF-ST_EventsPDF": {
+            "items": {
+                "$ref": "#/definitions/PLC1.ST_EventsPDF"
+            },
+            "maxItems": 2001,
+            "minItems": 2001,
+            "type": "array"
+        },
+        "PLC1.ARRAY_0..200_OF-ST_CycleData": {
+            "items": {
+                "$ref": "#/definitions/PLC1.ST_CycleData"
+            },
+            "maxItems": 201,
+            "minItems": 201,
+            "type": "array"
+        },
         "PLC1.ARRAY_0..200_OF-ST_EventsHistory": {
             "items": {
                 "$ref": "#/definitions/PLC1.ST_EventsHistory"
@@ -188,6 +204,301 @@
             },
             "type": "object"
         },
+        "PLC1.ST_CycleData": {
+            "properties": {
+                "bDATA3_1": {
+                    "allOf": [
+                        {
+                            "$ref": "tchmi:general#/definitions/BOOL"
+                        },
+                        {
+                            "propertyOrder": 10
+                        }
+                    ]
+                },
+                "bDATA3_2": {
+                    "allOf": [
+                        {
+                            "$ref": "tchmi:general#/definitions/BOOL"
+                        },
+                        {
+                            "propertyOrder": 18
+                        }
+                    ]
+                },
+                "bDATA3_3": {
+                    "allOf": [
+                        {
+                            "$ref": "tchmi:general#/definitions/BOOL"
+                        },
+                        {
+                            "propertyOrder": 26
+                        }
+                    ]
+                },
+                "bFail": {
+                    "allOf": [
+                        {
+                            "$ref": "tchmi:general#/definitions/BOOL"
+                        },
+                        {
+                            "propertyOrder": 2
+                        }
+                    ]
+                },
+                "bFail_1": {
+                    "allOf": [
+                        {
+                            "$ref": "tchmi:general#/definitions/BOOL"
+                        },
+                        {
+                            "propertyOrder": 12
+                        }
+                    ]
+                },
+                "bFail_2": {
+                    "allOf": [
+                        {
+                            "$ref": "tchmi:general#/definitions/BOOL"
+                        },
+                        {
+                            "propertyOrder": 20
+                        }
+                    ]
+                },
+                "bFail_3": {
+                    "allOf": [
+                        {
+                            "$ref": "tchmi:general#/definitions/BOOL"
+                        },
+                        {
+                            "propertyOrder": 28
+                        }
+                    ]
+                },
+                "bPass": {
+                    "allOf": [
+                        {
+                            "$ref": "tchmi:general#/definitions/BOOL"
+                        },
+                        {
+                            "comment": "-----------------------------------------------------------------------------------GENERAL------------------------------------------------------------------------------------//",
+                            "propertyOrder": 1
+                        }
+                    ]
+                },
+                "bPass_1": {
+                    "allOf": [
+                        {
+                            "$ref": "tchmi:general#/definitions/BOOL"
+                        },
+                        {
+                            "comment": "/////////////////////////////////////////////////////////////////////////////////RESULTS////////////////////////////////////////////////////////////////////////////////////////",
+                            "propertyOrder": 11
+                        }
+                    ]
+                },
+                "bPass_2": {
+                    "allOf": [
+                        {
+                            "$ref": "tchmi:general#/definitions/BOOL"
+                        },
+                        {
+                            "comment": "/////////////////////////////////////////////////////////////////////////////////RESULTS////////////////////////////////////////////////////////////////////////////////////////",
+                            "propertyOrder": 19
+                        }
+                    ]
+                },
+                "bPass_3": {
+                    "allOf": [
+                        {
+                            "$ref": "tchmi:general#/definitions/BOOL"
+                        },
+                        {
+                            "comment": "/////////////////////////////////////////////////////////////////////////////////RESULTS////////////////////////////////////////////////////////////////////////////////////////",
+                            "propertyOrder": 27
+                        }
+                    ]
+                },
+                "bSetting3_1": {
+                    "allOf": [
+                        {
+                            "$ref": "tchmi:general#/definitions/BOOL"
+                        },
+                        {
+                            "propertyOrder": 7
+                        }
+                    ]
+                },
+                "bSetting3_2": {
+                    "allOf": [
+                        {
+                            "$ref": "tchmi:general#/definitions/BOOL"
+                        },
+                        {
+                            "propertyOrder": 15
+                        }
+                    ]
+                },
+                "bSetting3_3": {
+                    "allOf": [
+                        {
+                            "$ref": "tchmi:general#/definitions/BOOL"
+                        },
+                        {
+                            "propertyOrder": 23
+                        }
+                    ]
+                },
+                "nDATA2_1": {
+                    "allOf": [
+                        {
+                            "$ref": "tchmi:general#/definitions/DINT"
+                        },
+                        {
+                            "propertyOrder": 9
+                        }
+                    ]
+                },
+                "nDATA2_2": {
+                    "allOf": [
+                        {
+                            "$ref": "tchmi:general#/definitions/DINT"
+                        },
+                        {
+                            "propertyOrder": 17
+                        }
+                    ]
+                },
+                "nDATA2_3": {
+                    "allOf": [
+                        {
+                            "$ref": "tchmi:general#/definitions/DINT"
+                        },
+                        {
+                            "propertyOrder": 25
+                        }
+                    ]
+                },
+                "nSetting2_1": {
+                    "allOf": [
+                        {
+                            "$ref": "tchmi:general#/definitions/DINT"
+                        },
+                        {
+                            "propertyOrder": 6
+                        }
+                    ]
+                },
+                "nSetting2_2": {
+                    "allOf": [
+                        {
+                            "$ref": "tchmi:general#/definitions/DINT"
+                        },
+                        {
+                            "propertyOrder": 14
+                        }
+                    ]
+                },
+                "nSetting2_3": {
+                    "allOf": [
+                        {
+                            "$ref": "tchmi:general#/definitions/DINT"
+                        },
+                        {
+                            "propertyOrder": 22
+                        }
+                    ]
+                },
+                "sDATA1_1": {
+                    "allOf": [
+                        {
+                            "$ref": "tchmi:general#/definitions/STRING%2880%29"
+                        },
+                        {
+                            "comment": "//////////////////////////////////////////////////////////////////////////////////GENERAL DATA/////////////////////////////////////////////////////////////////////////////////////",
+                            "propertyOrder": 8
+                        }
+                    ]
+                },
+                "sDATA1_2": {
+                    "allOf": [
+                        {
+                            "$ref": "tchmi:general#/definitions/STRING%2880%29"
+                        },
+                        {
+                            "comment": "//////////////////////////////////////////////////////////////////////////////////GENERAL DATA/////////////////////////////////////////////////////////////////////////////////////",
+                            "propertyOrder": 16
+                        }
+                    ]
+                },
+                "sDATA1_3": {
+                    "allOf": [
+                        {
+                            "$ref": "tchmi:general#/definitions/STRING%2880%29"
+                        },
+                        {
+                            "comment": "//////////////////////////////////////////////////////////////////////////////////GENERAL DATA/////////////////////////////////////////////////////////////////////////////////////",
+                            "propertyOrder": 24
+                        }
+                    ]
+                },
+                "sData": {
+                    "allOf": [
+                        {
+                            "$ref": "tchmi:general#/definitions/STRING%2880%29"
+                        },
+                        {
+                            "propertyOrder": 3
+                        }
+                    ]
+                },
+                "sSetting1_1": {
+                    "allOf": [
+                        {
+                            "$ref": "tchmi:general#/definitions/STRING%2880%29"
+                        },
+                        {
+                            "comment": "//////////////////////////////////////////////////////////////////////////////////SETTINGS/////////////////////////////////////////////////////////////////////////////////////",
+                            "propertyOrder": 5
+                        }
+                    ]
+                },
+                "sSetting1_2": {
+                    "allOf": [
+                        {
+                            "$ref": "tchmi:general#/definitions/STRING%2880%29"
+                        },
+                        {
+                            "comment": "//////////////////////////////////////////////////////////////////////////////////SETTINGS/////////////////////////////////////////////////////////////////////////////////////",
+                            "propertyOrder": 13
+                        }
+                    ]
+                },
+                "sSetting1_3": {
+                    "allOf": [
+                        {
+                            "$ref": "tchmi:general#/definitions/STRING%2880%29"
+                        },
+                        {
+                            "comment": "//////////////////////////////////////////////////////////////////////////////////SETTINGS/////////////////////////////////////////////////////////////////////////////////////",
+                            "propertyOrder": 21
+                        }
+                    ]
+                },
+                "sTime": {
+                    "allOf": [
+                        {
+                            "$ref": "tchmi:general#/definitions/STRING%2880%29"
+                        },
+                        {
+                            "propertyOrder": 4
+                        }
+                    ]
+                }
+            },
+            "type": "object"
+        },
         "PLC1.ST_EventsAssigment": {
             "properties": {
                 "sEventText": {
@@ -224,6 +535,16 @@
                         },
                         {
                             "comment": "1:Alarm",
+                            "propertyOrder": 6
+                        }
+                    ]
+                },
+                "nEventsAmount": {
+                    "allOf": [
+                        {
+                            "$ref": "tchmi:general#/definitions/DINT"
+                        },
+                        {
                             "propertyOrder": 5
                         }
                     ]
@@ -269,6 +590,125 @@
                         },
                         {
                             "$ref": "tchmi:general#/definitions/String"
+                        }
+                    ]
+                }
+            },
+            "type": "object"
+        },
+        "PLC1.ST_EventsPDF": {
+            "properties": {
+                "sDate": {
+                    "allOf": [
+                        {
+                            "$ref": "tchmi:general#/definitions/STRING%2880%29"
+                        },
+                        {
+                            "propertyOrder": 3
+                        }
+                    ]
+                },
+                "sEvents": {
+                    "allOf": [
+                        {
+                            "$ref": "tchmi:general#/definitions/STRING%2880%29"
+                        },
+                        {
+                            "propertyOrder": 1
+                        }
+                    ]
+                },
+                "sTime": {
+                    "allOf": [
+                        {
+                            "$ref": "tchmi:general#/definitions/STRING%2880%29"
+                        },
+                        {
+                            "propertyOrder": 4
+                        }
+                    ]
+                },
+                "sType": {
+                    "allOf": [
+                        {
+                            "$ref": "tchmi:general#/definitions/STRING%2880%29"
+                        },
+                        {
+                            "propertyOrder": 2
+                        }
+                    ]
+                }
+            },
+            "type": "object"
+        },
+        "PLC1.ST_EventsPdfConstants": {
+            "properties": {
+                "sFileName": {
+                    "allOf": [
+                        {
+                            "maxLength": 255,
+                            "propertyOrder": 4
+                        },
+                        {
+                            "$ref": "tchmi:general#/definitions/String"
+                        }
+                    ]
+                },
+                "sGroup": {
+                    "allOf": [
+                        {
+                            "maxLength": 255,
+                            "propertyOrder": 3
+                        },
+                        {
+                            "$ref": "tchmi:general#/definitions/String"
+                        }
+                    ]
+                },
+                "sMachineName": {
+                    "allOf": [
+                        {
+                            "maxLength": 255,
+                            "propertyOrder": 1
+                        },
+                        {
+                            "$ref": "tchmi:general#/definitions/String"
+                        }
+                    ]
+                },
+                "sUser": {
+                    "allOf": [
+                        {
+                            "maxLength": 255,
+                            "propertyOrder": 2
+                        },
+                        {
+                            "$ref": "tchmi:general#/definitions/String"
+                        }
+                    ]
+                }
+            },
+            "type": "object"
+        },
+        "PLC1.ST_JavasCriptPDF": {
+            "properties": {
+                "stEventsPDF": {
+                    "allOf": [
+                        {
+                            "$ref": "#/definitions/PLC1.ARRAY_0..2000_OF-ST_EventsPDF"
+                        },
+                        {
+                            "propertyOrder": 1
+                        }
+                    ]
+                },
+                "stEventsPdfConstants": {
+                    "allOf": [
+                        {
+                            "$ref": "#/definitions/PLC1.ST_EventsPdfConstants"
+                        },
+                        {
+                            "propertyOrder": 2
                         }
                     ]
                 }
@@ -3225,6 +3665,43 @@
             },
             "USEMAPPING": true
         },
+        "PLC1.GVL_Persistent.aDataHistory": {
+            "ACCESS": 3,
+            "DOMAIN": "ADS",
+            "DYNAMIC": true,
+            "MAPPING": "PLC1::GVL_Persistent::aDataHistory",
+            "SCHEMA": {
+                "allOf": [
+                    {
+                        "comment": "1: STATION 1\r\n2: STATION 2\r\n3: STATION 3"
+                    },
+                    {
+                        "$ref": "tchmi:server#/definitions/PLC1.ARRAY_0..200_OF-ST_CycleData"
+                    }
+                ]
+            },
+            "USEMAPPING": true
+        },
+        "PLC1.GVL_Persistent.astEventsHistory": {
+            "ACCESS": 3,
+            "DOMAIN": "ADS",
+            "DYNAMIC": true,
+            "MAPPING": "PLC1::GVL_Persistent::astEventsHistory",
+            "SCHEMA": {
+                "$ref": "tchmi:server#/definitions/PLC1.ARRAY_0..200_OF-ST_EventsHistory"
+            },
+            "USEMAPPING": true
+        },
+        "PLC1.GVL_Persistent.stJavasCriptPDF": {
+            "ACCESS": 3,
+            "DOMAIN": "ADS",
+            "DYNAMIC": true,
+            "MAPPING": "PLC1::GVL_Persistent::stJavasCriptPDF",
+            "SCHEMA": {
+                "$ref": "tchmi:server#/definitions/PLC1.ST_JavasCriptPDF"
+            },
+            "USEMAPPING": true
+        },
         "PLC1.GVL_Persistent.stUserLog": {
             "ACCESS": 3,
             "DOMAIN": "ADS",
@@ -4233,7 +4710,10 @@
                 "PLC1.GVL_Master.stEventsAssigment.astCycleStopRequestEvents": 3,
                 "PLC1.GVL_Master.stEventsAssigment.astImmediateFaultEvents": 3,
                 "PLC1.GVL_Master.stEventsAssigment.astMessage": 3,
+                "PLC1.GVL_Persistent.aDataHistory": 3,
+                "PLC1.GVL_Persistent.astEventsHistory": 3,
                 "PLC1.GVL_Persistent.stAlarmHistory": 3,
+                "PLC1.GVL_Persistent.stJavasCriptPDF": 3,
                 "PLC1.GVL_Persistent.stStatisticsHMI": 3,
                 "PLC1.GVL_Persistent.stUserLog": 3,
                 "SetLocale": 3,

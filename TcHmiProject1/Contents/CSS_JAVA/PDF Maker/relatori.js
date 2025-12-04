@@ -23,10 +23,33 @@ function gerarRelatorioPDF(DataPLC) {
          if ( k > 0){
              doc.addPage();
          }
+        
+        //addImage('C:\Users\Sebastian.Ulloa\Desktop\GIT PROJECTS\TEMPLATES\TEMPLATE_VER1\TcHmiProject1\Images\JPEG_example_flower','JPEG',10,20,30,30,'df','NONE',0);
+
+         //var img = new Image;
+        // img.onload = function() {
+          //   doc.addImage(this, 10, 10);
+        // };
+         //img.crossOrigin = "";  
+         //img.src = 'C:\Users\Sebastian.Ulloa\Desktop\GIT PROJECTS\TEMPLATES\TEMPLATE_VER1\TcHmiProject1\Images\JPEG_example_flower.jpge';
+
+        // const input = document.getElementById('imageInput');
+         //input.addEventListener('change', (e) => {
+           //  const file = e.target.files[0];
+         //    const reader = new FileReader();
+         //    reader.onload = (event) => {
+         //        doc.addImage(event.target.result, 'JPG', 20, 20);
+         //    };
+         //    reader.readAsDataURL('C:\Users\Sebastian.Ulloa\Desktop\GIT PROJECTS\TEMPLATES\TEMPLATE_VER1\TcHmiProject1\Images\JPEG_example_flower');
+        //});
+
+         let ImagePath = path.resolve("C:\Users\Sebastian.Ulloa\Desktop\GIT PROJECTS\TEMPLATES\TEMPLATE_VER1\TcHmiProject1\Images\TeganInfo.png");
+         let footer = fs.readFileSync(ImagePath,{ encoding:"base64",});
+         doc.addImage(footer,"PNG", 20, 20, 20, 20);
 
         // Header
          doc.setFontSize(22);
-         doc.text(`${aData.stEventsPdfConstants.MachineName}`, 10, 20, { align: "left" });
+         doc.text(`${aData.stEventsPdfConstants.sMachineName}`, 10, 20, { align: "left" });
 
          let Event = new String;
          let Type = new String;
@@ -40,9 +63,9 @@ function gerarRelatorioPDF(DataPLC) {
          doc.text(`Print Date: ${data}`, 10, 40);
          doc.text(`${time}`, 50, 40);
          doc.text(`User:`/*UserVariable*/, 10, 50);
-         doc.text(`${aData.stEventsPdfConstants.User}`/*UserVariable*/, 50, 50);
+         doc.text(`${aData.stEventsPdfConstants.sUser}`/*UserVariable*/, 50, 50);
          doc.text(`Group:`/*GroupVariable*/, 10, 60);
-         doc.text(`${aData.stEventsPdfConstants.Group}`/*UserVariable*/, 50, 60);
+         doc.text(`${aData.stEventsPdfConstants.sGroup}`/*UserVariable*/, 50, 60);
 
        
          doc.setFontSize(14);
@@ -53,17 +76,17 @@ function gerarRelatorioPDF(DataPLC) {
          doc.text(`${PageNumber}`, 200, 290);
 
         //Table
-         doc.line(57, 95, 57, 270, 'F');
-         doc.line(107, 95, 107, 270, 'F');
+         doc.line(10, 105, 205, 105, 'F');
+         doc.line(117, 95, 117, 270, 'F');
          doc.line(157, 95, 157, 270, 'F');
-         doc.line(200, 103, 10, 103, 'F');
+         doc.line(187, 95, 187, 270, 'F');
 
 
          doc.setFontSize(14);
          doc.text("Events", 10, 100);
-         doc.text("Type", 60, 100);
-         doc.text("Date", 110, 100);
-         doc.text("Time", 160, 100);
+         doc.text("Type", 120, 100);
+         doc.text("Date", 160, 100);
+         doc.text("Time", 190, 100);
         
 
          for (let i = 0; i < 30 ; i++) {
@@ -78,9 +101,9 @@ function gerarRelatorioPDF(DataPLC) {
                 TimeTable = `${aData.stEventsPDF[DataIndex].sTime}`;
                 XposTable = 110 + (i * 5);
                 doc.text(Event, 10, XposTable);
-                doc.text(Type, 60, XposTable);
-                doc.text(DateTable, 110, XposTable);
-                doc.text(TimeTable, 160, XposTable);
+                doc.text(Type, 120, XposTable);
+                doc.text(DateTable, 160, XposTable);
+                doc.text(TimeTable, 190, XposTable);
                 
     }
 
@@ -92,7 +115,7 @@ function gerarRelatorioPDF(DataPLC) {
     
 
         //Save
-        doc.save(`Events ${data}`);
+    doc.save(`Events ${aData.stEventsPdfConstants.sFileName}`);
     
        
 }
