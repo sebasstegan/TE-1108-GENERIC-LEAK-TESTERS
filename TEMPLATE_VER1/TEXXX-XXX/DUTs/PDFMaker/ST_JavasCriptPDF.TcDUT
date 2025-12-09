@@ -6,6 +6,7 @@ STRUCT
 	
 	stEventsPDF				: ARRAY [0..2000] OF ST_EventsPDF;
 	stEventsPdfConstants	: ST_EventsPdfConstants;
+	bMakePDF				: BOOL;
 	
 	
 END_STRUCT

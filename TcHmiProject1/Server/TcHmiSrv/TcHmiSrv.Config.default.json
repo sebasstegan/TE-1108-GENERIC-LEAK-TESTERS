@@ -692,6 +692,16 @@
         },
         "PLC1.ST_JavasCriptPDF": {
             "properties": {
+                "bMakePDF": {
+                    "allOf": [
+                        {
+                            "$ref": "tchmi:general#/definitions/BOOL"
+                        },
+                        {
+                            "propertyOrder": 3
+                        }
+                    ]
+                },
                 "stEventsPDF": {
                     "allOf": [
                         {
@@ -744,6 +754,16 @@
                         },
                         {
                             "propertyOrder": 3
+                        }
+                    ]
+                },
+                "nEfficency": {
+                    "allOf": [
+                        {
+                            "$ref": "tchmi:general#/definitions/STRING%2880%29"
+                        },
+                        {
+                            "propertyOrder": 8
                         }
                     ]
                 },
@@ -3699,6 +3719,23 @@
             "MAPPING": "PLC1::GVL_Persistent::stJavasCriptPDF",
             "SCHEMA": {
                 "$ref": "tchmi:server#/definitions/PLC1.ST_JavasCriptPDF"
+            },
+            "USEMAPPING": true
+        },
+        "PLC1.GVL_Persistent.stStatisticsHMI": {
+            "ACCESS": 3,
+            "DOMAIN": "ADS",
+            "DYNAMIC": true,
+            "MAPPING": "PLC1::GVL_Persistent::stStatisticsHMI",
+            "SCHEMA": {
+                "allOf": [
+                    {
+                        "comment": "0: GENERAL"
+                    },
+                    {
+                        "$ref": "tchmi:server#/definitions/PLC1.ARRAY_0..3_OF-ST_StatisticsHMI"
+                    }
+                ]
             },
             "USEMAPPING": true
         },

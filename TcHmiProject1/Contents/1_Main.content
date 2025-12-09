@@ -5,28 +5,7 @@
 [
   {
     "event": "TcHmiButton_40.onPressed",
-    "actions": [
-      {
-        "objectType": "JavaScript",
-        "active": true,
-        "sourceLines": [
-          "var symbol = new TcHmi.Symbol('%s%PLC1.GVL_Persistent.stJavasCriptPDF%/s%');",
-          "    symbol.readEx(function (data) {",
-          "        if (data.error === TcHmi.Errors.NONE) {",
-          "            // Handle result value... ",
-          "            var value = data.value;",
-          "            gerarRelatorioPDF(value);",
-          "            console.log(value);",
-          "        } else {",
-          "            // Handle error... ",
-          "        }",
-          "    });"
-        ],
-        "injectContextObject": false,
-        "asyncWait": true,
-        "waitMode": "Synchronous"
-      }
-    ]
+    "actions": []
   }
 ]
 </script>

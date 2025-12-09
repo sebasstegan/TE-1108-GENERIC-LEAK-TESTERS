@@ -158,7 +158,8 @@ fbPDFMaker(
 							sMachineName				:= 'example',
 							
 							bDataWrited					=> stPDFMaker.bDataWrited,
-							stJavasCriptPDF				=> stJavasCriptPDF
+							stJavasCriptPDF				=> stJavasCriptPDF,
+							bMakePdf					=> stJavasCriptPDF.bMakePDF
 							);
 
 (*stPDFMaker.sDate			:= 	CONCAT( STR1 := WORD_TO_STRING(stSystemTime.wDay), STR2 := 
@@ -333,6 +334,7 @@ END_IF
       <LineId Id="62" Count="0" />
       <LineId Id="66" Count="0" />
       <LineId Id="69" Count="0" />
+      <LineId Id="77" Count="0" />
       <LineId Id="54" Count="0" />
       <LineId Id="74" Count="2" />
       <LineId Id="73" Count="0" />

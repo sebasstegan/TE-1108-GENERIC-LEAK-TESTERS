@@ -29,10 +29,8 @@ VAR
 	i						: DINT;
 	nRowIndex				: DINT;
 	sPDFDate				: STRING(255);
-	bWritePDF				: BOOL;
 	sFileName				: STRING(255);
 	tonResetData			: TON;
-	TEST					: BOOL;
 	
 END_VAR
 ]]></Declaration>
@@ -40,7 +38,7 @@ END_VAR
       <ST><![CDATA[ACT_IO();
 ACT_WriteData();
 
-bMakePdf			:= TEST;]]></ST>
+		]]></ST>
     </Implementation>
     <Action Name="ACT_IO" Id="{8b9915ff-83a8-4047-8cda-512409519079}">
       <Implementation>
@@ -82,14 +80,14 @@ END_IF
 
 IF sPDFDate <> sDate THEN
 	
-	bWritePDF							:= TRUE;
+	bMakePdf							:= TRUE;
 	sPDFDate							:= sDate;
 	
 END_IF
 
 sFileName 								:= CONCAT( STR1 := 'PDF_', STR2 := sPDFDate);
 
-tonResetData( IN := bWritePDF, PT := T#1S);
+tonResetData( IN := bMakePdf, PT := T#1S);
 
 IF tonResetData.Q THEN
 	
@@ -102,7 +100,7 @@ IF tonResetData.Q THEN
 				
 	END_FOR
 	nRowIndex 										:= 0;		
-	bWritePDF										:= FALSE;
+	bMakePdf										:= FALSE;
 	i												:= 0;
 END_IF
 
