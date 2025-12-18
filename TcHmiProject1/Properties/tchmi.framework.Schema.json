@@ -3202,8 +3202,7 @@
               }
             }
           }
-        },
-        "additionalProperties": false
+        }
       }
     },
     "TcHmi.Controls.Beckhoff.TcHmiBarChart.ChartBarColorFilter": {
@@ -3237,7 +3236,6 @@
                 "type": "number"
               }
             },
-            "additionalProperties": false,
             "required": [
               "path",
               "comparator",
@@ -3303,7 +3301,7 @@
           "displayName": "Orientation",
           "displayPriority": 10,
           "description": "",
-          "defaultValue": "Horizontal",
+          "defaultValue": null,
           "defaultValueInternal": "Horizontal"
         },
         {
@@ -3445,7 +3443,6 @@
           "$ref": "tchmi:framework#/definitions/FontWeight"
         }
       },
-      "additionalProperties": false,
       "required": [
         "name",
         "value",
@@ -4086,14 +4083,8 @@
                 ]
               },
               "width": {
-                "allOf": [
-                  {
-                    "$ref": "#/definitions/PositiveNumber"
-                  },
-                  {
-                    "$ref": "#/definitions/MeasurementValue"
-                  }
-                ]
+                "type": "number",
+                "minimum": 0
               },
               "widthUnit": {
                 "$ref": "tchmi:framework#/definitions/MeasurementUnitOrFactor"
@@ -4102,14 +4093,8 @@
                 "type": "boolean"
               },
               "minWidth": {
-                "allOf": [
-                  {
-                    "$ref": "#/definitions/PositiveNumber"
-                  },
-                  {
-                    "$ref": "#/definitions/MeasurementValue"
-                  }
-                ]
+                "type": "number",
+                "minimum": 0
               },
               "minWidthUnit": {
                 "$ref": "tchmi:framework#/definitions/MeasurementUnit"
@@ -4313,7 +4298,7 @@
                 "returnType": "tchmi:general#/definitions/String",
                 "requiredArguments": [
                   {
-                    "type": "tchmi:general#/definitions/Any",
+                    "type": "tchmi:general#/definitions/Number",
                     "description": "The value to format."
                   }
                 ],
@@ -4396,14 +4381,8 @@
               ]
             },
             "width": {
-              "allOf": [
-                {
-                  "$ref": "#/definitions/PositiveNumber"
-                },
-                {
-                  "$ref": "#/definitions/MeasurementValue"
-                }
-              ]
+              "type": "number",
+              "minimum": 0
             },
             "widthUnit": {
               "$ref": "tchmi:framework#/definitions/MeasurementUnitOrFactor"
@@ -4412,14 +4391,8 @@
               "type": "boolean"
             },
             "minWidth": {
-              "allOf": [
-                {
-                  "$ref": "#/definitions/PositiveNumber"
-                },
-                {
-                  "$ref": "#/definitions/MeasurementValue"
-                }
-              ]
+              "type": "number",
+              "minimum": 0
             },
             "minWidthUnit": {
               "$ref": "tchmi:framework#/definitions/MeasurementUnit"
@@ -5335,8 +5308,7 @@
               }
             }
           }
-        },
-        "additionalProperties": false
+        }
       }
     },
     "TcHmi.Controls.Beckhoff.TcHmiHorizontalBarChart.ChartBarColorFilter": {
@@ -5370,7 +5342,6 @@
                 "type": "number"
               }
             },
-            "additionalProperties": false,
             "required": [
               "path",
               "comparator",
@@ -5426,7 +5397,7 @@
           "displayName": "Orientation",
           "displayPriority": 10,
           "description": "",
-          "defaultValue": "Horizontal",
+          "defaultValue": null,
           "defaultValueInternal": "Horizontal"
         },
         {
@@ -5568,7 +5539,6 @@
           "$ref": "tchmi:framework#/definitions/FontWeight"
         }
       },
-      "additionalProperties": false,
       "required": [
         "name",
         "value",
@@ -5841,8 +5811,7 @@
               "required": [
                 "x",
                 "y"
-              ],
-              "additionalProperties": false
+              ]
             }
           }
         },
@@ -5945,7 +5914,7 @@
             "displayPriority": 10,
             "description": "Dot stroke width",
             "defaultValue": 1,
-            "defaultValueInternal": null
+            "defaultValueInternal": 1
           },
           {
             "name": "legendName",
@@ -5998,17 +5967,8 @@
             "category": "General",
             "displayPriority": 10,
             "description": "Fill transparency for the fill area",
-            "defaultValue": 50,
-            "defaultValueInternal": 50
-          },
-          {
-            "name": "colorRanges",
-            "category": "General",
-            "displayName": "Line color ranges",
-            "displayPriority": 10,
-            "description": "An array of colors to be used in different ranges.",
             "defaultValue": null,
-            "defaultValueInternal": null
+            "defaultValueInternal": 50
           }
         ],
         "properties": {
@@ -6063,69 +6023,10 @@
           },
           "fillTransparency": {
             "type": "number"
-          },
-          "colorRanges": {
-            "type": "array",
-            "items": {
-              "type": "object",
-              "properties": {
-                "color": {
-                  "$ref": "tchmi:framework#/definitions/SolidColor"
-                },
-                "expression": {
-                  "$ref": "tchmi:framework#/definitions/TcHmi.Controls.Beckhoff.TcHmiLineChart.ChartLineColorFilter"
-                }
-              }
-            }
           }
         },
-        "additionalProperties": false,
         "required": [
           "yAxisId"
-        ]
-      }
-    },
-    "TcHmi.Controls.Beckhoff.TcHmiLineChart.ChartLineColorFilter": {
-      "title": "ChartLineColorFilter",
-      "type": "array",
-      "items": {
-        "anyOf": [
-          {
-            "type": "object",
-            "properties": {
-              "path": {
-                "type": "string",
-                "enum": [
-                  "{value}"
-                ],
-                "default": "{value}"
-              },
-              "comparator": {
-                "type": "string",
-                "enum": [
-                  "==",
-                  "!=",
-                  "<",
-                  ">",
-                  "<=",
-                  ">="
-                ],
-                "default": "=="
-              },
-              "value": {
-                "type": "number"
-              }
-            },
-            "additionalProperties": false,
-            "required": [
-              "path",
-              "comparator",
-              "value"
-            ]
-          },
-          {
-            "$ref": "tchmi:framework#/definitions/TcHmi.Controls.Beckhoff.TcHmiLineChart.ChartLineColorFilter"
-          }
         ]
       }
     },
@@ -6145,7 +6046,9 @@
           "displayPriority": 10,
           "description": "",
           "defaultValue": "%tr%Control::TcHmi.Controls.Beckhoff.TcHmiLineChart::YAxisLabelFontColor%/tr%",
-          "defaultValueInternal": null
+          "defaultValueInternal": {
+            "color": "#4794da"
+          }
         },
         {
           "name": "axisColor",
@@ -6154,7 +6057,9 @@
           "displayPriority": 10,
           "description": "",
           "defaultValue": "%tr%Control::TcHmi.Controls.Beckhoff.TcHmiLineChart::YAxisAxisColor%/tr%",
-          "defaultValueInternal": null
+          "defaultValueInternal": {
+            "color": "#4794da"
+          }
         },
         {
           "name": "axisNameFontColor",
@@ -6163,7 +6068,9 @@
           "displayPriority": 10,
           "description": "",
           "defaultValue": "%tr%Control::TcHmi.Controls.Beckhoff.TcHmiLineChart::YAxisAxisNameFontColor%/tr%",
-          "defaultValueInternal": null
+          "defaultValueInternal": {
+            "color": "#4794da"
+          }
         },
         {
           "name": "id",
@@ -6238,15 +6145,6 @@
           "defaultValueInternal": 2
         },
         {
-          "name": "showAxis",
-          "category": "General",
-          "displayName": "Show Axis",
-          "displayPriority": 10,
-          "description": "",
-          "defaultValue": null,
-          "defaultValueInternal": true
-        },
-        {
           "name": "showLabels",
           "category": "General",
           "displayName": "showLabels",
@@ -6289,7 +6187,7 @@
           "displayPriority": 10,
           "description": "",
           "defaultValue": null,
-          "defaultValueInternal": 15
+          "defaultValueInternal": 12
         },
         {
           "name": "axisNameFontSizeUnit",
@@ -6364,9 +6262,6 @@
           "type": "number",
           "minimum": 0
         },
-        "showAxis": {
-          "type": "boolean"
-        },
         "showLabels": {
           "type": "boolean"
         },
@@ -6392,7 +6287,6 @@
           "type": "string"
         }
       },
-      "additionalProperties": false,
       "required": [
         "id",
         "position"
@@ -6441,7 +6335,7 @@
           "displayPriority": 10,
           "description": "",
           "defaultValue": null,
-          "defaultValueInternal": null
+          "defaultValueInternal": ""
         },
         {
           "name": "orientation",
@@ -6449,7 +6343,7 @@
           "displayName": "Orientation",
           "displayPriority": 10,
           "description": "",
-          "defaultValue": "Horizontal",
+          "defaultValue": null,
           "defaultValueInternal": "Horizontal"
         },
         {
@@ -6467,7 +6361,7 @@
           "displayName": "Value",
           "displayPriority": 10,
           "description": "",
-          "defaultValue": 0,
+          "defaultValue": null,
           "defaultValueInternal": 0
         },
         {
@@ -6487,8 +6381,8 @@
           "displayName": "Line width",
           "displayPriority": 10,
           "description": "",
-          "defaultValue": 1,
-          "defaultValueInternal": null
+          "defaultValue": null,
+          "defaultValueInternal": 1
         },
         {
           "name": "showLabel",
@@ -6603,7 +6497,6 @@
           "$ref": "tchmi:framework#/definitions/FontWeight"
         }
       },
-      "additionalProperties": false,
       "required": [
         "name",
         "value",
@@ -6990,15 +6883,6 @@
             "description": "Fill transparency for the fill area",
             "defaultValue": null,
             "defaultValueInternal": 50
-          },
-          {
-            "name": "colorRanges",
-            "category": "General",
-            "displayName": "Line color ranges",
-            "displayPriority": 10,
-            "description": "An array of colors to be used in different ranges.",
-            "defaultValue": null,
-            "defaultValueInternal": null
           }
         ],
         "properties": {
@@ -7006,7 +6890,7 @@
             "type": "string"
           },
           "yAxisId": {
-            "type": "integer"
+            "type": "number"
           },
           "lineWidth": {
             "type": "number"
@@ -7054,67 +6938,10 @@
           },
           "fillTransparency": {
             "type": "number"
-          },
-          "colorRanges": {
-            "type": "array",
-            "items": {
-              "type": "object",
-              "properties": {
-                "color": {
-                  "$ref": "tchmi:framework#/definitions/SolidColor"
-                },
-                "expression": {
-                  "$ref": "tchmi:framework#/definitions/TcHmi.Controls.Beckhoff.TcHmiTrendLineChart.ChartLineColorFilter"
-                }
-              }
-            }
           }
         },
         "required": [
           "yAxisId"
-        ]
-      }
-    },
-    "TcHmi.Controls.Beckhoff.TcHmiTrendLineChart.ChartLineColorFilter": {
-      "title": "ChartLineColorFilter",
-      "type": "array",
-      "items": {
-        "anyOf": [
-          {
-            "type": "object",
-            "properties": {
-              "path": {
-                "type": "string",
-                "enum": [
-                  "{value}"
-                ],
-                "default": "{value}"
-              },
-              "comparator": {
-                "type": "string",
-                "enum": [
-                  "==",
-                  "!=",
-                  "<",
-                  ">",
-                  "<=",
-                  ">="
-                ],
-                "default": "=="
-              },
-              "value": {
-                "type": "number"
-              }
-            },
-            "required": [
-              "path",
-              "comparator",
-              "value"
-            ]
-          },
-          {
-            "$ref": "tchmi:framework#/definitions/TcHmi.Controls.Beckhoff.TcHmiTrendLineChart.ChartLineColorFilter"
-          }
         ]
       }
     },
@@ -7187,7 +7014,6 @@
           "type": "string"
         }
       },
-      "additionalProperties": false,
       "required": [
         "symbolname"
       ]
@@ -7216,8 +7042,7 @@
           "required": [
             "x",
             "y"
-          ],
-          "additionalProperties": false
+          ]
         },
         "yAxis": {
           "$ref": "tchmi:framework#/definitions/TcHmi.Controls.Beckhoff.TcHmiTrendLineChart.ChartYAxisDefinition"
@@ -7226,7 +7051,6 @@
           "type": "string"
         }
       },
-      "additionalProperties": false,
       "required": [
         "point",
         "symbolname"
@@ -7244,7 +7068,9 @@
           "displayPriority": 10,
           "description": "",
           "defaultValue": "%tr%Control::TcHmi.Controls.Beckhoff.TcHmiTrendLineChart::YAxisLabelFontColor%/tr%",
-          "defaultValueInternal": null
+          "defaultValueInternal": {
+            "color": "#2775be"
+          }
         },
         {
           "name": "axisColor",
@@ -7253,7 +7079,9 @@
           "displayPriority": 10,
           "description": "",
           "defaultValue": "%tr%Control::TcHmi.Controls.Beckhoff.TcHmiTrendLineChart::YAxisAxisColor%/tr%",
-          "defaultValueInternal": null
+          "defaultValueInternal": {
+            "color": "#2775be"
+          }
         },
         {
           "name": "axisNameFontColor",
@@ -7262,7 +7090,9 @@
           "displayPriority": 10,
           "description": "",
           "defaultValue": "%tr%Control::TcHmi.Controls.Beckhoff.TcHmiTrendLineChart::YAxisAxisNameFontColor%/tr%",
-          "defaultValueInternal": null
+          "defaultValueInternal": {
+            "color": "#2775be"
+          }
         },
         {
           "name": "id",
@@ -7270,8 +7100,8 @@
           "displayName": "Id",
           "displayPriority": 10,
           "description": "",
-          "defaultValue": 1,
-          "defaultValueInternal": null
+          "defaultValue": null,
+          "defaultValueInternal": 1
         },
         {
           "name": "position",
@@ -7279,7 +7109,7 @@
           "displayName": "Position",
           "displayPriority": 10,
           "description": "",
-          "defaultValue": "Left",
+          "defaultValue": null,
           "defaultValueInternal": "Left"
         },
         {
@@ -7491,7 +7321,6 @@
           "type": "string"
         }
       },
-      "additionalProperties": false,
       "required": [
         "id",
         "position"
@@ -7554,7 +7383,7 @@
           "displayPriority": 10,
           "description": "",
           "defaultValue": null,
-          "defaultValueInternal": null
+          "defaultValueInternal": ""
         },
         {
           "name": "orientation",
@@ -7562,7 +7391,7 @@
           "displayName": "Orientation",
           "displayPriority": 10,
           "description": "",
-          "defaultValue": "Horizontal",
+          "defaultValue": null,
           "defaultValueInternal": "Horizontal"
         },
         {
@@ -7580,7 +7409,7 @@
           "displayName": "Value",
           "displayPriority": 10,
           "description": "",
-          "defaultValue": 0,
+          "defaultValue": null,
           "defaultValueInternal": 0
         },
         {
@@ -7600,7 +7429,7 @@
           "displayName": "Line width",
           "displayPriority": 10,
           "description": "",
-          "defaultValue": 1,
+          "defaultValue": null,
           "defaultValueInternal": 1
         },
         {
@@ -7682,7 +7511,7 @@
           ]
         },
         "yAxisId": {
-          "type": "integer"
+          "type": "number"
         },
         "value": {
           "type": "number"
@@ -7715,7 +7544,6 @@
           "$ref": "tchmi:framework#/definitions/FontWeight"
         }
       },
-      "additionalProperties": false,
       "required": [
         "name",
         "value",
@@ -8657,14 +8485,8 @@
                 ]
               },
               "width": {
-                "allOf": [
-                  {
-                    "$ref": "#/definitions/PositiveNumber"
-                  },
-                  {
-                    "$ref": "#/definitions/MeasurementValue"
-                  }
-                ]
+                "type": "number",
+                "minimum": 0
               },
               "widthUnit": {
                 "$ref": "tchmi:framework#/definitions/MeasurementUnitOrFactor"
@@ -8673,14 +8495,8 @@
                 "type": "boolean"
               },
               "minWidth": {
-                "allOf": [
-                  {
-                    "$ref": "#/definitions/PositiveNumber"
-                  },
-                  {
-                    "$ref": "#/definitions/MeasurementValue"
-                  }
-                ]
+                "type": "number",
+                "minimum": 0
               },
               "minWidthUnit": {
                 "$ref": "tchmi:framework#/definitions/MeasurementUnit"
@@ -8884,7 +8700,7 @@
                 "returnType": "tchmi:general#/definitions/String",
                 "requiredArguments": [
                   {
-                    "type": "tchmi:general#/definitions/Any",
+                    "type": "tchmi:general#/definitions/Number",
                     "description": "The value to format."
                   }
                 ],
@@ -8968,14 +8784,8 @@
               ]
             },
             "width": {
-              "allOf": [
-                {
-                  "$ref": "#/definitions/PositiveNumber"
-                },
-                {
-                  "$ref": "#/definitions/MeasurementValue"
-                }
-              ]
+              "type": "number",
+              "minimum": 0
             },
             "widthUnit": {
               "$ref": "tchmi:framework#/definitions/MeasurementUnitOrFactor"
@@ -8984,14 +8794,8 @@
               "type": "boolean"
             },
             "minWidth": {
-              "allOf": [
-                {
-                  "$ref": "#/definitions/PositiveNumber"
-                },
-                {
-                  "$ref": "#/definitions/MeasurementValue"
-                }
-              ]
+              "type": "number",
+              "minimum": 0
             },
             "minWidthUnit": {
               "$ref": "tchmi:framework#/definitions/MeasurementUnit"
@@ -9273,14 +9077,8 @@
             "$ref": "tchmi:framework#/definitions/TcHmi.Controls.Beckhoff.TcHmiObjectBrowser.ColumnName"
           },
           "width": {
-            "allOf": [
-              {
-                "$ref": "#/definitions/PositiveNumber"
-              },
-              {
-                "$ref": "#/definitions/MeasurementValue"
-              }
-            ]
+            "type": "number",
+            "minimum": 0
           },
           "widthUnit": {
             "$ref": "tchmi:framework#/definitions/MeasurementUnitOrFactor"
@@ -9289,14 +9087,8 @@
             "type": "boolean"
           },
           "minWidth": {
-            "allOf": [
-              {
-                "$ref": "#/definitions/PositiveNumber"
-              },
-              {
-                "$ref": "#/definitions/MeasurementValue"
-              }
-            ]
+            "type": "number",
+            "minimum": 0
           },
           "minWidthUnit": {
             "$ref": "tchmi:framework#/definitions/MeasurementUnit"
@@ -9412,7 +9204,7 @@
           "type": "string"
         },
         "targetFile": {
-          "$ref": "tchmi:framework#/definitions/TcHmi.Controls.System.TcHmiPopup.TargetFile"
+          "$ref": "tchmi:framework#/definitions/TcHmi.Controls.Beckhoff.TcHmiTabNavigation.TargetFile"
         },
         "targetFileHostPreload": {
           "type": "boolean"
