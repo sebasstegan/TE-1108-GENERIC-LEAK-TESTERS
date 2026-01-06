@@ -3458,6 +3458,34 @@
             },
             "USEMAPPING": true
         },
+        "PLC1.GVL_HMI.nPopUp": {
+            "ACCESS": 3,
+            "DOMAIN": "ADS",
+            "DYNAMIC": true,
+            "MAPPING": "PLC1::GVL_HMI::nPopUp",
+            "SCHEMA": {
+                "$ref": "tchmi:general#/definitions/DINT"
+            },
+            "USEMAPPING": true
+        },
+        "PLC1.GVL_HMI.rOpenPopUp.Q": {
+            "ACCESS": 3,
+            "DOMAIN": "ADS",
+            "DYNAMIC": true,
+            "MAPPING": "PLC1::GVL_HMI::rOpenPopUp::Q",
+            "SCHEMA": {
+                "allOf": [
+                    {
+                        "$ref": "tchmi:general#/definitions/BOOL"
+                    },
+                    {
+                        "comment": "rising edge at signal detected",
+                        "propertyOrder": 2
+                    }
+                ]
+            },
+            "USEMAPPING": true
+        },
         "PLC1.GVL_HMI.sAplication": {
             "ACCESS": 3,
             "DOMAIN": "ADS",
@@ -4715,6 +4743,8 @@
                 "PLC1.GVL_HMI.bShutDown": 3,
                 "PLC1.GVL_HMI.bUserLoggedIn": 3,
                 "PLC1.GVL_HMI.nMainRegion": 3,
+                "PLC1.GVL_HMI.nPopUp": 3,
+                "PLC1.GVL_HMI.rOpenPopUp.Q": 3,
                 "PLC1.GVL_HMI.sAplication": 3,
                 "PLC1.GVL_HMI.sHMIServer": 3,
                 "PLC1.GVL_HMI.sHMIVersion": 3,

@@ -160,6 +160,9 @@
     <Content Include="Contents\10_Manage_Users.content">
       <SubType>Content</SubType>
     </Content>
+    <Content Include="Contents\CSS_JAVA\delay.js">
+      <SubType>Content</SubType>
+    </Content>
     <Content Include="Contents\CSS_JAVA\Enable buttons.js">
       <SubType>Content</SubType>
     </Content>
@@ -230,7 +233,7 @@
     <Content Include="Contents\popup\popup2.content">
       <SubType>Content</SubType>
     </Content>
-    <Content Include="Contents\popup\popup1.content">
+    <Content Include="Contents\popup\popup1_RejectedPart.content">
       <SubType>Content</SubType>
     </Content>
     <Content Include="Contents\Settings\3_SettingsStation3.content">

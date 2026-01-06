@@ -75,6 +75,11 @@
       "name": "Contents/CSS_JAVA/Enable buttons.js",
       "description": "",
       "type": "JavaScript"
+    },
+    {
+      "name": "Contents/CSS_JAVA/delay.js",
+      "description": "",
+      "type": "JavaScript"
     }
   ],
   "userControls": [
@@ -241,14 +246,14 @@
       "preloadBindings": false
     },
     {
-      "url": "Contents/popup/popup1.content",
+      "url": "Contents/popup/popup2.content",
       "preload": false,
       "keepAlive": false,
       "loadSync": false,
       "preloadBindings": false
     },
     {
-      "url": "Contents/popup/popup2.content",
+      "url": "Contents/popup/popup1_RejectedPart.content",
       "preload": false,
       "keepAlive": false,
       "loadSync": false,
@@ -334,9 +339,15 @@
         "persist": false,
         "readonly": false
       },
-      "PopUp": {
-        "value": "",
-        "type": "tchmi:general#/definitions/String",
+      "ClosePopUp": {
+        "value": false,
+        "type": "tchmi:general#/definitions/BOOL",
+        "persist": false,
+        "readonly": false
+      },
+      "delaytest": {
+        "value": false,
+        "type": "tchmi:general#/definitions/BOOL",
         "persist": false,
         "readonly": false
       }
