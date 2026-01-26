@@ -174,7 +174,7 @@
     <Compile Include="POUs\B_STATIONS\B_1_LEAK_TEST\B_1_1_PRG_Master_Station_1.TcPOU">
       <SubType>Code</SubType>
     </Compile>
-    <Compile Include="POUs\B_STATIONS\B_2_STATION_2\B_2_1_PRG_Master_Station_2.TcPOU">
+    <Compile Include="POUs\B_STATIONS\B_2_HEIGHT_TEST\B_2_1_PRG_Master_Station_2.TcPOU">
       <SubType>Code</SubType>
     </Compile>
     <Compile Include="POUs\B_STATIONS\B_3_STATION_3\B_3_1_PRG_Master_Station_3.TcPOU">
@@ -229,7 +229,7 @@
     <Folder Include="POUs\A_MASTER" />
     <Folder Include="POUs\B_STATIONS" />
     <Folder Include="POUs\B_STATIONS\B_1_LEAK_TEST" />
-    <Folder Include="POUs\B_STATIONS\B_2_STATION_2" />
+    <Folder Include="POUs\B_STATIONS\B_2_HEIGHT_TEST" />
     <Folder Include="POUs\B_STATIONS\B_3_STATION_3" />
     <Folder Include="POUs\C_HMI" />
     <Folder Include="POUs\D_CSV" />
