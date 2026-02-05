@@ -51,6 +51,9 @@
     <Compile Include="DUTs\COMPONENTS\PROCESS DOOR\ST_ProcessDoor_CMD.TcDUT">
       <SubType>Code</SubType>
     </Compile>
+    <Compile Include="DUTs\HMI\ST_Animations.TcDUT">
+      <SubType>Code</SubType>
+    </Compile>
     <Compile Include="DUTs\HMI\ST_StatusBanner.TcDUT">
       <SubType>Code</SubType>
     </Compile>

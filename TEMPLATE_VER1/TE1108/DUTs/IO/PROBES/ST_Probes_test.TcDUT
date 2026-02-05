@@ -4,11 +4,13 @@
     <Declaration><![CDATA[TYPE ST_Probes_test :
 STRUCT
 	
-	anDistances						: ARRAY[0..9] OF DINT;
-	abProbeError					: ARRAY[0..10] OF BOOL;
+	anDistances						: ARRAY[0..5] OF DINT;
+	abProbeError					: ARRAY[0..7] OF BOOL;
 	bGeneralError					: BOOL;
-	anHeightProbe					: ARRAY[0..10] OF DINT;
-
+	anRawMeasurement				: ARRAY[0..7] OF DINT;
+	bSetDistances					: BOOL;
+	
+	
 END_STRUCT
 END_TYPE
 ]]></Declaration>

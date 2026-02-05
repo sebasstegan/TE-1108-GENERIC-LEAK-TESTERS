@@ -623,7 +623,8 @@ END_CASE
     </Action>
     <Action Name="c_ACT_SaveData" Id="{5a28b6f2-a56d-4cef-8c15-c08642850884}">
       <Implementation>
-        <ST><![CDATA[	aDataHistory[0].stCamera_CycleData						:= stCycleData.stCamera_CycleData;
+        <ST><![CDATA[
+	aDataHistory[0].stCamera_CycleData						:= stCycleData.stCamera_CycleData;
 	aDataHistory[0].stHeightTest_CycleData					:= stCycleData.stHeightTest_CycleData;
 	aDataHistory[0].stLeakTester_CycleData					:= stCycleData.stLeakTester_CycleData;
 	
@@ -1003,6 +1004,7 @@ bPartPresentNest4					:= dw_T08_EL1809.iPartPresentNest4;]]></ST>
       <LineId Id="233" Count="0" />
     </LineIds>
     <LineIds Name="A_2_PRG_MachineCtrl.c_ACT_SaveData">
+      <LineId Id="54" Count="0" />
       <LineId Id="17" Count="0" />
       <LineId Id="43" Count="0" />
       <LineId Id="53" Count="0" />

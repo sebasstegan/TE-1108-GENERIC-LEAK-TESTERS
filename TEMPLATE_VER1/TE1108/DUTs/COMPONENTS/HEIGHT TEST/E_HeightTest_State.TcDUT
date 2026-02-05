@@ -15,7 +15,8 @@ TYPE E_HeightTest_State :
 	WAIT_MEASUREMENT	,
 	DONE				,
 	RESULTS				,
-	RESET				
+	RESET				,
+	MANUAL_MODE
 );
 END_TYPE
 ]]></Declaration>

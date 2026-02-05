@@ -43,10 +43,15 @@
 	
 /////////////////////////////////////////////////////////////////////////////////////SETTINGS/////////////////////////////////////////////////////////////////////////////////////	
 
-	anDistanceCalibrationBlock			: ARRAY [0..2] OF DINT;	
-	anExpectedDistances					: ARRAY [0..2] OF DINT;	
-	anHeightSetByCalibration			: ARRAY [0..3] OF DINT;	
-	anTolerances						: ARRAY [0..2] OF DINT;	
+	anDistanceCalibrationBlock			: ARRAY [0..5] OF DINT;	
+	anExpectedDistances					: ARRAY [0..5] OF DINT;	
+	anHeightSetByCalibration			: ARRAY [0..7] OF DINT;	
+	anTolerances						: ARRAY [0..5] OF DINT;	
+	
+	bCalibrationButton					: ARRAY[0..1] OF  BOOL;
+	
+	
+	stAnimations						: ST_Animations;
 	
 	
 END_VAR

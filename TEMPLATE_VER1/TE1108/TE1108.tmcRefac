@@ -6,5 +6,15 @@
       <From>B_2_1_PRG_Master_Station_2</From>
       <To>B_2_1_PRG_Master_Height_Test</To>
     </RenamedType>
+    <RenamedType>
+      <Type guid="4c79a236-7589-4d28-bfec-9644f041c168">E_ACT_MEASUREMENTANDCALIBRATION</Type>
+      <From>e_ACT_Measurement</From>
+      <To>e_ACT_Measurement</To>
+    </RenamedType>
+    <RenamedType>
+      <Type guid="ba3d4c06-4dd8-4dbc-bc66-a0ae4552c8a7">E_ACT_MEASUREMENT_1</Type>
+      <From>e_ACT_Measurement_1</From>
+      <To>f_ACT_ManualMode</To>
+    </RenamedType>
   </Renames>
 </Refactors>

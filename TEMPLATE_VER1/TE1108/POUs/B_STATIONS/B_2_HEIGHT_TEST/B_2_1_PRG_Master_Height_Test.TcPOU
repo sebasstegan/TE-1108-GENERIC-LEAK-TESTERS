@@ -8,23 +8,27 @@ VAR
 	rGoodStatistics						: R_TRIG;
 	rBadStatistics						: R_TRIG;
 	rEfficency							: STRING(510);
+	
+	anMinimumDistance					: ARRAY[0..2] OF DINT;
+	anMaximumDistance					: ARRAY[0..2] OF DINT;
 
 	bEventsFlag							: ARRAY [0..100] OF BOOL;
 /////////////////////////////////////////////////////////////////////////////////////I O/////////////////////////////////////////////////////////////////////////////////////	
 	
 	bError								: BOOL;
 	bReady								: BOOL;
-	bPass								: BOOL;
-	bFail								: BOOL;
+	abPass								: ARRAY [0..5] OF BOOL;
+	abFail								: ARRAY [0..5] OF BOOL;
 	tonTakeMeasure						: TON;
 	abMeaurement						: ARRAY [0..1] OF BOOL;
 	bMeasurementDone					: BOOL;
 	
-	anDistances							: ARRAY[0..9] OF DINT;
-	abDistancesResults					: ARRAY[0..9] OF BOOL;
-	abProbeError						: ARRAY[0..10] OF BOOL;
+	anDistances							: ARRAY[0..5] OF DINT;
+	abProbeError						: ARRAY[0..7] OF BOOL;
 	bGeneralError						: BOOL;
-	anHeightProbe						: ARRAY[0..10] OF DINT;
+	anRawMesurement						: ARRAY[0..7] OF DINT;
+	
+	i									: DINT;
 	
 	
 	
@@ -41,6 +45,19 @@ c_ACT_Statistics_Station_2();]]></ST>
     <Action Name="a_ACT_Ctrl_Station_2" Id="{c76df57f-a608-46ce-a480-681c36fd146a}">
       <Implementation>
         <ST><![CDATA[/////////////////////////////////////////////////////////////////////////////////////UTILITIES/////////////////////////////////////////////////////////////////////////////////////
+IF bError[0] OR bError[1] THEN
+	
+	stHeightTests.State			:= E_HeightTest_State.ERROR;
+
+ELSIF stHeightTests.CMD.bAbort THEN
+	
+	stHeightTests.State			:= E_HeightTest_State.READY;
+
+ELSIF stHeightTests.CMD.bManualMode THEN
+	
+	stHeightTests.State			:= E_HeightTest_State.MANUAL_MODE;
+	
+END_IF
 
 
 
@@ -80,81 +97,107 @@ CASE stHeightTests.State OF
 								
 								e_ACT_Measurement();
 								
+								stCycleData.stHeightTest_CycleData.anRawMeasurement[0]	:= anRawMesurement[0];
+								stCycleData.stHeightTest_CycleData.anRawMeasurement[1]	:= anRawMesurement[1];
+								stCycleData.stHeightTest_CycleData.anRawMeasurement[2]	:= anRawMesurement[2];
+								stCycleData.stHeightTest_CycleData.anRawMeasurement[3]	:= anRawMesurement[3];
+								
+								stCycleData.stHeightTest_CycleData.anRawMeasurement[4]	:= anRawMesurement[4];
+								stCycleData.stHeightTest_CycleData.anRawMeasurement[5]	:= anRawMesurement[5];
+								stCycleData.stHeightTest_CycleData.anRawMeasurement[6]	:= anRawMesurement[6];
+								stCycleData.stHeightTest_CycleData.anRawMeasurement[7]	:= anRawMesurement[7];
+								
+								
+								stCycleData.stHeightTest_CycleData.anDistancesResult[0] := anDistances[0];
+								stCycleData.stHeightTest_CycleData.anDistancesResult[1] := anDistances[1];
+								stCycleData.stHeightTest_CycleData.anDistancesResult[2] := anDistances[2];
+								
+								stCycleData.stHeightTest_CycleData.anDistancesResult[3] := anDistances[3];
+								stCycleData.stHeightTest_CycleData.anDistancesResult[4] := anDistances[4];
+								stCycleData.stHeightTest_CycleData.anDistancesResult[5] := anDistances[5];
+								
 								IF bMeasurementDone THEN
 			
-									stHeightTests.State			:= E_HeightTest_State.DONE;
+									stHeightTests.State		:= E_HeightTest_State.DONE;
 								
 								END_IF
 										
 	E_HeightTest_State.DONE:
 								IF  stLeakTesters.CMD.bAcknowledge THEN
 									
-									stLeakTesters.CMD.bAcknowledge := FALSE;
-									stLeakTesters.State	:= E_LeakTester_State.RESULTS;
+									stLeakTesters.CMD.bAcknowledge 						:= FALSE;
+									stLeakTesters.State									:= E_LeakTester_State.RESULTS;
 									
 								END_IF	
 								
 	E_HeightTest_State.RESULTS:
-								
-								IF bPass[0] THEN
+							
+								IF abMeaurement[0] THEN
+									IF abPass[0] AND abPass[1] AND abPass[2] THEN
 									
-									stCycleData.stLeakTester_CycleData.bPass[0] := TRUE;
-								
-								ELSIF bFail[0] THEN
+										stCycleData.stHeightTest_CycleData.bPass[0]	:= TRUE;
 									
-									stCycleData.stLeakTester_CycleData.bFail[0] := TRUE;
+									ELSE stCycleData.stHeightTest_CycleData.bFail[0] := FALSE;
 								
+									END_IF
 								END_IF
 								
-								IF bPass[1] THEN
+								IF abMeaurement[1] THEN
+									IF abPass[3] AND abPass[4] AND abPass[5] THEN
 									
-									stCycleData.stLeakTester_CycleData.bPass[1] := TRUE;
-								
-								ELSIF bFail[1] THEN
+										stCycleData.stHeightTest_CycleData.bPass[1]	:= TRUE;
 									
-									stCycleData.stLeakTester_CycleData.bFail[1] := TRUE;
+									ELSE stCycleData.stHeightTest_CycleData.bFail[1] := FALSE;
 								
-								END_IF
+									END_IF
+								END_IF	
+								
+								stLeakTesters.State										:= E_LeakTester_State.RESET;
 								
 	E_HeightTest_State.RESET:
 	
-								stCycleData.bPass				:= FALSE;
-								stCycleData.bFail				:= FALSE;
-								bStart[0]						:= FALSE;
-								bStart[1]						:= FALSE;
-								bReset[0]						:= FALSE;
-								bReset[1]						:= FALSE;
-								bStop[0]						:= FALSE;
-								bStop[1]						:= FALSE;
+								abMeaurement[0]			:= TRUE;
+								abMeaurement[1]			:= TRUE;
+
+								FOR i := 0 TO 5 DO
+									
+									abPass[i]			:= FALSE;
+									abFail[i]			:= FALSE;
 								
-								stLeakTesters.State				:= E_LeakTester_State.Ready;
+								END_FOR
+
+								stHeightTests.State										:= E_HeightTest_State.READY;
 								
 	
 	E_HeightTest_State.ERROR:
 	
 								IF NOT bError[0] AND bError[1] THEN
 									
-									stLeakTesters.State						:= E_LeakTester_State.ABORTED;
+									stHeightTests.State									:= E_HeightTest_State.READY;
 									
 								END_IF
+							
+	E_HeightTest_State.MANUAL_MODE:
+	
+								f_ACT_ManualMode();
+								
+	
+								
 
-ELSE stLeakTesters.State := E_LeakTester_State.ABORTED;
+ELSE stHeightTests.State := E_HeightTest_State.READY;
 	
 END_CASE
 /////////////////////////////////////////////////////////////////////////////////////STATUS/////////////////////////////////////////////////////////////////////////////////////
 
-stLeakTesters.Status.bBusy	:= 	stLeakTesters.State = E_LeakTester_State.STOPPING OR
-								stLeakTesters.State = E_LeakTester_State.HOMING OR
-								stLeakTesters.State = E_LeakTester_State.RUN_LEAK_TESTERS OR
-								stLeakTesters.State = E_LeakTester_State.WAIT_LEAK_TESTERS;
+stHeightTests.Status.bBusy	:= 	stHeightTests.State	= E_HeightTest_State.WAIT_MEASUREMENT;	
 
-stLeakTesters.Status.bDone	:= 	stLeakTesters.State = E_LeakTester_State.DONE;
+stHeightTests.Status.bDone	:= 	stHeightTests.State	= E_HeightTest_State.DONE;
 
-stLeakTesters.Status.bError	:= 	stLeakTesters.State = E_LeakTester_State.ERROR;	
+stHeightTests.Status.bError	:= 	stHeightTests.State	= E_HeightTest_State.ERROR;	
 
-stLeakTesters.Status.bReady	:=	stLeakTesters.State = E_LeakTester_State.READY;
+stHeightTests.Status.bReady	:=	stHeightTests.State	= E_HeightTest_State.READY;
 
-stLeakTesters.Status.bStopped := NOT stLeakTesters.Status.bBusy;
+stHeightTests.Status.bStopped := NOT stHeightTests.Status.bBusy;
 ]]></ST>
       </Implementation>
     </Action>
@@ -163,7 +206,37 @@ stLeakTesters.Status.bStopped := NOT stLeakTesters.Status.bBusy;
         <ST><![CDATA[	anDistances						:= Probes.anDistances;
 	abProbeError					:= Probes.abProbeError;
 	bGeneralError					:= Probes.bGeneralError;
-	anHeightProbe					:= Probes.anHeightProbe;]]></ST>
+	anRawMesurement					:= Probes.anRawMeasurement;
+	
+	stCycleData.stHeightTest_CycleData.anDistanceCalibrationBlock[0]	:= anDistanceCalibrationBlock[0];
+	stCycleData.stHeightTest_CycleData.anDistanceCalibrationBlock[1]	:= anDistanceCalibrationBlock[1];
+	stCycleData.stHeightTest_CycleData.anDistanceCalibrationBlock[2]	:= anDistanceCalibrationBlock[2];
+	stCycleData.stHeightTest_CycleData.anDistanceCalibrationBlock[3]	:= anDistanceCalibrationBlock[3];
+	stCycleData.stHeightTest_CycleData.anDistanceCalibrationBlock[4]	:= anDistanceCalibrationBlock[4];
+	stCycleData.stHeightTest_CycleData.anDistanceCalibrationBlock[5]	:= anDistanceCalibrationBlock[5];
+	
+	stCycleData.stHeightTest_CycleData.anExpectedDistances[0]			:= anExpectedDistances[0];
+	stCycleData.stHeightTest_CycleData.anExpectedDistances[1]			:= anExpectedDistances[1];
+	stCycleData.stHeightTest_CycleData.anExpectedDistances[2]			:= anExpectedDistances[2];
+	stCycleData.stHeightTest_CycleData.anExpectedDistances[3]			:= anExpectedDistances[3];
+	stCycleData.stHeightTest_CycleData.anExpectedDistances[4]			:= anExpectedDistances[4];
+	stCycleData.stHeightTest_CycleData.anExpectedDistances[5]			:= anExpectedDistances[5];
+	
+	stCycleData.stHeightTest_CycleData.anHeightSetByCalibration[0]		:= anHeightSetByCalibration[0];
+	stCycleData.stHeightTest_CycleData.anHeightSetByCalibration[1]		:= anHeightSetByCalibration[1];
+	stCycleData.stHeightTest_CycleData.anHeightSetByCalibration[2]		:= anHeightSetByCalibration[2];
+	stCycleData.stHeightTest_CycleData.anHeightSetByCalibration[3]		:= anHeightSetByCalibration[3];
+	stCycleData.stHeightTest_CycleData.anHeightSetByCalibration[4]		:= anHeightSetByCalibration[4];
+	stCycleData.stHeightTest_CycleData.anHeightSetByCalibration[5]		:= anHeightSetByCalibration[5];
+	
+	stCycleData.stHeightTest_CycleData.anTolerances[0]					:= anTolerances[0];
+	stCycleData.stHeightTest_CycleData.anTolerances[1]					:= anTolerances[1];
+	stCycleData.stHeightTest_CycleData.anTolerances[2]					:= anTolerances[2];
+	stCycleData.stHeightTest_CycleData.anTolerances[3]					:= anTolerances[3];
+	stCycleData.stHeightTest_CycleData.anTolerances[4]					:= anTolerances[4];
+	stCycleData.stHeightTest_CycleData.anTolerances[5]					:= anTolerances[5];
+
+]]></ST>
       </Implementation>
     </Action>
     <Action Name="c_ACT_Statistics_Station_2" Id="{a944e097-f352-4ee2-9b3c-c47d97294856}">
@@ -234,13 +307,96 @@ stStationEvents[2].aEvents[2].bEventText					:= 'ST1 EVENT 2';]]></ST>
     </Action>
     <Action Name="e_ACT_Measurement" Id="{4c79a236-7589-4d28-bfec-9644f041c168}">
       <Implementation>
-        <ST><![CDATA[tonTakeMeasure(IN:= stHeightTests.State = E_HeightTest_State.MEASURE, PT := T#5S);
+        <ST><![CDATA[FOR i := 0 TO 5 DO
+	
+	anMinimumDistance[i]					:= anExpectedDistances[i] - anTolerances[i];//settings from HMI
+	anMaximumDistance[i]					:= anExpectedDistances[i] + anTolerances[i];//settings from HMI
+
+END_FOR
+
+i									:= 0;
+
+
+tonTakeMeasure(IN:= stHeightTests.State = E_HeightTest_State.MEASURE, PT := T#5S);
 
 IF tonTakeMeasure.Q THEN
 	
-	IF anDistances[0] 
+	IF abMeaurement[0] THEN
+	
+		FOR i := 0 TO 2 DO
+		
+			IF (anDistances[i] > anMinimumDistance[i]) AND (anDistances[i] < anMaximumDistance[i]) THEN
+		
+				abPass[i]						:= TRUE;
+			
+			ELSE abFail[i]						:= TRUE;	
+				
+			END_IF
+		
+		END_FOR
 
-END_IF]]></ST>
+	END_IF
+	
+	IF abMeaurement[1] THEN
+	
+		FOR i := 3 TO 5 DO
+		
+			IF (anDistances[i] > anMinimumDistance[i]) AND (anDistances[i] < anMaximumDistance[i]) THEN
+		
+				abPass[i]						:= TRUE;
+			
+			ELSE abFail[i]						:= TRUE;	
+				
+			END_IF
+		
+		END_FOR
+
+	END_IF
+
+	bMeasurementDone							:= TRUE;
+	i											:= 0;
+END_IF
+
+
+
+]]></ST>
+      </Implementation>
+    </Action>
+    <Action Name="f_ACT_ManualMode" Id="{ba3d4c06-4dd8-4dbc-bc66-a0ae4552c8a7}">
+      <Implementation>
+        <ST><![CDATA[FOR i := 0 TO 5 DO
+	
+	anMinimumDistance[i]					:= anExpectedDistances[i] - anTolerances[i];//settings from HMI
+	anMaximumDistance[i]					:= anExpectedDistances[i] + anTolerances[i];//settings from HMI
+
+END_FOR
+
+i									:= 0;
+
+IF stPuls.bFlash100Hz THEN
+	
+	FOR i := 0 TO 5 DO
+		
+		IF (anDistances[i] > anMinimumDistance[i]) AND (anDistances[i] < anMaximumDistance[i]) THEN
+		
+			stAnimations.abDistanceBoxesGreen[i]	:= TRUE;
+			
+		ELSE stAnimations.abDistanceBoxesRed[i]		:= TRUE;	
+				
+		END_IF
+		
+	END_FOR
+	i												:= 0;
+END_IF
+
+
+IF bCalibrationButton[0] THEN
+	
+	PROBES.bSetDistances							:= TRUE;
+
+ELSE PROBES.bSetDistances							:= FALSE;	
+END_IF
+]]></ST>
       </Implementation>
     </Action>
     <LineIds Name="B_2_1_PRG_Master_Height_Test">
@@ -248,37 +404,32 @@ END_IF]]></ST>
       <LineId Id="41" Count="0" />
     </LineIds>
     <LineIds Name="B_2_1_PRG_Master_Height_Test.a_ACT_Ctrl_Station_2">
-      <LineId Id="157" Count="0" />
-      <LineId Id="159" Count="3" />
-      <LineId Id="171" Count="2" />
-      <LineId Id="187" Count="9" />
-      <LineId Id="339" Count="0" />
-      <LineId Id="344" Count="1" />
-      <LineId Id="347" Count="0" />
-      <LineId Id="349" Count="0" />
-      <LineId Id="348" Count="0" />
-      <LineId Id="350" Count="2" />
-      <LineId Id="355" Count="0" />
-      <LineId Id="357" Count="1" />
-      <LineId Id="356" Count="0" />
-      <LineId Id="353" Count="0" />
-      <LineId Id="346" Count="0" />
-      <LineId Id="341" Count="0" />
-      <LineId Id="359" Count="1" />
-      <LineId Id="342" Count="0" />
-      <LineId Id="340" Count="0" />
-      <LineId Id="336" Count="0" />
-      <LineId Id="363" Count="0" />
-      <LineId Id="361" Count="1" />
-      <LineId Id="364" Count="2" />
-      <LineId Id="247" Count="43" />
-      <LineId Id="310" Count="25" />
+      <LineId Id="593" Count="7" />
+      <LineId Id="733" Count="2" />
+      <LineId Id="601" Count="0" />
+      <LineId Id="736" Count="0" />
+      <LineId Id="602" Count="43" />
+      <LineId Id="754" Count="0" />
+      <LineId Id="745" Count="2" />
+      <LineId Id="749" Count="0" />
+      <LineId Id="748" Count="0" />
+      <LineId Id="646" Count="3" />
+      <LineId Id="750" Count="0" />
+      <LineId Id="752" Count="1" />
+      <LineId Id="751" Count="0" />
+      <LineId Id="737" Count="0" />
+      <LineId Id="651" Count="81" />
       <LineId Id="95" Count="0" />
     </LineIds>
     <LineIds Name="B_2_1_PRG_Master_Height_Test.b_ACT_IO">
       <LineId Id="5" Count="0" />
       <LineId Id="7" Count="1" />
       <LineId Id="4" Count="0" />
+      <LineId Id="9" Count="0" />
+      <LineId Id="14" Count="0" />
+      <LineId Id="16" Count="18" />
+      <LineId Id="36" Count="7" />
+      <LineId Id="10" Count="0" />
     </LineIds>
     <LineIds Name="B_2_1_PRG_Master_Height_Test.c_ACT_Statistics_Station_2">
       <LineId Id="2" Count="0" />
@@ -311,13 +462,53 @@ END_IF]]></ST>
       <LineId Id="1" Count="0" />
     </LineIds>
     <LineIds Name="B_2_1_PRG_Master_Height_Test.e_ACT_Measurement">
+      <LineId Id="29" Count="0" />
+      <LineId Id="31" Count="0" />
+      <LineId Id="34" Count="1" />
+      <LineId Id="33" Count="0" />
+      <LineId Id="32" Count="0" />
+      <LineId Id="36" Count="0" />
+      <LineId Id="30" Count="0" />
+      <LineId Id="19" Count="1" />
       <LineId Id="1" Count="0" />
       <LineId Id="3" Count="0" />
-      <LineId Id="2" Count="0" />
-      <LineId Id="4" Count="0" />
-      <LineId Id="7" Count="0" />
-      <LineId Id="6" Count="0" />
       <LineId Id="5" Count="0" />
+      <LineId Id="68" Count="0" />
+      <LineId Id="73" Count="8" />
+      <LineId Id="86" Count="0" />
+      <LineId Id="82" Count="3" />
+      <LineId Id="71" Count="0" />
+      <LineId Id="87" Count="0" />
+      <LineId Id="89" Count="13" />
+      <LineId Id="88" Count="0" />
+      <LineId Id="72" Count="0" />
+      <LineId Id="70" Count="0" />
+      <LineId Id="103" Count="0" />
+      <LineId Id="69" Count="0" />
+      <LineId Id="67" Count="0" />
+      <LineId Id="61" Count="1" />
+      <LineId Id="8" Count="0" />
+    </LineIds>
+    <LineIds Name="B_2_1_PRG_Master_Height_Test.f_ACT_ManualMode">
+      <LineId Id="29" Count="0" />
+      <LineId Id="31" Count="0" />
+      <LineId Id="34" Count="1" />
+      <LineId Id="33" Count="0" />
+      <LineId Id="32" Count="0" />
+      <LineId Id="36" Count="0" />
+      <LineId Id="30" Count="0" />
+      <LineId Id="3" Count="0" />
+      <LineId Id="5" Count="0" />
+      <LineId Id="74" Count="7" />
+      <LineId Id="86" Count="0" />
+      <LineId Id="82" Count="2" />
+      <LineId Id="103" Count="0" />
+      <LineId Id="69" Count="0" />
+      <LineId Id="67" Count="0" />
+      <LineId Id="61" Count="1" />
+      <LineId Id="108" Count="2" />
+      <LineId Id="104" Count="1" />
+      <LineId Id="8" Count="0" />
     </LineIds>
   </POU>
 </TcPlcObject>
