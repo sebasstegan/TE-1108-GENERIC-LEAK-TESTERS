@@ -1,7 +1,7 @@
 ﻿<?xml version="1.0" encoding="utf-8"?>
 <TcPlcObject Version="1.1.0.1" ProductVersion="3.1.4024.13">
-  <DUT Name="ST_Probes_test" Id="{84e24643-423a-42da-8153-4f00aca97b7f}">
-    <Declaration><![CDATA[TYPE ST_Probes_test :
+  <DUT Name="ST_Probes_I_O" Id="{84e24643-423a-42da-8153-4f00aca97b7f}">
+    <Declaration><![CDATA[TYPE ST_Probes_I_O :
 STRUCT
 	
 	anDistances						: ARRAY[0..5] OF DINT;

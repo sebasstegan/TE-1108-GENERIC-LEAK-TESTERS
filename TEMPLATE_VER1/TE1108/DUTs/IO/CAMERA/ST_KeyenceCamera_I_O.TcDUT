@@ -1,0 +1,10 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<TcPlcObject Version="1.1.0.1" ProductVersion="3.1.4024.13">
+  <DUT Name="ST_KeyenceCamera_I_O" Id="{f2763bf4-56dd-4a76-be51-069a8d5425ff}">
+    <Declaration><![CDATA[TYPE ST_KeyenceCamera_I_O :
+STRUCT
+END_STRUCT
+END_TYPE
+]]></Declaration>
+  </DUT>
+</TcPlcObject>

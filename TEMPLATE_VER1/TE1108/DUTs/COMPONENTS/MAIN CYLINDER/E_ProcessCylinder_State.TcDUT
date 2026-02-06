@@ -6,20 +6,16 @@
 TYPE E_ProcessCylinder_State :
 (
 		//GENERIC
-	ABORTED				:=10,
-	RESET_ERROR			:=20,
-	HOMING				:=30,
-	READY				:=40,
-	//MANUAL_MODE			:=50, /manual mode not needed.
-	ERROR				:=60,
-	PERSISTENT_ERROR	:=70,
-	STOPPING			:=80,
+	ABORTED				,
+	HOMING				,
+	READY				,
+	MANUAL_MODE			,
+	STOPPING			,
 	//SPECIFIC FOR EVERY STATION
-	Exntend				:=100,
-	Retract				:=120,
-	DONE				:=140,
-	RESULTS				:=160,
-	RESET				:=180
+	EXTEND_PROCESS_CYLINDER,
+	RETRACT_PROCESS_CYLINDER,
+	DONE				,
+	RESET				
 );
 END_TYPE
 ]]></Declaration>

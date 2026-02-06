@@ -5,20 +5,17 @@
 {attribute 'strict'}
 TYPE E_Camera_State :
 (
-		//GENERIC
-	ABORTED				:=10,
-	RESET_ERROR			:=20,
-	HOMING				:=30,
-	READY				:=40,
+	//GENERIC
+	WAITING_READY		,
+	RESET_ERROR			,
+	READY				,
 	//MANUAL_MODE			:=50, /manual mode not needed.
-	ERROR				:=60,
-	PERSISTENT_ERROR	:=70,
-	STOPPING			:=80,
+	ERROR				,
 	//SPECIFIC FOR EVERY STATION
-	TAKING_PICTURE		:=100,
-	DONE				:=140,
-	RESULTS				:=160,
-	RESET				:=180
+	
+	TAKING_PICTURE		,
+	DONE				,
+	RESULTS				
 );
 END_TYPE
 ]]></Declaration>

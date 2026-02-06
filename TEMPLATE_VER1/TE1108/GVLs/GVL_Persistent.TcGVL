@@ -8,12 +8,6 @@ VAR_GLOBAL PERSISTENT
 	
 	stUserLog					: ARRAY [0..250] OF ST_UserLog;
 	
-	stStatisticsHMI				: ARRAY [0..5] OF ST_StatisticsHMI;	//0: GENERAL
-																	//1: Leak Tester 1
-																	//2: Leak Tester 2
-																	//3: Height Test 1
-																	//4: Height Test 2
-																	//5: Camera
 	aDataHistory				: ARRAY[0..200] OF ST_CycleData;
 	astEventsHistory			: ARRAY[0..200] OF ST_EventsHistory;
 	stJavasCriptPDF				: ST_JavasCriptPDF;

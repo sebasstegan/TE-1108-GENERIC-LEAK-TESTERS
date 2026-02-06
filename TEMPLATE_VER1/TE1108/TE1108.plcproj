@@ -54,10 +54,16 @@
     <Compile Include="DUTs\HMI\ST_Animations.TcDUT">
       <SubType>Code</SubType>
     </Compile>
+    <Compile Include="DUTs\HMI\ST_StatisticsHMI.TcDUT">
+      <SubType>Code</SubType>
+    </Compile>
     <Compile Include="DUTs\HMI\ST_StatusBanner.TcDUT">
       <SubType>Code</SubType>
     </Compile>
     <Compile Include="DUTs\HMI\ST_Timers.TcDUT">
+      <SubType>Code</SubType>
+    </Compile>
+    <Compile Include="DUTs\IO\CAMERA\ST_KeyenceCamera_I_O.TcDUT">
       <SubType>Code</SubType>
     </Compile>
     <Compile Include="DUTs\IO\CARDS\ST_EL3058.TcDUT">
@@ -93,7 +99,7 @@
     <Compile Include="DUTs\IO\CARDS\ST_EL2809_A.TcDUT">
       <SubType>Code</SubType>
     </Compile>
-    <Compile Include="DUTs\IO\LEAK_TESTERS\ST_General_LeakTester.TcDUT">
+    <Compile Include="DUTs\IO\LEAK_TESTERS\ST_General_LeakTester_I_O.TcDUT">
       <SubType>Code</SubType>
     </Compile>
     <Compile Include="DUTs\IO\LEAK_TESTERS\st_i28General_I_O.TcDUT">
@@ -105,7 +111,7 @@
     <Compile Include="DUTs\IO\LEAK_TESTERS\st_i28LiveMeasurement.TcDUT">
       <SubType>Code</SubType>
     </Compile>
-    <Compile Include="DUTs\IO\PROBES\ST_Probes_test.TcDUT">
+    <Compile Include="DUTs\IO\PROBES\ST_Probes_I_O.TcDUT">
       <SubType>Code</SubType>
     </Compile>
     <Compile Include="DUTs\MASTER\E_MachineState.TcDUT">
@@ -139,9 +145,6 @@
       <SubType>Code</SubType>
     </Compile>
     <Compile Include="DUTs\MASTER\ST_Puls.TcDUT">
-      <SubType>Code</SubType>
-    </Compile>
-    <Compile Include="DUTs\MASTER\ST_StatisticsHMI.TcDUT">
       <SubType>Code</SubType>
     </Compile>
     <Compile Include="DUTs\PDFMaker\ST_EventsPDF.TcDUT">
@@ -252,7 +255,13 @@
     <Compile Include="POUs\B_STATIONS\B_2_HEIGHT_TEST\B_2_1_PRG_Master_Height_Test.TcPOU">
       <SubType>Code</SubType>
     </Compile>
-    <Compile Include="POUs\B_STATIONS\B_3_STATION_3\B_3_1_PRG_Master_Station_3.TcPOU">
+    <Compile Include="POUs\B_STATIONS\B_3_CAMERA\B_3_1_PRG_Master_Camera.TcPOU">
+      <SubType>Code</SubType>
+    </Compile>
+    <Compile Include="POUs\B_STATIONS\B_4_PROCESS_CYLINDER__SLICE_DOOR\B_4_1_PRG_Master_ProcessCylinder.TcPOU">
+      <SubType>Code</SubType>
+    </Compile>
+    <Compile Include="POUs\B_STATIONS\B_4_PROCESS_CYLINDER__SLICE_DOOR\B_4_1_PRG_Master_ProcessDoor.TcPOU">
       <SubType>Code</SubType>
     </Compile>
     <Compile Include="POUs\C_HMI\C_1_PRG_MainHMI.TcPOU">
@@ -312,7 +321,8 @@
     <Folder Include="POUs\B_STATIONS" />
     <Folder Include="POUs\B_STATIONS\B_1_LEAK_TEST" />
     <Folder Include="POUs\B_STATIONS\B_2_HEIGHT_TEST" />
-    <Folder Include="POUs\B_STATIONS\B_3_STATION_3" />
+    <Folder Include="POUs\B_STATIONS\B_3_CAMERA" />
+    <Folder Include="POUs\B_STATIONS\B_4_PROCESS_CYLINDER__SLICE_DOOR" />
     <Folder Include="POUs\C_HMI" />
     <Folder Include="POUs\D_CSV" />
     <Folder Include="POUs\Utilities" />

@@ -1,0 +1,340 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<TcPlcObject Version="1.1.0.1" ProductVersion="3.1.4024.13">
+  <POU Name="B_4_1_PRG_Master_ProcessCylinder" Id="{d0145914-e9cd-4253-a0f6-814edf8d9943}" SpecialFunc="None">
+    <Declaration><![CDATA[PROGRAM B_4_1_PRG_Master_ProcessCylinder
+
+VAR
+
+	bEventsFlag							: ARRAY [0..100] OF BOOL;
+/////////////////////////////////////////////////////////////////////////////////////I O/////////////////////////////////////////////////////////////////////////////////////	
+	bExtended							: ARRAY [0..1] OF BOOL;
+	bRetracted							: ARRAY [0..1] OF BOOL;
+	bExtend								: ARRAY [0..1] OF BOOL;
+	bRetract							: ARRAY [0..1] OF BOOL;
+
+	
+END_VAR
+]]></Declaration>
+    <Implementation>
+      <ST><![CDATA[d_ACT_Set_Events_Station_4A();
+a_ACT_Ctrl_Station_4A();
+b_ACT_IO_A();
+]]></ST>
+    </Implementation>
+    <Action Name="a_ACT_Ctrl_Station_4A" Id="{d4b732ce-22fe-4ec8-9a8f-7db7188e9535}">
+      <Implementation>
+        <ST><![CDATA[/////////////////////////////////////////////////////////////////////////////////////UTILITIES/////////////////////////////////////////////////////////////////////////////////////
+
+/////////////////////////////////////////////////////////////////////////////////////CONDITIONS/////////////////////////////////////////////////////////////////////////////////////
+IF stProcessCylinder.CMD.bAbort THEN
+	
+	stProcessCylinder.State				:= E_ProcessCylinder_State.RESET;
+	
+ELSIF stProcessCylinder.CMD.bEndCycle THEN
+	
+	stProcessCylinder.State				:= E_ProcessCylinder_State.STOPPING;
+
+END_IF
+
+CASE stProcessCylinder.State OF
+	
+	E_ProcessCylinder_State.ABORTED:
+	
+								IF stProcessCylinder.CMD.bEnable THEN
+									
+									stProcessCylinder.State				:= E_ProcessCylinder_State.READY;
+								
+								END_IF
+	
+	E_ProcessCylinder_State.READY:
+	
+								IF stProcessCylinder.CMD.bExecute AND 	(stProcessCylinder.CMD.ProcessCylinderCMD.ExtendCylinder1 OR 
+																		stProcessCylinder.CMD.ProcessCylinderCMD.ExtendCylinder2)	THEN
+
+									stProcessCylinder.State				:= E_ProcessCylinder_State.EXTEND_PROCESS_CYLINDER;
+									
+								ELSIF stProcessCylinder.CMD.bExecute AND 	(stProcessCylinder.CMD.ProcessCylinderCMD.RetractCylinder1 OR 
+																		stProcessCylinder.CMD.ProcessCylinderCMD.RetractCylinder2)	THEN
+									
+									stProcessCylinder.State				:= E_ProcessCylinder_State.RETRACT_PROCESS_CYLINDER;									
+																		
+								END_IF
+	
+	E_ProcessCylinder_State.EXTEND_PROCESS_CYLINDER:
+	
+								bExtend[0]								:= stProcessCylinder.CMD.ProcessCylinderCMD.ExtendCylinder1;
+								bExtend[1]								:= stProcessCylinder.CMD.ProcessCylinderCMD.ExtendCylinder2;
+								
+								IF bExtend[0] AND bExtend[1] THEN
+									
+									IF bExtended[0] AND bExtended[1] THEN
+
+										stProcessCylinder.State				:= E_ProcessCylinder_State.DONE;
+									
+									END_IF	
+								
+								ELSIF bExtend[0] AND NOT bExtend[1] THEN	
+
+									IF 	bExtended[0] THEN
+
+										stProcessCylinder.State				:= E_ProcessCylinder_State.DONE;
+									
+									END_IF
+
+								ELSIF NOT bExtend[0] AND bExtend[1] THEN	
+
+									IF 	bExtended[1] THEN
+
+										stProcessCylinder.State				:= E_ProcessCylinder_State.DONE;
+									
+									END_IF						
+	
+								END_IF
+								
+	E_ProcessCylinder_State.RETRACT_PROCESS_CYLINDER:
+	
+								bRetract[0]								:= stProcessCylinder.CMD.ProcessCylinderCMD.RetractCylinder1;
+								bRetract[1]								:= stProcessCylinder.CMD.ProcessCylinderCMD.RetractCylinder2;
+								
+								IF bRetract[0] AND bRetract[1] THEN
+									
+									IF bRetracted[0] AND bRetracted[1] THEN
+
+										stProcessCylinder.State				:= E_ProcessCylinder_State.DONE;
+									
+									END_IF	
+								
+								ELSIF bRetract[0] AND NOT bRetract[1] THEN	
+
+									IF 	bRetracted[0] THEN
+
+										stProcessCylinder.State				:= E_ProcessCylinder_State.DONE;
+									
+									END_IF
+
+								ELSIF NOT bRetract[0] AND bRetract[1] THEN	
+
+									IF 	bRetracted[1] THEN
+
+										stProcessCylinder.State				:= E_ProcessCylinder_State.DONE;
+									
+									END_IF						
+	
+								END_IF
+								
+	E_ProcessCylinder_State.DONE:
+	
+								IF stProcessCylinder.CMD.bAcknowledge THEN
+									
+									stProcessCylinder.CMD.bAcknowledge		:= FALSE;
+									stProcessCylinder.State					:= E_ProcessCylinder_State.RESET;
+								
+								END_IF
+	
+	
+	E_ProcessCylinder_State.RESET:	
+	
+								bExtend[0]									:= FALSE;
+								bExtend[1]									:= FALSE;
+								bRetract[0]									:= FALSE;
+								bRetract[1]									:= FALSE;
+								
+								IF NOT stProcessCylinder.CMD.bAbort AND NOT stProcessCylinder.CMD.bEndCycle THEN
+									
+									stProcessCylinder.State					:= E_ProcessCylinder_State.READY;
+									
+								ELSE stProcessCylinder.State					:= E_ProcessCylinder_State.ABORTED;
+								END_IF
+	
+					
+	E_ProcessCylinder_State.STOPPING:
+								
+								IF stProcessCylinder.CMD.bEndCycle THEN
+									
+									bRetract[0]									:= TRUE;
+									bRetract[1]									:= TRUE;
+								
+									IF bRetracted[0] AND bRetracted[0] (*remove if you are working with 1 cylinder*) THEN
+									
+										bRetract[0]								:= FALSE;
+										bRetract[1]								:= FALSE;
+										stProcessCylinder.State					:= E_ProcessCylinder_State.RESET;
+								
+									END_IF
+								
+								ELSIF stProcessCylinder.CMD.bAbort THEN
+									
+									stProcessCylinder.State					:= E_ProcessCylinder_State.RESET;
+								
+								END_IF
+								
+														
+									
+
+ELSE stProcessCylinder.State	:= E_ProcessCylinder_State.ABORTED;
+	
+END_CASE
+/////////////////////////////////////////////////////////////////////////////////////STATUS/////////////////////////////////////////////////////////////////////////////////////
+
+stProcessCylinder.Status.bBusy		:= 	stProcessCylinder.State	= E_ProcessCylinder_State.EXTEND_PROCESS_CYLINDER OR
+										stProcessCylinder.State	= E_ProcessCylinder_State.RETRACT_PROCESS_CYLINDER;
+								
+stProcessCylinder.Status.bDone		:=	stProcessCylinder.State	= E_ProcessCylinder_State.DONE;
+
+stProcessCylinder.Status.bReady		:= 	stProcessCylinder.State	= E_ProcessCylinder_State.READY;
+
+stProcessCylinder.Status.bStopped	:= 	NOT stProcessCylinder.Status.bBusy;]]></ST>
+      </Implementation>
+    </Action>
+    <Action Name="b_ACT_IO_A" Id="{29d1f0f3-bcef-4a52-aeb7-dd0a6b1253cf}">
+      <Implementation>
+        <ST><![CDATA[
+bExtended[0]							:= dw_T08_EL1809.iProcessCylinder1Extended;
+bExtended[1]							:= dw_T08_EL1809.iProcessCylinder2Extended;
+bRetracted[0]							:= dw_T08_EL1809.iProcessCylinder1Retracted;
+bRetracted[1]							:= dw_T08_EL1809.iProcessCylinder2Retracted;
+
+dw_T09_EL2809.qExtendProcessCylinder1	:= bExtend[0];	
+dw_T10_EL2809.qExtendProcessCylinder2	:= bExtend[1];	
+dw_T09_EL2809.qRetractProcessCylinder1	:= bRetract[0];
+dw_T10_EL2809.qRectractProcessCylinder2	:= bRetract[1];
+
+]]></ST>
+      </Implementation>
+    </Action>
+    <Action Name="d_ACT_Set_Events_Station_4A" Id="{d00bfd1e-e9ca-4865-8264-d52001d7fb58}">
+      <Implementation>
+        <ST><![CDATA[//IMMEDIATE FAULTS
+
+stStationEvents[3].aEvents[0].bImmediateFault				:= TRUE;
+stStationEvents[3].aEvents[0].bEventFlag					:= bEventsFlag[0];
+stStationEvents[3].aEvents[0].bEventText					:= 'ST1 EVENT 0';
+stStationEvents[3].aEvents[0].sSolution						:= 'Solution 5';
+
+
+//CYCLE STOP FAULT
+
+stStationEvents[3].aEvents[1].bCycleStopFault				:= TRUE;
+stStationEvents[3].aEvents[1].bEventFlag					:= bEventsFlag[1];
+stStationEvents[3].aEvents[1].bEventText					:= 'ST1 EVENT 1';
+stStationEvents[3].aEvents[1].sSolution						:= 'Solution 6';
+
+
+//CYCLE STOP REQUEST
+
+stStationEvents[3].aEvents[2].bCycleStopRequest			:= TRUE;
+stStationEvents[3].aEvents[2].bEventFlag					:= bEventsFlag[2];
+stStationEvents[3].aEvents[2].bEventText					:= 'ST1 EVENT 7';]]></ST>
+      </Implementation>
+    </Action>
+    <LineIds Name="B_4_1_PRG_Master_ProcessCylinder">
+      <LineId Id="305" Count="2" />
+      <LineId Id="41" Count="0" />
+    </LineIds>
+    <LineIds Name="B_4_1_PRG_Master_ProcessCylinder.a_ACT_Ctrl_Station_4A">
+      <LineId Id="130" Count="0" />
+      <LineId Id="132" Count="0" />
+      <LineId Id="131" Count="0" />
+      <LineId Id="190" Count="0" />
+      <LineId Id="326" Count="0" />
+      <LineId Id="329" Count="1" />
+      <LineId Id="328" Count="0" />
+      <LineId Id="331" Count="0" />
+      <LineId Id="333" Count="0" />
+      <LineId Id="332" Count="0" />
+      <LineId Id="327" Count="0" />
+      <LineId Id="3" Count="1" />
+      <LineId Id="166" Count="4" />
+      <LineId Id="172" Count="1" />
+      <LineId Id="171" Count="0" />
+      <LineId Id="5" Count="1" />
+      <LineId Id="158" Count="0" />
+      <LineId Id="7" Count="0" />
+      <LineId Id="253" Count="0" />
+      <LineId Id="218" Count="0" />
+      <LineId Id="11" Count="0" />
+      <LineId Id="254" Count="2" />
+      <LineId Id="221" Count="0" />
+      <LineId Id="257" Count="1" />
+      <LineId Id="222" Count="0" />
+      <LineId Id="12" Count="1" />
+      <LineId Id="159" Count="0" />
+      <LineId Id="245" Count="0" />
+      <LineId Id="259" Count="0" />
+      <LineId Id="247" Count="2" />
+      <LineId Id="251" Count="0" />
+      <LineId Id="261" Count="2" />
+      <LineId Id="260" Count="0" />
+      <LineId Id="252" Count="0" />
+      <LineId Id="264" Count="0" />
+      <LineId Id="267" Count="0" />
+      <LineId Id="266" Count="0" />
+      <LineId Id="269" Count="2" />
+      <LineId Id="268" Count="0" />
+      <LineId Id="273" Count="6" />
+      <LineId Id="272" Count="0" />
+      <LineId Id="265" Count="0" />
+      <LineId Id="250" Count="0" />
+      <LineId Id="207" Count="0" />
+      <LineId Id="286" Count="28" />
+      <LineId Id="285" Count="0" />
+      <LineId Id="208" Count="0" />
+      <LineId Id="211" Count="2" />
+      <LineId Id="280" Count="0" />
+      <LineId Id="282" Count="0" />
+      <LineId Id="284" Count="0" />
+      <LineId Id="283" Count="0" />
+      <LineId Id="281" Count="0" />
+      <LineId Id="174" Count="0" />
+      <LineId Id="198" Count="0" />
+      <LineId Id="165" Count="0" />
+      <LineId Id="176" Count="0" />
+      <LineId Id="180" Count="0" />
+      <LineId Id="315" Count="4" />
+      <LineId Id="323" Count="0" />
+      <LineId Id="321" Count="0" />
+      <LineId Id="324" Count="1" />
+      <LineId Id="322" Count="0" />
+      <LineId Id="320" Count="0" />
+      <LineId Id="178" Count="0" />
+      <LineId Id="113" Count="0" />
+      <LineId Id="335" Count="0" />
+      <LineId Id="347" Count="0" />
+      <LineId Id="359" Count="0" />
+      <LineId Id="350" Count="8" />
+      <LineId Id="348" Count="0" />
+      <LineId Id="361" Count="4" />
+      <LineId Id="349" Count="0" />
+      <LineId Id="341" Count="0" />
+      <LineId Id="334" Count="0" />
+      <LineId Id="109" Count="0" />
+      <LineId Id="61" Count="2" />
+      <LineId Id="1" Count="0" />
+      <LineId Id="73" Count="0" />
+      <LineId Id="75" Count="0" />
+      <LineId Id="80" Count="0" />
+      <LineId Id="346" Count="0" />
+      <LineId Id="96" Count="0" />
+      <LineId Id="83" Count="0" />
+      <LineId Id="206" Count="0" />
+      <LineId Id="86" Count="0" />
+      <LineId Id="99" Count="0" />
+      <LineId Id="95" Count="0" />
+    </LineIds>
+    <LineIds Name="B_4_1_PRG_Master_ProcessCylinder.b_ACT_IO_A">
+      <LineId Id="15" Count="1" />
+      <LineId Id="23" Count="0" />
+      <LineId Id="17" Count="0" />
+      <LineId Id="24" Count="1" />
+      <LineId Id="22" Count="0" />
+      <LineId Id="26" Count="0" />
+      <LineId Id="28" Count="1" />
+      <LineId Id="27" Count="0" />
+      <LineId Id="5" Count="0" />
+    </LineIds>
+    <LineIds Name="B_4_1_PRG_Master_ProcessCylinder.d_ACT_Set_Events_Station_4A">
+      <LineId Id="50" Count="19" />
+      <LineId Id="1" Count="0" />
+    </LineIds>
+  </POU>
+</TcPlcObject>

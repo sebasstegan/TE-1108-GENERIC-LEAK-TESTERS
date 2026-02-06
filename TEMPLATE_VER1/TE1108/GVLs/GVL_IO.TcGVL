@@ -20,9 +20,9 @@
 	
 	stTwinSAFE															: ST_TwinSAFE;
 	
-	LeakTester1_IO														: ST_General_LeakTester;
-	LeakTester2_IO														: ST_General_LeakTester;
-	Probes																: ST_Probes_test;
+	LeakTester1_IO														: ST_General_LeakTester_I_O;
+	LeakTester2_IO														: ST_General_LeakTester_I_O;
+	Probes																: ST_Probes_I_O;
 
 END_VAR]]></Declaration>
   </GVL>

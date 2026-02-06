@@ -1,0 +1,300 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<TcPlcObject Version="1.1.0.1" ProductVersion="3.1.4024.13">
+  <POU Name="B_3_1_PRG_Master_Camera" Id="{474f4225-5110-4ccd-bbcf-78541da80fa5}" SpecialFunc="None">
+    <Declaration><![CDATA[PROGRAM B_3_1_PRG_Master_Camera
+
+VAR
+	
+	rGoodStatistics						: R_TRIG;
+	rBadStatistics						: R_TRIG;
+	rEfficency							: STRING(510);
+	bEventsFlag							: ARRAY [0..100] OF BOOL;
+/////////////////////////////////////////////////////////////////////////////////////I O/////////////////////////////////////////////////////////////////////////////////////	
+	bError								: BOOL;
+	rReset								: R_TRIG;
+	bReset								: BOOL;
+	bReady								: BOOL;
+	bDone								: BOOL;
+	bPass								: BOOL;
+	bFail								: BOOL;
+	bTtigger							: BOOL;
+	
+END_VAR
+]]></Declaration>
+    <Implementation>
+      <ST><![CDATA[d_ACT_Set_Events_Station_3();
+a_ACT_Ctrl_Station_3();
+b_ACT_IO();
+c_ACT_Statistics_Station_3();]]></ST>
+    </Implementation>
+    <Action Name="a_ACT_Ctrl_Station_3" Id="{18b6a780-51d7-4962-ac1f-d8e3484c4d5a}">
+      <Implementation>
+        <ST><![CDATA[/////////////////////////////////////////////////////////////////////////////////////UTILITIES/////////////////////////////////////////////////////////////////////////////////////
+
+/////////////////////////////////////////////////////////////////////////////////////CONDITIONS/////////////////////////////////////////////////////////////////////////////////////
+bTtigger								:= stCamera.State	= E_Camera_State.TAKING_PICTURE;
+
+IF bError THEN
+	
+	stCamera.State						:= E_Camera_State.ERROR;
+
+ELSIF NOT bReaDy THEN
+	
+	stCamera.State						:= E_Camera_State.WAITING_READY;
+
+END_IF
+
+CASE stCamera.State OF
+	
+	E_Camera_State.WAITING_READY:
+	
+								IF bReady THEN
+									
+									stCamera.State						:= E_Camera_State.READY;
+								
+								END_IF
+	
+	E_Camera_State.READY:
+	
+								IF stCamera.CMD.bExecute THEN
+									
+									stCamera.State						:= E_Camera_State.TAKING_PICTURE;
+									
+								END_IF
+	
+	E_Camera_State.TAKING_PICTURE:
+						
+								IF bDone THEN
+									
+									stCamera.State						:= E_Camera_State.RESULTS;
+									
+								END_IF
+								
+	E_Camera_State.RESULTS:
+	
+								stCycleData.stCamera_CycleData.bPass	:= bPass;
+								stCycleData.stCamera_CycleData.bFail	:= bFail;
+								
+								stCamera.State						:= E_Camera_State.DONE;
+								
+	E_Camera_State.DONE:		
+	
+								IF stCamera.CMD.bAcknowledge THEN
+									
+									stCamera.CMD.bAcknowledge			:= FALSE;
+									stCamera.State						:= E_Camera_State.WAITING_READY;
+								
+								END_IF
+	
+	
+	E_Camera_State.ERROR:	
+	
+								IF NOT bError THEN
+									
+									stCamera.State					:= E_Camera_State.WAITING_READY;
+								
+								END_IF
+					
+								
+									
+
+ELSE stCamera.State						:= E_Camera_State.READY;
+	
+END_CASE
+/////////////////////////////////////////////////////////////////////////////////////STATUS/////////////////////////////////////////////////////////////////////////////////////
+
+stCamera.Status.bBusy		:= 	stCamera.State	= E_Camera_State.TAKING_PICTURE;
+								
+stCamera.Status.bDone		:=	stCamera.State	= E_Camera_State.DONE;
+											
+stCamera.Status.bError		:= 	stCamera.State	= E_Camera_State.ERROR;
+
+stCamera.Status.bReady		:= 	stCamera.State	= E_Camera_State.READY;
+
+stCamera.Status.bStopped	:= 	NOT stCamera.Status.bBusy;]]></ST>
+      </Implementation>
+    </Action>
+    <Action Name="b_ACT_IO" Id="{440050ef-4990-4273-9ec8-027f575cfd9b}">
+      <Implementation>
+        <ST><![CDATA[//bStopped								:=;
+//bError								:=;
+//bReady								:=;
+//bDone
+
+rReset( CLK := stCamera.CMD.bReset, Q => bReset);
+
+
+]]></ST>
+      </Implementation>
+    </Action>
+    <Action Name="c_ACT_Statistics_Station_3" Id="{b9943b98-9d8e-469d-a7a3-a69e1222f6e9}">
+      <Implementation>
+        <ST><![CDATA[stStatisticsHMI[5].sName			:= 'Vision System';
+
+
+rGoodStatistics( CLK := (stCycleData.stCamera_CycleData.bPass AND (stCamera.State	:= E_Camera_State.RESULTS));
+rBadStatistics( CLK := (stCycleData.stCamera_CycleData.bFail AND (stCamera.State	:= E_Camera_State.RESULTS));
+
+IF 	rGoodStatistics.Q THEN
+	
+	stStatisticsHMI[5].nGood		:= stStatisticsHMI[5].nGood + 1;
+	stStatisticsHMI[5].nTotalGood	:= stStatisticsHMI[5].nTotalGood + 1;
+	
+END_IF
+								
+IF 	rBadStatistics.Q THEN
+	
+	stStatisticsHMI[5].nBad			:= stStatisticsHMI[5].nBad + 1;
+	stStatisticsHMI[5].nTotalBad	:= stStatisticsHMI[5].nTotalBad + 1;
+	
+END_IF
+
+IF stStatisticsHMI[5].bResetGood THEN
+	stStatisticsHMI[5].nGood		:= 0;
+END_IF
+
+IF stStatisticsHMI[5].bResetBad THEN
+	stStatisticsHMI[5].nBad			:= 0;
+END_IF
+
+IF (( stStatisticsHMI[5].nGood + stStatisticsHMI[5].nBad) <> 0) THEN
+	
+	rEfficency							:= LREAL_TO_FMTSTR(in := (DINT_TO_REAL(stStatisticsHMI[5].nGood) /( DINT_TO_REAL(stStatisticsHMI[5].nGood) + DINT_TO_REAL(stStatisticsHMI[5].nBad))) * 100.0,iPrecision := 2, bRound := TRUE);
+	stStatisticsHMI[5].nEfficency		:= CONCAT(STR1 := '%', STR2 := (rEfficency));
+
+ELSE stStatisticsHMI[5].nEfficency		:= CONCAT(STR1 := '%', STR2 := (DINT_TO_STRING(0)));
+	
+END_IF
+
+]]></ST>
+      </Implementation>
+    </Action>
+    <Action Name="d_ACT_Set_Events_Station_3" Id="{05e142ea-c5f7-47d9-a898-cf4cc797e73e}">
+      <Implementation>
+        <ST><![CDATA[//IMMEDIATE FAULTS
+
+stStationEvents[3].aEvents[0].bImmediateFault				:= TRUE;
+stStationEvents[3].aEvents[0].bEventFlag					:= bEventsFlag[0];
+stStationEvents[3].aEvents[0].bEventText					:= 'ST1 EVENT 0';
+stStationEvents[3].aEvents[0].sSolution						:= 'Solution 5';
+
+
+//CYCLE STOP FAULT
+
+stStationEvents[3].aEvents[1].bCycleStopFault				:= TRUE;
+stStationEvents[3].aEvents[1].bEventFlag					:= bEventsFlag[1];
+stStationEvents[3].aEvents[1].bEventText					:= 'ST1 EVENT 1';
+stStationEvents[3].aEvents[1].sSolution						:= 'Solution 6';
+
+
+//CYCLE STOP REQUEST
+
+stStationEvents[3].aEvents[2].bCycleStopRequest			:= TRUE;
+stStationEvents[3].aEvents[2].bEventFlag					:= bEventsFlag[2];
+stStationEvents[3].aEvents[2].bEventText					:= 'ST1 EVENT 7';]]></ST>
+      </Implementation>
+    </Action>
+    <LineIds Name="B_3_1_PRG_Master_Camera">
+      <LineId Id="185" Count="0" />
+      <LineId Id="150" Count="1" />
+      <LineId Id="41" Count="0" />
+    </LineIds>
+    <LineIds Name="B_3_1_PRG_Master_Camera.a_ACT_Ctrl_Station_3">
+      <LineId Id="130" Count="0" />
+      <LineId Id="132" Count="0" />
+      <LineId Id="131" Count="0" />
+      <LineId Id="215" Count="1" />
+      <LineId Id="119" Count="0" />
+      <LineId Id="189" Count="0" />
+      <LineId Id="192" Count="0" />
+      <LineId Id="194" Count="0" />
+      <LineId Id="193" Count="0" />
+      <LineId Id="195" Count="1" />
+      <LineId Id="191" Count="0" />
+      <LineId Id="190" Count="0" />
+      <LineId Id="3" Count="1" />
+      <LineId Id="166" Count="4" />
+      <LineId Id="172" Count="1" />
+      <LineId Id="171" Count="0" />
+      <LineId Id="5" Count="1" />
+      <LineId Id="158" Count="0" />
+      <LineId Id="7" Count="0" />
+      <LineId Id="157" Count="0" />
+      <LineId Id="8" Count="1" />
+      <LineId Id="11" Count="2" />
+      <LineId Id="159" Count="0" />
+      <LineId Id="14" Count="0" />
+      <LineId Id="160" Count="0" />
+      <LineId Id="15" Count="0" />
+      <LineId Id="161" Count="0" />
+      <LineId Id="207" Count="1" />
+      <LineId Id="211" Count="2" />
+      <LineId Id="209" Count="1" />
+      <LineId Id="18" Count="0" />
+      <LineId Id="174" Count="1" />
+      <LineId Id="199" Count="2" />
+      <LineId Id="203" Count="0" />
+      <LineId Id="205" Count="0" />
+      <LineId Id="204" Count="0" />
+      <LineId Id="202" Count="0" />
+      <LineId Id="197" Count="1" />
+      <LineId Id="165" Count="0" />
+      <LineId Id="176" Count="1" />
+      <LineId Id="179" Count="0" />
+      <LineId Id="181" Count="1" />
+      <LineId Id="180" Count="0" />
+      <LineId Id="178" Count="0" />
+      <LineId Id="113" Count="0" />
+      <LineId Id="109" Count="0" />
+      <LineId Id="61" Count="2" />
+      <LineId Id="1" Count="0" />
+      <LineId Id="73" Count="0" />
+      <LineId Id="75" Count="0" />
+      <LineId Id="80" Count="0" />
+      <LineId Id="96" Count="0" />
+      <LineId Id="83" Count="0" />
+      <LineId Id="97" Count="0" />
+      <LineId Id="85" Count="0" />
+      <LineId Id="206" Count="0" />
+      <LineId Id="86" Count="0" />
+      <LineId Id="99" Count="0" />
+      <LineId Id="95" Count="0" />
+    </LineIds>
+    <LineIds Name="B_3_1_PRG_Master_Camera.b_ACT_IO">
+      <LineId Id="1" Count="3" />
+      <LineId Id="6" Count="1" />
+      <LineId Id="13" Count="0" />
+      <LineId Id="12" Count="0" />
+      <LineId Id="5" Count="0" />
+    </LineIds>
+    <LineIds Name="B_3_1_PRG_Master_Camera.c_ACT_Statistics_Station_3">
+      <LineId Id="2" Count="0" />
+      <LineId Id="31" Count="0" />
+      <LineId Id="30" Count="0" />
+      <LineId Id="3" Count="1" />
+      <LineId Id="13" Count="0" />
+      <LineId Id="12" Count="0" />
+      <LineId Id="17" Count="0" />
+      <LineId Id="7" Count="0" />
+      <LineId Id="18" Count="0" />
+      <LineId Id="16" Count="0" />
+      <LineId Id="8" Count="2" />
+      <LineId Id="19" Count="0" />
+      <LineId Id="11" Count="0" />
+      <LineId Id="20" Count="1" />
+      <LineId Id="1" Count="0" />
+      <LineId Id="23" Count="0" />
+      <LineId Id="22" Count="0" />
+      <LineId Id="24" Count="1" />
+      <LineId Id="27" Count="2" />
+      <LineId Id="26" Count="0" />
+      <LineId Id="33" Count="0" />
+      <LineId Id="46" Count="8" />
+      <LineId Id="14" Count="0" />
+    </LineIds>
+    <LineIds Name="B_3_1_PRG_Master_Camera.d_ACT_Set_Events_Station_3">
+      <LineId Id="50" Count="19" />
+      <LineId Id="1" Count="0" />
+    </LineIds>
+  </POU>
+</TcPlcObject>

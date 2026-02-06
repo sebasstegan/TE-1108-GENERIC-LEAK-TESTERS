@@ -33,6 +33,7 @@ VAR
 	bPartPresentNest2			: BOOL;
 	bPartPresentNest3			: BOOL;
 	bPartPresentNest4			: BOOL;
+	bRejectSensor				: BOOL;
 	
 END_VAR
 ]]></Declaration>
@@ -215,6 +216,7 @@ stMasterCtrl.bAllStationsReady			:= stCamera.Status.bReady AND stLeakTesters.Sta
     <Action Name="b_ACT_ProcessCycle" Id="{5e92037d-73c3-401d-956e-95e5929b3e1d}">
       <Implementation>
         <ST><![CDATA[/////////////////////////////////////////////////////////////////////////////////////UTILITIES & TRIGGERS/////////////////////////////////////////////////////////////////////////////////////
+//ADD REJECT SENSOR FUNCTION. IF PART FAIL WE SHOULD WAIT UNTIL THE OPERATOR LEAVE THE FAIL PART IN THE CONTAINER
 
 tonCMD_Done( IN := , PT := T#500MS);
 tonSave_Data( IN :=  eCycleState = E_General_ProcessCycle.SAVE_DATA2, PT := T#500MS);
@@ -282,6 +284,7 @@ E_General_ProcessCycle.RESET_ALL_CMD:
 				
 				stCycleData.bPass						:= FALSE;
 				stCycleData.bFail						:= FALSE;
+				//add reset command to reset all cycle data
 				
 				IF tonResetAllCMD.Q AND stMachineStatus.bAutoCycle THEN
 					eCycleState								:= E_General_ProcessCycle.IDLE;						
@@ -643,7 +646,9 @@ END_CASE
 bPartPresentNest1					:= dw_T08_EL1809.iPartPresentNest1;
 bPartPresentNest2					:= dw_T08_EL1809.iPartPresentNest2;
 bPartPresentNest3					:= dw_T08_EL1809.iPartPresentNest3;
-bPartPresentNest4					:= dw_T08_EL1809.iPartPresentNest4;]]></ST>
+bPartPresentNest4					:= dw_T08_EL1809.iPartPresentNest4;
+
+bRejectSensor						:= dw_T08_EL1809.iRejectSensor;]]></ST>
       </Implementation>
     </Action>
     <LineIds Name="A_2_PRG_MachineCtrl">
@@ -725,6 +730,7 @@ bPartPresentNest4					:= dw_T08_EL1809.iPartPresentNest4;]]></ST>
     <LineIds Name="A_2_PRG_MachineCtrl.b_ACT_ProcessCycle">
       <LineId Id="36" Count="0" />
       <LineId Id="39" Count="0" />
+      <LineId Id="675" Count="0" />
       <LineId Id="4" Count="0" />
       <LineId Id="155" Count="0" />
       <LineId Id="5" Count="0" />
@@ -770,7 +776,7 @@ bPartPresentNest4					:= dw_T08_EL1809.iPartPresentNest4;]]></ST>
       <LineId Id="579" Count="0" />
       <LineId Id="663" Count="1" />
       <LineId Id="670" Count="1" />
-      <LineId Id="673" Count="0" />
+      <LineId Id="673" Count="1" />
       <LineId Id="195" Count="2" />
       <LineId Id="176" Count="0" />
       <LineId Id="2" Count="0" />
@@ -1015,6 +1021,8 @@ bPartPresentNest4					:= dw_T08_EL1809.iPartPresentNest4;]]></ST>
       <LineId Id="3" Count="0" />
       <LineId Id="2" Count="0" />
       <LineId Id="4" Count="2" />
+      <LineId Id="8" Count="0" />
+      <LineId Id="7" Count="0" />
     </LineIds>
   </POU>
 </TcPlcObject>

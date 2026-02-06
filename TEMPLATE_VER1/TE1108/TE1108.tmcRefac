@@ -16,5 +16,70 @@
       <From>e_ACT_Measurement_1</From>
       <To>f_ACT_ManualMode</To>
     </RenamedType>
+    <RenamedType>
+      <Type guid="cce0cedf-49f9-4006-a73b-4ed8a3a5a71d">ST_GENERAL_LEAKTESTER</Type>
+      <From>ST_General_LeakTester</From>
+      <To>ST_General_LeakTester_I_O</To>
+    </RenamedType>
+    <RenamedType>
+      <Type guid="f2763bf4-56dd-4a76-be51-069a8d5425ff">ST_KEYENCECAMERA</Type>
+      <From>ST_KeyenceCamera</From>
+      <To>ST_KeyenceCamera_I_O</To>
+    </RenamedType>
+    <RenamedType>
+      <Type guid="84e24643-423a-42da-8153-4f00aca97b7f">ST_PROBES_TEST</Type>
+      <From>ST_Probes_test</From>
+      <To>ST_Probes_I_O</To>
+    </RenamedType>
+    <RenamedType>
+      <Type guid="474f4225-5110-4ccd-bbcf-78541da80fa5">B_3_1_PRG_MASTER_STATION_3</Type>
+      <From>B_3_1_PRG_Master_Station_3</From>
+      <To>B_3_1_PRG_Master_Camera</To>
+    </RenamedType>
+    <RenamedType>
+      <Type guid="efc68ddb-b318-4eef-9dd5-d471f1b3f6b9">E_PROCESSCYLINDER_STATE_1</Type>
+      <From>E_ProcessCylinder_State_1</From>
+      <To>E_ProcessCylinder_SliceDoor</To>
+    </RenamedType>
+    <RenamedType>
+      <Type guid="d0145914-e9cd-4253-a0f6-814edf8d9943">B_4_1_PRG_MASTER_PROCESSCYLINDER_SLICEDOOR</Type>
+      <From>B_3_1_PRG_Master_Camera_1</From>
+      <To>B_4_1_PRG_Master_ProcessCylinder</To>
+    </RenamedType>
+    <RenamedType>
+      <Type guid="d4b732ce-22fe-4ec8-9a8f-7db7188e9535">A_ACT_CTRL_STATION_4</Type>
+      <From>a_ACT_Ctrl_Station_3</From>
+      <To>a_ACT_Ctrl_Station_4A</To>
+    </RenamedType>
+    <RenamedType>
+      <Type guid="29d1f0f3-bcef-4a52-aeb7-dd0a6b1253cf">B_ACT_IO</Type>
+      <From>b_ACT_IO</From>
+      <To>b_ACT_IO_A</To>
+    </RenamedType>
+    <RenamedType>
+      <Type guid="d00bfd1e-e9ca-4865-8264-d52001d7fb58">D_ACT_SET_EVENTS_STATION_4</Type>
+      <From>d_ACT_Set_Events_Station_3</From>
+      <To>d_ACT_Set_Events_Station_4A</To>
+    </RenamedType>
+    <RenamedType>
+      <Type guid="53a11cee-2388-4375-a004-26a2c48b086a">B_4_1_PRG_MASTER_PROCESSCYLINDER_1</Type>
+      <From>B_4_1_PRG_Master_ProcessCylinder_1</From>
+      <To>B_4_1_PRG_Master_ProcessDoor</To>
+    </RenamedType>
+    <RenamedType>
+      <Type guid="08b1d871-01b9-45fa-bb18-30d558502fc6">A_ACT_CTRL_STATION_4A</Type>
+      <From>a_ACT_Ctrl_Station_4A</From>
+      <To>a_ACT_Ctrl_Station_4B</To>
+    </RenamedType>
+    <RenamedType>
+      <Type guid="7a24ac88-21cc-4219-af73-2aba76419ebf">B_ACT_IO_A</Type>
+      <From>b_ACT_IO_A</From>
+      <To>b_ACT_IO_B</To>
+    </RenamedType>
+    <RenamedType>
+      <Type guid="6917e64e-8f14-430a-8afe-2820b830fd4d">D_ACT_SET_EVENTS_STATION_4A</Type>
+      <From>d_ACT_Set_Events_Station_4A</From>
+      <To>d_ACT_Set_Events_Station_4B</To>
+    </RenamedType>
   </Renames>
 </Refactors>
