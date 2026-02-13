@@ -4,9 +4,10 @@
     <Declaration><![CDATA[TYPE ST_Timers :
 STRUCT
 	
-	nStation1TimeOut				: DINT			:= 10;
-	nStation2TimeOut				: DINT			:= 10;
-	nStation3TimeOut				: DINT			:= 10;
+	nStation1TimeOut				: TIME;
+	nStation2TimeOut				: TIME;
+	nStation3TimeOut				: TIME;
+	nDoorOpenedSignal				: TIME;
 
 END_STRUCT
 END_TYPE

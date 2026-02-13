@@ -90,6 +90,12 @@
     <Compile Include="DUTs\IO\CARDS\ST_EL9410.TcDUT">
       <SubType>Code</SubType>
     </Compile>
+    <Compile Include="DUTs\IO\CARDS\ST_K1100.TcDUT">
+      <SubType>Code</SubType>
+    </Compile>
+    <Compile Include="DUTs\IO\CARDS\ST_EL6070.TcDUT">
+      <SubType>Code</SubType>
+    </Compile>
     <Compile Include="DUTs\IO\CARDS\ST_Terminal_Info.TcDUT">
       <SubType>Code</SubType>
     </Compile>

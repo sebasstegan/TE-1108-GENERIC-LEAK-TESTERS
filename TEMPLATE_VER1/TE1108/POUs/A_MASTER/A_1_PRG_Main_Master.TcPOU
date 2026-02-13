@@ -267,7 +267,13 @@ fbUserLog(	nNumberOfData								:= 250,
     </Action>
     <Action Name="f_ACT_TerminalInfo" Id="{8299d142-9ce5-4d1b-9f3f-121127d1dbfb}">
       <Implementation>
-        <ST><![CDATA[dw_T03_EL6910.stTerminalInfo.fbTerminalInfo( 	nTerminalState						:= dw_T03_EL6910.stTerminalInfo.nTerminal_State,
+        <ST><![CDATA[dw_T01_EK1100.stTerminalInfo.fbTerminalInfo( 	nTerminalState						:= dw_T01_EK1100.stTerminalInfo.nTerminal_State,
+												sTerminalState						=> dw_T01_EK1100.stTerminalInfo.sTerminalInfo);
+									
+dw_T02_EL6070.stTerminalInfo.fbTerminalInfo( 	nTerminalState						:= dw_T02_EL6070.stTerminalInfo.nTerminal_State,
+												sTerminalState						=> dw_T02_EL6070.stTerminalInfo.sTerminalInfo);
+
+dw_T03_EL6910.stTerminalInfo.fbTerminalInfo( 	nTerminalState						:= dw_T03_EL6910.stTerminalInfo.nTerminal_State,
 												sTerminalState						=> dw_T03_EL6910.stTerminalInfo.sTerminalInfo);
 												
 dw_T04_EL1918.stTerminalInfo.fbTerminalInfo(	nTerminalState						:= dw_T04_EL1918.stTerminalInfo.nTerminal_State,
@@ -342,6 +348,16 @@ ELSE stStatisticsHMI[0].nEfficency		:= CONCAT(STR1 := '%', STR2 := (DINT_TO_STRI
 END_IF
 
 ]]></ST>
+      </Implementation>
+    </Action>
+    <Action Name="i_ACT_TwinSAFE" Id="{0ecb0e06-5557-4943-b4e7-d2562aeb50f9}">
+      <Implementation>
+        <ST><![CDATA[stTwinSAFE.iAirSupplyMeasurement 		:= REAL_TO_UINT(0.0003 * GVL_IO.dw_T11_EL3058.iMainPressure); 
+
+stTwinSAFE.iAirPressureMaxValue			:= nAirPressureMaxValue;
+stTwinSAFE.iAirPressureMinValue			:= nAirPressureMinValue;
+stTwinSAFE.iProcessDoorClosing			:= bDoorClosingFlag;
+stTwinSAFE.iProcessDoorClosedCondition	:= bProcessDoorClosedConditionFlag;]]></ST>
       </Implementation>
     </Action>
     <LineIds Name="A_1_PRG_Main_Master">
@@ -430,6 +446,11 @@ END_IF
       <LineId Id="72" Count="0" />
     </LineIds>
     <LineIds Name="A_1_PRG_Main_Master.f_ACT_TerminalInfo">
+      <LineId Id="34" Count="0" />
+      <LineId Id="36" Count="1" />
+      <LineId Id="39" Count="0" />
+      <LineId Id="38" Count="0" />
+      <LineId Id="35" Count="0" />
       <LineId Id="1" Count="5" />
       <LineId Id="8" Count="0" />
       <LineId Id="7" Count="0" />
@@ -483,6 +504,10 @@ END_IF
       <LineId Id="38" Count="6" />
       <LineId Id="21" Count="0" />
       <LineId Id="36" Count="0" />
+      <LineId Id="1" Count="0" />
+    </LineIds>
+    <LineIds Name="A_1_PRG_Main_Master.i_ACT_TwinSAFE">
+      <LineId Id="2" Count="4" />
       <LineId Id="1" Count="0" />
     </LineIds>
   </POU>

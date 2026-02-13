@@ -7,10 +7,10 @@ STRUCT
 	sTerminalName                                           :   STRING(200):= 'EL3058 | 4-Channel Analog Input';
     //============================================================================================================================	
 	// TERMINAL - EL3058 4-Channel Analog Input Terminal (Term 11)	
-	iStartButoon                			AT %I*			: 	BOOL;	// EL1809 channel 1
-	iEL3058_Ch2                   			AT %I*			: 	BOOL;	// EL1809 channel 2
-	iEL3058_Ch3        						AT %I*	 		: 	BOOL;	// EL1809 channel 3
-	iEL3058_Ch4	   							AT %I*	 		: 	BOOL;	// EL1809 channel 4
+	iMainPressure               			AT %I*			: 	UINT;	// EL1809 channel 1
+	iEL3058_Ch2                   			AT %I*			: 	UINT;	// EL1809 channel 2
+	iEL3058_Ch3        						AT %I*	 		: 	UINT;	// EL1809 channel 3
+	iEL3058_Ch4	   							AT %I*	 		: 	UINT;	// EL1809 channel 4
 	
 	stTerminalInfo											: 	ST_Terminal_Info;
 

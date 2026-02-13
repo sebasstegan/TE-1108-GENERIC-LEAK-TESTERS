@@ -41,14 +41,7 @@
 	nMainRegion							: DINT;
 	bManualModeOffFlag					: BOOL;
 	
-/////////////////////////////////////////////////////////////////////////////////////SETTINGS/////////////////////////////////////////////////////////////////////////////////////	
 
-	anDistanceCalibrationBlock			: ARRAY [0..5] OF DINT;	
-	anExpectedDistances					: ARRAY [0..5] OF DINT;	
-	anHeightSetByCalibration			: ARRAY [0..7] OF DINT;	
-	anTolerances						: ARRAY [0..5] OF DINT;	
-	
-	bCalibrationButton					: ARRAY[0..1] OF  BOOL;
 	
 	
 	stAnimations						: ST_Animations;
@@ -65,7 +58,23 @@ VAR_GLOBAL PERSISTENT
 																	//3: Height Test 1
 																	//4: Height Test 2
 																	//5: Camera
+														
+	/////////////////////////////////////////////////////////////////////////////////////SETTINGS/////////////////////////////////////////////////////////////////////////////////////	
+	
+	//Height Test
+	anDistanceCalibrationBlock			: ARRAY [0..5] OF DINT;	
+	anExpectedDistances					: ARRAY [0..5] OF DINT;	
+	anHeightSetByCalibration			: ARRAY [0..7] OF DINT;	
+	anTolerances						: ARRAY [0..5] OF DINT;	
+	
+	bCalibrationButton					: ARRAY[0..1] OF  BOOL;
+	
+	//TwinSAFE
+	
+	nAirPressureMaxValue				: UINT;	
+	nAirPressureMinValue				: UINT;	
 
+	
 END_VAR]]></Declaration>
   </GVL>
 </TcPlcObject>

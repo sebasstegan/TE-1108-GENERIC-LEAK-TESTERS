@@ -5,8 +5,8 @@
 	
 	
 
-	//	dw_T01_EK1100                                                	| EtherCAT Coupler 
-	//	dw_T02_EL6070-0033                                           	| EtherCAT Terminal, license key for TwinCAT 3.1 	
+	dw_T01_EK1100                                                		: ST_K1100;//EtherCAT Coupler 
+	dw_T02_EL6070                                           			: ST_EL6070;//EtherCAT Terminal, license key FOR TwinCAT 3.1 	
 	dw_T03_EL6910														: st_EL6910;//TwinSAFE logic
 	dw_T04_EL1918														: st_EL1918_A;//EL1918 8 Channel Safety Digital Input
 	dw_T05_EL1918														: st_EL1918_B;//EL1918 8 Channel Safety Digital Input

@@ -4,18 +4,27 @@
     <Declaration><![CDATA[TYPE ST_TwinSAFE :
 STRUCT
 	
-	bRightTouchButton							: BOOL;
-	bLeftTouchButton							: BOOL;
-	bTouchButtonsDelayedSignal					: BOOL;
-	bEStopCH1									: BOOL;
-	bEStopCH2									: BOOL;
-	bInterlockFeedback							: BOOL;
+///////////////////////////////////////////////////////////////////////////Safety OUTPUTS///////////////////////////////////////////////////////////////////////////////////////
 	
-	bSafetyOK									: BOOL;
-	bResetButton								: BOOL;					
+	iErrorAcknowledge               		AT %Q*			: 	BOOL;	
+	iProcessDoorClosing              		AT %Q*			: 	BOOL;	
+	iAirPressureMaxValue					AT %Q*			: 	UINT;
+	iAirPressureMinValue					AT %Q*			: 	UINT;
+	iAirSupplyMeasurement					AT %Q*			: 	UINT;
+	iProcessDoorClosedCondition				AT %Q*			: 	BOOL;	
 	
-	
-	
+///////////////////////////////////////////////////////////////////////////Safety Inputs///////////////////////////////////////////////////////////////////////////////////////	
+
+	qAirErrorSignal							AT %I*			: 	BOOL;	
+	qAirPressureAbove						AT %I*			: 	BOOL;	
+	qAirPressureBelow						AT %I*			: 	BOOL;	
+	qProcessDoorClosed						AT %I*			: 	BOOL;	
+	qSafetyOk								AT %I*			: 	BOOL;	
+	qStartProcessSignal						AT %I*			: 	BOOL;
+	qE_StopPressed							AT %I*			: 	BOOL;	
+	qMainDoorOpened							AT %I*			: 	BOOL;
+	qProcessDoorSafe						AT %I*			: 	BOOL;
+	qTwoHandsSafe							AT %I*			: 	BOOL;
 
 END_STRUCT
 END_TYPE

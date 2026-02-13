@@ -237,17 +237,18 @@ tonExecute( IN := 	eCycleState = E_General_ProcessCycle.CLOSE_PROCESS_DOOR OR
 
 rFirstAutoCycle( CLK := stMachineStatus.bAutoCycle);
 
+
 /////////////////////////////////////////////////////////////////////////////////////CONDITIONS/////////////////////////////////////////////////////////////////////////////////////
 
 IF stMACHINE.IP8X THEN
 	
-	bStartProcessCondition := stTwinSAFE.bTouchButtonsDelayedSignal AND
+	bStartProcessCondition := stTwinSAFE.qStartProcessSignal AND
 							bPartPresentNest1						AND
 							bPartPresentNest2						AND
 							bPartPresentNest3						AND
 							bPartPresentNest4						;
 
-ELSE  bStartProcessCondition := stTwinSAFE.bTouchButtonsDelayedSignal AND
+ELSE  bStartProcessCondition := stTwinSAFE.qStartProcessSignal AND
 							bPartPresentNest1						AND
 							bPartPresentNest2						;
 END_IF
@@ -648,7 +649,30 @@ bPartPresentNest2					:= dw_T08_EL1809.iPartPresentNest2;
 bPartPresentNest3					:= dw_T08_EL1809.iPartPresentNest3;
 bPartPresentNest4					:= dw_T08_EL1809.iPartPresentNest4;
 
-bRejectSensor						:= dw_T08_EL1809.iRejectSensor;]]></ST>
+bRejectSensor						:= dw_T08_EL1809.iRejectSensor;
+
+bDoorClosingFlag					:= eCycleState = E_General_ProcessCycle.CLOSE_PROCESS_DOOR;
+bDoorOpeningFlag					:= eCycleState = E_General_ProcessCycle.OPEN_PROCESS_DOOR;
+
+bProcessDoorClosedConditionFlag		:= eCycleState = E_General_ProcessCycle.PROCESS_FLAGS_DEFINITIONS OR
+										eCycleState = E_General_ProcessCycle.EXTEND_PROCESS_CYLINDER OR
+										eCycleState = E_General_ProcessCycle.LEAK_TESTS_HEIGHT_TEST OR
+										eCycleState = E_General_ProcessCycle.WAIT_LEAK_TEST_HEIGHT_TEST OR
+										eCycleState = E_General_ProcessCycle.HEIGHT_TEST OR
+										eCycleState = E_General_ProcessCycle.WAIT_HEIGHT_TEST OR
+										eCycleState = E_General_ProcessCycle.LEAK_TESTS OR
+										eCycleState = E_General_ProcessCycle.WAIT_LEAK_TEST OR
+										eCycleState = E_General_ProcessCycle.CAMERA_INSPECTION OR
+										eCycleState = E_General_ProcessCycle.WAIT_CAMERA OR
+										eCycleState = E_General_ProcessCycle.RESULTS OR
+										eCycleState = E_General_ProcessCycle.WAIT_TO_SAVE_DATA OR
+										eCycleState = E_General_ProcessCycle.SAVE_DATA OR
+										eCycleState = E_General_ProcessCycle.SAVE_DATA2 OR
+										eCycleState = E_General_ProcessCycle.CSV OR
+										eCycleState = E_General_ProcessCycle.RETRACT_PROCESS_CYLINDER OR
+										eCycleState = E_General_ProcessCycle.WAIT_RETRACT_PROCESS_CYLINDER;
+										
+																				]]></ST>
       </Implementation>
     </Action>
     <LineIds Name="A_2_PRG_MachineCtrl">
@@ -744,6 +768,7 @@ bRejectSensor						:= dw_T08_EL1809.iRejectSensor;]]></ST>
       <LineId Id="69" Count="0" />
       <LineId Id="45" Count="0" />
       <LineId Id="44" Count="0" />
+      <LineId Id="676" Count="0" />
       <LineId Id="38" Count="0" />
       <LineId Id="37" Count="0" />
       <LineId Id="267" Count="0" />
@@ -1023,6 +1048,17 @@ bRejectSensor						:= dw_T08_EL1809.iRejectSensor;]]></ST>
       <LineId Id="4" Count="2" />
       <LineId Id="8" Count="0" />
       <LineId Id="7" Count="0" />
+      <LineId Id="10" Count="0" />
+      <LineId Id="9" Count="0" />
+      <LineId Id="11" Count="0" />
+      <LineId Id="13" Count="0" />
+      <LineId Id="12" Count="0" />
+      <LineId Id="14" Count="7" />
+      <LineId Id="30" Count="0" />
+      <LineId Id="35" Count="5" />
+      <LineId Id="45" Count="0" />
+      <LineId Id="32" Count="0" />
+      <LineId Id="24" Count="0" />
     </LineIds>
   </POU>
 </TcPlcObject>

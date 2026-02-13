@@ -11,6 +11,80 @@
 			</ArrayInfo>
 		</DataType>
 		<DataType>
+			<Name GUID="{2438F91B-E188-4ED7-8594-54354F9ED6A4}" Namespace="Safety" TcBaseType="true">FSOE_6</Name>
+			<BitSize>48</BitSize>
+			<SubItem>
+				<Name>FSoE CMD</Name>
+				<Type GUID="{18071995-0000-0000-0000-000000000002}">USINT</Type>
+				<BitSize>8</BitSize>
+				<BitOffs>0</BitOffs>
+			</SubItem>
+			<SubItem>
+				<Name>FSoE Data</Name>
+				<Type GUID="{18071995-0000-0000-0000-000000000032}">BITARR8</Type>
+				<BitSize>8</BitSize>
+				<BitOffs>8</BitOffs>
+			</SubItem>
+			<SubItem>
+				<Name>FSoE CRC_0</Name>
+				<Type GUID="{18071995-0000-0000-0000-000000000005}">UINT</Type>
+				<BitSize>16</BitSize>
+				<BitOffs>16</BitOffs>
+			</SubItem>
+			<SubItem>
+				<Name>FSoE ConnID</Name>
+				<Type GUID="{18071995-0000-0000-0000-000000000005}">UINT</Type>
+				<BitSize>16</BitSize>
+				<BitOffs>32</BitOffs>
+			</SubItem>
+		</DataType>
+		<DataType>
+			<Name GUID="{B05FDAB7-3241-ACD3-D16C-0FDAF8825BC9}" AutoDeleteType="true">FSOE_7</Name>
+			<BitSize>56</BitSize>
+			<SubItem>
+				<Name>FSoE CMD</Name>
+				<Type GUID="{18071995-0000-0000-0000-000000000002}">USINT</Type>
+				<BitSize>8</BitSize>
+				<BitOffs>0</BitOffs>
+			</SubItem>
+			<SubItem>
+				<Name>FSoE Data 0</Name>
+				<Type GUID="{18071995-0000-0000-0000-000000000033}">BITARR16</Type>
+				<BitSize>16</BitSize>
+				<BitOffs>8</BitOffs>
+			</SubItem>
+			<SubItem>
+				<Name>FSoE CRC_0</Name>
+				<Type GUID="{18071995-0000-0000-0000-000000000005}">UINT</Type>
+				<BitSize>16</BitSize>
+				<BitOffs>24</BitOffs>
+			</SubItem>
+			<SubItem>
+				<Name>FSoE ConnID</Name>
+				<Type GUID="{18071995-0000-0000-0000-000000000005}">UINT</Type>
+				<BitSize>16</BitSize>
+				<BitOffs>40</BitOffs>
+			</SubItem>
+		</DataType>
+		<DataType>
+			<Name GUID="{18071995-0000-0000-0000-002000000006}" IecBaseType="true" BitType="true" AutoDeleteType="true" HideSubItems="true">ARRAY [0..5] OF BIT</Name>
+			<BitSize>6</BitSize>
+			<BaseType GUID="{18071995-0000-0000-0000-000000000010}">BIT</BaseType>
+			<ArrayInfo>
+				<LBound>0</LBound>
+				<Elements>6</Elements>
+			</ArrayInfo>
+		</DataType>
+		<DataType>
+			<Name GUID="{18071995-0000-0000-0000-002000000007}" IecBaseType="true" AutoDeleteType="true" HideSubItems="true">ARRAY [0..6] OF BIT</Name>
+			<BitSize>7</BitSize>
+			<BaseType GUID="{18071995-0000-0000-0000-000000000010}">BIT</BaseType>
+			<ArrayInfo>
+				<LBound>0</LBound>
+				<Elements>7</Elements>
+			</ArrayInfo>
+		</DataType>
+		<DataType>
 			<Name GUID="{18071995-0000-0000-0000-002000000010}" IecBaseType="true" AutoDeleteType="true" HideSubItems="true">ARRAY [0..1] OF BYTE</Name>
 			<BitSize>16</BitSize>
 			<BaseType GUID="{18071995-0000-0000-0000-000000000001}">BYTE</BaseType>
@@ -47,21 +121,12 @@
 			</ArrayInfo>
 		</DataType>
 		<DataType>
-			<Name GUID="{18071995-0000-0000-0000-002000000001}" IecBaseType="true" AutoDeleteType="true" HideSubItems="true">ARRAY [0..0] OF BIT</Name>
+			<Name GUID="{18071995-0000-0000-0000-002000000001}" IecBaseType="true" BitType="true" AutoDeleteType="true" HideSubItems="true">ARRAY [0..0] OF BIT</Name>
 			<BitSize>1</BitSize>
 			<BaseType GUID="{18071995-0000-0000-0000-000000000010}">BIT</BaseType>
 			<ArrayInfo>
 				<LBound>0</LBound>
 				<Elements>1</Elements>
-			</ArrayInfo>
-		</DataType>
-		<DataType>
-			<Name GUID="{18071995-0000-0000-0000-002000000006}" IecBaseType="true" AutoDeleteType="true" HideSubItems="true">ARRAY [0..5] OF BIT</Name>
-			<BitSize>6</BitSize>
-			<BaseType GUID="{18071995-0000-0000-0000-000000000010}">BIT</BaseType>
-			<ArrayInfo>
-				<LBound>0</LBound>
-				<Elements>6</Elements>
 			</ArrayInfo>
 		</DataType>
 	</DataTypes>
@@ -93,11 +158,21 @@
 		</System>
 		<Plc>
 			<Project GUID="{997013A6-75D1-424B-98F5-A30289B2B96E}" Name="TE1108" PrjFilePath="TE1108\TE1108.plcproj" TmcFilePath="TE1108\TE1108.tmc" ReloadTmc="true" AmsPort="851" FileArchiveSettings="#x000e" SymbolicMapping="true">
-				<Instance Id="#x08502000" TcSmClass="TComPlcObjDef" KeepUnrestoredLinks="2" TmcPath="TE1108\TE1108.tmc" TmcHash="{31A67AAD-096B-A5B2-8C68-D9371218100E}">
+				<Instance Id="#x08502000" TcSmClass="TComPlcObjDef" KeepUnrestoredLinks="2" TmcPath="TE1108\TE1108.tmc" TmcHash="{11E1D09A-FC8B-9FD2-B919-19F6B810AC30}">
 					<Name>TE1108 Instance</Name>
 					<CLSID ClassFactory="TcPlc30">{08500001-0000-0000-F000-000000000064}</CLSID>
 					<Vars VarGrpType="1">
 						<Name>PlcTask Inputs</Name>
+						<Var>
+							<Name>GVL_IO.w_T01_EK1100.stTerminalInfo.nTerminal_State</Name>
+							<Comment><![CDATA[ Terminal State from IO Terminal Info Data]]></Comment>
+							<Type>UINT</Type>
+						</Var>
+						<Var>
+							<Name>GVL_IO.dw_T02_EL6070.stTerminalInfo.nTerminal_State</Name>
+							<Comment><![CDATA[ Terminal State from IO Terminal Info Data]]></Comment>
+							<Type>UINT</Type>
+						</Var>
 						<Var>
 							<Name>GVL_IO.dw_T03_EL6910.stTerminalInfo.nTerminal_State</Name>
 							<Comment><![CDATA[ Terminal State from IO Terminal Info Data]]></Comment>
@@ -299,24 +374,24 @@
 							<Type>UINT</Type>
 						</Var>
 						<Var>
-							<Name>GVL_IO.dw_T11_EL3058.iStartButoon</Name>
+							<Name>GVL_IO.dw_T11_EL3058.iMainPressure</Name>
 							<Comment><![CDATA[ EL1809 channel 1]]></Comment>
-							<Type>BOOL</Type>
+							<Type>UINT</Type>
 						</Var>
 						<Var>
 							<Name>GVL_IO.dw_T11_EL3058.iEL3058_Ch2</Name>
 							<Comment><![CDATA[ EL1809 channel 2]]></Comment>
-							<Type>BOOL</Type>
+							<Type>UINT</Type>
 						</Var>
 						<Var>
 							<Name>GVL_IO.dw_T11_EL3058.iEL3058_Ch3</Name>
 							<Comment><![CDATA[ EL1809 channel 3]]></Comment>
-							<Type>BOOL</Type>
+							<Type>UINT</Type>
 						</Var>
 						<Var>
 							<Name>GVL_IO.dw_T11_EL3058.iEL3058_Ch4</Name>
 							<Comment><![CDATA[ EL1809 channel 4]]></Comment>
-							<Type>BOOL</Type>
+							<Type>UINT</Type>
 						</Var>
 						<Var>
 							<Name>GVL_IO.dw_T11_EL3058.stTerminalInfo.nTerminal_State</Name>
@@ -327,6 +402,72 @@
 							<Name>GVL_IO.dw_T12_EL6633.stTerminalInfo.nTerminal_State</Name>
 							<Comment><![CDATA[ Terminal State from IO Terminal Info Data]]></Comment>
 							<Type>UINT</Type>
+						</Var>
+						<Var>
+							<Name>GVL_IO.stTwinSAFE.iErrorAcknowledge</Name>
+							<Comment><![CDATA[////////////////////////////////////////////////////////////////////////Safety OUTPUTS///////////////////////////////////////////////////////////////////////////////////////]]></Comment>
+							<Type>BOOL</Type>
+						</Var>
+						<Var>
+							<Name>GVL_IO.stTwinSAFE.iProcessDoorClosing</Name>
+							<Type>BOOL</Type>
+						</Var>
+						<Var>
+							<Name>GVL_IO.stTwinSAFE.iAirPressureMaxValue</Name>
+							<Type>UINT</Type>
+						</Var>
+						<Var>
+							<Name>GVL_IO.stTwinSAFE.iAirPressureMinValue</Name>
+							<Type>UINT</Type>
+						</Var>
+						<Var>
+							<Name>GVL_IO.stTwinSAFE.iAirSupplyMeasurement</Name>
+							<Type>UINT</Type>
+						</Var>
+						<Var>
+							<Name>GVL_IO.stTwinSAFE.iProcessDoorClosedCondition</Name>
+							<Type>BOOL</Type>
+						</Var>
+						<Var>
+							<Name>GVL_IO.stTwinSAFE.qAirErrorSignal</Name>
+							<Comment><![CDATA[////////////////////////////////////////////////////////////////////////Safety Inputs///////////////////////////////////////////////////////////////////////////////////////	]]></Comment>
+							<Type>BOOL</Type>
+						</Var>
+						<Var>
+							<Name>GVL_IO.stTwinSAFE.qAirPressureAbove</Name>
+							<Type>BOOL</Type>
+						</Var>
+						<Var>
+							<Name>GVL_IO.stTwinSAFE.qAirPressureBelow</Name>
+							<Type>BOOL</Type>
+						</Var>
+						<Var>
+							<Name>GVL_IO.stTwinSAFE.qProcessDoorClosed</Name>
+							<Type>BOOL</Type>
+						</Var>
+						<Var>
+							<Name>GVL_IO.stTwinSAFE.qSafetyOk</Name>
+							<Type>BOOL</Type>
+						</Var>
+						<Var>
+							<Name>GVL_IO.stTwinSAFE.qStartProcessSignal</Name>
+							<Type>BOOL</Type>
+						</Var>
+						<Var>
+							<Name>GVL_IO.stTwinSAFE.qE_StopPressed</Name>
+							<Type>BOOL</Type>
+						</Var>
+						<Var>
+							<Name>GVL_IO.stTwinSAFE.qMainDoorOpened</Name>
+							<Type>BOOL</Type>
+						</Var>
+						<Var>
+							<Name>GVL_IO.stTwinSAFE.qProcessDoorSafe</Name>
+							<Type>BOOL</Type>
+						</Var>
+						<Var>
+							<Name>GVL_IO.stTwinSAFE.qTwoHandsSafe</Name>
+							<Type>BOOL</Type>
 						</Var>
 						<Var>
 							<Name>GVL_IO.LeakTester1_IO.sti28General_I_O.bInput1</Name>
@@ -28704,8 +28845,8 @@
 						<EtherCAT SlaveType="2" PdiType="#x0005" MboxDataLinkLayer="true" StateMBoxPolling="true" CycleMBoxPollingTime="0" CoeType="3" FoeType="1" VendorId="#x00000002" ProductCode="#x1afe3052" RevisionNo="#x00150000" InfoDataAddr="true" RepeatSupport="true" TimeoutStateChange1="5000" TimeoutMailbox2="10000" TComSupport="true" PortPhys="51" DebugMemory="8" SafetyLogicSupported="true" MaxSlotCount="256" MaxSlotGroupCount="1" SlotPdoIncrement="1" SlotIndexIncrement="16" Type="EL6910, TwinSAFE PLC" Desc="EL6910" PortABoxInfo="#x01000002">
 							<SyncMan>001000012600010001000000000100010001001026010000</SyncMan>
 							<SyncMan>001100012200010002000000000100010001001122010000</SyncMan>
-							<SyncMan>001202002400010003000000000000000200001224010000</SyncMan>
-							<SyncMan>001d02002000010004000000000000000200001d20010000</SyncMan>
+							<SyncMan>00121e002400010003000000000000000200001224010000</SyncMan>
+							<SyncMan>001d1c002000010004000000000000000200001d20010000</SyncMan>
 							<SyncMan>002e00002400000003000000000000000000002e24000000</SyncMan>
 							<SyncMan>002f00002000000004000000000000000000002f20000000</SyncMan>
 							<Fmmu>0000000000000000001200020100000001000000060000000200000000000000</Fmmu>
@@ -28715,6 +28856,97 @@
 							<Fmmu>0000000000000000000000010000000002000000060000000500010000000000</Fmmu>
 							<BootStrapData>0010f400f410f400</BootStrapData>
 							<MBoxUserCmdData>004003000a0000001f000000030010000000000000000000000000000000000020f31005020000000100456e61626c6520446961674d65737361676520617320656d657267656e637900</MBoxUserCmdData>
+							<Pdo Name="ConnectionInputs" Index="#x1a00" Flags="#x2011" SyncMan="3">
+								<Entry Name="Message_8 TxPDO" Index="#x7000" Sub="#x01">
+									<Type GUID="{2438F91B-E188-4ED7-8594-54354F9ED6A4}" Namespace="Safety">FSOE_6</Type>
+								</Entry>
+								<Entry Name="Message_9 TxPDO" Index="#x7000" Sub="#x02">
+									<Type GUID="{2438F91B-E188-4ED7-8594-54354F9ED6A4}" Namespace="Safety">FSOE_6</Type>
+								</Entry>
+								<Entry Name="Message_10 TxPDO" Index="#x7000" Sub="#x03">
+									<Type GUID="{2438F91B-E188-4ED7-8594-54354F9ED6A4}" Namespace="Safety">FSOE_6</Type>
+								</Entry>
+							</Pdo>
+							<Pdo Name="ConnectionOutputs" Index="#x1600" InOut="1" Flags="#x2011" SyncMan="2">
+								<Entry Name="Message_8 RxPDO" Index="#x6000" Sub="#x01">
+									<Type GUID="{B05FDAB7-3241-ACD3-D16C-0FDAF8825BC9}">FSOE_7</Type>
+								</Entry>
+								<Entry Name="Message_9 RxPDO" Index="#x6000" Sub="#x02">
+									<Type GUID="{B05FDAB7-3241-ACD3-D16C-0FDAF8825BC9}">FSOE_7</Type>
+								</Entry>
+								<Entry Name="Message_10 RxPDO" Index="#x6000" Sub="#x03">
+									<Type GUID="{2438F91B-E188-4ED7-8594-54354F9ED6A4}" Namespace="Safety">FSOE_6</Type>
+								</Entry>
+							</Pdo>
+							<Pdo Name="StandardInputs" Index="#x1bf0" Flags="#x2011" SyncMan="3">
+								<Entry Name="TwinSafeGroup1.AirErrorSignal_17" Index="#x7000" Sub="#x01">
+									<Type>BIT</Type>
+								</Entry>
+								<Entry Name="TwinSafeGroup1.AirPressureBelow_25" Index="#x7000" Sub="#x02">
+									<Type>BIT</Type>
+								</Entry>
+								<Entry Name="TwinSafeGroup1.AirPressureAbove_26" Index="#x7000" Sub="#x03">
+									<Type>BIT</Type>
+								</Entry>
+								<Entry Name="TwinSafeGroup1.StartProcessSignal_27" Index="#x7000" Sub="#x04">
+									<Type>BIT</Type>
+								</Entry>
+								<Entry Name="TwinSafeGroup1.SafetyOK_30" Index="#x7000" Sub="#x05">
+									<Type>BIT</Type>
+								</Entry>
+								<Entry Name="TwinSafeGroup1.ProcessDoorClosed_31" Index="#x7000" Sub="#x06">
+									<Type>BIT</Type>
+								</Entry>
+								<Entry Name="TwinSafeGroup1.E_StopPressed_32" Index="#x7000" Sub="#x07">
+									<Type>BIT</Type>
+								</Entry>
+								<Entry Name="TwinSafeGroup1.MainDoorOpened_33" Index="#x7000" Sub="#x08">
+									<Type>BIT</Type>
+								</Entry>
+								<Entry Name="TwinSafeGroup1.ProcessDoorSafe_34" Index="#x7000" Sub="#x09">
+									<Type>BIT</Type>
+								</Entry>
+								<Entry Name="TwinSafeGroup1.TwoHandsSafe_35" Index="#x7000" Sub="#x0a">
+									<Type>BIT</Type>
+								</Entry>
+								<Entry>
+									<Type GUID="{18071995-0000-0000-0000-002000000006}">ARRAY [0..5] OF BIT</Type>
+								</Entry>
+							</Pdo>
+							<Pdo Name="StandardOutputs" Index="#x17f0" InOut="1" Flags="#x2011" SyncMan="2">
+								<Entry Name="TwinSafeGroup1.ErrorAcknowledgement_1" Index="#x6000" Sub="#x01">
+									<Type>BIT</Type>
+								</Entry>
+								<Entry Name="TwinSafeGroup1.ProcessDoorClosedCondition_16" Index="#x6000" Sub="#x02">
+									<Type>BIT</Type>
+								</Entry>
+								<Entry>
+									<Type GUID="{18071995-0000-0000-0000-002000000006}">ARRAY [0..5] OF BIT</Type>
+								</Entry>
+								<Entry Name="TwinSafeGroup1.AirSupplyMeasurement_19" Index="#x6000" Sub="#x03">
+									<Type>UINT</Type>
+								</Entry>
+								<Entry Name="TwinSafeGroup1.AirPressureMinVal_22" Index="#x6000" Sub="#x04">
+									<Type>UINT</Type>
+								</Entry>
+								<Entry Name="TwinSafeGroup1.AirPressureMaxVal_23" Index="#x6000" Sub="#x05">
+									<Type>UINT</Type>
+								</Entry>
+								<Entry Name="TwinSafeGroup1.ProcessDoor Closing_29" Index="#x6000" Sub="#x06">
+									<Type>BIT</Type>
+								</Entry>
+								<Entry>
+									<Type GUID="{18071995-0000-0000-0000-002000000007}">ARRAY [0..6] OF BIT</Type>
+								</Entry>
+							</Pdo>
+							<Pdo Name="Device Info Data" Index="#x1bfe" Flags="#x2011" SyncMan="3">
+								<Entry Name="Project CRC" Index="#x7000" Sub="#x01">
+									<Type>WORD</Type>
+								</Entry>
+								<Entry Name="Serial Number" Index="#x7000" Sub="#x02">
+									<Type>UDINT</Type>
+								</Entry>
+							</Pdo>
 							<Pdo Name="FSLOGIC Inputs" Index="#x1bff" Flags="#x0011" SyncMan="3">
 								<Entry Name="Safe Logic State" Index="#xf100" Sub="#x01">
 									<Type>USINT</Type>
@@ -28756,49 +28988,49 @@
 								<Entry Name="FSOE__FSoE Command" Index="#x6080" Sub="#x01">
 									<Type>USINT</Type>
 								</Entry>
-								<Entry Name="FSOE__FSIN Module 1.Input" Index="#x6001" Sub="#x01">
+								<Entry Name="FSOE__FSIN Module 1.Input" Index="#x6001" Sub="#x01" Flags="#x00008020">
 									<Type>BIT</Type>
 								</Entry>
 								<Entry Name="FSOE__FSIN Module 1.Module Fault" Index="#x6002" Sub="#x01">
 									<Type>BIT</Type>
 								</Entry>
-								<Entry Name="FSOE__FSIN Module 2.Input" Index="#x6011" Sub="#x01">
+								<Entry Name="FSOE__FSIN Module 2.Input" Index="#x6011" Sub="#x01" Flags="#x00008020">
 									<Type>BIT</Type>
 								</Entry>
 								<Entry Name="FSOE__FSIN Module 2.Module Fault" Index="#x6012" Sub="#x01">
 									<Type>BIT</Type>
 								</Entry>
-								<Entry Name="FSOE__FSIN Module 3.Input" Index="#x6021" Sub="#x01">
+								<Entry Name="FSOE__FSIN Module 3.Input" Index="#x6021" Sub="#x01" Flags="#x00008020">
 									<Type>BIT</Type>
 								</Entry>
 								<Entry Name="FSOE__FSIN Module 3.Module Fault" Index="#x6022" Sub="#x01">
 									<Type>BIT</Type>
 								</Entry>
-								<Entry Name="FSOE__FSIN Module 4.Input" Index="#x6031" Sub="#x01">
+								<Entry Name="FSOE__FSIN Module 4.Input" Index="#x6031" Sub="#x01" Flags="#x00008020">
 									<Type>BIT</Type>
 								</Entry>
 								<Entry Name="FSOE__FSIN Module 4.Module Fault" Index="#x6032" Sub="#x01">
 									<Type>BIT</Type>
 								</Entry>
-								<Entry Name="FSOE__FSIN Module 5.Input" Index="#x6041" Sub="#x01">
+								<Entry Name="FSOE__FSIN Module 5.Input" Index="#x6041" Sub="#x01" Flags="#x00008020">
 									<Type>BIT</Type>
 								</Entry>
 								<Entry Name="FSOE__FSIN Module 5.Module Fault" Index="#x6042" Sub="#x01">
 									<Type>BIT</Type>
 								</Entry>
-								<Entry Name="FSOE__FSIN Module 6.Input" Index="#x6051" Sub="#x01">
+								<Entry Name="FSOE__FSIN Module 6.Input" Index="#x6051" Sub="#x01" Flags="#x00008020">
 									<Type>BIT</Type>
 								</Entry>
 								<Entry Name="FSOE__FSIN Module 6.Module Fault" Index="#x6052" Sub="#x01">
 									<Type>BIT</Type>
 								</Entry>
-								<Entry Name="FSOE__FSIN Module 7.Input" Index="#x6061" Sub="#x01">
+								<Entry Name="FSOE__FSIN Module 7.Input" Index="#x6061" Sub="#x01" Flags="#x00008020">
 									<Type>BIT</Type>
 								</Entry>
 								<Entry Name="FSOE__FSIN Module 7.Module Fault" Index="#x6062" Sub="#x01">
 									<Type>BIT</Type>
 								</Entry>
-								<Entry Name="FSOE__FSIN Module 8.Input" Index="#x6071" Sub="#x01">
+								<Entry Name="FSOE__FSIN Module 8.Input" Index="#x6071" Sub="#x01" Flags="#x00008020">
 									<Type>BIT</Type>
 								</Entry>
 								<Entry Name="FSOE__FSIN Module 8.Module Fault" Index="#x6072" Sub="#x01">
@@ -28873,7 +29105,7 @@
 								<ModuleIdent>17827710</ModuleIdent>
 								<Module Id="#x03090001" Type="FSOE" Class="1918">
 									<Name>Module 1 (FSOE)</Name>
-									<ImageId>429</ImageId>
+									<ImageId>407</ImageId>
 									<ModuleData>020000007e07100100002c000000000000000000000000000000000000000000</ModuleData>
 									<PdoIndex>6656</PdoIndex>
 									<PdoIndex>5632</PdoIndex>
@@ -28885,7 +29117,7 @@
 								<ModuleIdent>691</ModuleIdent>
 								<Module Id="#x03090002" Type="FSLOGIC" Class="FSLOGIC">
 									<Name>Module 2 (FSLOGIC)</Name>
-									<ImageId>429</ImageId>
+									<ImageId>407</ImageId>
 									<ModuleData>02000000b3020000000004000000000000000000000000000000000000000000</ModuleData>
 									<PdoIndex>7167</PdoIndex>
 									<PdoIndex>6143</PdoIndex>
@@ -28918,43 +29150,43 @@
 								<Entry Name="FSOE__FSoE Command" Index="#x6080" Sub="#x01">
 									<Type>USINT</Type>
 								</Entry>
-								<Entry Name="FSOE__FSIN Module 1.Input" Index="#x6001" Sub="#x01">
+								<Entry Name="FSOE__FSIN Module 1.Input" Index="#x6001" Sub="#x01" Flags="#x00008020">
 									<Type>BIT</Type>
 								</Entry>
 								<Entry Name="FSOE__FSIN Module 1.Module Fault" Index="#x6002" Sub="#x01">
 									<Type>BIT</Type>
 								</Entry>
-								<Entry Name="FSOE__FSIN Module 2.Input" Index="#x6011" Sub="#x01">
+								<Entry Name="FSOE__FSIN Module 2.Input" Index="#x6011" Sub="#x01" Flags="#x00008020">
 									<Type>BIT</Type>
 								</Entry>
 								<Entry Name="FSOE__FSIN Module 2.Module Fault" Index="#x6012" Sub="#x01">
 									<Type>BIT</Type>
 								</Entry>
-								<Entry Name="FSOE__FSIN Module 3.Input" Index="#x6021" Sub="#x01">
+								<Entry Name="FSOE__FSIN Module 3.Input" Index="#x6021" Sub="#x01" Flags="#x00008020">
 									<Type>BIT</Type>
 								</Entry>
 								<Entry Name="FSOE__FSIN Module 3.Module Fault" Index="#x6022" Sub="#x01">
 									<Type>BIT</Type>
 								</Entry>
-								<Entry Name="FSOE__FSIN Module 4.Input" Index="#x6031" Sub="#x01">
+								<Entry Name="FSOE__FSIN Module 4.Input" Index="#x6031" Sub="#x01" Flags="#x00008020">
 									<Type>BIT</Type>
 								</Entry>
 								<Entry Name="FSOE__FSIN Module 4.Module Fault" Index="#x6032" Sub="#x01">
 									<Type>BIT</Type>
 								</Entry>
-								<Entry Name="FSOE__FSIN Module 5.Input" Index="#x6041" Sub="#x01">
+								<Entry Name="FSOE__FSIN Module 5.Input" Index="#x6041" Sub="#x01" Flags="#x00008020">
 									<Type>BIT</Type>
 								</Entry>
 								<Entry Name="FSOE__FSIN Module 5.Module Fault" Index="#x6042" Sub="#x01">
 									<Type>BIT</Type>
 								</Entry>
-								<Entry Name="FSOE__FSIN Module 6.Input" Index="#x6051" Sub="#x01">
+								<Entry Name="FSOE__FSIN Module 6.Input" Index="#x6051" Sub="#x01" Flags="#x00008020">
 									<Type>BIT</Type>
 								</Entry>
 								<Entry Name="FSOE__FSIN Module 6.Module Fault" Index="#x6052" Sub="#x01">
 									<Type>BIT</Type>
 								</Entry>
-								<Entry Name="FSOE__FSIN Module 7.Input" Index="#x6061" Sub="#x01">
+								<Entry Name="FSOE__FSIN Module 7.Input" Index="#x6061" Sub="#x01" Flags="#x00008020">
 									<Type>BIT</Type>
 								</Entry>
 								<Entry Name="FSOE__FSIN Module 7.Module Fault" Index="#x6062" Sub="#x01">
@@ -29035,7 +29267,7 @@
 								<ModuleIdent>17827710</ModuleIdent>
 								<Module Id="#x03090003" Type="FSOE" Class="1918">
 									<Name>Module 1 (FSOE)</Name>
-									<ImageId>429</ImageId>
+									<ImageId>407</ImageId>
 									<ModuleData>020000007e07100100002c000000000000000000000000000000000000000000</ModuleData>
 									<PdoIndex>6656</PdoIndex>
 									<PdoIndex>5632</PdoIndex>
@@ -29047,7 +29279,7 @@
 								<ModuleIdent>691</ModuleIdent>
 								<Module Id="#x03090004" Type="FSLOGIC" Class="FSLOGIC">
 									<Name>Module 2 (FSLOGIC)</Name>
-									<ImageId>429</ImageId>
+									<ImageId>407</ImageId>
 									<ModuleData>02000000b3020000000004000000000000000000000000000000000000000000</ModuleData>
 									<PdoIndex>7167</PdoIndex>
 									<PdoIndex>6143</PdoIndex>
@@ -29082,16 +29314,16 @@
 								</Entry>
 							</Pdo>
 							<Pdo Name="RxPDO" Index="#x1600" InOut="1" Flags="#x0090" SyncMan="2">
-								<Entry Name="FSOE__FSoE Master CMD" Index="#x7000" Sub="#x01">
+								<Entry Name="FSOE__FSoE Master CMD" Index="#x7000" Sub="#x01" Flags="#x00008020">
 									<Type>USINT</Type>
 								</Entry>
-								<Entry Name="FSOE__OutputChannel1" Index="#x7001" Sub="#x01">
+								<Entry Name="FSOE__OutputChannel1" Index="#x7001" Sub="#x01" Flags="#x00008020">
 									<Type>BIT</Type>
 								</Entry>
-								<Entry Name="FSOE__OutputChannel2" Index="#x7001" Sub="#x02">
+								<Entry Name="FSOE__OutputChannel2" Index="#x7001" Sub="#x02" Flags="#x00008020">
 									<Type>BIT</Type>
 								</Entry>
-								<Entry Name="FSOE__OutputChannel3" Index="#x7001" Sub="#x03">
+								<Entry Name="FSOE__OutputChannel3" Index="#x7001" Sub="#x03" Flags="#x00008020">
 									<Type>BIT</Type>
 								</Entry>
 								<Entry Name="FSOE__OutputChannel4" Index="#x7001" Sub="#x04">
@@ -29100,10 +29332,10 @@
 								<Entry Name="FSOE__">
 									<Type GUID="{18071995-0000-0000-0000-002000000004}">ARRAY [0..3] OF BIT</Type>
 								</Entry>
-								<Entry Name="FSOE__FSoE Master CRC_0" Index="#x7000" Sub="#x03">
+								<Entry Name="FSOE__FSoE Master CRC_0" Index="#x7000" Sub="#x03" Flags="#x00008020">
 									<Type>UINT</Type>
 								</Entry>
-								<Entry Name="FSOE__FSoE Master ConnID" Index="#x7000" Sub="#x02">
+								<Entry Name="FSOE__FSoE Master ConnID" Index="#x7000" Sub="#x02" Flags="#x00008020">
 									<Type>UINT</Type>
 								</Entry>
 							</Pdo>
@@ -29865,6 +30097,129 @@ Bit1: Value bigger/equal Limit2]]></Comment>
 				</Box>
 				<EtherCAT/>
 			</Device>
+			<Device Id="1" DevType="112" AmsPort="28673" AmsNetId="172.18.238.230.2.1" RemoteName="Device 1 (EtherCAT Automation Protocol)">
+				<Name>Device 1 (EtherCAT Automation Protocol)</Name>
+				<AddressInfo>
+					<Pnp>
+						<DeviceDesc>Ethernet 2 (TwinCAT-Intel PCI Ethernet Adapter (Gig</DeviceDesc>
+						<DeviceName>\DEVICE\{0B9EE70D-B769-4100-A1C2-0AF70C802177}</DeviceName>
+						<DeviceData>000105a8f0e8</DeviceData>
+					</Pnp>
+				</AddressInfo>
+				<Image Id="1" AddrType="1" ImageType="3">
+					<Name>Image</Name>
+				</Image>
+				<Ethernet DeviceDesc="Ethernet 2 (TwinCAT-Intel PCI Ethernet Adapter (Gig"/>
+				<Eap EapDeviceGuid="{C08707E7-3EFA-4F05-9D22-CDF2FC878A3F}"/>
+			</Device>
 		</Io>
 	</Project>
+	<Mappings>
+		<MappingInfo Identifier="{00000000-2001-0850-0020-500820000403}" Id="#x02030010"/>
+		<MappingInfo Identifier="{00000000-2001-0850-0020-500831000403}" Id="#x02030030"/>
+		<MappingInfo Identifier="{03040020-0020-0304-2000-040320000403}" Id="#x02030020" Watchdog="04000000040000000400000004000000"/>
+		<OwnerA Name="TIID^Device 3 (EtherCAT)">
+			<OwnerB Name="TIID^Device 3 (EtherCAT)^Term 1 (EK1100)^Term 3 (EL6910)">
+				<Link VarA="Term 1 (EK1100)^Term 4 (EL1918)^Module 1 (FSOE)^FSoE Outputs^FSOE" VarB="ConnectionInputs^Message_8 TxPDO"/>
+				<Link VarA="Term 1 (EK1100)^Term 6 (EL2904)^Module 1 (FSOES)^RxPDO^FSOE" VarB="ConnectionInputs^Message_10 TxPDO"/>
+				<Link VarA="Term 1 (EK1100)^Term 6 (EL2904)^Module 1 (FSOES)^TxPDO^FSOE" VarB="ConnectionOutputs^Message_10 RxPDO"/>
+			</OwnerB>
+			<OwnerB Name="TIID^Device 3 (EtherCAT)^Term 1 (EK1100)^Term 4 (EL1918)">
+				<Link VarA="Term 1 (EK1100)^Term 3 (EL6910)^ConnectionOutputs^Message_8 RxPDO" VarB="Module 1 (FSOE)^FSoE Inputs^FSOE"/>
+			</OwnerB>
+			<OwnerB Name="TIID^Device 3 (EtherCAT)^Term 1 (EK1100)^Term 5 (EL1918)">
+				<Link VarA="Term 1 (EK1100)^Term 3 (EL6910)^ConnectionInputs^Message_9 TxPDO" VarB="Module 1 (FSOE)^FSoE Outputs^FSOE"/>
+				<Link VarA="Term 1 (EK1100)^Term 3 (EL6910)^ConnectionOutputs^Message_9 RxPDO" VarB="Module 1 (FSOE)^FSoE Inputs^FSOE"/>
+			</OwnerB>
+		</OwnerA>
+		<OwnerA Name="TIPC^TE1108^TE1108 Instance">
+			<OwnerB Name="TIID^Device 3 (EtherCAT)^Term 1 (EK1100)">
+				<Link VarA="PlcTask Inputs^GVL_IO.w_T01_EK1100.stTerminalInfo.nTerminal_State" VarB="InfoData^State"/>
+			</OwnerB>
+			<OwnerB Name="TIID^Device 3 (EtherCAT)^Term 1 (EK1100)^Term 10 (EL2809)">
+				<Link VarA="PlcTask Inputs^GVL_IO.dw_T10_EL2809.stTerminalInfo.nTerminal_State" VarB="InfoData^State"/>
+				<Link VarA="PlcTask Outputs^GVL_IO.dw_T10_EL2809.qExtendProcessCylinder2" VarB="Channel 2^Output"/>
+				<Link VarA="PlcTask Outputs^GVL_IO.dw_T10_EL2809.qRectractProcessCylinder2" VarB="Channel 1^Output"/>
+			</OwnerB>
+			<OwnerB Name="TIID^Device 3 (EtherCAT)^Term 1 (EK1100)^Term 11 (EL3058)">
+				<Link VarA="PlcTask Inputs^GVL_IO.dw_T11_EL3058.iMainPressure" VarB="AI Standard Channel 1^Value"/>
+				<Link VarA="PlcTask Inputs^GVL_IO.dw_T11_EL3058.stTerminalInfo.nTerminal_State" VarB="InfoData^State"/>
+			</OwnerB>
+			<OwnerB Name="TIID^Device 3 (EtherCAT)^Term 1 (EK1100)^Term 12 (EL6633)">
+				<Link VarA="PlcTask Inputs^GVL_IO.dw_T12_EL6633.stTerminalInfo.nTerminal_State" VarB="InfoData^State"/>
+			</OwnerB>
+			<OwnerB Name="TIID^Device 3 (EtherCAT)^Term 1 (EK1100)^Term 2 (EL6070-0033)">
+				<Link VarA="PlcTask Inputs^GVL_IO.dw_T02_EL6070.stTerminalInfo.nTerminal_State" VarB="InfoData^State"/>
+			</OwnerB>
+			<OwnerB Name="TIID^Device 3 (EtherCAT)^Term 1 (EK1100)^Term 3 (EL6910)">
+				<Link VarA="PlcTask Inputs^GVL_IO.dw_T03_EL6910.stTerminalInfo.nTerminal_State" VarB="InfoData^State"/>
+				<Link VarA="PlcTask Inputs^GVL_IO.stTwinSAFE.qAirPressureAbove" VarB="StandardInputs^TwinSafeGroup1.AirErrorSignal_17"/>
+				<Link VarA="PlcTask Inputs^GVL_IO.stTwinSAFE.qAirPressureBelow" VarB="StandardInputs^TwinSafeGroup1.AirPressureBelow_25"/>
+			</OwnerB>
+			<OwnerB Name="TIID^Device 3 (EtherCAT)^Term 1 (EK1100)^Term 4 (EL1918)">
+				<Link VarA="PlcTask Inputs^GVL_IO.dw_T04_EL1918.iD1MainDoorFB" VarB="Module 1 (FSOE)^FSoE Inputs^FSOE^FSIN Module 6.Input"/>
+				<Link VarA="PlcTask Inputs^GVL_IO.dw_T04_EL1918.iD1MainDoorLocked1" VarB="Module 1 (FSOE)^FSoE Inputs^FSOE^FSIN Module 4.Input"/>
+				<Link VarA="PlcTask Inputs^GVL_IO.dw_T04_EL1918.iD1MainDoorLocked2" VarB="Module 1 (FSOE)^FSoE Inputs^FSOE^FSIN Module 5.Input"/>
+				<Link VarA="PlcTask Inputs^GVL_IO.dw_T04_EL1918.iEStopChannel1" VarB="Module 1 (FSOE)^FSoE Inputs^FSOE^FSIN Module 1.Input"/>
+				<Link VarA="PlcTask Inputs^GVL_IO.dw_T04_EL1918.iEStopChannel2" VarB="Module 1 (FSOE)^FSoE Inputs^FSOE^FSIN Module 2.Input"/>
+				<Link VarA="PlcTask Inputs^GVL_IO.dw_T04_EL1918.iFestoMS6DumpValveFB" VarB="Module 1 (FSOE)^FSoE Inputs^FSOE^FSIN Module 8.Input"/>
+				<Link VarA="PlcTask Inputs^GVL_IO.dw_T04_EL1918.iFestoMS6ValveFB" VarB="Module 1 (FSOE)^FSoE Inputs^FSOE^FSIN Module 7.Input"/>
+				<Link VarA="PlcTask Inputs^GVL_IO.dw_T04_EL1918.iResetButton" VarB="Module 1 (FSOE)^FSoE Inputs^FSOE^FSIN Module 3.Input"/>
+				<Link VarA="PlcTask Inputs^GVL_IO.dw_T04_EL1918.stTerminalInfo.nTerminal_State" VarB="InfoData^State"/>
+			</OwnerB>
+			<OwnerB Name="TIID^Device 3 (EtherCAT)^Term 1 (EK1100)^Term 5 (EL1918)">
+				<Link VarA="PlcTask Inputs^GVL_IO.dw_T05_EL1918.iLeftTouchButtonNC" VarB="Module 1 (FSOE)^FSoE Inputs^FSOE^FSIN Module 2.Input"/>
+				<Link VarA="PlcTask Inputs^GVL_IO.dw_T05_EL1918.iLeftTouchButtonNO" VarB="Module 1 (FSOE)^FSoE Inputs^FSOE^FSIN Module 4.Input"/>
+				<Link VarA="PlcTask Inputs^GVL_IO.dw_T05_EL1918.iProcessDoorClosed1" VarB="Module 1 (FSOE)^FSoE Inputs^FSOE^FSIN Module 5.Input"/>
+				<Link VarA="PlcTask Inputs^GVL_IO.dw_T05_EL1918.iProcessDoorClosed2" VarB="Module 1 (FSOE)^FSoE Inputs^FSOE^FSIN Module 6.Input"/>
+				<Link VarA="PlcTask Inputs^GVL_IO.dw_T05_EL1918.iProcessDoorFB" VarB="Module 1 (FSOE)^FSoE Inputs^FSOE^FSIN Module 7.Input"/>
+				<Link VarA="PlcTask Inputs^GVL_IO.dw_T05_EL1918.iRightTouchButtonNC" VarB="Module 1 (FSOE)^FSoE Inputs^FSOE^FSIN Module 1.Input"/>
+				<Link VarA="PlcTask Inputs^GVL_IO.dw_T05_EL1918.iRightTouchButtonNO" VarB="Module 1 (FSOE)^FSoE Inputs^FSOE^FSIN Module 3.Input"/>
+				<Link VarA="PlcTask Inputs^GVL_IO.dw_T05_EL1918.stTerminalInfo.nTerminal_State" VarB="InfoData^State"/>
+			</OwnerB>
+			<OwnerB Name="TIID^Device 3 (EtherCAT)^Term 1 (EK1100)^Term 6 (EL2904)">
+				<Link VarA="PlcTask Inputs^GVL_IO.dw_T06_EL2904.stTerminalInfo.nTerminal_State" VarB="InfoData^State"/>
+				<Link VarA="PlcTask Outputs^GVL_IO.dw_T06_EL2904.qEnableAirSupply_PSR1" VarB="Module 2 (DO)^RxPDO^Output Channel 1"/>
+				<Link VarA="PlcTask Outputs^GVL_IO.dw_T06_EL2904.qLockMainDoor" VarB="Module 2 (DO)^RxPDO^Output Channel 3"/>
+				<Link VarA="PlcTask Outputs^GVL_IO.dw_T06_EL2904.qResetAirSupply_PSR2" VarB="Module 2 (DO)^RxPDO^Output Channel 2"/>
+			</OwnerB>
+			<OwnerB Name="TIID^Device 3 (EtherCAT)^Term 1 (EK1100)^Term 7 (EL9410)">
+				<Link VarA="PlcTask Inputs^GVL_IO.dw_T07_EL9410.stTerminalInfo.nTerminal_State" VarB="InfoData^State"/>
+			</OwnerB>
+			<OwnerB Name="TIID^Device 3 (EtherCAT)^Term 1 (EK1100)^Term 8 (EL1809)">
+				<Link VarA="PlcTask Inputs^GVL_IO.dw_T08_EL1809.iPartPresentNest1" VarB="Channel 5^Input"/>
+				<Link VarA="PlcTask Inputs^GVL_IO.dw_T08_EL1809.iPartPresentNest2" VarB="Channel 6^Input"/>
+				<Link VarA="PlcTask Inputs^GVL_IO.dw_T08_EL1809.iPartPresentNest3" VarB="Channel 7^Input"/>
+				<Link VarA="PlcTask Inputs^GVL_IO.dw_T08_EL1809.iPartPresentNest4" VarB="Channel 8^Input"/>
+				<Link VarA="PlcTask Inputs^GVL_IO.dw_T08_EL1809.iProcessCylinder1Extended" VarB="Channel 10^Input"/>
+				<Link VarA="PlcTask Inputs^GVL_IO.dw_T08_EL1809.iProcessCylinder1Retracted" VarB="Channel 9^Input"/>
+				<Link VarA="PlcTask Inputs^GVL_IO.dw_T08_EL1809.iProcessCylinder2Extended" VarB="Channel 12^Input"/>
+				<Link VarA="PlcTask Inputs^GVL_IO.dw_T08_EL1809.iProcessCylinder2Retracted" VarB="Channel 11^Input"/>
+				<Link VarA="PlcTask Inputs^GVL_IO.dw_T08_EL1809.iRejectSensor" VarB="Channel 13^Input"/>
+				<Link VarA="PlcTask Inputs^GVL_IO.dw_T08_EL1809.iStartButoon" VarB="Channel 1^Input"/>
+				<Link VarA="PlcTask Inputs^GVL_IO.dw_T08_EL1809.iStopButton" VarB="Channel 2^Input"/>
+				<Link VarA="PlcTask Inputs^GVL_IO.dw_T08_EL1809.iUP_OK" VarB="Channel 3^Input"/>
+				<Link VarA="PlcTask Inputs^GVL_IO.dw_T08_EL1809.iUS_OK" VarB="Channel 4^Input"/>
+				<Link VarA="PlcTask Inputs^GVL_IO.dw_T08_EL1809.stTerminalInfo.nTerminal_State" VarB="InfoData^State"/>
+			</OwnerB>
+			<OwnerB Name="TIID^Device 3 (EtherCAT)^Term 1 (EK1100)^Term 9 (EL2809)">
+				<Link VarA="PlcTask Inputs^GVL_IO.dw_T09_EL2809.stTerminalInfo.nTerminal_State" VarB="InfoData^State"/>
+				<Link VarA="PlcTask Outputs^GVL_IO.dw_T09_EL2809.qCloseProcessDoor" VarB="Channel 6^Output"/>
+				<Link VarA="PlcTask Outputs^GVL_IO.dw_T09_EL2809.qExtendProcessCylinder1" VarB="Channel 4^Output"/>
+				<Link VarA="PlcTask Outputs^GVL_IO.dw_T09_EL2809.qIndicatorLED1_Green" VarB="Channel 9^Output"/>
+				<Link VarA="PlcTask Outputs^GVL_IO.dw_T09_EL2809.qIndicatorLED1_Red" VarB="Channel 8^Output"/>
+				<Link VarA="PlcTask Outputs^GVL_IO.dw_T09_EL2809.qIndicatorLED2_Green" VarB="Channel 11^Output"/>
+				<Link VarA="PlcTask Outputs^GVL_IO.dw_T09_EL2809.qIndicatorLED2_Red" VarB="Channel 10^Output"/>
+				<Link VarA="PlcTask Outputs^GVL_IO.dw_T09_EL2809.qIndicatorLED3_Green" VarB="Channel 13^Output"/>
+				<Link VarA="PlcTask Outputs^GVL_IO.dw_T09_EL2809.qIndicatorLED3_Red" VarB="Channel 12^Output"/>
+				<Link VarA="PlcTask Outputs^GVL_IO.dw_T09_EL2809.qIndicatorLED4_Green" VarB="Channel 15^Output"/>
+				<Link VarA="PlcTask Outputs^GVL_IO.dw_T09_EL2809.qIndicatorLED4_Red" VarB="Channel 14^Output"/>
+				<Link VarA="PlcTask Outputs^GVL_IO.dw_T09_EL2809.qOpenProcessDoor" VarB="Channel 5^Output"/>
+				<Link VarA="PlcTask Outputs^GVL_IO.dw_T09_EL2809.qPanelLightLED" VarB="Channel 7^Output"/>
+				<Link VarA="PlcTask Outputs^GVL_IO.dw_T09_EL2809.qResetButtonLED" VarB="Channel 2^Output"/>
+				<Link VarA="PlcTask Outputs^GVL_IO.dw_T09_EL2809.qRetractProcessCylinder1" VarB="Channel 3^Output"/>
+				<Link VarA="PlcTask Outputs^GVL_IO.dw_T09_EL2809.qStartButtonLED" VarB="Channel 1^Output"/>
+			</OwnerB>
+		</OwnerA>
+	</Mappings>
 </TcSmProject>

@@ -12,6 +12,7 @@ VAR
 	bCloseDoor							: BOOL;
 	bDoorClosed							: BOOL;
 	bDoorOpened							: BOOL;
+	tonDoorOpened						: TON;
 
 	
 END_VAR
@@ -137,12 +138,11 @@ stProcessDoor.Status.bStopped		:= 	NOT stProcessDoor.Status.bBusy;]]></ST>
     </Action>
     <Action Name="b_ACT_IO_B" Id="{7a24ac88-21cc-4219-af73-2aba76419ebf}">
       <Implementation>
-        <ST><![CDATA[
-//bDoorClosed								:= ; FROM TWINSAFE
-//bDoorOpened								:= ; FROM TWINSAFE
+        <ST><![CDATA[tonDoorOpened( IN := NOT bDoorClosed AND bDoorOpeningFlag	, PT := stTimers.nDoorOpenedSignal);
 
-	
 
+bDoorClosed								:= stTwinSAFE.qProcessDoorClosed;
+bDoorOpened								:= tonDoorOpened; 
 
 dw_T09_EL2809.qOpenProcessDoor	:= bOpenDoor;	
 dw_T09_EL2809.qCloseProcessDoor	:= bCloseDoor;
@@ -266,11 +266,9 @@ stStationEvents[3].aEvents[2].bEventText					:= 'ST1 EVENT 7';]]></ST>
       <LineId Id="95" Count="0" />
     </LineIds>
     <LineIds Name="B_4_1_PRG_Master_ProcessDoor.b_ACT_IO_B">
+      <LineId Id="34" Count="1" />
       <LineId Id="15" Count="2" />
-      <LineId Id="24" Count="0" />
       <LineId Id="31" Count="0" />
-      <LineId Id="33" Count="0" />
-      <LineId Id="25" Count="0" />
       <LineId Id="22" Count="0" />
       <LineId Id="28" Count="1" />
       <LineId Id="27" Count="0" />
