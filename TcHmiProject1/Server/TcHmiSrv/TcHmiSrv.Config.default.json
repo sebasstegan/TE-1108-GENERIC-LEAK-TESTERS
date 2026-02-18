@@ -3408,6 +3408,16 @@
             },
             "USEMAPPING": true
         },
+        "PLC1.GVL_HMI.bMachineDefinitionSet": {
+            "ACCESS": 3,
+            "DOMAIN": "ADS",
+            "DYNAMIC": true,
+            "MAPPING": "PLC1::GVL_HMI::bMachineDefinitionSet",
+            "SCHEMA": {
+                "$ref": "tchmi:general#/definitions/BOOL"
+            },
+            "USEMAPPING": true
+        },
         "PLC1.GVL_HMI.bManualModeOffFlag": {
             "ACCESS": 3,
             "DOMAIN": "ADS",
@@ -3445,6 +3455,16 @@
             "MAPPING": "PLC1::GVL_HMI::bUserLoggedIn",
             "SCHEMA": {
                 "$ref": "tchmi:general#/definitions/BOOL"
+            },
+            "USEMAPPING": true
+        },
+        "PLC1.GVL_HMI.nMachineDefinitionIndex": {
+            "ACCESS": 3,
+            "DOMAIN": "ADS",
+            "DYNAMIC": true,
+            "MAPPING": "PLC1::GVL_HMI::nMachineDefinitionIndex",
+            "SCHEMA": {
+                "$ref": "tchmi:general#/definitions/INT"
             },
             "USEMAPPING": true
         },
@@ -3700,6 +3720,23 @@
                 "allOf": [
                     {
                         "$ref": "tchmi:server#/definitions/PLC1.ARRAY_1..100_OF-ST_EventsAssigment"
+                    },
+                    {
+                        "propertyOrder": 4
+                    }
+                ]
+            },
+            "USEMAPPING": true
+        },
+        "PLC1.GVL_Master.stMACHINE.bHeightTest": {
+            "ACCESS": 3,
+            "DOMAIN": "ADS",
+            "DYNAMIC": true,
+            "MAPPING": "PLC1::GVL_Master::stMACHINE::bHeightTest",
+            "SCHEMA": {
+                "allOf": [
+                    {
+                        "$ref": "tchmi:general#/definitions/BOOL"
                     },
                     {
                         "propertyOrder": 4
@@ -4738,10 +4775,12 @@
                 "PLC1.A_1_PRG_Main_Master.bResetTest": 3,
                 "PLC1.A_1_PRG_Main_Master.rTrigManualModeOff.Q": 3,
                 "PLC1.GVL_HMI.bEnableManual": 3,
+                "PLC1.GVL_HMI.bMachineDefinitionSet": 3,
                 "PLC1.GVL_HMI.bManualModeOffFlag": 3,
                 "PLC1.GVL_HMI.bQuitHMI": 3,
                 "PLC1.GVL_HMI.bShutDown": 3,
                 "PLC1.GVL_HMI.bUserLoggedIn": 3,
+                "PLC1.GVL_HMI.nMachineDefinitionIndex": 3,
                 "PLC1.GVL_HMI.nMainRegion": 3,
                 "PLC1.GVL_HMI.nPopUp": 3,
                 "PLC1.GVL_HMI.rOpenPopUp.Q": 3,
@@ -4767,6 +4806,7 @@
                 "PLC1.GVL_Master.stEventsAssigment.astCycleStopRequestEvents": 3,
                 "PLC1.GVL_Master.stEventsAssigment.astImmediateFaultEvents": 3,
                 "PLC1.GVL_Master.stEventsAssigment.astMessage": 3,
+                "PLC1.GVL_Master.stMACHINE.bHeightTest": 3,
                 "PLC1.GVL_Persistent.aDataHistory": 3,
                 "PLC1.GVL_Persistent.astEventsHistory": 3,
                 "PLC1.GVL_Persistent.stAlarmHistory": 3,

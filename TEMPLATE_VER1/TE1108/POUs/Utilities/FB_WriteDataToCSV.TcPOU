@@ -6,14 +6,14 @@ VAR_INPUT
 	
 	bWriteData		: BOOL;
 	sFileNamePath	: STRING(255);
-	aDataHistory	: ARRAY[0..200] OF ST_EventsHistory;
-	aDataHistoryArrayLength : DINT;
+	aData			: ARRAY[0..200] OF ST_EventsHistory; // TYPE OF DATA CHANGE DEPENDIG OF HOW MUCH YOU WANT TO SAVE
+	aDataLength 	: DINT;
 	sDate			: STRING(255);
 	
 	nMAX_CSV_ROWS	: UDINT;
 	nMAX_CSV_COLUMNS: UDINT;
 	
-	nDataHistoryIndex : DINT;
+	bAcknowledge 		: BOOL; //FEEDBACK OF DATA HISTORY RESET
 	
 
 END_VAR
@@ -38,7 +38,7 @@ VAR
 	fbFilePuts		: FB_FilePuts;(* Writes one record (line) *)
 	fbWriter		: FB_CSVMemBufferWriter;(* Helper function block used to create CSV data bytes (single record line) *)
 	sCSVLine		: T_MaxString := '';(* Single CSV text line (row, record), we are using string as record buffer (your are able to see created fields) *)
-	database		: ARRAY[0..10000(*MAX ROWS*), 0..(*MAX COLUMS*)6] OF STRING(255(*MAX STRING LENGTH*));
+	database		: ARRAY[0..1000, 0..4] OF STRING(255(*MAX STRING LENGTH*));// THIS NEEDS TO SET DEPENDING OF THE FUNCTION. ROWS: AMOUNT OF ARRAYS. COLUMS: AMOUNT OF DATA PER ARRAY
 	nRowIndex		: DINT;
 	i				: DINT;
 	sCSVDate		: STRING(255);
@@ -85,12 +85,12 @@ sFileName 								:= CONCAT(sFileNamePath,CONCAT( STR1 := '_', STR2 := CONCAT( S
 
 IF rWriteData.Q THEN
 	
-	FOR i := 0 TO aDataHistoryArrayLength DO
+	FOR i := 0 TO aDataLength DO
 				
-					database[nRowIndex + i,0]					:= 	aDataHistory[i].sEventTex;
-					database[nRowIndex + i,1]					:= 	aDataHistory[i].sType;
-					database[nRowIndex + i,2]					:= 	aDataHistory[i].sDate;
-					database[nRowIndex + i,3]					:= 	aDataHistory[i].sTime;
+					database[nRowIndex + i,0]					:= 	aData[i].sEventTex;
+					database[nRowIndex + i,1]					:= 	aData[i].sType;
+					database[nRowIndex + i,2]					:= 	aData[i].sDate;
+					database[nRowIndex + i,3]					:= 	aData[i].sTime;
 				
 	END_FOR
 	
@@ -103,7 +103,7 @@ IF rWriteData.Q THEN
 
 END_IF
 
-IF nDataHistoryIndex = 0 THEN
+IF bAcknowledge THEN
 	
 	bDataWrited											:= FALSE;
 

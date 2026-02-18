@@ -3,6 +3,9 @@
   <POU Name="C_1_PRG_MainHMI" Id="{74beadf6-2d48-457c-a28f-741842f8514e}" SpecialFunc="None">
     <Declaration><![CDATA[PROGRAM C_1_PRG_MainHMI
 VAR
+	
+	bResetTest				: BOOL;
+
 END_VAR
 ]]></Declaration>
     <Implementation>

@@ -133,8 +133,8 @@ rReset( CLK := stCamera.CMD.bReset, Q => bReset);
         <ST><![CDATA[stStatisticsHMI[5].sName			:= 'Vision System';
 
 
-rGoodStatistics( CLK := (stCycleData.stCamera_CycleData.bPass AND (stCamera.State	:= E_Camera_State.RESULTS));
-rBadStatistics( CLK := (stCycleData.stCamera_CycleData.bFail AND (stCamera.State	:= E_Camera_State.RESULTS));
+rGoodStatistics( CLK := (stCycleData.stCamera_CycleData.bPass AND (stCamera.State	= E_Camera_State.RESULTS)));
+rBadStatistics( CLK := (stCycleData.stCamera_CycleData.bFail AND (stCamera.State	= E_Camera_State.RESULTS)));
 
 IF 	rGoodStatistics.Q THEN
 	
@@ -174,7 +174,7 @@ END_IF
       <Implementation>
         <ST><![CDATA[//IMMEDIATE FAULTS
 
-stStationEvents[3].aEvents[0].bImmediateFault				:= TRUE;
+stStationEvents[3].aEvents[0].bFault						:= TRUE;
 stStationEvents[3].aEvents[0].bEventFlag					:= bEventsFlag[0];
 stStationEvents[3].aEvents[0].bEventText					:= 'ST1 EVENT 0';
 stStationEvents[3].aEvents[0].sSolution						:= 'Solution 5';
@@ -182,7 +182,7 @@ stStationEvents[3].aEvents[0].sSolution						:= 'Solution 5';
 
 //CYCLE STOP FAULT
 
-stStationEvents[3].aEvents[1].bCycleStopFault				:= TRUE;
+stStationEvents[3].aEvents[1].bFault						:= TRUE;
 stStationEvents[3].aEvents[1].bEventFlag					:= bEventsFlag[1];
 stStationEvents[3].aEvents[1].bEventText					:= 'ST1 EVENT 1';
 stStationEvents[3].aEvents[1].sSolution						:= 'Solution 6';
@@ -190,7 +190,7 @@ stStationEvents[3].aEvents[1].sSolution						:= 'Solution 6';
 
 //CYCLE STOP REQUEST
 
-stStationEvents[3].aEvents[2].bCycleStopRequest			:= TRUE;
+stStationEvents[3].aEvents[2].bCycleStopRequest				:= TRUE;
 stStationEvents[3].aEvents[2].bEventFlag					:= bEventsFlag[2];
 stStationEvents[3].aEvents[2].bEventText					:= 'ST1 EVENT 7';]]></ST>
       </Implementation>

@@ -15,7 +15,7 @@ VAR
 	bEventsFlag							: ARRAY [0..100] OF BOOL;
 /////////////////////////////////////////////////////////////////////////////////////I O/////////////////////////////////////////////////////////////////////////////////////	
 	
-	bError								: BOOL;
+	bError								: ARRAY[0..1] OF BOOL;
 	bReady								: BOOL;
 	abPass								: ARRAY [0..5] OF BOOL;
 	abFail								: ARRAY [0..5] OF BOOL;
@@ -102,24 +102,24 @@ CASE stHeightTests.State OF
 								
 								e_ACT_Measurement();
 								
-								stCycleData.stHeightTest_CycleData.anRawMeasurement[0]	:= anRawMesurement[0];
-								stCycleData.stHeightTest_CycleData.anRawMeasurement[1]	:= anRawMesurement[1];
-								stCycleData.stHeightTest_CycleData.anRawMeasurement[2]	:= anRawMesurement[2];
-								stCycleData.stHeightTest_CycleData.anRawMeasurement[3]	:= anRawMesurement[3];
+								stCycleData.stHeightTest_CycleData[0].anRawMeasurement[0]	:= anRawMesurement[0];
+								stCycleData.stHeightTest_CycleData[0].anRawMeasurement[1]	:= anRawMesurement[1];
+								stCycleData.stHeightTest_CycleData[0].anRawMeasurement[2]	:= anRawMesurement[2];
+								stCycleData.stHeightTest_CycleData[0].anRawMeasurement[3]	:= anRawMesurement[3];
 								
-								stCycleData.stHeightTest_CycleData.anRawMeasurement[4]	:= anRawMesurement[4];
-								stCycleData.stHeightTest_CycleData.anRawMeasurement[5]	:= anRawMesurement[5];
-								stCycleData.stHeightTest_CycleData.anRawMeasurement[6]	:= anRawMesurement[6];
-								stCycleData.stHeightTest_CycleData.anRawMeasurement[7]	:= anRawMesurement[7];
+								stCycleData.stHeightTest_CycleData[1].anRawMeasurement[0]	:= anRawMesurement[4];
+								stCycleData.stHeightTest_CycleData[1].anRawMeasurement[1]	:= anRawMesurement[5];
+								stCycleData.stHeightTest_CycleData[1].anRawMeasurement[2]	:= anRawMesurement[6];
+								stCycleData.stHeightTest_CycleData[1].anRawMeasurement[3]	:= anRawMesurement[7];
 								
 								
-								stCycleData.stHeightTest_CycleData.anDistancesResult[0] := anDistances[0];
-								stCycleData.stHeightTest_CycleData.anDistancesResult[1] := anDistances[1];
-								stCycleData.stHeightTest_CycleData.anDistancesResult[2] := anDistances[2];
+								stCycleData.stHeightTest_CycleData[0].anDistancesResult[0] := anDistances[0];
+								stCycleData.stHeightTest_CycleData[0].anDistancesResult[1] := anDistances[1];
+								stCycleData.stHeightTest_CycleData[0].anDistancesResult[2] := anDistances[2];
 								
-								stCycleData.stHeightTest_CycleData.anDistancesResult[3] := anDistances[3];
-								stCycleData.stHeightTest_CycleData.anDistancesResult[4] := anDistances[4];
-								stCycleData.stHeightTest_CycleData.anDistancesResult[5] := anDistances[5];
+								stCycleData.stHeightTest_CycleData[1].anDistancesResult[0] := anDistances[3];
+								stCycleData.stHeightTest_CycleData[1].anDistancesResult[1] := anDistances[4];
+								stCycleData.stHeightTest_CycleData[1].anDistancesResult[2] := anDistances[5];
 								
 								IF bMeasurementDone THEN
 			
@@ -140,9 +140,9 @@ CASE stHeightTests.State OF
 								IF abMeaurement[0] THEN
 									IF abPass[0] AND abPass[1] AND abPass[2] THEN
 									
-										stCycleData.stHeightTest_CycleData.bPass[0]	:= TRUE;
+										stCycleData.stHeightTest_CycleData[0].bPass	:= TRUE;
 									
-									ELSE stCycleData.stHeightTest_CycleData.bFail[0] := FALSE;
+									ELSE stCycleData.stHeightTest_CycleData[0].bFail := FALSE;
 								
 									END_IF
 								END_IF
@@ -150,9 +150,9 @@ CASE stHeightTests.State OF
 								IF abMeaurement[1] THEN
 									IF abPass[3] AND abPass[4] AND abPass[5] THEN
 									
-										stCycleData.stHeightTest_CycleData.bPass[1]	:= TRUE;
+										stCycleData.stHeightTest_CycleData[1].bPass	:= TRUE;
 									
-									ELSE stCycleData.stHeightTest_CycleData.bFail[1] := FALSE;
+									ELSE stCycleData.stHeightTest_CycleData[1].bFail := FALSE;
 								
 									END_IF
 								END_IF	
@@ -224,33 +224,37 @@ stHeightTests.Status.bStopped := NOT stHeightTests.Status.bBusy;
 	bGeneralError					:= Probes.bGeneralError;
 	anRawMesurement					:= Probes.anRawMeasurement;
 	
-	stCycleData.stHeightTest_CycleData.anDistanceCalibrationBlock[0]	:= anDistanceCalibrationBlock[0];
-	stCycleData.stHeightTest_CycleData.anDistanceCalibrationBlock[1]	:= anDistanceCalibrationBlock[1];
-	stCycleData.stHeightTest_CycleData.anDistanceCalibrationBlock[2]	:= anDistanceCalibrationBlock[2];
-	stCycleData.stHeightTest_CycleData.anDistanceCalibrationBlock[3]	:= anDistanceCalibrationBlock[3];
-	stCycleData.stHeightTest_CycleData.anDistanceCalibrationBlock[4]	:= anDistanceCalibrationBlock[4];
-	stCycleData.stHeightTest_CycleData.anDistanceCalibrationBlock[5]	:= anDistanceCalibrationBlock[5];
+	stCycleData.stHeightTest_CycleData[0].anDistanceCalibrationBlock[0]	:= anDistanceCalibrationBlock[0];
+	stCycleData.stHeightTest_CycleData[0].anDistanceCalibrationBlock[1]	:= anDistanceCalibrationBlock[1];
+	stCycleData.stHeightTest_CycleData[0].anDistanceCalibrationBlock[2]	:= anDistanceCalibrationBlock[2];
 	
-	stCycleData.stHeightTest_CycleData.anExpectedDistances[0]			:= anExpectedDistances[0];
-	stCycleData.stHeightTest_CycleData.anExpectedDistances[1]			:= anExpectedDistances[1];
-	stCycleData.stHeightTest_CycleData.anExpectedDistances[2]			:= anExpectedDistances[2];
-	stCycleData.stHeightTest_CycleData.anExpectedDistances[3]			:= anExpectedDistances[3];
-	stCycleData.stHeightTest_CycleData.anExpectedDistances[4]			:= anExpectedDistances[4];
-	stCycleData.stHeightTest_CycleData.anExpectedDistances[5]			:= anExpectedDistances[5];
+	stCycleData.stHeightTest_CycleData[1].anDistanceCalibrationBlock[0]	:= anDistanceCalibrationBlock[3];
+	stCycleData.stHeightTest_CycleData[1].anDistanceCalibrationBlock[1]	:= anDistanceCalibrationBlock[4];
+	stCycleData.stHeightTest_CycleData[1].anDistanceCalibrationBlock[2]	:= anDistanceCalibrationBlock[5];
 	
-	stCycleData.stHeightTest_CycleData.anHeightSetByCalibration[0]		:= anHeightSetByCalibration[0];
-	stCycleData.stHeightTest_CycleData.anHeightSetByCalibration[1]		:= anHeightSetByCalibration[1];
-	stCycleData.stHeightTest_CycleData.anHeightSetByCalibration[2]		:= anHeightSetByCalibration[2];
-	stCycleData.stHeightTest_CycleData.anHeightSetByCalibration[3]		:= anHeightSetByCalibration[3];
-	stCycleData.stHeightTest_CycleData.anHeightSetByCalibration[4]		:= anHeightSetByCalibration[4];
-	stCycleData.stHeightTest_CycleData.anHeightSetByCalibration[5]		:= anHeightSetByCalibration[5];
+	stCycleData.stHeightTest_CycleData[0].anExpectedDistances[0]			:= anExpectedDistances[0];
+	stCycleData.stHeightTest_CycleData[0].anExpectedDistances[1]			:= anExpectedDistances[1];
+	stCycleData.stHeightTest_CycleData[0].anExpectedDistances[2]			:= anExpectedDistances[2];
 	
-	stCycleData.stHeightTest_CycleData.anTolerances[0]					:= anTolerances[0];
-	stCycleData.stHeightTest_CycleData.anTolerances[1]					:= anTolerances[1];
-	stCycleData.stHeightTest_CycleData.anTolerances[2]					:= anTolerances[2];
-	stCycleData.stHeightTest_CycleData.anTolerances[3]					:= anTolerances[3];
-	stCycleData.stHeightTest_CycleData.anTolerances[4]					:= anTolerances[4];
-	stCycleData.stHeightTest_CycleData.anTolerances[5]					:= anTolerances[5];
+	stCycleData.stHeightTest_CycleData[1].anExpectedDistances[0]			:= anExpectedDistances[0];
+	stCycleData.stHeightTest_CycleData[1].anExpectedDistances[1]			:= anExpectedDistances[1];
+	stCycleData.stHeightTest_CycleData[1].anExpectedDistances[2]			:= anExpectedDistances[2];
+	
+	stCycleData.stHeightTest_CycleData[0].anHeightSetByCalibration[0]		:= anHeightSetByCalibration[0];
+	stCycleData.stHeightTest_CycleData[0].anHeightSetByCalibration[1]		:= anHeightSetByCalibration[1];
+	stCycleData.stHeightTest_CycleData[0].anHeightSetByCalibration[2]		:= anHeightSetByCalibration[2];
+	
+	stCycleData.stHeightTest_CycleData[1].anHeightSetByCalibration[0]		:= anHeightSetByCalibration[0];
+	stCycleData.stHeightTest_CycleData[1].anHeightSetByCalibration[1]		:= anHeightSetByCalibration[1];
+	stCycleData.stHeightTest_CycleData[1].anHeightSetByCalibration[2]		:= anHeightSetByCalibration[2];
+	
+	stCycleData.stHeightTest_CycleData[0].anTolerances[0]					:= anTolerances[0];
+	stCycleData.stHeightTest_CycleData[0].anTolerances[1]					:= anTolerances[1];
+	stCycleData.stHeightTest_CycleData[0].anTolerances[2]					:= anTolerances[2];
+	
+	stCycleData.stHeightTest_CycleData[1].anTolerances[0]					:= anTolerances[0];
+	stCycleData.stHeightTest_CycleData[1].anTolerances[1]					:= anTolerances[1];
+	stCycleData.stHeightTest_CycleData[1].anTolerances[2]					:= anTolerances[2];
 
 ]]></ST>
       </Implementation>
@@ -261,10 +265,10 @@ stHeightTests.Status.bStopped := NOT stHeightTests.Status.bBusy;
 stStatisticsHMI[4].sName			:= 'Height Test 2';
 
 
-rGoodStatistics[0]( CLK := (stCycleData.stHeightTest_CycleData.bPass[0] AND (stHeightTests.State = E_HeightTest_State.RESULTS)));
-rGoodStatistics[1]( CLK := (stCycleData.stHeightTest_CycleData.bPass[1] AND (stHeightTests.State = E_HeightTest_State.RESULTS)));
-rBadStatistics[0]	( CLK := (stCycleData.stHeightTest_CycleData.bFail[0] AND (stHeightTests.State = E_HeightTest_State.RESULTS)));
-rBadStatistics[1]	( CLK := (stCycleData.stHeightTest_CycleData.bFail[1] AND (stHeightTests.State = E_HeightTest_State.RESULTS)));
+rGoodStatistics[0]( CLK := (stCycleData.stHeightTest_CycleData[0].bPass AND (stHeightTests.State = E_HeightTest_State.RESULTS)));
+rGoodStatistics[1]( CLK := (stCycleData.stHeightTest_CycleData[1].bPass AND (stHeightTests.State = E_HeightTest_State.RESULTS)));
+rBadStatistics[0]	( CLK := (stCycleData.stHeightTest_CycleData[0].bFail AND (stHeightTests.State = E_HeightTest_State.RESULTS)));
+rBadStatistics[1]	( CLK := (stCycleData.stHeightTest_CycleData[1].bFail AND (stHeightTests.State = E_HeightTest_State.RESULTS)));
 
 //statistics 1
 IF 	rGoodStatistics[0].Q THEN
@@ -334,7 +338,7 @@ END_IF]]></ST>
       <Implementation>
         <ST><![CDATA[//IMMEDIATE FAULTS
 
-stStationEvents[2].aEvents[0].bImmediateFault				:= TRUE;
+stStationEvents[2].aEvents[0].bFault						:= TRUE;
 stStationEvents[2].aEvents[0].bEventFlag					:= bEventsFlag[0];
 stStationEvents[2].aEvents[0].bEventText					:= 'ST1 EVENT 0';
 stStationEvents[2].aEvents[0].sSolution						:= 'Solution 3';
@@ -342,7 +346,7 @@ stStationEvents[2].aEvents[0].sSolution						:= 'Solution 3';
 
 //CYCLE STOP FAULT
 
-stStationEvents[2].aEvents[1].bCycleStopFault				:= TRUE;
+stStationEvents[2].aEvents[1].bFault						:= TRUE;
 stStationEvents[2].aEvents[1].bEventFlag					:= bEventsFlag[1];
 stStationEvents[2].aEvents[1].bEventText					:= 'ST1 EVENT 1';
 stStationEvents[2].aEvents[1].sSolution						:= 'Solution 4';
@@ -350,7 +354,7 @@ stStationEvents[2].aEvents[1].sSolution						:= 'Solution 4';
 
 //CYCLE STOP REQUEST
 
-stStationEvents[2].aEvents[2].bCycleStopRequest			:= TRUE;
+stStationEvents[2].aEvents[2].bCycleStopRequest				:= TRUE;
 stStationEvents[2].aEvents[2].bEventFlag					:= bEventsFlag[2];
 stStationEvents[2].aEvents[2].bEventText					:= 'ST1 EVENT 2';]]></ST>
       </Implementation>
@@ -495,8 +499,16 @@ END_IF
       <LineId Id="4" Count="0" />
       <LineId Id="9" Count="0" />
       <LineId Id="14" Count="0" />
-      <LineId Id="16" Count="18" />
-      <LineId Id="36" Count="7" />
+      <LineId Id="16" Count="1" />
+      <LineId Id="44" Count="0" />
+      <LineId Id="18" Count="6" />
+      <LineId Id="45" Count="0" />
+      <LineId Id="25" Count="6" />
+      <LineId Id="46" Count="0" />
+      <LineId Id="32" Count="2" />
+      <LineId Id="36" Count="3" />
+      <LineId Id="47" Count="0" />
+      <LineId Id="40" Count="3" />
       <LineId Id="10" Count="0" />
     </LineIds>
     <LineIds Name="B_2_1_PRG_Master_Height_Test.c_ACT_Statistics_Station_2">

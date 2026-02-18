@@ -515,8 +515,9 @@ E_General_ProcessCycle.WAIT_CAMERA:
 				END_IF
 E_General_ProcessCycle.RESULTS:
 
-				IF NOT stCycleData.stCamera_CycleData.bFail AND NOT  stCycleData.stLeakTester_CycleData.bFail[0] AND NOT  stCycleData.stLeakTester_CycleData.bFail[1] 
-				AND NOT  stCycleData.stHeightTest_CycleData.bFail[0] AND NOT  stCycleData.stHeightTest_CycleData.bFail[1] THEN	
+				IF NOT stCycleData.stCamera_CycleData.bFail AND NOT  stCycleData.stLeakTester_CycleData[0].bFail AND NOT  stCycleData.stLeakTester_CycleData[1].bFail 
+				AND NOT  stCycleData.stHeightTest_CycleData[0].bFail AND NOT  stCycleData.stHeightTest_CycleData[1].bFail THEN	
+				
 					stCycleData.bPass						:= TRUE;
 				
 				ELSE stCycleData.bFail						:= TRUE;
@@ -967,6 +968,7 @@ bProcessDoorClosedConditionFlag		:= eCycleState = E_General_ProcessCycle.PROCESS
       <LineId Id="539" Count="0" />
       <LineId Id="566" Count="1" />
       <LineId Id="570" Count="0" />
+      <LineId Id="677" Count="0" />
       <LineId Id="572" Count="0" />
       <LineId Id="574" Count="1" />
       <LineId Id="573" Count="0" />

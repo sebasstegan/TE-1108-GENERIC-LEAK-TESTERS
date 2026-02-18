@@ -1,0 +1,117 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<TcPlcObject Version="1.1.0.1" ProductVersion="3.1.4024.13">
+  <POU Name="D_1_CSV" Id="{c1a3edab-978c-4461-bdb4-a2aa1b50049c}" SpecialFunc="None">
+    <Declaration><![CDATA[PROGRAM D_1_CSV
+VAR
+	
+	fbWriteEventsHistoryToCSV			: FB_WriteDataToCSV;
+
+	DATECHANGETEST		: STRING;
+	btest				: ARRAY[0..10] OF BOOL;
+	i					: DINT;
+	rPulsTrigger		: R_TRIG;
+	fPulsTrigger		: F_TRIG;
+	Counter				: CTU;
+
+END_VAR
+]]></Declaration>
+    <Implementation>
+      <ST><![CDATA[stCSV_EventsHistory.aDataLength					:= 200;
+
+IF stCSV_EventsHistory.nDataHistoryIndex = 0 THEN
+	
+	stCSV_EventsHistory.bAcknowledge  			:= TRUE;
+	
+ELSE stCSV_EventsHistory.bAcknowledge  			:= FALSE;
+
+END_IF
+
+fbWriteEventsHistoryToCSV(
+
+					//INPUTS
+					bWriteData 					:= stCSV_EventsHistory.bWriteData,
+					sFileNamePath				:= 'C:\Users\Sebastian.Ulloa\Desktop\CSV_TEST\newtest\',
+					aData						:=	astEventsHistory,
+					aDataLength 				:=	stCSV_EventsHistory.aDataLength,
+					sDate						:= DATECHANGETEST,//sSystemDate,
+					nMAX_CSV_ROWS				:=1000,
+					nMAX_CSV_COLUMNS			:= 4,
+					bAcknowledge				:= stCSV_EventsHistory.bAcknowledge,
+					
+					//OUTPUTS
+					bBusy						=> stCSV_EventsHistory.bBusy,
+					bError						=> stCSV_EventsHistory.bError,
+					bDataWrited					=> stCSV_EventsHistory.bDataWrited
+					
+						
+);
+
+rPulsTrigger( CLK := stPuls.bFlash10Hz);
+
+
+Counter(CU := stPuls.bFlash10Hz, RESET := Counter.CV > 3,);
+IF btest[0] THEN
+IF Counter.CV = 0 THEN
+		
+		bResetTest							:= FALSE;
+
+		bTestFlag[0]						:= TRUE;
+		
+ELSIF Counter.CV = 1 THEN
+		
+		bTestFlag[1]						:= TRUE;
+		
+ELSIF Counter.CV = 2 THEN
+		
+		bTestFlag[2]						:= TRUE;
+		
+ELSIF Counter.CV = 3 THEN
+	
+		bTestFlag[0]						:= FALSE;
+		bTestFlag[1]						:= FALSE;
+		bTestFlag[2]						:= FALSE;
+		bResetTest							:= TRUE;
+		
+END_IF
+END_IF]]></ST>
+    </Implementation>
+    <LineIds Name="D_1_CSV">
+      <LineId Id="47" Count="1" />
+      <LineId Id="39" Count="0" />
+      <LineId Id="41" Count="0" />
+      <LineId Id="44" Count="2" />
+      <LineId Id="43" Count="0" />
+      <LineId Id="42" Count="0" />
+      <LineId Id="40" Count="0" />
+      <LineId Id="5" Count="0" />
+      <LineId Id="7" Count="5" />
+      <LineId Id="24" Count="5" />
+      <LineId Id="31" Count="1" />
+      <LineId Id="30" Count="0" />
+      <LineId Id="13" Count="0" />
+      <LineId Id="15" Count="0" />
+      <LineId Id="6" Count="0" />
+      <LineId Id="101" Count="0" />
+      <LineId Id="50" Count="0" />
+      <LineId Id="103" Count="0" />
+      <LineId Id="105" Count="1" />
+      <LineId Id="100" Count="0" />
+      <LineId Id="49" Count="0" />
+      <LineId Id="52" Count="0" />
+      <LineId Id="120" Count="0" />
+      <LineId Id="119" Count="0" />
+      <LineId Id="90" Count="0" />
+      <LineId Id="92" Count="0" />
+      <LineId Id="79" Count="0" />
+      <LineId Id="94" Count="1" />
+      <LineId Id="107" Count="0" />
+      <LineId Id="109" Count="1" />
+      <LineId Id="108" Count="0" />
+      <LineId Id="111" Count="5" />
+      <LineId Id="118" Count="0" />
+      <LineId Id="98" Count="0" />
+      <LineId Id="87" Count="0" />
+      <LineId Id="53" Count="0" />
+    </LineIds>
+  </POU>
+</TcPlcObject>

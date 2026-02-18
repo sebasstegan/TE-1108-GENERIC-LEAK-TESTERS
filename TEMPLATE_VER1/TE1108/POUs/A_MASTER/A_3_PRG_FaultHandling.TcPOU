@@ -6,6 +6,8 @@ VAR
 	
 
 	bEventsFlag					: ARRAY [0..100] OF BOOL;
+	i							: DINT;
+	Counter						: CTU;			
 
 
 
@@ -28,7 +30,7 @@ stMasterCtrl.bCycleStopRequest										:= stStationEvents[0].bCycleStopRequest 
     <Action Name="a_ACT_Set_Events" Id="{42aebdbb-fe1e-4d30-8c60-8dfb7c659f09}">
       <Implementation>
         <ST><![CDATA[/////////////////////////////////////////////////////////////////////////////////////TwinSAFE/////////////////////////////////////////////////////////////////////////////////////
-
+(*
 stStationEvents[0].aEvents[0].bFault						:= TRUE;
 stStationEvents[0].aEvents[0].bEventFlag					:= stTwinSAFE.qAirErrorSignal;
 stStationEvents[0].aEvents[0].bEventText					:= 'Pressure Error';
@@ -77,10 +79,10 @@ stStationEvents[0].aEvents[8].sSolution						:= 'Reset system';
 stStationEvents[0].aEvents[9].bFault						:= TRUE;
 stStationEvents[0].aEvents[9].bEventFlag					:= NOT stTwinSAFE.qTwoHandsSafe;
 stStationEvents[0].aEvents[9].bEventText					:= 'Hands in unsafe position' ;
-stStationEvents[0].aEvents[9].sSolution						:= 'Reset system';
+stStationEvents[0].aEvents[9].sSolution						:= 'Reset system';*)
 
 /////////////////////////////////////////////////////////////////////////////////////Cards status/////////////////////////////////////////////////////////////////////////////////////
-
+(*
 stStationEvents[0].aEvents[10].bFault						:= TRUE;
 stStationEvents[0].aEvents[10].bEventFlag					:= NOT stMachineStatus.bSystemPowerUp AND dw_T01_EK1100.stTerminalInfo.nTerminal_State <> 8;
 stStationEvents[0].aEvents[10].bEventText					:= 'T01_EK1100 card in fault' ;
@@ -139,7 +141,25 @@ stStationEvents[0].aEvents[20].sSolution					:= 'Reset System';
 stStationEvents[0].aEvents[21].bFault						:= TRUE;
 stStationEvents[0].aEvents[21].bEventFlag					:= NOT stMachineStatus.bSystemPowerUp AND dw_T12_EL6633.stTerminalInfo.nTerminal_State <> 8;
 stStationEvents[0].aEvents[21].bEventText					:= 'T12_EL6633 card in fault' ;
-stStationEvents[0].aEvents[21].sSolution					:= 'Reset System';
+stStationEvents[0].aEvents[21].sSolution					:= 'Reset System';*)
+
+stStationEvents[0].aEvents[22].bFault						:= TRUE;
+stStationEvents[0].aEvents[22].bEventFlag					:= bTestFlag[0] OR bTestFlag[3];
+stStationEvents[0].aEvents[22].bEventText					:= WORD_TO_STRING(Counter.CV);
+stStationEvents[0].aEvents[22].sSolution					:= 'TEST1';
+
+stStationEvents[0].aEvents[23].bMessage						:= TRUE;
+stStationEvents[0].aEvents[23].bEventFlag					:= bTestFlag[1] OR bTestFlag[4];
+stStationEvents[0].aEvents[23].bEventText					:= WORD_TO_STRING(Counter.CV);
+stStationEvents[0].aEvents[23].sSolution					:= 'TEST2';
+
+stStationEvents[0].aEvents[24].bCycleStopRequest			:= TRUE;
+stStationEvents[0].aEvents[24].bEventFlag					:= bTestFlag[2] OR bTestFlag[5];
+stStationEvents[0].aEvents[24].bEventText					:= WORD_TO_STRING(Counter.CV);
+stStationEvents[0].aEvents[24].sSolution					:= 'TEST3';
+
+Counter( CU := (bTestFlag[0] OR bTestFlag[3]) OR (bTestFlag[1] OR bTestFlag[4]) OR (bTestFlag[2] OR bTestFlag[5]), RESET := bTestFlag[6]);
+
 
 ]]></ST>
       </Implementation>
@@ -198,6 +218,14 @@ stStationEvents[0].aEvents[21].sSolution					:= 'Reset System';
       <LineId Id="171" Count="0" />
       <LineId Id="177" Count="3" />
       <LineId Id="176" Count="0" />
+      <LineId Id="182" Count="4" />
+      <LineId Id="233" Count="3" />
+      <LineId Id="232" Count="0" />
+      <LineId Id="238" Count="3" />
+      <LineId Id="237" Count="0" />
+      <LineId Id="242" Count="0" />
+      <LineId Id="188" Count="0" />
+      <LineId Id="181" Count="0" />
       <LineId Id="125" Count="0" />
       <LineId Id="124" Count="0" />
     </LineIds>

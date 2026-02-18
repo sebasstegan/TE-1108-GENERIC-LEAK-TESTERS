@@ -7,8 +7,8 @@ STRUCT
 	aLeakTesterLastResult1			: st_i28LasResult;
 	aLeakTesterLastResult2			: st_i28LasResult;
 	
-	bPass							: ARRAY [0..2] OF BOOL;
-	bFail							: ARRAY [0..2] OF BOOL;	
+	bPass							: BOOL;
+	bFail							: BOOL;	
 
 END_STRUCT
 END_TYPE

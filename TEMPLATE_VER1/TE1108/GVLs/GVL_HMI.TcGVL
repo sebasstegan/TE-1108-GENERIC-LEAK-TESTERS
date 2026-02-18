@@ -45,7 +45,8 @@
 	
 	
 	stAnimations						: ST_Animations;
-	
+	nMachineDefinitionIndex				: INT;
+	bMachineDefinitionSet				: BOOL;
 	
 END_VAR
 
@@ -73,6 +74,8 @@ VAR_GLOBAL PERSISTENT
 	
 	nAirPressureMaxValue				: UINT;	
 	nAirPressureMinValue				: UINT;	
+	abMachineDefinition					: ARRAY[1..5] OF  BOOL;
+	
 
 	
 END_VAR]]></Declaration>

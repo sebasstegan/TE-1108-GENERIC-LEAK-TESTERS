@@ -202,18 +202,10 @@ dw_T10_EL2809.qRectractProcessCylinder2	:= bRetract[1];
       <Implementation>
         <ST><![CDATA[//IMMEDIATE FAULTS
 
-stStationEvents[3].aEvents[0].bImmediateFault				:= TRUE;
+stStationEvents[3].aEvents[0].bFault						:= TRUE;
 stStationEvents[3].aEvents[0].bEventFlag					:= bEventsFlag[0];
 stStationEvents[3].aEvents[0].bEventText					:= 'ST1 EVENT 0';
 stStationEvents[3].aEvents[0].sSolution						:= 'Solution 5';
-
-
-//CYCLE STOP FAULT
-
-stStationEvents[3].aEvents[1].bCycleStopFault				:= TRUE;
-stStationEvents[3].aEvents[1].bEventFlag					:= bEventsFlag[1];
-stStationEvents[3].aEvents[1].bEventText					:= 'ST1 EVENT 1';
-stStationEvents[3].aEvents[1].sSolution						:= 'Solution 6';
 
 
 //CYCLE STOP REQUEST
@@ -329,7 +321,8 @@ stStationEvents[3].aEvents[2].bEventText					:= 'ST1 EVENT 7';]]></ST>
       <LineId Id="5" Count="0" />
     </LineIds>
     <LineIds Name="B_4_1_PRG_Master_ProcessCylinder.d_ACT_Set_Events_Station_4A">
-      <LineId Id="50" Count="19" />
+      <LineId Id="50" Count="6" />
+      <LineId Id="65" Count="4" />
       <LineId Id="1" Count="0" />
     </LineIds>
   </POU>

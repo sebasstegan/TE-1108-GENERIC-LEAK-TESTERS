@@ -9,6 +9,7 @@ VAR_INPUT
 	sSystemTime				: STRING(255);
 	sSystemDate				: STRING(255);
 	bDataWritedInCSV		: BOOL;
+	nArraySize				: DINT;
 	
 END_VAR
 
@@ -33,14 +34,13 @@ VAR
 	
 	bEventsAssigmentSignal			: BOOL		:= TRUE;
 	
-	
 
 	
 END_VAR
 
 VAR_IN_OUT
 	
-	stStationEvents			: ARRAY[0..3] OF ST_StationEvents;
+	stStationEvents			: ARRAY[0..4] OF ST_StationEvents;
 	stEventsAssigment		: ST_EventsAssigmentGeneral;
 	bResetFaults			: BOOL;
 	
@@ -49,6 +49,7 @@ END_VAR
     <Implementation>
       <ST><![CDATA[ACT_FaultTrig();
 ACT_ActiveEvents_DataHistory();
+ACT_WriteToCSV();
 
 
 IF bEventsAssigmentSignal THEN
@@ -64,7 +65,7 @@ END_IF
       <Implementation>
         <ST><![CDATA[IF bPulse AND NOT bWriteDataInCSV THEN
 
-FOR k[0] := 0 TO 3 DO
+FOR k[0] := 0 TO nArraySize DO
 	
 	FOR k[1] := 0 TO 100 DO
 		
@@ -175,7 +176,7 @@ ELSIF bResetFaults THEN
 			
 	END_FOR	
 	
-	FOR k[0] := 0 TO 3 DO
+	FOR k[0] := 0 TO nArraySize DO
 	
 		FOR k[1] := 0 TO 100 DO
 	
@@ -194,34 +195,15 @@ ELSE
 	
 END_IF
 
-IF nDataHistoryIndex = 201 THEN
-	
-	bWriteDataInCSV									:= TRUE;
-
-END_IF 
-	
-IF bDataWritedInCSV THEN
-	
-	bWriteDataInCSV									:= FALSE;
-	nDataHistoryIndex								:= 0;
-	
-END_IF
 
 
-//
-
-
-
-																		//0:Immediate Fault
-																		//1:Cycle Stop Fault
-																		//2: Cycle Stop Request
-																		//3: Message]]></ST>
+]]></ST>
       </Implementation>
     </Action>
     <Action Name="ACT_EventTextAssigment" Id="{2f99a514-df71-4979-86ed-664674c281e4}">
       <Implementation>
         <ST><![CDATA[
-FOR j[0] := 0 TO 3 DO
+FOR j[0] := 0 TO nArraySize DO
 	
 	FOR j[1] := 0 TO 100 DO 
 		
@@ -289,7 +271,7 @@ m[3]														:= 0;]]></ST>
         <ST><![CDATA[IF bPulse THEN
 	
 
-	FOR i[0] := 0 TO 3 DO
+	FOR i[0] := 0 TO nArraySize DO
 	//IMMEDIATE FAULT
 		FOR i[1] :=0 TO 100 DO
 			
@@ -319,8 +301,26 @@ ELSE 	i[0]														:= 0;
 END_IF]]></ST>
       </Implementation>
     </Action>
+    <Action Name="ACT_WriteToCSV" Id="{dfd367d8-f7e2-4974-baea-f1d973148a39}">
+      <Implementation>
+        <ST><![CDATA[IF nDataHistoryIndex = 201 THEN
+	
+	bWriteDataInCSV									:= TRUE;
+
+END_IF 
+	
+IF bDataWritedInCSV THEN
+	
+	bWriteDataInCSV									:= FALSE;
+	nDataHistoryIndex								:= 0;
+	
+END_IF]]></ST>
+      </Implementation>
+    </Action>
     <LineIds Name="FB_EventsManager">
-      <LineId Id="83" Count="7" />
+      <LineId Id="83" Count="2" />
+      <LineId Id="158" Count="0" />
+      <LineId Id="86" Count="4" />
       <LineId Id="95" Count="0" />
       <LineId Id="48" Count="0" />
       <LineId Id="103" Count="0" />
@@ -412,20 +412,8 @@ END_IF]]></ST>
       <LineId Id="121" Count="0" />
       <LineId Id="18" Count="0" />
       <LineId Id="275" Count="0" />
-      <LineId Id="274" Count="0" />
-      <LineId Id="278" Count="0" />
-      <LineId Id="276" Count="0" />
-      <LineId Id="287" Count="0" />
-      <LineId Id="282" Count="0" />
-      <LineId Id="288" Count="0" />
-      <LineId Id="281" Count="0" />
-      <LineId Id="283" Count="1" />
-      <LineId Id="286" Count="0" />
-      <LineId Id="280" Count="0" />
       <LineId Id="277" Count="0" />
       <LineId Id="263" Count="0" />
-      <LineId Id="116" Count="0" />
-      <LineId Id="19" Count="6" />
       <LineId Id="17" Count="0" />
     </LineIds>
     <LineIds Name="FB_EventsManager.ACT_EventTextAssigment">
@@ -482,6 +470,10 @@ END_IF]]></ST>
       <LineId Id="65" Count="0" />
       <LineId Id="36" Count="1" />
       <LineId Id="43" Count="0" />
+      <LineId Id="1" Count="0" />
+    </LineIds>
+    <LineIds Name="FB_EventsManager.ACT_WriteToCSV">
+      <LineId Id="2" Count="10" />
       <LineId Id="1" Count="0" />
     </LineIds>
   </POU>

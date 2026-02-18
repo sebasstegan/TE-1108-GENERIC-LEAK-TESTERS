@@ -1,0 +1,63 @@
+<div id="Content1_25" data-tchmi-type="TcHmi.Controls.System.TcHmiContent" data-tchmi-top="0" data-tchmi-left="0" data-tchmi-width="1280" data-tchmi-height="479" data-tchmi-creator-viewport-width="800" data-tchmi-creator-viewport-height="600">
+<div id="TcHmiCombobox_5" data-tchmi-type="TcHmi.Controls.Beckhoff.TcHmiCombobox" data-tchmi-auto-focus-out="true" data-tchmi-combobox-text="Select" data-tchmi-height="26" data-tchmi-height-unit="px" data-tchmi-left="31" data-tchmi-left-unit="px" data-tchmi-top="24" data-tchmi-top-unit="px" data-tchmi-width="541" data-tchmi-width-unit="px" data-tchmi-selected-id="%s%PLC1.GVL_HMI.nMachineDefinitionIndex|BindingMode=TwoWay%/s%">
+<script data-tchmi-target-attribute="data-tchmi-content-padding" type="application/json">
+{
+  "top": 3,
+  "right": 3,
+  "bottom": 3,
+  "left": 3
+}
+</script>
+
+
+<script data-tchmi-target-attribute="data-tchmi-src-data" type="application/json">
+[
+  {
+    "id": 1.0,
+    "text": "LT-RT: LEAK TEST RESERVOIR"
+  },
+  {
+    "id": 2.0,
+    "text": "LT-WH-VC LEAK TEST: FLUID PATH, HEIGHT TEST: FPB WELDING, VISION CHECK: EWIS FOAM"
+  },
+  {
+    "id": 3.0,
+    "text": "LT-WH LEAK TEST: RESERVOIR TO DOCKSEAL (VACUUM), HEIGHT TEST: ST WELDING"
+  },
+  {
+    "id": 4.0,
+    "text": "LT-WH(IPX8) LEAK TEST: IPX8 UPPER AND LOWER SHELL ASSEMBLY, HEIGHT TEST: US & LS WELDING"
+  },
+  {
+    "id": 5.0,
+    "text": "WH: HEIGHT TEST: FPB WELDING"
+  }
+]
+</script>
+</div>
+<div id="TcHmiButton_50" data-tchmi-type="TcHmi.Controls.Beckhoff.TcHmiButton" data-tchmi-height="50" data-tchmi-height-unit="px" data-tchmi-left="31" data-tchmi-left-unit="px" data-tchmi-text="SET MACHINE" data-tchmi-top="167" data-tchmi-top-unit="px" data-tchmi-width="100" data-tchmi-width-unit="px" data-tchmi-word-wrap="true">
+
+<script data-tchmi-target-attribute="data-tchmi-trigger" type="application/json">
+[
+  {
+    "event": "TcHmiButton_50.onPressed",
+    "actions": [
+      {
+        "objectType": "WriteToSymbol",
+        "active": true,
+        "symbolExpression": "%s%PLC1.GVL_HMI.bMachineDefinitionSet%/s%",
+        "value": {
+          "objectType": "StaticValue",
+          "valueType": "tchmi:general#/definitions/BOOL",
+          "value": true
+        },
+        "asyncWait": true
+      }
+    ]
+  }
+]
+</script>
+</div>
+<div id="Led" data-tchmi-type="TcHmi.Controls.System.TcHmiUserControlHost" data-tchmi-height="50" data-tchmi-height-unit="px" data-tchmi-left="31" data-tchmi-left-unit="px" data-tchmi-target-user-control="Contents/UserControl/led.usercontrol" data-tchmi-top="84" data-tchmi-top-unit="px" data-tchmi-width="50" data-tchmi-width-unit="px" data-tchmi-green="%f%%s%PLC1.GVL_Master.stMACHINE.bHeightTest%/s%%/f%" data-tchmi-red="%f%!%s%PLC1.GVL_Master.stMACHINE.bHeightTest%/s%%/f%" data-tchmi-twostates="false">
+</div>
+</div>

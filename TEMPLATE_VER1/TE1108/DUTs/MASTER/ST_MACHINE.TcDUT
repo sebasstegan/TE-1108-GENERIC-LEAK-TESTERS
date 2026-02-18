@@ -4,11 +4,14 @@
     <Declaration><![CDATA[TYPE ST_MACHINE :
 STRUCT
 	
-	IP8X 						:BOOL;
+	sName						: STRING;
+	
+	bMachine					: ARRAY [1..5] OF BOOL;
+	IP8X 						: BOOL;
 		
-	bHeightTest 				:BOOL;
-	bVisionTest					:BOOL;
-	bLeakTest					:BOOL;
+	bHeightTest 				: BOOL;
+	bVisionTest					: BOOL;
+	bLeakTest					: BOOL;
 
 END_STRUCT
 END_TYPE

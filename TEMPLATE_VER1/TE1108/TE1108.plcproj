@@ -123,7 +123,7 @@
     <Compile Include="DUTs\MASTER\E_MachineState.TcDUT">
       <SubType>Code</SubType>
     </Compile>
-    <Compile Include="DUTs\MASTER\log_CSV\ST_CSVProcess.TcDUT">
+    <Compile Include="DUTs\MASTER\log_CSV\ST_CSV.TcDUT">
       <SubType>Code</SubType>
     </Compile>
     <Compile Include="DUTs\MASTER\log_CSV\ST_UserLog.TcDUT">
@@ -252,9 +252,6 @@
     <Compile Include="POUs\A_MASTER\A_3_PRG_FaultHandling.TcPOU">
       <SubType>Code</SubType>
     </Compile>
-    <Compile Include="POUs\A_MASTER\A_4_PRG_MasterSystemTime.TcPOU">
-      <SubType>Code</SubType>
-    </Compile>
     <Compile Include="POUs\B_STATIONS\B_1_LEAK_TEST\B_1_1_PRG_Master_Leak_Test.TcPOU">
       <SubType>Code</SubType>
     </Compile>
@@ -267,10 +264,13 @@
     <Compile Include="POUs\B_STATIONS\B_4_PROCESS_CYLINDER__SLICE_DOOR\B_4_1_PRG_Master_ProcessCylinder.TcPOU">
       <SubType>Code</SubType>
     </Compile>
-    <Compile Include="POUs\B_STATIONS\B_4_PROCESS_CYLINDER__SLICE_DOOR\B_4_1_PRG_Master_ProcessDoor.TcPOU">
+    <Compile Include="POUs\B_STATIONS\B_4_PROCESS_CYLINDER__SLICE_DOOR\B_4_2_PRG_Master_ProcessDoor.TcPOU">
       <SubType>Code</SubType>
     </Compile>
     <Compile Include="POUs\C_HMI\C_1_PRG_MainHMI.TcPOU">
+      <SubType>Code</SubType>
+    </Compile>
+    <Compile Include="POUs\D_CSV\D_1_CSV.TcPOU">
       <SubType>Code</SubType>
     </Compile>
     <Compile Include="POUs\MAIN.TcPOU">

@@ -148,28 +148,30 @@ CASE stLeakTesters.State OF
 								
 								IF bPass[0] THEN
 									
-									stCycleData.stLeakTester_CycleData.bPass[0] := TRUE;
+									stCycleData.stLeakTester_CycleData[0].bPass := TRUE;
 								
 								ELSIF bFail[0] THEN
 									
-									stCycleData.stLeakTester_CycleData.bFail[0] := TRUE;
+									stCycleData.stLeakTester_CycleData[0].bFail := TRUE;
 								
 								END_IF
 								
 								IF bPass[1] THEN
 									
-									stCycleData.stLeakTester_CycleData.bPass[1] := TRUE;
+									stCycleData.stLeakTester_CycleData[1].bPass := TRUE;
 								
 								ELSIF bFail[1] THEN
 									
-									stCycleData.stLeakTester_CycleData.bFail[1] := TRUE;
+									stCycleData.stLeakTester_CycleData[1].bFail	:= TRUE;
 								
 								END_IF
 								
 	E_LeakTester_State.RESET:
 	
-								stCycleData.bPass				:= FALSE;
-								stCycleData.bFail				:= FALSE;
+								stCycleData.stLeakTester_CycleData[0].bPass	:= FALSE;
+								stCycleData.stLeakTester_CycleData[0].bFail	:= FALSE;
+								stCycleData.stLeakTester_CycleData[1].bPass	:= FALSE;
+								stCycleData.stLeakTester_CycleData[1].bFail	:= FALSE;
 								bStart[0]						:= FALSE;
 								bStart[1]						:= FALSE;
 								bReset[0]						:= FALSE;
@@ -305,10 +307,10 @@ END_IF]]></ST>
         <ST><![CDATA[stStatisticsHMI[1].sName			:= 'LEAK TESTER';
 
 
-rGoodStatistics[0]( CLK := stCycleData.stLeakTester_CycleData.bPass[0] AND (stLeakTesters.State = E_LeakTester_State.RESULTS));
-rGoodStatistics[1]( CLK := stCycleData.stLeakTester_CycleData.bPass[1] AND (stLeakTesters.State = E_LeakTester_State.RESULTS));
-rBadStatistics[0] ( CLK := stCycleData.stLeakTester_CycleData.bFail[0] AND (stLeakTesters.State = E_LeakTester_State.RESULTS));
-rBadStatistics[1] ( CLK := stCycleData.stLeakTester_CycleData.bFail[1] AND (stLeakTesters.State = E_LeakTester_State.RESULTS));
+rGoodStatistics[0]( CLK := stCycleData.stLeakTester_CycleData[0].bPass AND (stLeakTesters.State = E_LeakTester_State.RESULTS));
+rGoodStatistics[1]( CLK := stCycleData.stLeakTester_CycleData[1].bPass AND (stLeakTesters.State = E_LeakTester_State.RESULTS));
+rBadStatistics[0] ( CLK := stCycleData.stLeakTester_CycleData[0].bFail AND (stLeakTesters.State = E_LeakTester_State.RESULTS));
+rBadStatistics[1] ( CLK := stCycleData.stLeakTester_CycleData[1].bFail AND (stLeakTesters.State = E_LeakTester_State.RESULTS));
 
 IF 	rGoodStatistics[0].Q THEN
 	
@@ -482,6 +484,7 @@ stStationEvents[1].aEvents[3].sSolution						:= '';]]></ST>
       <LineId Id="354" Count="0" />
       <LineId Id="198" Count="0" />
       <LineId Id="370" Count="3" />
+      <LineId Id="437" Count="1" />
       <LineId Id="376" Count="5" />
       <LineId Id="420" Count="1" />
       <LineId Id="431" Count="0" />

@@ -49,8 +49,11 @@ e_ACT_UserLog();
 f_ACT_TerminalInfo();
 g_ACT_Manual();
 h_ACT_Statistics();
+i_ACT_TwinSAFE();
+j_ACT_MachineDefinition();
 
 C_1_PRG_MainHMI();
+D_1_CSV();
 //D_1_1_PROG_Write_Data_To_CSV();
 //D_2_1_PROG_Write_Data_To_CSV();
 
@@ -62,20 +65,13 @@ IF tonSystemPowerUP.Q THEN
 bSystemPoweringUP:=FALSE;
 END_IF
 
-
-A_4_PRG_MasterSystemTime();
-
-stMACHINE.bHeightTest		:= TRUE;
-stMACHINE.bLeakTest			:= TRUE;
-stMACHINE.bVisionTest		:= TRUE;
-
-
-
 /////////////////////////////////////////////////////////////////////////////////////STATIONS/////////////////////////////////////////////////////////////////////////////////////
 
 B_1_1_PRG_Master_Leak_Test();
-//B_2_1_PRG_Master_Station_2();
-//B_3_1_PRG_Master_Station_3();
+B_2_1_PRG_Master_Height_Test();
+B_3_1_PRG_Master_Camera();
+B_4_1_PRG_Master_ProcessCylinder();
+B_4_2_PRG_Master_ProcessDoor();
 
 /////////////////////////////////////////////////////////////////////////////////////PROCESS/////////////////////////////////////////////////////////////////////////////////////
 
@@ -85,18 +81,19 @@ A_2_PRG_MachineCtrl();
 
 fbEventsManager	(			//INPUTS
 							bPulse 							:= stPuls.bFlash10Hz, 
-							bResetFaults 					:= bResetTest, 
+							bResetFaults 					:= bResetTest,//stButtonsLamps.bResetButtonRisingEdge, 
 							stStationEvents 				:= stStationEvents,
 							sSystemTime						:= sSystemTime,
 							sSystemDate						:= sSystemDate,
  							stEventsAssigment				:= stEventsAssigment,
-							bDataWritedInCSV				:= stPDFMaker.bDataWrited,
+							bDataWritedInCSV				:= stCSV_EventsHistory.bDataWrited,
+							nArraySize						:= 4,
 							
 							//OUTPUTS
 							astActiveEvents 				=> astActiveEvents,
 							astEventsHistory				=> astEventsHistory,
-							bWriteDataInCSV					=> stPDFMaker.bWriteData,
-							nDataHistoryIndex				=> stPDFMaker.nDataHistoryIndex
+							bWriteDataInCSV					=> stCSV_EventsHistory.bWriteData,
+							nDataHistoryIndex				=> stCSV_EventsHistory.nDataHistoryIndex
 							);
 
 
@@ -128,26 +125,26 @@ sSystemDate					:= 	CONCAT( STR1 := WORD_TO_STRING(stSystemTime.wDay), STR2 :=
     <Action Name="a_ACT_ButtonsLamps" Id="{bc3442d0-b536-4f84-a62c-f220009c35e9}">
       <Implementation>
         <ST><![CDATA[//===================================================================
-stButtonsLamps.bStartButtonFallingEdge 	:= ftrigButton[1].Q ;
-stButtonsLamps.bStartButtonRisingEdge 	:= rtrigButton[1].Q ;
-stButtonsLamps.bStopButtonFallingEdge 	:= ftrigButton[2].Q ; 
-stButtonsLamps.bStopButtonRisingEdge 	:= rtrigButton[2].Q ;  
-stButtonsLamps.bResetButtonFallingEdge 	:= ftrigButton[3].Q ;
-stButtonsLamps.bResetButtonRisingEdge 	:= rtrigButton[3].Q ;
+stButtonsLamps.bStartButtonFallingEdge 		:= ftrigButton[1].Q ;
+stButtonsLamps.bStartButtonRisingEdge 		:= rtrigButton[1].Q ;
+stButtonsLamps.bStopButtonFallingEdge 		:= ftrigButton[2].Q ; 
+stButtonsLamps.bStopButtonRisingEdge 		:= rtrigButton[2].Q ;  
+stButtonsLamps.bResetButtonFallingEdge 		:= ftrigButton[3].Q ;
+stButtonsLamps.bResetButtonRisingEdge 		:= rtrigButton[3].Q ;
 
 
 
-ftrigButton[1](CLK :=);
-rtrigButton[1](CLK						:=);
-ftrigButton[2](CLK						:=);
-rtrigButton[2](CLK						:=);
-ftrigButton[3](CLK	:=bResetTest 		);
-rtrigButton[3](CLK						:=);
+ftrigButton[1](CLK 							:= dw_T08_EL1809.iStartButoon);
+rtrigButton[1](CLK							:= dw_T08_EL1809.iStartButoon);
+ftrigButton[2](CLK							:= dw_T08_EL1809.iStopButton);
+rtrigButton[2](CLK							:= dw_T08_EL1809.iStopButton);
+ftrigButton[3](CLK							:= dw_T04_EL1918.iResetButton);
+rtrigButton[3](CLK							:= dw_T04_EL1918.iResetButton);
 
+dw_T09_EL2809.qResetButtonLED				:= (stMachineStatus.bFault AND stPuls.bFlash4Hz) OR (stMachineStatus.bStopped AND stPuls.bFlash1Hz) OR stMachineStatus.bManualMode;
+dw_T09_EL2809.qStartButtonLED				:= (stMachineStatus.bReadyToStart AND stPuls.bFlash4Hz) OR stMachineStatus.bAutoCycle OR stMachineStatus.bManualMode;
 
-
-//GVL_IO.dw_T11_EL2809.qRESETButton_Indicator := stPuls.bFlash2Hz AND (NOT stMachineStatus.bInitialising AND NOT stMachineStatus.bAutoCycle AND NOT stMachineStatus.bManualMode AND NOT stMachineStatus.bReadyToStart) ;
-//GVL_IO.dw_T11_EL2809.qStartButton_Indicator := (stPuls.bFlash2Hz AND stMachineStatus.bReadyToStart) OR (stMachineStatus.bManualMode AND stPuls.bFlash4Hz ) ;]]></ST>
+]]></ST>
       </Implementation>
     </Action>
     <Action Name="b_ACT_PDFMaker" Id="{eda48c17-c939-4052-a903-aa51ced32374}">
@@ -360,15 +357,124 @@ stTwinSAFE.iProcessDoorClosing			:= bDoorClosingFlag;
 stTwinSAFE.iProcessDoorClosedCondition	:= bProcessDoorClosedConditionFlag;]]></ST>
       </Implementation>
     </Action>
+    <Action Name="j_ACT_MachineDefinition" Id="{d060be37-8904-4e66-8914-eb7f14b7082a}">
+      <Implementation>
+        <ST><![CDATA[
+IF bMachineDefinitionSet THEN
+	
+	abMachineDefinition[1]								:= FALSE;
+	abMachineDefinition[2]								:= FALSE;
+	abMachineDefinition[3]								:= FALSE;
+	abMachineDefinition[4]								:= FALSE;
+	abMachineDefinition[5]								:= FALSE;
+
+	FOR i := 1 TO 5 DO
+	
+		IF 	nMachineDefinitionIndex = i THEN
+			
+			abMachineDefinition[i] 						:= TRUE;
+		
+		END_IF
+	
+	END_FOR
+
+	bMachineDefinitionSet								:=FALSE;
+	i													:= 0;
+	
+END_IF
+
+
+IF abMachineDefinition[1] THEN
+	
+	stMACHINE.bHeightTest								:= FALSE;
+	stMACHINE.bLeakTest									:= TRUE;
+	stMACHINE.bVisionTest								:= FALSE;
+	stMACHINE.IP8X										:= FALSE;
+	stMACHINE.sName										:= 'LT-RT: LEAK TEST RESERVOIR';
+	stMACHINE.bMachine[1]								:= TRUE;
+	stMACHINE.bMachine[2]								:= FALSE;
+	stMACHINE.bMachine[3]								:= FALSE;
+	stMACHINE.bMachine[4]								:= FALSE;
+	stMACHINE.bMachine[5]								:= FALSE;
+
+END_IF
+
+IF abMachineDefinition[2] THEN
+	
+	stMACHINE.bHeightTest								:= TRUE;
+	stMACHINE.bLeakTest									:= TRUE;
+	stMACHINE.bVisionTest								:= TRUE;
+	stMACHINE.IP8X										:= FALSE;
+	stMACHINE.sName										:= 'LT-WH-VC LEAK TEST: FLUID PATH, HEIGHT TEST: FPB WELDING, VISION CHECK: EWIS FOAM';
+	stMACHINE.bMachine[1]								:= FALSE;
+	stMACHINE.bMachine[2]								:= TRUE;
+	stMACHINE.bMachine[3]								:= FALSE;
+	stMACHINE.bMachine[4]								:= FALSE;
+	stMACHINE.bMachine[5]								:= FALSE;
+	
+END_IF
+
+IF abMachineDefinition[3] THEN
+	
+	stMACHINE.bHeightTest								:= TRUE;
+	stMACHINE.bLeakTest									:= TRUE;
+	stMACHINE.bVisionTest								:= FALSE;
+	stMACHINE.IP8X										:= FALSE;
+	stMACHINE.sName										:= 'LT-WH LEAK TEST: RESERVOIR TO DOCKSEAL (VACUUM), HEIGHT TEST: ST WELDING';
+	stMACHINE.bMachine[1]								:= FALSE;
+	stMACHINE.bMachine[2]								:= FALSE;
+	stMACHINE.bMachine[3]								:= TRUE;
+	stMACHINE.bMachine[4]								:= FALSE;
+	stMACHINE.bMachine[5]								:= FALSE;
+	
+END_IF
+
+IF abMachineDefinition[4] THEN
+	
+	stMACHINE.bHeightTest								:= FALSE;
+	stMACHINE.bLeakTest									:= FALSE;
+	stMACHINE.bVisionTest								:= FALSE;
+	stMACHINE.IP8X										:= TRUE;
+	stMACHINE.sName										:= 'LT-WH(IPX8) LEAK TEST: IPX8 UPPER AND LOWER SHELL ASSEMBLY, HEIGHT TEST: US & LS WELDING';
+	stMACHINE.bMachine[1]								:= FALSE;
+	stMACHINE.bMachine[2]								:= FALSE;
+	stMACHINE.bMachine[3]								:= FALSE;
+	stMACHINE.bMachine[4]								:= TRUE;
+	stMACHINE.bMachine[5]								:= FALSE;
+	
+END_IF
+
+IF abMachineDefinition[5] THEN
+	
+	stMACHINE.bHeightTest								:= TRUE;
+	stMACHINE.bLeakTest									:= FALSE;
+	stMACHINE.bVisionTest								:= FALSE;
+	stMACHINE.IP8X										:= FALSE;
+	stMACHINE.sName										:= 'WH: HEIGHT TEST: FPB WELDING';
+	stMACHINE.bMachine[1]								:= FALSE;
+	stMACHINE.bMachine[2]								:= FALSE;
+	stMACHINE.bMachine[3]								:= FALSE;
+	stMACHINE.bMachine[4]								:= FALSE;
+	stMACHINE.bMachine[5]								:= TRUE;
+	
+END_IF]]></ST>
+      </Implementation>
+    </Action>
     <LineIds Name="A_1_PRG_Main_Master">
-      <LineId Id="951" Count="82" />
+      <LineId Id="1076" Count="12" />
+      <LineId Id="1201" Count="0" />
+      <LineId Id="1089" Count="9" />
+      <LineId Id="1108" Count="22" />
+      <LineId Id="1163" Count="0" />
+      <LineId Id="1131" Count="31" />
       <LineId Id="373" Count="0" />
     </LineIds>
     <LineIds Name="A_1_PRG_Main_Master.a_ACT_ButtonsLamps">
       <LineId Id="2" Count="15" />
       <LineId Id="25" Count="0" />
       <LineId Id="22" Count="0" />
-      <LineId Id="19" Count="1" />
+      <LineId Id="26" Count="0" />
+      <LineId Id="19" Count="0" />
       <LineId Id="1" Count="0" />
     </LineIds>
     <LineIds Name="A_1_PRG_Main_Master.b_ACT_PDFMaker">
@@ -509,6 +615,59 @@ stTwinSAFE.iProcessDoorClosedCondition	:= bProcessDoorClosedConditionFlag;]]></S
     <LineIds Name="A_1_PRG_Main_Master.i_ACT_TwinSAFE">
       <LineId Id="2" Count="4" />
       <LineId Id="1" Count="0" />
+    </LineIds>
+    <LineIds Name="A_1_PRG_Main_Master.j_ACT_MachineDefinition">
+      <LineId Id="67" Count="0" />
+      <LineId Id="61" Count="0" />
+      <LineId Id="68" Count="0" />
+      <LineId Id="109" Count="4" />
+      <LineId Id="108" Count="0" />
+      <LineId Id="71" Count="1" />
+      <LineId Id="75" Count="1" />
+      <LineId Id="78" Count="1" />
+      <LineId Id="77" Count="0" />
+      <LineId Id="74" Count="0" />
+      <LineId Id="73" Count="0" />
+      <LineId Id="80" Count="0" />
+      <LineId Id="70" Count="0" />
+      <LineId Id="82" Count="0" />
+      <LineId Id="81" Count="0" />
+      <LineId Id="69" Count="0" />
+      <LineId Id="64" Count="0" />
+      <LineId Id="2" Count="0" />
+      <LineId Id="1" Count="0" />
+      <LineId Id="3" Count="0" />
+      <LineId Id="6" Count="4" />
+      <LineId Id="103" Count="0" />
+      <LineId Id="83" Count="3" />
+      <LineId Id="5" Count="0" />
+      <LineId Id="4" Count="0" />
+      <LineId Id="12" Count="7" />
+      <LineId Id="88" Count="0" />
+      <LineId Id="104" Count="0" />
+      <LineId Id="89" Count="1" />
+      <LineId Id="87" Count="0" />
+      <LineId Id="20" Count="0" />
+      <LineId Id="11" Count="0" />
+      <LineId Id="22" Count="7" />
+      <LineId Id="92" Count="1" />
+      <LineId Id="105" Count="0" />
+      <LineId Id="94" Count="0" />
+      <LineId Id="91" Count="0" />
+      <LineId Id="30" Count="0" />
+      <LineId Id="21" Count="0" />
+      <LineId Id="32" Count="7" />
+      <LineId Id="96" Count="2" />
+      <LineId Id="106" Count="0" />
+      <LineId Id="95" Count="0" />
+      <LineId Id="40" Count="0" />
+      <LineId Id="31" Count="0" />
+      <LineId Id="42" Count="7" />
+      <LineId Id="100" Count="2" />
+      <LineId Id="99" Count="0" />
+      <LineId Id="107" Count="0" />
+      <LineId Id="50" Count="0" />
+      <LineId Id="41" Count="0" />
     </LineIds>
   </POU>
 </TcPlcObject>

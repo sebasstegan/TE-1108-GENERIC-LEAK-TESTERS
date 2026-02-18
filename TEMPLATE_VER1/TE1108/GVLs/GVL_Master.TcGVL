@@ -14,19 +14,25 @@
 	stButtonsLamps					: ST_ButtonsLamps;
 	stPuls							: ST_Puls;		
 
-	stCSVProcess					: ST_CSVProcess;
+	stCSV_EventsHistory				: ST_CSV;
 	stCycleData						: ST_CycleData;
 	
-	stMACHINE						: ST_MACHINE;//THIS STRUCTURE WILL DEFINDE THE PROCESS IN AUTO CYCLE DEPENDING OF WHAT MACHINE YOU ARE WORKING WITH
+	stMACHINE						: ST_MACHINE;	//THIS STRUCTURE WILL DEFINDE THE PROCESS IN AUTO CYCLE DEPENDING OF WHAT MACHINE YOU ARE WORKING WITH
+													//THE bMachine boolean array will define the machine			//1. LT-RT: LEAK TEST RESERVOIR
+																													//2. LT-WH-VC LEAK TEST: FLUID PATH, HEIGHT TEST: FPB WELDING, VISION CHECK: EWIS FOAM
+																													//3. LT-WH LEAK TEST: RESERVOIR TO DOCKSEAL (VACUUM), HEIGHT TEST: ST WELDING
+																													//4. LT-WH(IPX8) LEAK TEST: IPX8 UPPER AND LOWER SHELL ASSEMBLY, HEIGHT TEST: US & LS WELDING
+																													//5. WH: HEIGHT TEST: FPB WELDING
 	bDoorClosingFlag				: BOOL;
 	bDoorOpeningFlag				: BOOL;
 	bProcessDoorClosedConditionFlag	: BOOL;
 /////////////////////////////////////////////////////////////////////////////////////Event Log/////////////////////////////////////////////////////////////////////////////////////
 	
-	stStationEvents				: ARRAY[0..3] OF  ST_StationEvents;//0: GENERAL
-																	//1: STATION 1
-																	//1: STATION 2
-																	//3: STATION 3
+	stStationEvents				: ARRAY[0..4] OF  ST_StationEvents;//0: GENERAL
+																	//1: Leak Test
+																	//1: Height Test
+																	//3: Vision Inspection
+																	//4: Cylinders
 	astActiveEvents				: ARRAY [0..50] OF ST_ActiveEvents;
 	stEventsAssigment			: ST_EventsAssigmentGeneral;
 
@@ -41,8 +47,9 @@
 	sSystemTime					: STRING(255);
 	sSystemDate					: STRING(255);
 	
-	bResetTest								: BOOL;
-	tonResetTest							: TON;
+	bResetTest					: BOOL;
+	bTestFlag					: ARRAY[0..10] OF BOOL;
+
 
 	
 	

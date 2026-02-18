@@ -10,8 +10,8 @@ STRUCT
 	sDate				: STRING;	
 	sTime				: STRING;
 	
-	stHeightTest_CycleData : ST_HeightTest_CycleData;
-	stLeakTester_CycleData : ST_LeakTester_CycleData;
+	stHeightTest_CycleData : ARRAY[0..1] OF ST_HeightTest_CycleData;
+	stLeakTester_CycleData : ARRAY[0..1] OF ST_LeakTester_CycleData;
 	stCamera_CycleData		: ST_Camera_CycleData;
 
 

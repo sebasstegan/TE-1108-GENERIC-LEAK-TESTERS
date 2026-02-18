@@ -146,6 +146,9 @@
     <Content Include=".eslintrc.json">
       <Visible>false</Visible>
     </Content>
+    <Content Include="Contents\13_Develop.content">
+      <SubType>Content</SubType>
+    </Content>
     <Content Include="Contents\12_Operatinal_Manual.content">
       <SubType>Content</SubType>
     </Content>
