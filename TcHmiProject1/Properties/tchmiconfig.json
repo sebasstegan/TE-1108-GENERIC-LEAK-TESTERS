@@ -79,13 +79,16 @@
   ],
   "userControls": [
     {
-      "url": "Contents/UserControl/led.usercontrol"
-    },
-    {
       "url": "Contents/UserControl/PopUp/Acknowledge.usercontrol"
     },
     {
       "url": "Contents/UserControl/PopUp/YesNo.usercontrol"
+    },
+    {
+      "url": "Contents/UserControl/led_RedAndGreen_2In.usercontrol"
+    },
+    {
+      "url": "Contents/UserControl/led_RedAndGreen_1In.usercontrol"
     }
   ],
   "content": [

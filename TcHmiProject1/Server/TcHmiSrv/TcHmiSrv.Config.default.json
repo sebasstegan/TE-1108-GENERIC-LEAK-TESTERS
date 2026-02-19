@@ -3640,6 +3640,142 @@
             },
             "USEMAPPING": true
         },
+        "PLC1.GVL_HMI.stTimers.nAutoCycleTimeOut": {
+            "ACCESS": 3,
+            "DOMAIN": "ADS",
+            "DYNAMIC": true,
+            "MAPPING": "PLC1::GVL_HMI::stTimers::nAutoCycleTimeOut",
+            "SCHEMA": {
+                "allOf": [
+                    {
+                        "$ref": "tchmi:general#/definitions/DINT"
+                    },
+                    {
+                        "propertyOrder": 1
+                    }
+                ]
+            },
+            "USEMAPPING": true
+        },
+        "PLC1.GVL_HMI.stTimers.nDoorOpenedSignal": {
+            "ACCESS": 3,
+            "DOMAIN": "ADS",
+            "DYNAMIC": true,
+            "MAPPING": "PLC1::GVL_HMI::stTimers::nDoorOpenedSignal",
+            "SCHEMA": {
+                "allOf": [
+                    {
+                        "$ref": "tchmi:general#/definitions/DINT"
+                    },
+                    {
+                        "propertyOrder": 5
+                    }
+                ]
+            },
+            "USEMAPPING": true
+        },
+        "PLC1.GVL_HMI.stTimers.nHeightTest": {
+            "ACCESS": 3,
+            "DOMAIN": "ADS",
+            "DYNAMIC": true,
+            "MAPPING": "PLC1::GVL_HMI::stTimers::nHeightTest",
+            "SCHEMA": {
+                "allOf": [
+                    {
+                        "$ref": "tchmi:general#/definitions/DINT"
+                    },
+                    {
+                        "propertyOrder": 7
+                    }
+                ]
+            },
+            "USEMAPPING": true
+        },
+        "PLC1.GVL_HMI.stTimers.nStation1TimeOut": {
+            "ACCESS": 3,
+            "DOMAIN": "ADS",
+            "DYNAMIC": true,
+            "MAPPING": "PLC1::GVL_HMI::stTimers::nStation1TimeOut",
+            "SCHEMA": {
+                "allOf": [
+                    {
+                        "$ref": "tchmi:general#/definitions/DINT"
+                    },
+                    {
+                        "propertyOrder": 2
+                    }
+                ]
+            },
+            "USEMAPPING": true
+        },
+        "PLC1.GVL_HMI.stTimers.nStation2TimeOut": {
+            "ACCESS": 3,
+            "DOMAIN": "ADS",
+            "DYNAMIC": true,
+            "MAPPING": "PLC1::GVL_HMI::stTimers::nStation2TimeOut",
+            "SCHEMA": {
+                "allOf": [
+                    {
+                        "$ref": "tchmi:general#/definitions/DINT"
+                    },
+                    {
+                        "propertyOrder": 3
+                    }
+                ]
+            },
+            "USEMAPPING": true
+        },
+        "PLC1.GVL_HMI.stTimers.nStation3TimeOut": {
+            "ACCESS": 3,
+            "DOMAIN": "ADS",
+            "DYNAMIC": true,
+            "MAPPING": "PLC1::GVL_HMI::stTimers::nStation3TimeOut",
+            "SCHEMA": {
+                "allOf": [
+                    {
+                        "$ref": "tchmi:general#/definitions/DINT"
+                    },
+                    {
+                        "propertyOrder": 4
+                    }
+                ]
+            },
+            "USEMAPPING": true
+        },
+        "PLC1.GVL_HMI.stTimers.nTwoHandsSignal": {
+            "ACCESS": 3,
+            "DOMAIN": "ADS",
+            "DYNAMIC": true,
+            "MAPPING": "PLC1::GVL_HMI::stTimers::nTwoHandsSignal",
+            "SCHEMA": {
+                "allOf": [
+                    {
+                        "$ref": "tchmi:general#/definitions/DINT"
+                    },
+                    {
+                        "propertyOrder": 6
+                    }
+                ]
+            },
+            "USEMAPPING": true
+        },
+        "PLC1.GVL_HMI.stTimers.tStation2TimeOut": {
+            "ACCESS": 3,
+            "DOMAIN": "ADS",
+            "DYNAMIC": true,
+            "MAPPING": "PLC1::GVL_HMI::stTimers::tStation2TimeOut",
+            "SCHEMA": {
+                "allOf": [
+                    {
+                        "$ref": "tchmi:general#/definitions/TIME"
+                    },
+                    {
+                        "propertyOrder": 9
+                    }
+                ]
+            },
+            "USEMAPPING": true
+        },
         "PLC1.GVL_Master.astActiveEvents": {
             "ACCESS": 3,
             "DOMAIN": "ADS",
@@ -3728,6 +3864,23 @@
             },
             "USEMAPPING": true
         },
+        "PLC1.GVL_Master.stMACHINE.IP8X": {
+            "ACCESS": 3,
+            "DOMAIN": "ADS",
+            "DYNAMIC": true,
+            "MAPPING": "PLC1::GVL_Master::stMACHINE::IP8X",
+            "SCHEMA": {
+                "allOf": [
+                    {
+                        "$ref": "tchmi:general#/definitions/BOOL"
+                    },
+                    {
+                        "propertyOrder": 3
+                    }
+                ]
+            },
+            "USEMAPPING": true
+        },
         "PLC1.GVL_Master.stMACHINE.bHeightTest": {
             "ACCESS": 3,
             "DOMAIN": "ADS",
@@ -3740,6 +3893,40 @@
                     },
                     {
                         "propertyOrder": 4
+                    }
+                ]
+            },
+            "USEMAPPING": true
+        },
+        "PLC1.GVL_Master.stMACHINE.bLeakTest": {
+            "ACCESS": 3,
+            "DOMAIN": "ADS",
+            "DYNAMIC": true,
+            "MAPPING": "PLC1::GVL_Master::stMACHINE::bLeakTest",
+            "SCHEMA": {
+                "allOf": [
+                    {
+                        "$ref": "tchmi:general#/definitions/BOOL"
+                    },
+                    {
+                        "propertyOrder": 6
+                    }
+                ]
+            },
+            "USEMAPPING": true
+        },
+        "PLC1.GVL_Master.stMACHINE.bVisionTest": {
+            "ACCESS": 3,
+            "DOMAIN": "ADS",
+            "DYNAMIC": true,
+            "MAPPING": "PLC1::GVL_Master::stMACHINE::bVisionTest",
+            "SCHEMA": {
+                "allOf": [
+                    {
+                        "$ref": "tchmi:general#/definitions/BOOL"
+                    },
+                    {
+                        "propertyOrder": 5
                     }
                 ]
             },
@@ -4796,6 +4983,15 @@
                 "PLC1.GVL_HMI.sUserGroupOut": 3,
                 "PLC1.GVL_HMI.sUserName": 3,
                 "PLC1.GVL_HMI.stStatusBanner": 3,
+                "PLC1.GVL_HMI.stTimers.nAutoCycleTimeOut": 3,
+                "PLC1.GVL_HMI.stTimers.nDoorOpenedSignal": 3,
+                "PLC1.GVL_HMI.stTimers.nHeightTest": 3,
+                "PLC1.GVL_HMI.stTimers.nStation1TimeOut": 3,
+                "PLC1.GVL_HMI.stTimers.nStation2TimeOut": 3,
+                "PLC1.GVL_HMI.stTimers.nStation3TimeOut": 3,
+                "PLC1.GVL_HMI.stTimers.nTwoHandsSignal": 3,
+                "PLC1.GVL_HMI.stTimers.tStation2TimeOut": 3,
+                "PLC1.GVL_HMI.stTimers.tStation3TimeOut": 3,
                 "PLC1.GVL_Master.astActiveEvents": 3,
                 "PLC1.GVL_Master.astEventsHistory": 3,
                 "PLC1.GVL_Master.bResetTest": 3,
@@ -4806,7 +5002,10 @@
                 "PLC1.GVL_Master.stEventsAssigment.astCycleStopRequestEvents": 3,
                 "PLC1.GVL_Master.stEventsAssigment.astImmediateFaultEvents": 3,
                 "PLC1.GVL_Master.stEventsAssigment.astMessage": 3,
+                "PLC1.GVL_Master.stMACHINE.IP8X": 3,
                 "PLC1.GVL_Master.stMACHINE.bHeightTest": 3,
+                "PLC1.GVL_Master.stMACHINE.bLeakTest": 3,
+                "PLC1.GVL_Master.stMACHINE.bVisionTest": 3,
                 "PLC1.GVL_Persistent.aDataHistory": 3,
                 "PLC1.GVL_Persistent.astEventsHistory": 3,
                 "PLC1.GVL_Persistent.stAlarmHistory": 3,

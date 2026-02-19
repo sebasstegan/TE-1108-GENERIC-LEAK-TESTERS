@@ -249,12 +249,19 @@
     <Content Include="Contents\Settings\1_SettingsStation1.content">
       <SubType>Content</SubType>
     </Content>
-    <Content Include="Contents\UserControl\led.usercontrol">
+    <Content Include="Contents\UserControl\led_RedAndGreen_1In.usercontrol">
       <SubType>Content</SubType>
     </Content>
-    <Content Include="Contents\UserControl\led.usercontrol.json">
+    <Content Include="Contents\UserControl\led_RedAndGreen_1In.usercontrol.json">
       <SubType>Content</SubType>
-      <DependentUpon>Contents\UserControl\led.usercontrol</DependentUpon>
+      <DependentUpon>Contents\UserControl\led_RedAndGreen_1In.usercontrol</DependentUpon>
+    </Content>
+    <Content Include="Contents\UserControl\led_RedAndGreen_2In.usercontrol">
+      <SubType>Content</SubType>
+    </Content>
+    <Content Include="Contents\UserControl\led_RedAndGreen_2In.usercontrol.json">
+      <SubType>Content</SubType>
+      <DependentUpon>Contents\UserControl\led_RedAndGreen_2In.usercontrol</DependentUpon>
     </Content>
     <Content Include="Contents\UserControl\PopUp\Acknowledge.usercontrol">
       <SubType>Content</SubType>

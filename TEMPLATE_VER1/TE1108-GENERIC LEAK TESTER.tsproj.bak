@@ -158,7 +158,7 @@
 		</System>
 		<Plc>
 			<Project GUID="{997013A6-75D1-424B-98F5-A30289B2B96E}" Name="TE1108" PrjFilePath="TE1108\TE1108.plcproj" TmcFilePath="TE1108\TE1108.tmc" ReloadTmc="true" AmsPort="851" FileArchiveSettings="#x000e" SymbolicMapping="true">
-				<Instance Id="#x08502000" TcSmClass="TComPlcObjDef" KeepUnrestoredLinks="2" TmcPath="TE1108\TE1108.tmc" TmcHash="{7376B428-4BAB-3C23-AC67-C59AD42E8F99}">
+				<Instance Id="#x08502000" TcSmClass="TComPlcObjDef" KeepUnrestoredLinks="2" TmcPath="TE1108\TE1108.tmc" TmcHash="{EFD87B6B-BEDC-0251-47A4-CF21670707E4}">
 					<Name>TE1108 Instance</Name>
 					<CLSID ClassFactory="TcPlc30">{08500001-0000-0000-F000-000000000064}</CLSID>
 					<Vars VarGrpType="1">
@@ -425,7 +425,7 @@
 							<Type>BOOL</Type>
 						</Var>
 						<Var>
-							<Name>GVL_IO.stTwinSAFE.qStartProcessSignal</Name>
+							<Name>GVL_IO.stTwinSAFE.qTwoHands</Name>
 							<Type>BOOL</Type>
 						</Var>
 						<Var>
@@ -56367,25 +56367,25 @@
 								<Entry Name="TwinSafeGroup1.AirPressureAbove_26" Index="#x7000" Sub="#x03">
 									<Type>BIT</Type>
 								</Entry>
-								<Entry Name="TwinSafeGroup1.StartProcessSignal_27" Index="#x7000" Sub="#x04">
+								<Entry Name="TwinSafeGroup1.SafetyOK_30" Index="#x7000" Sub="#x04">
 									<Type>BIT</Type>
 								</Entry>
-								<Entry Name="TwinSafeGroup1.SafetyOK_30" Index="#x7000" Sub="#x05">
+								<Entry Name="TwinSafeGroup1.ProcessDoorClosed_31" Index="#x7000" Sub="#x05">
 									<Type>BIT</Type>
 								</Entry>
-								<Entry Name="TwinSafeGroup1.ProcessDoorClosed_31" Index="#x7000" Sub="#x06">
+								<Entry Name="TwinSafeGroup1.E_StopPressed_32" Index="#x7000" Sub="#x06">
 									<Type>BIT</Type>
 								</Entry>
-								<Entry Name="TwinSafeGroup1.E_StopPressed_32" Index="#x7000" Sub="#x07">
+								<Entry Name="TwinSafeGroup1.MainDoorOpened_33" Index="#x7000" Sub="#x07">
 									<Type>BIT</Type>
 								</Entry>
-								<Entry Name="TwinSafeGroup1.MainDoorOpened_33" Index="#x7000" Sub="#x08">
+								<Entry Name="TwinSafeGroup1.ProcessDoorSafe_34" Index="#x7000" Sub="#x08">
 									<Type>BIT</Type>
 								</Entry>
-								<Entry Name="TwinSafeGroup1.ProcessDoorSafe_34" Index="#x7000" Sub="#x09">
+								<Entry Name="TwinSafeGroup1.TwoHandsSafe_35" Index="#x7000" Sub="#x09">
 									<Type>BIT</Type>
 								</Entry>
-								<Entry Name="TwinSafeGroup1.TwoHandsSafe_35" Index="#x7000" Sub="#x0a">
+								<Entry Name="TwinSafeGroup1.TwoHands_36" Index="#x7000" Sub="#x0a">
 									<Type>BIT</Type>
 								</Entry>
 								<Entry>
@@ -57616,8 +57616,22 @@ Bit1: Value bigger/equal Limit2]]></Comment>
 			</OwnerB>
 			<OwnerB Name="TIID^Device 3 (EtherCAT)^Term 1 (EK1100)^Term 3 (EL6910)">
 				<Link VarA="PlcTask Inputs^GVL_IO.dw_T03_EL6910.stTerminalInfo.nTerminal_State" VarB="InfoData^State"/>
-				<Link VarA="PlcTask Inputs^GVL_IO.stTwinSAFE.qAirPressureAbove" VarB="StandardInputs^TwinSafeGroup1.AirErrorSignal_17"/>
+				<Link VarA="PlcTask Inputs^GVL_IO.stTwinSAFE.qAirErrorSignal" VarB="StandardInputs^TwinSafeGroup1.AirErrorSignal_17"/>
+				<Link VarA="PlcTask Inputs^GVL_IO.stTwinSAFE.qAirPressureAbove" VarB="StandardInputs^TwinSafeGroup1.AirPressureAbove_26"/>
 				<Link VarA="PlcTask Inputs^GVL_IO.stTwinSAFE.qAirPressureBelow" VarB="StandardInputs^TwinSafeGroup1.AirPressureBelow_25"/>
+				<Link VarA="PlcTask Inputs^GVL_IO.stTwinSAFE.qE_StopPressed" VarB="StandardInputs^TwinSafeGroup1.E_StopPressed_32"/>
+				<Link VarA="PlcTask Inputs^GVL_IO.stTwinSAFE.qMainDoorOpened" VarB="StandardInputs^TwinSafeGroup1.MainDoorOpened_33"/>
+				<Link VarA="PlcTask Inputs^GVL_IO.stTwinSAFE.qProcessDoorClosed" VarB="StandardInputs^TwinSafeGroup1.ProcessDoorClosed_31"/>
+				<Link VarA="PlcTask Inputs^GVL_IO.stTwinSAFE.qProcessDoorSafe" VarB="StandardInputs^TwinSafeGroup1.ProcessDoorSafe_34"/>
+				<Link VarA="PlcTask Inputs^GVL_IO.stTwinSAFE.qSafetyOk" VarB="StandardInputs^TwinSafeGroup1.SafetyOK_30"/>
+				<Link VarA="PlcTask Inputs^GVL_IO.stTwinSAFE.qTwoHands" VarB="StandardInputs^TwinSafeGroup1.TwoHands_36"/>
+				<Link VarA="PlcTask Inputs^GVL_IO.stTwinSAFE.qTwoHandsSafe" VarB="StandardInputs^TwinSafeGroup1.TwoHandsSafe_35"/>
+				<Link VarA="PlcTask Outputs^GVL_IO.stTwinSAFE.iAirPressureMaxValue" VarB="StandardOutputs^TwinSafeGroup1.AirPressureMaxVal_23"/>
+				<Link VarA="PlcTask Outputs^GVL_IO.stTwinSAFE.iAirPressureMinValue" VarB="StandardOutputs^TwinSafeGroup1.AirPressureMinVal_22"/>
+				<Link VarA="PlcTask Outputs^GVL_IO.stTwinSAFE.iAirSupplyMeasurement" VarB="StandardOutputs^TwinSafeGroup1.AirSupplyMeasurement_19"/>
+				<Link VarA="PlcTask Outputs^GVL_IO.stTwinSAFE.iErrorAcknowledge" VarB="StandardOutputs^TwinSafeGroup1.ErrorAcknowledgement_1"/>
+				<Link VarA="PlcTask Outputs^GVL_IO.stTwinSAFE.iProcessDoorClosedCondition" VarB="StandardOutputs^TwinSafeGroup1.ProcessDoorClosedCondition_16"/>
+				<Link VarA="PlcTask Outputs^GVL_IO.stTwinSAFE.iProcessDoorClosing" VarB="StandardOutputs^TwinSafeGroup1.ProcessDoor Closing_29"/>
 			</OwnerB>
 			<OwnerB Name="TIID^Device 3 (EtherCAT)^Term 1 (EK1100)^Term 4 (EL1918)">
 				<Link VarA="PlcTask Inputs^GVL_IO.dw_T04_EL1918.iD1MainDoorFB" VarB="Module 1 (FSOE)^FSoE Inputs^FSOE^FSIN Module 6.Input"/>

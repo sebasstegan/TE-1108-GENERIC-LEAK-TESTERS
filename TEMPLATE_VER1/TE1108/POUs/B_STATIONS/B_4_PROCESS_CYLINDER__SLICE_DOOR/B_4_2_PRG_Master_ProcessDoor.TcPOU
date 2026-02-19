@@ -138,7 +138,7 @@ stProcessDoor.Status.bStopped		:= 	NOT stProcessDoor.Status.bBusy;]]></ST>
     </Action>
     <Action Name="b_ACT_IO_B" Id="{7a24ac88-21cc-4219-af73-2aba76419ebf}">
       <Implementation>
-        <ST><![CDATA[tonDoorOpened( IN := NOT bDoorClosed AND bDoorOpeningFlag	, PT := stTimers.nDoorOpenedSignal);
+        <ST><![CDATA[tonDoorOpened( IN := NOT bDoorClosed AND bDoorOpeningFlag	, PT := stTimers.tDoorOpenedSignal);
 
 
 bDoorClosed								:= stTwinSAFE.qProcessDoorClosed;

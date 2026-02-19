@@ -4,10 +4,21 @@
     <Declaration><![CDATA[TYPE ST_Timers :
 STRUCT
 	
-	nStation1TimeOut				: TIME;
-	nStation2TimeOut				: TIME;
-	nStation3TimeOut				: TIME;
-	nDoorOpenedSignal				: TIME;
+	nAutoCycleTimeOut					: DINT;
+	nStation1TimeOut					: DINT;
+	nStation2TimeOut					: DINT;
+	nStation3TimeOut					: DINT;
+	nDoorOpenedSignal					: DINT;
+	nTwoHandsSignal						: DINT;
+	nHeightTest							: DINT;
+	
+	tAutoCycleTimeOut					: TIME;
+	tStation1TimeOut					: TIME;
+	tStation2TimeOut					: TIME;
+	tStation3TimeOut					: TIME;
+	tDoorOpenedSignal					: TIME;
+	tTwoHandsSignal						: TIME;
+	tHeightTest							: TIME;
 
 END_STRUCT
 END_TYPE

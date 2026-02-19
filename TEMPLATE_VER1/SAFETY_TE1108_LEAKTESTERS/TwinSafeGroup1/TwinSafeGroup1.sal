@@ -1,5 +1,5 @@
 ﻿<?xml version="1.0" encoding="utf-8"?>
-<safetyApplication Crc="2863331272" xmlns:dm0="http://schemas.microsoft.com/VisualStudio/2008/DslTools/Core" dslVersion="1.4.0.0" Id="b554177b-8ed9-482d-a64f-a71618096704" name="" mapState="false" mapDiag="false" groupOrderId="0" passificationAllowed="false" temporaryDeactivationAllowed="false" permamentDeactivationAllowed="false" xmlid="0" analogFBOutputReplacementValues="Zero" verifyAnalogFBInputsIfStart="false" userFbId="00000000-0000-0000-0000-000000000000" xmlns="http://schemas.microsoft.com/dsltools/SafetyApplicationLanguage">
+<safetyApplication Crc="29454711" xmlns:dm0="http://schemas.microsoft.com/VisualStudio/2008/DslTools/Core" dslVersion="1.4.0.0" Id="b554177b-8ed9-482d-a64f-a71618096704" name="" mapState="false" mapDiag="false" groupOrderId="0" passificationAllowed="false" temporaryDeactivationAllowed="false" permamentDeactivationAllowed="false" xmlid="0" analogFBOutputReplacementValues="Zero" verifyAnalogFBInputsIfStart="false" userFbId="00000000-0000-0000-0000-000000000000" xmlns="http://schemas.microsoft.com/dsltools/SafetyApplicationLanguage">
   <networks>
     <safetyApplicationHasNetworks Id="dbb18f4f-7a1b-4e99-a176-2554ec048535">
       <Network Id="6681b4a4-1e53-403a-9e76-35a2eae1ef69" name="Network1" networkName="SafetyOK" intId="1" networkOrderId="1">
@@ -240,7 +240,7 @@
             </fBEstop>
           </networkHasFunctionBlocks>
           <networkHasFunctionBlocks Id="ce5eac5b-3a3d-4072-a66a-d43d87ebb6c3">
-            <fBTon Id="bad377a4-518d-45af-9fab-3da75792f0ad" name="FBTon1" instanceName="FBTon5" orderOfExecution="26" mapState="false" mapDiag="false" functionName="safeTon">
+            <fBTon Id="bad377a4-518d-45af-9fab-3da75792f0ad" name="FBTon1" instanceName="FBTon5" orderOfExecution="25" mapState="false" mapDiag="false" functionName="safeTon">
               <inPorts>
                 <functioBlockHasInPorts Id="6f343e13-4d66-4c07-8fd1-099115f33a57">
                   <inPort Id="da4f4eab-971c-4b5e-bf48-97d315255af4" name="TonIn" portName="TonIn" portNum="2" objectIndex="8" varId="1" filter="2" portDataType="1" channelInterface="Activated" deactivate1="Make Contact (NO)" maxDeviation="0" resetTime="0">
@@ -435,7 +435,7 @@
             </fBOr>
           </networkHasFunctionBlocks>
           <networkHasFunctionBlocks Id="af183752-da30-4cf9-88cb-16426f244bd3">
-            <fBTon Id="4939e8c8-7512-427e-a746-cb4a4cb02037" name="FBTon2" instanceName="FBTon6" orderOfExecution="27" mapState="false" mapDiag="false" functionName="safeTon">
+            <fBTon Id="4939e8c8-7512-427e-a746-cb4a4cb02037" name="FBTon2" instanceName="FBTon6" orderOfExecution="26" mapState="false" mapDiag="false" functionName="safeTon">
               <inPorts>
                 <functioBlockHasInPorts Id="9d809f6b-8b29-403c-b21b-fe67179e51c8">
                   <inPort Id="b07aa2f8-231d-40e2-a94b-667da4ffa5a8" name="TonIn" portName="TonIn" portNum="2" objectIndex="8" varId="1" filter="2" portDataType="1" channelInterface="Activated" deactivate1="Break Contact (NC)" maxDeviation="0" resetTime="0" />
@@ -454,7 +454,7 @@
             </fBTon>
           </networkHasFunctionBlocks>
           <networkHasFunctionBlocks Id="00b38f7a-bd4d-4cee-9b54-f274d5d1a6ee">
-            <fBTon Id="6bb48ef3-8e39-4c82-a4fb-59a3f3e51f14" name="FBTon3" instanceName="FBTon7" orderOfExecution="28" mapState="false" mapDiag="false" functionName="safeTon">
+            <fBTon Id="6bb48ef3-8e39-4c82-a4fb-59a3f3e51f14" name="FBTon3" instanceName="FBTon7" orderOfExecution="27" mapState="false" mapDiag="false" functionName="safeTon">
               <inPorts>
                 <functioBlockHasInPorts Id="c066b73e-9e25-42a3-91c5-ae41aefc2690">
                   <inPort Id="d1567d4c-5381-4ba9-ae20-1571a0c1b895" name="TonIn" portName="TonIn" portNum="2" objectIndex="8" varId="1" filter="2" portDataType="1" channelInterface="Activated" deactivate1="Break Contact (NC)" maxDeviation="0" resetTime="0">
@@ -795,9 +795,6 @@
                 <functionBlockHasOutPorts Id="da74c465-1500-4577-bf74-26d49df690a2">
                   <outPort Id="dfa73f8d-b415-4fb6-ace9-51cd9f1b4597" name="TwoHandOut" portName="TwoHandOut" portNum="10" objectIndex="1" varId="6" filter="6" portDataType="1" replacementValue="0">
                     <targetFunctionBlockPorts>
-                      <wiredLink Id="cd8cae6b-a5e9-438f-a259-5a3703ab2612">
-                        <inPortMoniker name="//Network7/FBTon1/TonIn" />
-                      </wiredLink>
                       <wiredLink Id="5a0c5458-94c8-45d0-831e-5fbc17f42cf3">
                         <inPortMoniker name="//Network7/FBOr1/OrIn1" />
                       </wiredLink>
@@ -812,27 +809,8 @@
               </parameterPorts>
             </fBTwohand>
           </networkHasFunctionBlocks>
-          <networkHasFunctionBlocks Id="24b8cdfd-f4f3-4386-8891-ff6e6658a5c4">
-            <fBTon Id="f7df64e2-d81e-4c2d-97dc-84c23d4c4e55" name="FBTon1" instanceName="FBTon4" orderOfExecution="24" mapState="false" mapDiag="false" functionName="safeTon">
-              <inPorts>
-                <functioBlockHasInPorts Id="a8916c96-408c-4e4b-9f80-de104336b8e2">
-                  <inPort Id="4a6753fd-895e-47e2-b7af-cca97cb35115" name="TonIn" portName="TonIn" portNum="2" objectIndex="8" varId="1" filter="2" portDataType="1" channelInterface="Activated" deactivate1="Break Contact (NC)" maxDeviation="0" resetTime="0" />
-                </functioBlockHasInPorts>
-              </inPorts>
-              <outPorts>
-                <functionBlockHasOutPorts Id="49527fc4-5793-4e6b-8f8d-ff14f98ec3c5">
-                  <outPort Id="38e158e2-f32d-4c33-a2f6-93d2b3967dea" name="TonOut" portName="TonOut" portNum="4" objectIndex="1" varId="4" filter="6" portDataType="1" replacementValue="0" />
-                </functionBlockHasOutPorts>
-              </outPorts>
-              <parameterPorts>
-                <functionBlockHasParamPorts Id="0b5b9b9c-3dd9-4e53-8296-73aa0d50232d">
-                  <parameterPort Id="4b4b3b5e-3e51-44c4-80ef-4971bcd1904c" name="Delay Time (s)" portName="Delay Time (s)" portNum="4" objectIndex="0" varId="0" filter="0" portDataType="0" timing="1" userFbPortName="Delay Time (s)" useInUserFb="false" />
-                </functionBlockHasParamPorts>
-              </parameterPorts>
-            </fBTon>
-          </networkHasFunctionBlocks>
           <networkHasFunctionBlocks Id="cf646301-97c5-4ce9-89d9-b1ae0623bf8d">
-            <fBOr Id="4b3ceb20-49f1-459c-bc4c-c62df76b2f76" name="FBOr1" instanceName="FBOr1" orderOfExecution="25" mapState="false" mapDiag="false" functionName="safeOr">
+            <fBOr Id="4b3ceb20-49f1-459c-bc4c-c62df76b2f76" name="FBOr1" instanceName="FBOr1" orderOfExecution="24" mapState="false" mapDiag="false" functionName="safeOr">
               <inPorts>
                 <functioBlockHasInPorts Id="16ac99fb-c2ff-4cde-9425-48d76d3a7c29">
                   <inPort Id="7449f27e-e93e-4409-b88a-f140f5087af4" name="OrIn1" portName="OrIn1" portNum="2" objectIndex="8" varId="2" filter="2" portDataType="1" channelInterface="Activated" deactivate1="Break Contact (NC)" maxDeviation="0" resetTime="0" />
@@ -873,7 +851,7 @@
             </fBOr>
           </networkHasFunctionBlocks>
           <networkHasFunctionBlocks Id="29bb66d3-f493-4b56-9947-083d2edde238">
-            <fBTon Id="0f5396c4-9c07-4487-83a8-a6852ed01a48" name="FBTon2" instanceName="FBTon8" orderOfExecution="29" mapState="false" mapDiag="false" functionName="safeTon">
+            <fBTon Id="0f5396c4-9c07-4487-83a8-a6852ed01a48" name="FBTon2" instanceName="FBTon8" orderOfExecution="28" mapState="false" mapDiag="false" functionName="safeTon">
               <inPorts>
                 <functioBlockHasInPorts Id="755d1a47-3ccf-4b0b-8c06-06589470f39b">
                   <inPort Id="9102b818-952a-4244-9567-d657c25a3070" name="TonIn" portName="TonIn" portNum="2" objectIndex="8" varId="1" filter="2" portDataType="1" channelInterface="Activated" deactivate1="Break Contact (NC)" maxDeviation="0" resetTime="0" />
@@ -2143,38 +2121,6 @@
         </targetUsages>
       </variable>
     </safetyApplicationHasVariables>
-    <safetyApplicationHasVariables Id="5ee62c1a-51ac-45f8-b1e5-f4482fda60ea">
-      <variable Id="fe7e40d4-79a6-4eb3-b5d8-d61911992c19" name="StartCycleSignal" isLocal="false">
-        <sourceUsages>
-          <variableHasSourceUsages Id="2c3534a7-bc3f-4ca7-9adf-cdb60578a2c3">
-            <variableUsages Id="9b8ab3ca-5dcf-45ab-83c8-60be0788e936">
-              <usages>
-                <variableUsagesHasUsages Id="0b70fbcd-f137-4b65-a9cc-1e4c24e137a1">
-                  <fbPortUsage Id="0928a11b-7a1d-4154-af4e-f9a8a58c73e2">
-                    <functionBlockPort>
-                      <fbPortUsageReferencesFunctionBlockPort Id="0bf68944-9a67-43bc-a5a5-0d64df14315e">
-                        <outPortMoniker name="//Network7/FBTon1/TonOut" />
-                      </fbPortUsageReferencesFunctionBlockPort>
-                    </functionBlockPort>
-                  </fbPortUsage>
-                </variableUsagesHasUsages>
-              </usages>
-            </variableUsages>
-          </variableHasSourceUsages>
-        </sourceUsages>
-        <targetUsages>
-          <variableHasTargetUsages Id="109f0c00-e361-4879-9cba-0645be497d72">
-            <variableUsages Id="11de5906-b361-4a1b-9011-75ae44c0169c">
-              <usages>
-                <variableUsagesHasUsages Id="db0c1feb-a381-4774-acbb-e14324a4945d">
-                  <aliasDeviceIoUsage Id="3ec8509b-7310-4484-bbe9-203f0f695f2c" sdsId="27" channelId="1" functionId="1131179972" />
-                </variableUsagesHasUsages>
-              </usages>
-            </variableUsages>
-          </variableHasTargetUsages>
-        </targetUsages>
-      </variable>
-    </safetyApplicationHasVariables>
     <safetyApplicationHasVariables Id="c09abc26-4c95-4f82-b11f-e94197e84cce">
       <variable Id="14abd087-df07-4ea3-bd2d-694625122950" name="ProcessDoorClosing" isLocal="false">
         <sourceUsages>
@@ -2538,6 +2484,38 @@
               <usages>
                 <variableUsagesHasUsages Id="6c6ce044-8f76-426e-8506-0e0623c79aa3">
                   <aliasDeviceIoUsage Id="bf7b7ad8-e37d-4699-8b60-454094c34781" sdsId="35" channelId="1" functionId="1131179972" />
+                </variableUsagesHasUsages>
+              </usages>
+            </variableUsages>
+          </variableHasTargetUsages>
+        </targetUsages>
+      </variable>
+    </safetyApplicationHasVariables>
+    <safetyApplicationHasVariables Id="25be242d-8ee8-4503-97bc-92a90a15e3ce">
+      <variable Id="d0a1d577-7beb-465c-a946-a083ba732355" name="TwoHands" isLocal="false">
+        <sourceUsages>
+          <variableHasSourceUsages Id="034faca7-344b-46a5-9d6f-dd817c87830d">
+            <variableUsages Id="6f7d7ba7-09f6-43a1-9660-7d433ae70441">
+              <usages>
+                <variableUsagesHasUsages Id="16603898-e76c-45ef-90cf-86ccea7c69cf">
+                  <fbPortUsage Id="60cde5f3-0ecc-4b25-935d-6c8caf650c96">
+                    <functionBlockPort>
+                      <fbPortUsageReferencesFunctionBlockPort Id="f70fa650-d9a6-43c7-8d15-c2f0652f0c6c">
+                        <outPortMoniker name="//Network7/FBTwohand1/TwoHandOut" />
+                      </fbPortUsageReferencesFunctionBlockPort>
+                    </functionBlockPort>
+                  </fbPortUsage>
+                </variableUsagesHasUsages>
+              </usages>
+            </variableUsages>
+          </variableHasSourceUsages>
+        </sourceUsages>
+        <targetUsages>
+          <variableHasTargetUsages Id="c1a94c6c-5d33-4371-87ec-0931b38a00c9">
+            <variableUsages Id="b71a0644-456f-4326-9793-ca52aec0018b">
+              <usages>
+                <variableUsagesHasUsages Id="d49af132-281f-4cd3-87d0-37b6c6436d00">
+                  <aliasDeviceIoUsage Id="6a748c9e-7ccb-4cde-8410-457d28431968" sdsId="36" channelId="1" functionId="1131179972" />
                 </variableUsagesHasUsages>
               </usages>
             </variableUsages>

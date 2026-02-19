@@ -29,9 +29,25 @@
       "frameworkControlNamespace": "TcHmi.Controls.Beckhoff",
       "frameworkControlType": "TcHmi.Controls.System.TcHmiUserControl",
       "frameworkInstanceOf": "TcHmi.Controls.System.TcHmiControl",
-      "frameworkUserControlConfig": "Contents\\UserControl\\led.usercontrol.json",
+      "frameworkUserControlConfig": "Contents\\UserControl\\led_RedAndGreen_2In.usercontrol.json",
       "id": "tchmi:project#/definitions/led",
       "type": "object"
+    },
+    "led_RedAndGreen_2In_-_Copy": {
+      "frameworkControlNamespace": "TcHmi.Controls.Beckhoff",
+      "frameworkControlType": "TcHmi.Controls.System.TcHmiUserControl",
+      "frameworkInstanceOf": "TcHmi.Controls.System.TcHmiControl",
+      "frameworkUserControlConfig": "Contents\\UserControl\\led_RedAndGreen_1In.usercontrol.json",
+      "type": "object",
+      "id": "tchmi:project#/definitions/led_RedAndGreen_2In_-_Copy"
+    },
+    "led_RedAndGreen_1In": {
+      "frameworkControlNamespace": "TcHmi.Controls.Beckhoff",
+      "frameworkControlType": "TcHmi.Controls.System.TcHmiUserControl",
+      "frameworkInstanceOf": "TcHmi.Controls.System.TcHmiControl",
+      "frameworkUserControlConfig": "Contents\\UserControl\\led_RedAndGreen_1In.usercontrol.json",
+      "type": "object",
+      "id": "tchmi:project#/definitions/led_RedAndGreen_1In"
     }
   }
 }

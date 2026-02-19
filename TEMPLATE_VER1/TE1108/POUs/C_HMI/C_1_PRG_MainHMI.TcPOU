@@ -9,7 +9,8 @@ VAR
 END_VAR
 ]]></Declaration>
     <Implementation>
-      <ST><![CDATA[a_ACT_MachineStatusBaner();]]></ST>
+      <ST><![CDATA[a_ACT_MachineStatusBaner();
+b_ACT_Timers();]]></ST>
     </Implementation>
     <Action Name="a_ACT_MachineStatusBaner" Id="{0dc7bcd3-753a-4f06-be0f-fec0a8964021}">
       <Implementation>
@@ -107,8 +108,21 @@ END_IF
 ]]></ST>
       </Implementation>
     </Action>
+    <Action Name="b_ACT_Timers" Id="{66f47bca-34fc-4901-8482-712d454221dd}">
+      <Implementation>
+        <ST><![CDATA[
+stTimers.tAutoCycleTimeOut		:= DINT_TO_TIME(stTimers.nAutoCycleTimeOut * 1000) ;
+stTimers.tDoorOpenedSignal		:= DINT_TO_TIME(stTimers.nDoorOpenedSignal * 1000) ;
+stTimers.tStation1TimeOut		:= DINT_TO_TIME(stTimers.nStation1TimeOut * 1000) ;
+stTimers.tStation2TimeOut		:= DINT_TO_TIME(stTimers.nStation2TimeOut * 1000) ;
+stTimers.tStation3TimeOut		:= DINT_TO_TIME(stTimers.nStation3TimeOut * 1000) ;
+stTimers.tTwoHandsSignal		:= DINT_TO_TIME(stTimers.nTwoHandsSignal * 1000) ;
+stTimers.tHeightTest			:= DINT_TO_TIME(stTimers.nHeightTest * 1000) ;]]></ST>
+      </Implementation>
+    </Action>
     <LineIds Name="C_1_PRG_MainHMI">
       <LineId Id="5" Count="0" />
+      <LineId Id="12" Count="0" />
     </LineIds>
     <LineIds Name="C_1_PRG_MainHMI.a_ACT_MachineStatusBaner">
       <LineId Id="2" Count="5" />
@@ -146,6 +160,11 @@ END_IF
       <LineId Id="113" Count="0" />
       <LineId Id="139" Count="0" />
       <LineId Id="141" Count="0" />
+    </LineIds>
+    <LineIds Name="C_1_PRG_MainHMI.b_ACT_Timers">
+      <LineId Id="2" Count="0" />
+      <LineId Id="1" Count="0" />
+      <LineId Id="3" Count="5" />
     </LineIds>
   </POU>
 </TcPlcObject>

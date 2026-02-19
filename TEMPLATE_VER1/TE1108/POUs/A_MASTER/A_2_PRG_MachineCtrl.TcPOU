@@ -34,6 +34,8 @@ VAR
 	bPartPresentNest3			: BOOL;
 	bPartPresentNest4			: BOOL;
 	bRejectSensor				: BOOL;
+	bTwoHandsSignal				: BOOL;
+	tonTwoHandsSignal			: TON;
 	
 END_VAR
 ]]></Declaration>
@@ -242,15 +244,15 @@ rFirstAutoCycle( CLK := stMachineStatus.bAutoCycle);
 
 IF stMACHINE.IP8X THEN
 	
-	bStartProcessCondition := stTwinSAFE.qStartProcessSignal AND
-							bPartPresentNest1						AND
-							bPartPresentNest2						AND
-							bPartPresentNest3						AND
-							bPartPresentNest4						;
+	bStartProcessCondition := bTwoHandsSignal	 AND
+							(bPartPresentNest1						OR
+							bPartPresentNest2						OR
+							bPartPresentNest3						OR
+							bPartPresentNest4)						;
 
-ELSE  bStartProcessCondition := stTwinSAFE.qStartProcessSignal AND
-							bPartPresentNest1						AND
-							bPartPresentNest2						;
+ELSE  bStartProcessCondition := bTwoHandsSignal AND
+							(bPartPresentNest1						OR
+							bPartPresentNest2)						;
 END_IF
 
 
@@ -673,6 +675,10 @@ bProcessDoorClosedConditionFlag		:= eCycleState = E_General_ProcessCycle.PROCESS
 										eCycleState = E_General_ProcessCycle.RETRACT_PROCESS_CYLINDER OR
 										eCycleState = E_General_ProcessCycle.WAIT_RETRACT_PROCESS_CYLINDER;
 										
+tonTwoHandsSignal( IN := stTwinSAFE.qTwoHands, PT := stTimers.tTwoHandsSignal);						
+				
+bTwoHandsSignal						:= tonTwoHandsSignal.Q;
+										
 																				]]></ST>
       </Implementation>
     </Action>
@@ -1059,6 +1065,10 @@ bProcessDoorClosedConditionFlag		:= eCycleState = E_General_ProcessCycle.PROCESS
       <LineId Id="30" Count="0" />
       <LineId Id="35" Count="5" />
       <LineId Id="45" Count="0" />
+      <LineId Id="49" Count="0" />
+      <LineId Id="46" Count="0" />
+      <LineId Id="48" Count="0" />
+      <LineId Id="47" Count="0" />
       <LineId Id="32" Count="0" />
       <LineId Id="24" Count="0" />
     </LineIds>
