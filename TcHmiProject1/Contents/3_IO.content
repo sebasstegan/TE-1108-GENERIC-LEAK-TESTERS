@@ -29,8 +29,7 @@
 </div>
 <div id="TcHmiRegion" data-tchmi-type="TcHmi.Controls.System.TcHmiRegion" data-tchmi-height="438" data-tchmi-height-unit="px" data-tchmi-left="10" data-tchmi-left-unit="px" data-tchmi-top="31" data-tchmi-top-unit="px" data-tchmi-width="1240" data-tchmi-width-unit="px">
 
-<script data-tchmi-target-attribute="data-tchmi-trigger" type="application/json">
-[
+<script data-tchmi-target-attribute="data-tchmi-trigger" type="application/json">[
   {
     "event": "%i%nIOScreen%/i%",
     "actions": [
@@ -53,7 +52,7 @@
               {
                 "objectType": "WriteToSymbol",
                 "active": true,
-                "symbolExpression": "%ctrl%TcHmiRegion::TargetContent%/ctrl%",
+                "symbolExpression": "%ctx%owner::TargetContent%/ctx%",
                 "value": {
                   "objectType": "StaticValue",
                   "valueType": "tchmi:framework#/definitions/ContentPath",
@@ -73,7 +72,7 @@
               {
                 "objectType": "WriteToSymbol",
                 "active": true,
-                "symbolExpression": "%ctrl%TcHmiRegion::TargetContent%/ctrl%",
+                "symbolExpression": "%ctx%owner::TargetContent%/ctx%",
                 "value": {
                   "objectType": "StaticValue",
                   "valueType": "tchmi:framework#/definitions/ContentPath",
@@ -93,7 +92,7 @@
               {
                 "objectType": "WriteToSymbol",
                 "active": true,
-                "symbolExpression": "%ctrl%TcHmiRegion::TargetContent%/ctrl%",
+                "symbolExpression": "%ctx%owner::TargetContent%/ctx%",
                 "value": {
                   "objectType": "StaticValue",
                   "valueType": "tchmi:framework#/definitions/ContentPath",
@@ -108,7 +107,6 @@
       }
     ]
   }
-]
-</script>
+]</script>
 </div>
 </div>

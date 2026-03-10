@@ -31,8 +31,7 @@
 
 
 
-<script data-tchmi-target-attribute="data-tchmi-trigger" type="application/json">
-[
+<script data-tchmi-target-attribute="data-tchmi-trigger" type="application/json">[
   {
     "event": "%pp%Input%/pp%",
     "actions": [
@@ -61,7 +60,7 @@
               {
                 "objectType": "WriteToSymbol",
                 "active": true,
-                "symbolExpression": "%ctrl%TcHmiEllipse_2::FillColor%/ctrl%",
+                "symbolExpression": "%ctx%owner::FillColor%/ctx%",
                 "value": {
                   "objectType": "StaticValue",
                   "valueType": "tchmi:framework#/definitions/Color",
@@ -88,7 +87,7 @@
               {
                 "objectType": "WriteToSymbol",
                 "active": true,
-                "symbolExpression": "%ctrl%TcHmiEllipse_2::FillColor%/ctrl%",
+                "symbolExpression": "%ctx%owner::FillColor%/ctx%",
                 "value": {
                   "objectType": "StaticValue",
                   "valueType": "tchmi:framework#/definitions/Color",
@@ -115,8 +114,7 @@
       }
     ]
   }
-]
-</script>
+]</script>
 
 
 

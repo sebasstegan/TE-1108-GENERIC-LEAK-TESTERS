@@ -31,8 +31,7 @@
 
 
 
-<script data-tchmi-target-attribute="data-tchmi-trigger" type="application/json">
-[
+<script data-tchmi-target-attribute="data-tchmi-trigger" type="application/json">[
   {
     "event": "%pp%red%/pp%",
     "actions": [
@@ -61,7 +60,7 @@
               {
                 "objectType": "WriteToSymbol",
                 "active": true,
-                "symbolExpression": "%ctrl%TcHmiEllipse_1::FillColor%/ctrl%",
+                "symbolExpression": "%ctx%owner::FillColor%/ctx%",
                 "value": {
                   "objectType": "StaticValue",
                   "valueType": "tchmi:framework#/definitions/Color",
@@ -110,7 +109,7 @@
                       {
                         "objectType": "WriteToSymbol",
                         "active": true,
-                        "symbolExpression": "%ctrl%TcHmiEllipse_1::FillColor%/ctrl%",
+                        "symbolExpression": "%ctx%owner::FillColor%/ctx%",
                         "value": {
                           "objectType": "StaticValue",
                           "valueType": "tchmi:framework#/definitions/Color",
@@ -163,7 +162,7 @@
               {
                 "objectType": "WriteToSymbol",
                 "active": true,
-                "symbolExpression": "%ctrl%TcHmiEllipse_1::FillColor%/ctrl%",
+                "symbolExpression": "%ctx%owner::FillColor%/ctx%",
                 "value": {
                   "objectType": "StaticValue",
                   "valueType": "tchmi:framework#/definitions/Color",
@@ -212,7 +211,7 @@
                       {
                         "objectType": "WriteToSymbol",
                         "active": true,
-                        "symbolExpression": "%ctrl%TcHmiEllipse_1::FillColor%/ctrl%",
+                        "symbolExpression": "%ctx%owner::FillColor%/ctx%",
                         "value": {
                           "objectType": "StaticValue",
                           "valueType": "tchmi:framework#/definitions/Color",
@@ -237,8 +236,7 @@
       }
     ]
   }
-]
-</script>
+]</script>
 
 
 

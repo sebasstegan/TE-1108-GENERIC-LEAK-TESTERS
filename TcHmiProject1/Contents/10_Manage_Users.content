@@ -62,10 +62,9 @@ void) = null
 <div id="TcHmiButton_3" data-tchmi-type="TcHmi.Controls.Beckhoff.TcHmiButton" data-tchmi-height="26" data-tchmi-height-unit="px" data-tchmi-left="292" data-tchmi-left-unit="px" data-tchmi-text="Change Name" data-tchmi-top="147" data-tchmi-top-unit="px" data-tchmi-width="150" data-tchmi-width-unit="px" data-tchmi-word-wrap="true" data-tchmi-zindex="2" data-tchmi-is-enabled="%f%%i%UserToChange%/i% != %i%User%/i% &amp;&amp;
 %i%User%/i%        	  != &quot;&quot; &amp;&amp;
 %i%UserToChange%/i% != &quot;&quot;%/f%">
-<script data-tchmi-target-attribute="data-tchmi-trigger" type="application/json">
-[
+<script data-tchmi-target-attribute="data-tchmi-trigger" type="application/json">[
   {
-    "event": "TcHmiButton_3.onPressed",
+    "event": "%ctx%owner::Id|EventRegistrationMode=Resolve%/ctx%.onPressed",
     "actions": [
       {
         "objectType": "JavaScript",
@@ -116,8 +115,7 @@ void) = null
       }
     ]
   }
-]
-</script>
+]</script>
 
 
 </div>
@@ -125,10 +123,9 @@ void) = null
 </div>
 <div id="TcHmiButton_41" data-tchmi-type="TcHmi.Controls.Beckhoff.TcHmiButton" data-tchmi-height="26" data-tchmi-height-unit="px" data-tchmi-left="292" data-tchmi-left-unit="px" data-tchmi-text="Change Password" data-tchmi-top="209" data-tchmi-top-unit="px" data-tchmi-width="150" data-tchmi-width-unit="px" data-tchmi-word-wrap="true" data-tchmi-zindex="2" data-tchmi-is-enabled="%f%%i%Password%/i% !=&quot;&quot; &amp;&amp;
 %i%UserToChange%/i% != &quot;&quot;%/f%">
-<script data-tchmi-target-attribute="data-tchmi-trigger" type="application/json">
-[
+<script data-tchmi-target-attribute="data-tchmi-trigger" type="application/json">[
   {
-    "event": "TcHmiButton_41.onPressed",
+    "event": "%ctx%owner::Id|EventRegistrationMode=Resolve%/ctx%.onPressed",
     "actions": [
       {
         "objectType": "JavaScript",
@@ -190,17 +187,15 @@ void) = null
       }
     ]
   }
-]
-</script>
+]</script>
 
 
 </div>
 <div id="TcHmiButton_42" data-tchmi-type="TcHmi.Controls.Beckhoff.TcHmiButton" data-tchmi-height="26" data-tchmi-height-unit="px" data-tchmi-left="292" data-tchmi-left-unit="px" data-tchmi-text="Add Group" data-tchmi-top="271" data-tchmi-top-unit="px" data-tchmi-width="150" data-tchmi-width-unit="px" data-tchmi-word-wrap="true" data-tchmi-zindex="2" data-tchmi-is-enabled="%f%%i%AddGroupID%/i% !=0 &amp;&amp;
 %i%UserToChange%/i% != &quot;&quot;%/f%">
-<script data-tchmi-target-attribute="data-tchmi-trigger" type="application/json">
-[
+<script data-tchmi-target-attribute="data-tchmi-trigger" type="application/json">[
   {
-    "event": "TcHmiButton_42.onPressed",
+    "event": "%ctx%owner::Id|EventRegistrationMode=Resolve%/ctx%.onPressed",
     "actions": [
       {
         "objectType": "JavaScript",
@@ -267,16 +262,14 @@ void) = null
       }
     ]
   }
-]
-</script>
+]</script>
 
 
 </div>
 <div id="TcHmiButton_6" data-tchmi-type="TcHmi.Controls.Beckhoff.TcHmiButton" data-tchmi-height="40" data-tchmi-height-unit="px" data-tchmi-left="292" data-tchmi-left-unit="px" data-tchmi-text="Remove User" data-tchmi-top="406" data-tchmi-top-unit="px" data-tchmi-width="150" data-tchmi-width-unit="px" data-tchmi-word-wrap="true" data-tchmi-zindex="2" data-tchmi-is-enabled="%f%%i%UserToChange%/i% != &quot;&quot;%/f%">
-<script data-tchmi-target-attribute="data-tchmi-trigger" type="application/json">
-[
+<script data-tchmi-target-attribute="data-tchmi-trigger" type="application/json">[
   {
-    "event": "TcHmiButton_6.onPressed",
+    "event": "%ctx%owner::Id|EventRegistrationMode=Resolve%/ctx%.onPressed",
     "actions": [
       {
         "objectType": "JavaScript",
@@ -314,18 +307,16 @@ void) = null
       }
     ]
   }
-]
-</script>
+]</script>
 
 
 </div>
 <div id="TcHmiButton_43" data-tchmi-type="TcHmi.Controls.Beckhoff.TcHmiButton" data-tchmi-height="40" data-tchmi-height-unit="px" data-tchmi-left="71" data-tchmi-left-unit="px" data-tchmi-text="Create User" data-tchmi-top="406" data-tchmi-top-unit="px" data-tchmi-width="150" data-tchmi-width-unit="px" data-tchmi-word-wrap="true" data-tchmi-zindex="2" data-tchmi-is-enabled="%f%%i%User%/i%!=&quot;&quot; &amp;&amp;
 %i%Password%/i% != &quot;&quot; &amp;&amp;
 %i%AddGroupID%/i% != 0%/f%">
-<script data-tchmi-target-attribute="data-tchmi-trigger" type="application/json">
-[
+<script data-tchmi-target-attribute="data-tchmi-trigger" type="application/json">[
   {
-    "event": "TcHmiButton_43.onPressed",
+    "event": "%ctx%owner::Id|EventRegistrationMode=Resolve%/ctx%.onPressed",
     "actions": [
       {
         "objectType": "JavaScript",
@@ -421,8 +412,7 @@ void) = null
       }
     ]
   }
-]
-</script>
+]</script>
 
 
 </div>
@@ -464,10 +454,9 @@ void) = null
 </div>
 <div id="TcHmiButton_44" data-tchmi-type="TcHmi.Controls.Beckhoff.TcHmiButton" data-tchmi-height="26" data-tchmi-height-unit="px" data-tchmi-left="292" data-tchmi-left-unit="px" data-tchmi-text="Remove Group" data-tchmi-top="333" data-tchmi-top-unit="px" data-tchmi-width="150" data-tchmi-width-unit="px" data-tchmi-word-wrap="true" data-tchmi-zindex="2" data-tchmi-is-enabled="%f%%i%RemGroupID%/i% != 0 &amp;&amp;
 %i%UserToChange%/i% != &quot;&quot;%/f%">
-<script data-tchmi-target-attribute="data-tchmi-trigger" type="application/json">
-[
+<script data-tchmi-target-attribute="data-tchmi-trigger" type="application/json">[
   {
-    "event": "TcHmiButton_44.onPressed",
+    "event": "%ctx%owner::Id|EventRegistrationMode=Resolve%/ctx%.onPressed",
     "actions": [
       {
         "objectType": "JavaScript",
@@ -535,8 +524,7 @@ void) = null
       }
     ]
   }
-]
-</script>
+]</script>
 
 
 </div>
@@ -553,10 +541,9 @@ void) = null
 </script>
 
 
-<script data-tchmi-target-attribute="data-tchmi-trigger" type="application/json">
-[
+<script data-tchmi-target-attribute="data-tchmi-trigger" type="application/json">[
   {
-    "event": "TcHmiTextbox_4.onTextChanged",
+    "event": "%ctx%owner::Id|EventRegistrationMode=Resolve%/ctx%.onTextChanged",
     "actions": [
       {
         "objectType": "WriteToSymbol",
@@ -623,8 +610,7 @@ void) = null
       }
     ]
   }
-]
-</script>
+]</script>
 </div>
 <div id="TcHmiDatagrid_10" data-tchmi-type="TcHmi.Controls.Beckhoff.TcHmiDatagrid" data-tchmi-height="427" data-tchmi-height-unit="px" data-tchmi-left="571" data-tchmi-left-unit="px" data-tchmi-top="35" data-tchmi-top-unit="px" data-tchmi-width="637" data-tchmi-width-unit="px" data-tchmi-src-data="%s%ListUsers%/s%" data-tchmi-zindex="1">
 <script data-tchmi-target-attribute="data-tchmi-cell-content-padding" type="application/json">

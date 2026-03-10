@@ -1,14 +1,19 @@
 {
-  "$schema": "./../../Packages/Beckhoff.TwinCAT.HMI.Framework.12.762.54/runtimes/native1.12-tchmi/Schema/TchmiConfig.Schema.json",
-  "basePath": "./framework",
+  "$schema": "./../../Packages/Beckhoff.TwinCAT.HMI.Framework.14.3.431/runtimes/native1.12-tchmi/Schema/TchmiConfig.Schema.json",
+  "basePath": "./Beckhoff.TwinCAT.HMI.Framework",
   "scaleMode": "None",
   "startupView": "Desktop.view",
   "loginPage": "",
+  "splash": {
+    "versionSource": "Framework"
+  },
+  "projectVersion": "1.0.0.0",
   "tcHmiServer": {
     "websocketIntervalTime": 500,
     "websocketTimeout": 20000,
     "websocketSystemTimeout": 60000,
-    "websocketSubscriptionMode": "Change"
+    "websocketSubscriptionMode": null,
+    "disableOptionalSystemSubscriptions": false
   },
   "activeTheme": "Base",
   "themes": {
@@ -79,42 +84,22 @@
   ],
   "userControls": [
     {
-      "url": "Contents/UserControl/PopUp/Acknowledge.usercontrol"
-    },
-    {
-      "url": "Contents/UserControl/PopUp/YesNo.usercontrol"
+      "url": "Contents/UserControl/led_RedAndGreen_1In.usercontrol"
     },
     {
       "url": "Contents/UserControl/led_RedAndGreen_2In.usercontrol"
     },
     {
-      "url": "Contents/UserControl/led_RedAndGreen_1In.usercontrol"
+      "url": "Contents/UserControl/PopUp/Acknowledge.usercontrol"
+    },
+    {
+      "url": "Contents/UserControl/PopUp/YesNo.usercontrol"
     }
   ],
+  "controls": [],
   "content": [
     {
-      "url": "Contents/12_Operatinal_Manual.content",
-      "preload": false,
-      "keepAlive": false,
-      "loadSync": false,
-      "preloadBindings": false
-    },
-    {
-      "url": "Contents/6_Settings.content",
-      "preload": false,
-      "keepAlive": false,
-      "loadSync": false,
-      "preloadBindings": false
-    },
-    {
-      "url": "Contents/11_Electric_Drawings.content",
-      "preload": false,
-      "keepAlive": false,
-      "loadSync": false,
-      "preloadBindings": false
-    },
-    {
-      "url": "Contents/8_Info.content",
+      "url": "Contents/1_Main.content",
       "preload": false,
       "keepAlive": false,
       "loadSync": false,
@@ -128,35 +113,21 @@
       "preloadBindings": false
     },
     {
-      "url": "Contents/3_IO.content",
+      "url": "Contents/11_Electric_Drawings.content",
       "preload": false,
       "keepAlive": false,
       "loadSync": false,
       "preloadBindings": false
     },
     {
-      "url": "Contents/5_Manual.content",
+      "url": "Contents/12_Operatinal_Manual.content",
       "preload": false,
       "keepAlive": false,
       "loadSync": false,
       "preloadBindings": false
     },
     {
-      "url": "Contents/9_Data_History.content",
-      "preload": false,
-      "keepAlive": false,
-      "loadSync": false,
-      "preloadBindings": false
-    },
-    {
-      "url": "Contents/4_Events.content",
-      "preload": false,
-      "keepAlive": false,
-      "loadSync": false,
-      "preloadBindings": false
-    },
-    {
-      "url": "Contents/7_Statistics.content",
+      "url": "Contents/13_Develop.content",
       "preload": false,
       "keepAlive": false,
       "loadSync": false,
@@ -170,14 +141,49 @@
       "preloadBindings": false
     },
     {
-      "url": "Contents/1_Main.content",
+      "url": "Contents/3_IO.content",
       "preload": false,
       "keepAlive": false,
       "loadSync": false,
       "preloadBindings": false
     },
     {
-      "url": "Contents/Events/Messages_CycleStopReq.content",
+      "url": "Contents/4_Events.content",
+      "preload": false,
+      "keepAlive": false,
+      "loadSync": false,
+      "preloadBindings": false
+    },
+    {
+      "url": "Contents/5_Manual.content",
+      "preload": false,
+      "keepAlive": false,
+      "loadSync": false,
+      "preloadBindings": false
+    },
+    {
+      "url": "Contents/6_Settings.content",
+      "preload": false,
+      "keepAlive": false,
+      "loadSync": false,
+      "preloadBindings": false
+    },
+    {
+      "url": "Contents/7_Statistics.content",
+      "preload": false,
+      "keepAlive": false,
+      "loadSync": false,
+      "preloadBindings": false
+    },
+    {
+      "url": "Contents/8_Info.content",
+      "preload": false,
+      "keepAlive": false,
+      "loadSync": false,
+      "preloadBindings": false
+    },
+    {
+      "url": "Contents/9_Data_History.content",
       "preload": false,
       "keepAlive": false,
       "loadSync": false,
@@ -191,13 +197,6 @@
       "preloadBindings": false
     },
     {
-      "url": "Contents/Events/ImmediateFaults.content",
-      "preload": false,
-      "keepAlive": false,
-      "loadSync": false,
-      "preloadBindings": false
-    },
-    {
       "url": "Contents/Events/History.content",
       "preload": false,
       "keepAlive": false,
@@ -205,14 +204,14 @@
       "preloadBindings": false
     },
     {
-      "url": "Contents/Manual/3_Station3.content",
+      "url": "Contents/Events/ImmediateFaults.content",
       "preload": false,
       "keepAlive": false,
       "loadSync": false,
       "preloadBindings": false
     },
     {
-      "url": "Contents/Manual/2_Station2.content",
+      "url": "Contents/Events/Messages_CycleStopReq.content",
       "preload": false,
       "keepAlive": false,
       "loadSync": false,
@@ -226,7 +225,14 @@
       "preloadBindings": false
     },
     {
-      "url": "Contents/popup/popup2_ChangeSettings.content",
+      "url": "Contents/Manual/2_Station2.content",
+      "preload": false,
+      "keepAlive": false,
+      "loadSync": false,
+      "preloadBindings": false
+    },
+    {
+      "url": "Contents/Manual/3_Station3.content",
       "preload": false,
       "keepAlive": false,
       "loadSync": false,
@@ -240,21 +246,7 @@
       "preloadBindings": false
     },
     {
-      "url": "Contents/Settings/4_Timers.content",
-      "preload": false,
-      "keepAlive": false,
-      "loadSync": false,
-      "preloadBindings": false
-    },
-    {
-      "url": "Contents/Settings/3_SettingsStation3.content",
-      "preload": false,
-      "keepAlive": false,
-      "loadSync": false,
-      "preloadBindings": false
-    },
-    {
-      "url": "Contents/Settings/2_SettingsStation2.content",
+      "url": "Contents/popup/popup2_ChangeSettings.content",
       "preload": false,
       "keepAlive": false,
       "loadSync": false,
@@ -268,7 +260,21 @@
       "preloadBindings": false
     },
     {
-      "url": "Contents/13_Develop.content",
+      "url": "Contents/Settings/2_SettingsStation2.content",
+      "preload": false,
+      "keepAlive": false,
+      "loadSync": false,
+      "preloadBindings": false
+    },
+    {
+      "url": "Contents/Settings/3_SettingsStation3.content",
+      "preload": false,
+      "keepAlive": false,
+      "loadSync": false,
+      "preloadBindings": false
+    },
+    {
+      "url": "Contents/Settings/4_Timers.content",
       "preload": false,
       "keepAlive": false,
       "loadSync": false,
@@ -367,8 +373,11 @@
         "readonly": false
       }
     },
-    "themedResources": {}
+    "themedResources": {},
+    "timer": {},
+    "package": {}
   },
+  "intervals": {},
   "trigger": [
     {
       "event": "%s%Diagnostics::UPTIME%/s%",
@@ -473,24 +482,37 @@
     }
   },
   "binding": {
-    "symbolError": "Ignore"
+    "symbolError": "Ignore",
+    "symbolWriteError": "ReadBack"
   },
   "packages": [
     {
       "name": "Beckhoff.TwinCAT.HMI.Controls",
-      "basePath": "/Beckhoff.TwinCAT.HMI.Controls"
+      "basePath": "/Beckhoff.TwinCAT.HMI.Controls",
+      "symbols": {
+        "package": {}
+      }
     },
     {
       "name": "Beckhoff.TwinCAT.HMI.Framework",
-      "basePath": "/framework"
+      "basePath": "/Beckhoff.TwinCAT.HMI.Framework",
+      "symbols": {
+        "package": {}
+      }
     },
     {
       "name": "Beckhoff.TwinCAT.HMI.Functions",
-      "basePath": "/Beckhoff.TwinCAT.HMI.Functions"
+      "basePath": "/Beckhoff.TwinCAT.HMI.Functions",
+      "symbols": {
+        "package": {}
+      }
     },
     {
       "name": "Beckhoff.TwinCAT.HMI.PDFViewer",
-      "basePath": "/Beckhoff.TwinCAT.HMI.PDFViewer"
+      "basePath": "/Beckhoff.TwinCAT.HMI.PDFViewer",
+      "symbols": {
+        "package": {}
+      }
     }
   ],
   "keyboardLayouts": [
@@ -506,6 +528,7 @@
   ],
   "systemKeyboard": {
     "providerName": "",
+    "autoOpen": false,
     "projectKeyboardMapping": {
       "de": {
         "text": "KeyboardLayouts/German - compact.keyboard.json",

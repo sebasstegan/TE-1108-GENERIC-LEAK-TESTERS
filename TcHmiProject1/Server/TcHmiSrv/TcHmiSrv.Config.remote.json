@@ -1,11 +1,8 @@
 {
     "CERTIFICATEEXPIRATION": "P14000D",
+    "MAXREQUESTSIZE": 1048576,
     "REQUIREAUTH": 2,
     "VIRTUALDIRECTORIES": {
-        "/": "www",
-        "/Beckhoff.TwinCAT.HMI.Controls": "..\\..\\Packages\\Beckhoff.TwinCAT.HMI.Controls.12.762.54\\runtimes\\native1.12-tchmi",
-        "/Beckhoff.TwinCAT.HMI.Functions": "..\\..\\Packages\\Beckhoff.TwinCAT.HMI.Functions.12.762.54\\runtimes\\native1.12-tchmi",
-        "/Beckhoff.TwinCAT.HMI.PDFViewer": "..\\..\\Packages\\Beckhoff.TwinCAT.HMI.PDFViewer.12.762.54\\runtimes\\native1.12-tchmi",
-        "/framework": "..\\..\\Packages\\Beckhoff.TwinCAT.HMI.Framework.12.762.54\\runtimes\\native1.12-tchmi"
+        "/": "www"
     }
 }

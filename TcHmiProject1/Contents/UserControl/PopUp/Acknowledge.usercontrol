@@ -120,10 +120,9 @@
 
 
 
-<script data-tchmi-target-attribute="data-tchmi-trigger" type="application/json">
-[
+<script data-tchmi-target-attribute="data-tchmi-trigger" type="application/json">[
   {
-    "event": "TcHmiButton_46.onStatePressed",
+    "event": "%ctx%owner::Id|EventRegistrationMode=Resolve%/ctx%.onStatePressed",
     "actions": [
       {
         "objectType": "WriteToSymbol",
@@ -138,7 +137,6 @@
       }
     ]
   }
-]
-</script>
+]</script>
 </div>
 </div>

@@ -1,22 +1,37 @@
 {
+    "EXCLUDE_SYSTEM_ADMINISTRATOR_FROM_LOCKOUT": false,
+    "MAX_INVALID_LOGIN_ATTEMPTS": 0,
+    "PASSWORD_BLACKLIST": "",
+    "PASSWORD_ENABLE_AGING": false,
+    "PASSWORD_FORCE_COMPLEX": 0,
+    "PASSWORD_HISTORY_SIZE": 0,
+    "PASSWORD_MAXIMUM_AGE": "P90D",
+    "PASSWORD_MINIMUM_LENGTH": 1,
     "USERS": {
         "__SystemAdministrator": {
-            "ALGORITHM": 0,
-            "ENABLED": false,
-            "PASSWORD": "",
-            "SALT": ""
+            "ALGORITHM": 1,
+            "ENABLED": true,
+            "LAST_PASSWORD_CHANGE": "2026-03-10T09:52:33.6895507Z",
+            "PASSWORD": "d8d991781635634815cbbb9470763d774190b3b0dc1dacebf3b582abb028e94d4022613371e97919fb697b1d05e56bbf0f89287b874f2af9376cab3879fd4e22",
+            "PASSWORD_HISTORY": [],
+            "SALT": "y6NVqC4C3ffjF0tE/0ZqxSD0p9l6NSqGH9Za/MXAcnZeLrHHBU1depqjzyH+67l4JdiYO3B4ugpjgcSVldVeng==",
+            "TWO_FACTOR_AUTHENTICATION_ENABLED": false
         },
         "__SystemGuest": {
             "ALGORITHM": 0,
             "ENABLED": true,
             "PASSWORD": "",
-            "SALT": ""
+            "PASSWORD_HISTORY": [],
+            "SALT": "",
+            "TWO_FACTOR_AUTHENTICATION_ENABLED": false
         },
         "__SystemUser": {
             "ALGORITHM": 0,
             "ENABLED": true,
             "PASSWORD": "",
-            "SALT": ""
+            "PASSWORD_HISTORY": [],
+            "SALT": "",
+            "TWO_FACTOR_AUTHENTICATION_ENABLED": false
         }
     }
 }

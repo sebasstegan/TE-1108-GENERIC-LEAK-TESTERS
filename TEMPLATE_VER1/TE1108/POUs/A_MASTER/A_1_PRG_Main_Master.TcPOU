@@ -1,5 +1,5 @@
 ﻿<?xml version="1.0" encoding="utf-8"?>
-<TcPlcObject Version="1.1.0.1" ProductVersion="3.1.4024.13">
+<TcPlcObject Version="1.1.0.1" ProductVersion="3.1.4026.17">
   <POU Name="A_1_PRG_Main_Master" Id="{f5cadd41-0b0d-4992-977e-5b237965be89}" SpecialFunc="None">
     <Declaration><![CDATA[PROGRAM A_1_PRG_Main_Master
 VAR
@@ -34,6 +34,8 @@ VAR
 	fbPDFMaker								: FB_PDFMaker;
 	stPDFMaker								: ST_PDFMaker;
 	i										: DINT;
+	
+
 	
 
 	
@@ -113,10 +115,26 @@ sSystemDate					:= 	CONCAT( STR1 := WORD_TO_STRING(stSystemTime.wDay), STR2 :=
 
 
 
+//Only to test cylinder
 
 
 
+IF GVL_CylinderTest.iCylinderUp AND  GVL_CylinderTesT.iCylinderDown THEN
+	
 
+	GVL_CylinderTesT.qCylinderUp		:= TRUE;
+	
+ELSE GVL_CylinderTesT.qCylinderUp		:= FALSE;
+
+END_IF
+	
+IF NOT GVL_CylinderTesT.iCylinderDown AND NOT GVL_CylinderTest.iCylinderUp THEN
+	
+	GVL_CylinderTest.qCylinderDown		:= TRUE;
+	
+ELSE GVL_CylinderTest.qCylinderDown		:= FALSE;
+
+END_IF
 
 
 
@@ -460,214 +478,5 @@ IF abMachineDefinition[5] THEN
 END_IF]]></ST>
       </Implementation>
     </Action>
-    <LineIds Name="A_1_PRG_Main_Master">
-      <LineId Id="1076" Count="12" />
-      <LineId Id="1201" Count="0" />
-      <LineId Id="1089" Count="9" />
-      <LineId Id="1108" Count="22" />
-      <LineId Id="1163" Count="0" />
-      <LineId Id="1131" Count="31" />
-      <LineId Id="373" Count="0" />
-    </LineIds>
-    <LineIds Name="A_1_PRG_Main_Master.a_ACT_ButtonsLamps">
-      <LineId Id="2" Count="15" />
-      <LineId Id="25" Count="0" />
-      <LineId Id="22" Count="0" />
-      <LineId Id="26" Count="0" />
-      <LineId Id="19" Count="0" />
-      <LineId Id="1" Count="0" />
-    </LineIds>
-    <LineIds Name="A_1_PRG_Main_Master.b_ACT_PDFMaker">
-      <LineId Id="16" Count="0" />
-      <LineId Id="53" Count="0" />
-      <LineId Id="55" Count="0" />
-      <LineId Id="68" Count="0" />
-      <LineId Id="67" Count="0" />
-      <LineId Id="57" Count="0" />
-      <LineId Id="60" Count="1" />
-      <LineId Id="70" Count="2" />
-      <LineId Id="62" Count="0" />
-      <LineId Id="66" Count="0" />
-      <LineId Id="69" Count="0" />
-      <LineId Id="77" Count="0" />
-      <LineId Id="54" Count="0" />
-      <LineId Id="74" Count="2" />
-      <LineId Id="73" Count="0" />
-      <LineId Id="4" Count="0" />
-      <LineId Id="3" Count="0" />
-      <LineId Id="5" Count="0" />
-      <LineId Id="36" Count="3" />
-      <LineId Id="41" Count="0" />
-      <LineId Id="34" Count="0" />
-      <LineId Id="10" Count="2" />
-      <LineId Id="42" Count="0" />
-      <LineId Id="14" Count="0" />
-      <LineId Id="43" Count="3" />
-      <LineId Id="13" Count="0" />
-      <LineId Id="47" Count="0" />
-      <LineId Id="52" Count="0" />
-      <LineId Id="48" Count="3" />
-    </LineIds>
-    <LineIds Name="A_1_PRG_Main_Master.d_ACT_ShutdownAndQuit">
-      <LineId Id="2" Count="8" />
-      <LineId Id="1" Count="0" />
-      <LineId Id="12" Count="0" />
-      <LineId Id="11" Count="0" />
-    </LineIds>
-    <LineIds Name="A_1_PRG_Main_Master.e_ACT_UserLog">
-      <LineId Id="198" Count="0" />
-      <LineId Id="197" Count="0" />
-      <LineId Id="194" Count="0" />
-      <LineId Id="199" Count="1" />
-      <LineId Id="202" Count="0" />
-      <LineId Id="201" Count="0" />
-      <LineId Id="203" Count="0" />
-      <LineId Id="205" Count="0" />
-      <LineId Id="204" Count="0" />
-      <LineId Id="196" Count="0" />
-      <LineId Id="195" Count="0" />
-      <LineId Id="208" Count="0" />
-      <LineId Id="206" Count="0" />
-      <LineId Id="210" Count="3" />
-      <LineId Id="207" Count="0" />
-      <LineId Id="100" Count="0" />
-      <LineId Id="74" Count="0" />
-      <LineId Id="77" Count="0" />
-      <LineId Id="76" Count="0" />
-      <LineId Id="81" Count="1" />
-      <LineId Id="79" Count="0" />
-      <LineId Id="131" Count="1" />
-      <LineId Id="185" Count="0" />
-      <LineId Id="184" Count="0" />
-      <LineId Id="186" Count="0" />
-      <LineId Id="188" Count="4" />
-      <LineId Id="187" Count="0" />
-      <LineId Id="138" Count="0" />
-      <LineId Id="137" Count="0" />
-      <LineId Id="110" Count="1" />
-      <LineId Id="108" Count="0" />
-      <LineId Id="107" Count="0" />
-      <LineId Id="84" Count="0" />
-      <LineId Id="73" Count="0" />
-      <LineId Id="72" Count="0" />
-    </LineIds>
-    <LineIds Name="A_1_PRG_Main_Master.f_ACT_TerminalInfo">
-      <LineId Id="34" Count="0" />
-      <LineId Id="36" Count="1" />
-      <LineId Id="39" Count="0" />
-      <LineId Id="38" Count="0" />
-      <LineId Id="35" Count="0" />
-      <LineId Id="1" Count="5" />
-      <LineId Id="8" Count="0" />
-      <LineId Id="7" Count="0" />
-      <LineId Id="9" Count="0" />
-      <LineId Id="11" Count="0" />
-      <LineId Id="10" Count="0" />
-      <LineId Id="12" Count="0" />
-      <LineId Id="16" Count="0" />
-      <LineId Id="15" Count="0" />
-      <LineId Id="17" Count="0" />
-      <LineId Id="19" Count="0" />
-      <LineId Id="18" Count="0" />
-      <LineId Id="20" Count="0" />
-      <LineId Id="22" Count="0" />
-      <LineId Id="21" Count="0" />
-      <LineId Id="23" Count="0" />
-      <LineId Id="25" Count="0" />
-      <LineId Id="24" Count="0" />
-      <LineId Id="26" Count="0" />
-      <LineId Id="28" Count="0" />
-      <LineId Id="27" Count="0" />
-      <LineId Id="29" Count="0" />
-      <LineId Id="31" Count="0" />
-      <LineId Id="30" Count="0" />
-      <LineId Id="32" Count="1" />
-    </LineIds>
-    <LineIds Name="A_1_PRG_Main_Master.g_ACT_Manual">
-      <LineId Id="23" Count="0" />
-      <LineId Id="2" Count="0" />
-      <LineId Id="8" Count="1" />
-      <LineId Id="11" Count="0" />
-      <LineId Id="10" Count="0" />
-      <LineId Id="4" Count="0" />
-      <LineId Id="3" Count="0" />
-      <LineId Id="5" Count="0" />
-      <LineId Id="7" Count="0" />
-      <LineId Id="17" Count="0" />
-      <LineId Id="12" Count="0" />
-      <LineId Id="14" Count="1" />
-      <LineId Id="6" Count="0" />
-      <LineId Id="16" Count="0" />
-      <LineId Id="21" Count="0" />
-    </LineIds>
-    <LineIds Name="A_1_PRG_Main_Master.h_ACT_Statistics">
-      <LineId Id="2" Count="1" />
-      <LineId Id="9" Count="0" />
-      <LineId Id="11" Count="1" />
-      <LineId Id="37" Count="0" />
-      <LineId Id="13" Count="1" />
-      <LineId Id="20" Count="0" />
-      <LineId Id="38" Count="6" />
-      <LineId Id="21" Count="0" />
-      <LineId Id="36" Count="0" />
-      <LineId Id="1" Count="0" />
-    </LineIds>
-    <LineIds Name="A_1_PRG_Main_Master.i_ACT_TwinSAFE">
-      <LineId Id="2" Count="4" />
-      <LineId Id="1" Count="0" />
-    </LineIds>
-    <LineIds Name="A_1_PRG_Main_Master.j_ACT_MachineDefinition">
-      <LineId Id="67" Count="0" />
-      <LineId Id="61" Count="0" />
-      <LineId Id="68" Count="0" />
-      <LineId Id="109" Count="4" />
-      <LineId Id="108" Count="0" />
-      <LineId Id="71" Count="1" />
-      <LineId Id="75" Count="1" />
-      <LineId Id="78" Count="1" />
-      <LineId Id="77" Count="0" />
-      <LineId Id="74" Count="0" />
-      <LineId Id="73" Count="0" />
-      <LineId Id="80" Count="0" />
-      <LineId Id="70" Count="0" />
-      <LineId Id="82" Count="0" />
-      <LineId Id="81" Count="0" />
-      <LineId Id="69" Count="0" />
-      <LineId Id="64" Count="0" />
-      <LineId Id="2" Count="0" />
-      <LineId Id="1" Count="0" />
-      <LineId Id="3" Count="0" />
-      <LineId Id="6" Count="4" />
-      <LineId Id="103" Count="0" />
-      <LineId Id="83" Count="3" />
-      <LineId Id="5" Count="0" />
-      <LineId Id="4" Count="0" />
-      <LineId Id="12" Count="7" />
-      <LineId Id="88" Count="0" />
-      <LineId Id="104" Count="0" />
-      <LineId Id="89" Count="1" />
-      <LineId Id="87" Count="0" />
-      <LineId Id="20" Count="0" />
-      <LineId Id="11" Count="0" />
-      <LineId Id="22" Count="7" />
-      <LineId Id="92" Count="1" />
-      <LineId Id="105" Count="0" />
-      <LineId Id="94" Count="0" />
-      <LineId Id="91" Count="0" />
-      <LineId Id="30" Count="0" />
-      <LineId Id="21" Count="0" />
-      <LineId Id="32" Count="7" />
-      <LineId Id="96" Count="2" />
-      <LineId Id="106" Count="0" />
-      <LineId Id="95" Count="0" />
-      <LineId Id="40" Count="0" />
-      <LineId Id="31" Count="0" />
-      <LineId Id="42" Count="7" />
-      <LineId Id="100" Count="2" />
-      <LineId Id="99" Count="0" />
-      <LineId Id="107" Count="0" />
-      <LineId Id="50" Count="0" />
-      <LineId Id="41" Count="0" />
-    </LineIds>
   </POU>
 </TcPlcObject>

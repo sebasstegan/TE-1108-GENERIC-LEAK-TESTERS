@@ -1,0 +1,15 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<TcPlcObject Version="1.1.0.1" ProductVersion="3.1.4026.17">
+  <GVL Name="GVL_CylinderTest" Id="{4e6ce3fe-25e3-4459-bcc0-aa2e161d9f33}">
+    <Declaration><![CDATA[
+VAR_GLOBAL
+	
+	qCylinderUp            				AT %Q*	 		: 	BOOL;
+	qCylinderDown						AT %Q*	 		: 	BOOL;
+	
+	iCylinderUp            				AT %I*	 		: 	BOOL;
+	iCylinderDown						AT %I*	 		: 	BOOL;
+
+END_VAR]]></Declaration>
+  </GVL>
+</TcPlcObject>

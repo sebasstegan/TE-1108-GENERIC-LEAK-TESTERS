@@ -10,10 +10,9 @@
 </div>
 <div id="Menu" data-tchmi-type="TcHmi.Controls.Beckhoff.TcHmiImage" data-tchmi-height="70" data-tchmi-height-unit="px" data-tchmi-left="80" data-tchmi-left-unit="px" data-tchmi-src="Images/Buttons/MenuButton.png" data-tchmi-top="0" data-tchmi-top-unit="px" data-tchmi-width="70" data-tchmi-width-unit="px" data-tchmi-zindex="1">
 
-<script data-tchmi-target-attribute="data-tchmi-trigger" type="application/json">
-[
+<script data-tchmi-target-attribute="data-tchmi-trigger" type="application/json">[
   {
-    "event": "Menu.onPressed",
+    "event": "%ctx%owner::Id|EventRegistrationMode=Resolve%/ctx%.onPressed",
     "actions": [
       {
         "objectType": "WriteToSymbol",
@@ -28,15 +27,13 @@
       }
     ]
   }
-]
-</script>
+]</script>
 </div>
 <div id="Home" data-tchmi-type="TcHmi.Controls.Beckhoff.TcHmiImage" data-tchmi-height="70" data-tchmi-height-unit="px" data-tchmi-left="0" data-tchmi-left-unit="px" data-tchmi-src="Images/Buttons/HomeButton.png" data-tchmi-top="0" data-tchmi-top-unit="px" data-tchmi-width="70" data-tchmi-width-unit="px" data-tchmi-zindex="1">
 
-<script data-tchmi-target-attribute="data-tchmi-trigger" type="application/json">
-[
+<script data-tchmi-target-attribute="data-tchmi-trigger" type="application/json">[
   {
-    "event": "Home.onPressed",
+    "event": "%ctx%owner::Id|EventRegistrationMode=Resolve%/ctx%.onPressed",
     "actions": [
       {
         "objectType": "WriteToSymbol",
@@ -51,15 +48,13 @@
       }
     ]
   }
-]
-</script>
+]</script>
 </div>
 <div id="IO" data-tchmi-type="TcHmi.Controls.Beckhoff.TcHmiImage" data-tchmi-height="70" data-tchmi-height-unit="px" data-tchmi-left="160" data-tchmi-left-unit="px" data-tchmi-src="Images/Buttons/IOButton.png" data-tchmi-top="0" data-tchmi-top-unit="px" data-tchmi-width="70" data-tchmi-width-unit="px" data-tchmi-zindex="1">
 
-<script data-tchmi-target-attribute="data-tchmi-trigger" type="application/json">
-[
+<script data-tchmi-target-attribute="data-tchmi-trigger" type="application/json">[
   {
-    "event": "IO.onPressed",
+    "event": "%ctx%owner::Id|EventRegistrationMode=Resolve%/ctx%.onPressed",
     "actions": [
       {
         "objectType": "WriteToSymbol",
@@ -74,15 +69,13 @@
       }
     ]
   }
-]
-</script>
+]</script>
 </div>
 <div id="Alarms" data-tchmi-type="TcHmi.Controls.Beckhoff.TcHmiImage" data-tchmi-height="70" data-tchmi-height-unit="px" data-tchmi-left="240" data-tchmi-left-unit="px" data-tchmi-src="Images/Buttons/AlarmButton.png" data-tchmi-top="0" data-tchmi-top-unit="px" data-tchmi-width="70" data-tchmi-width-unit="px" data-tchmi-zindex="1">
 
-<script data-tchmi-target-attribute="data-tchmi-trigger" type="application/json">
-[
+<script data-tchmi-target-attribute="data-tchmi-trigger" type="application/json">[
   {
-    "event": "Alarms.onPressed",
+    "event": "%ctx%owner::Id|EventRegistrationMode=Resolve%/ctx%.onPressed",
     "actions": [
       {
         "objectType": "WriteToSymbol",
@@ -97,15 +90,13 @@
       }
     ]
   }
-]
-</script>
+]</script>
 </div>
 <div id="Logout" data-tchmi-type="TcHmi.Controls.Beckhoff.TcHmiImage" data-tchmi-height="70" data-tchmi-height-unit="px" data-tchmi-left="320" data-tchmi-left-unit="px" data-tchmi-src="Images/Buttons/LoginButton.png" data-tchmi-top="0" data-tchmi-top-unit="px" data-tchmi-width="70" data-tchmi-width-unit="px" data-tchmi-zindex="1">
 
-<script data-tchmi-target-attribute="data-tchmi-trigger" type="application/json">
-[
+<script data-tchmi-target-attribute="data-tchmi-trigger" type="application/json">[
   {
-    "event": "Logout.onPressed",
+    "event": "%ctx%owner::Id|EventRegistrationMode=Resolve%/ctx%.onPressed",
     "actions": [
       {
         "objectType": "Function",
@@ -122,8 +113,7 @@
       }
     ]
   }
-]
-</script>
+]</script>
 </div>
 <div id="ShutDown" data-tchmi-type="TcHmi.Controls.Beckhoff.TcHmiImage" data-tchmi-height="70" data-tchmi-height-unit="px" data-tchmi-left="400" data-tchmi-left-unit="px" data-tchmi-src="Images/Buttons/Shutdown_Box_Red.png" data-tchmi-top="0" data-tchmi-top-unit="px" data-tchmi-width="70" data-tchmi-width-unit="px" data-tchmi-zindex="1">
 </div>
@@ -152,8 +142,7 @@
 </div>
 <div id="Main_Region" data-tchmi-type="TcHmi.Controls.System.TcHmiRegion" data-tchmi-height="479" data-tchmi-height-unit="px" data-tchmi-left="10" data-tchmi-left-unit="px" data-tchmi-top="80" data-tchmi-top-unit="px" data-tchmi-width="1260" data-tchmi-width-unit="px" data-tchmi-creator-locked="True" data-tchmi-target-content="Contents/1_Main.content" data-tchmi-zindex="1">
 
-<script data-tchmi-target-attribute="data-tchmi-trigger" type="application/json">
-[
+<script data-tchmi-target-attribute="data-tchmi-trigger" type="application/json">[
   {
     "event": "%i%MainFrame%/i%",
     "actions": [
@@ -176,7 +165,7 @@
               {
                 "objectType": "WriteToSymbol",
                 "active": true,
-                "symbolExpression": "%ctrl%Main_Region::TargetContent%/ctrl%",
+                "symbolExpression": "%ctx%owner::TargetContent%/ctx%",
                 "value": {
                   "objectType": "StaticValue",
                   "valueType": "tchmi:framework#/definitions/ContentPath",
@@ -196,7 +185,7 @@
               {
                 "objectType": "WriteToSymbol",
                 "active": true,
-                "symbolExpression": "%ctrl%Main_Region::TargetContent%/ctrl%",
+                "symbolExpression": "%ctx%owner::TargetContent%/ctx%",
                 "value": {
                   "objectType": "StaticValue",
                   "valueType": "tchmi:framework#/definitions/ContentPath",
@@ -216,7 +205,7 @@
               {
                 "objectType": "WriteToSymbol",
                 "active": true,
-                "symbolExpression": "%ctrl%Main_Region::TargetContent%/ctrl%",
+                "symbolExpression": "%ctx%owner::TargetContent%/ctx%",
                 "value": {
                   "objectType": "StaticValue",
                   "valueType": "tchmi:framework#/definitions/ContentPath",
@@ -236,7 +225,7 @@
               {
                 "objectType": "WriteToSymbol",
                 "active": true,
-                "symbolExpression": "%ctrl%Main_Region::TargetContent%/ctrl%",
+                "symbolExpression": "%ctx%owner::TargetContent%/ctx%",
                 "value": {
                   "objectType": "StaticValue",
                   "valueType": "tchmi:framework#/definitions/ContentPath",
@@ -256,7 +245,7 @@
               {
                 "objectType": "WriteToSymbol",
                 "active": true,
-                "symbolExpression": "%ctrl%Main_Region::TargetContent%/ctrl%",
+                "symbolExpression": "%ctx%owner::TargetContent%/ctx%",
                 "value": {
                   "objectType": "StaticValue",
                   "valueType": "tchmi:framework#/definitions/ContentPath",
@@ -276,7 +265,7 @@
               {
                 "objectType": "WriteToSymbol",
                 "active": true,
-                "symbolExpression": "%ctrl%Main_Region::TargetContent%/ctrl%",
+                "symbolExpression": "%ctx%owner::TargetContent%/ctx%",
                 "value": {
                   "objectType": "StaticValue",
                   "valueType": "tchmi:framework#/definitions/ContentPath",
@@ -296,7 +285,7 @@
               {
                 "objectType": "WriteToSymbol",
                 "active": true,
-                "symbolExpression": "%ctrl%Main_Region::TargetContent%/ctrl%",
+                "symbolExpression": "%ctx%owner::TargetContent%/ctx%",
                 "value": {
                   "objectType": "StaticValue",
                   "valueType": "tchmi:framework#/definitions/ContentPath",
@@ -316,7 +305,7 @@
               {
                 "objectType": "WriteToSymbol",
                 "active": true,
-                "symbolExpression": "%ctrl%Main_Region::TargetContent%/ctrl%",
+                "symbolExpression": "%ctx%owner::TargetContent%/ctx%",
                 "value": {
                   "objectType": "StaticValue",
                   "valueType": "tchmi:framework#/definitions/ContentPath",
@@ -336,7 +325,7 @@
               {
                 "objectType": "WriteToSymbol",
                 "active": true,
-                "symbolExpression": "%ctrl%Main_Region::TargetContent%/ctrl%",
+                "symbolExpression": "%ctx%owner::TargetContent%/ctx%",
                 "value": {
                   "objectType": "StaticValue",
                   "valueType": "tchmi:framework#/definitions/ContentPath",
@@ -356,7 +345,7 @@
               {
                 "objectType": "WriteToSymbol",
                 "active": true,
-                "symbolExpression": "%ctrl%Main_Region::TargetContent%/ctrl%",
+                "symbolExpression": "%ctx%owner::TargetContent%/ctx%",
                 "value": {
                   "objectType": "StaticValue",
                   "valueType": "tchmi:framework#/definitions/ContentPath",
@@ -376,7 +365,7 @@
               {
                 "objectType": "WriteToSymbol",
                 "active": true,
-                "symbolExpression": "%ctrl%Main_Region::TargetContent%/ctrl%",
+                "symbolExpression": "%ctx%owner::TargetContent%/ctx%",
                 "value": {
                   "objectType": "StaticValue",
                   "valueType": "tchmi:framework#/definitions/ContentPath",
@@ -396,7 +385,7 @@
               {
                 "objectType": "WriteToSymbol",
                 "active": true,
-                "symbolExpression": "%ctrl%Main_Region::TargetContent%/ctrl%",
+                "symbolExpression": "%ctx%owner::TargetContent%/ctx%",
                 "value": {
                   "objectType": "StaticValue",
                   "valueType": "tchmi:framework#/definitions/ContentPath",
@@ -416,7 +405,7 @@
               {
                 "objectType": "WriteToSymbol",
                 "active": true,
-                "symbolExpression": "%ctrl%Main_Region::TargetContent%/ctrl%",
+                "symbolExpression": "%ctx%owner::TargetContent%/ctx%",
                 "value": {
                   "objectType": "StaticValue",
                   "valueType": "tchmi:framework#/definitions/ContentPath",
@@ -477,8 +466,7 @@
       }
     ]
   }
-]
-</script>
+]</script>
 </div>
 <div id="TcHmiDatagrid_5" data-tchmi-type="TcHmi.Controls.Beckhoff.TcHmiDatagrid" data-tchmi-height="169" data-tchmi-height-unit="px" data-tchmi-left="0" data-tchmi-left-unit="px" data-tchmi-top="559" data-tchmi-top-unit="px" data-tchmi-width="1280" data-tchmi-width-unit="px" data-tchmi-src-data="%s%PLC1.GVL_Master.astActiveEvents%/s%" data-tchmi-grid-font-size="20" data-tchmi-grid-font-style="Normal" data-tchmi-grid-font-weight="Bold" data-tchmi-zindex="1">
 <script data-tchmi-target-attribute="data-tchmi-cell-content-padding" type="application/json">
@@ -628,14 +616,13 @@
 
 
 
-<script data-tchmi-target-attribute="data-tchmi-trigger" type="application/json">
-[
+<script data-tchmi-target-attribute="data-tchmi-trigger" type="application/json">[
   {
-    "event": "TcHmiButton_39.onPressed",
+    "event": "%ctx%owner::Id|EventRegistrationMode=Resolve%/ctx%.onPressed",
     "actions": []
   },
   {
-    "event": "TcHmiButton_39.onStateReleased",
+    "event": "%ctx%owner::Id|EventRegistrationMode=Resolve%/ctx%.onStateReleased",
     "actions": [
       {
         "objectType": "WriteToSymbol",
@@ -651,7 +638,7 @@
     ]
   },
   {
-    "event": "TcHmiButton_39.onStatePressed",
+    "event": "%ctx%owner::Id|EventRegistrationMode=Resolve%/ctx%.onStatePressed",
     "actions": [
       {
         "objectType": "WriteToSymbol",
@@ -666,13 +653,11 @@
       }
     ]
   }
-]
-</script>
+]</script>
 </div>
 <div id="TcHmiRegion_2" data-tchmi-type="TcHmi.Controls.System.TcHmiRegion" data-tchmi-height="300" data-tchmi-height-unit="px" data-tchmi-left="390" data-tchmi-left-unit="px" data-tchmi-top="151" data-tchmi-top-unit="px" data-tchmi-width="500" data-tchmi-width-unit="px" data-tchmi-zindex="4">
 
-<script data-tchmi-target-attribute="data-tchmi-trigger" type="application/json">
-[
+<script data-tchmi-target-attribute="data-tchmi-trigger" type="application/json">[
   {
     "event": "%s%PLC1.GVL_HMI.nPopUp%/s%",
     "actions": [
@@ -703,7 +688,7 @@
               {
                 "objectType": "WriteToSymbol",
                 "active": true,
-                "symbolExpression": "%ctrl%TcHmiRegion_2::TargetContent%/ctrl%",
+                "symbolExpression": "%ctx%owner::TargetContent%/ctx%",
                 "value": {
                   "objectType": "StaticValue",
                   "valueType": "tchmi:framework#/definitions/ContentPath",
@@ -723,7 +708,7 @@
               {
                 "objectType": "WriteToSymbol",
                 "active": true,
-                "symbolExpression": "%ctrl%TcHmiRegion_2::TargetContent%/ctrl%",
+                "symbolExpression": "%ctx%owner::TargetContent%/ctx%",
                 "value": {
                   "objectType": "StaticValue",
                   "valueType": "tchmi:framework#/definitions/ContentPath",
@@ -739,7 +724,7 @@
     ]
   },
   {
-    "event": "TcHmiRegion_2.onTargetContentReplaced",
+    "event": "%ctx%owner::Id|EventRegistrationMode=Resolve%/ctx%.onTargetContentReplaced",
     "actions": [
       {
         "objectType": "WriteToSymbol",
@@ -782,7 +767,7 @@
               {
                 "objectType": "WriteToSymbol",
                 "active": true,
-                "symbolExpression": "%ctrl%TcHmiRegion_2::Visibility%/ctrl%",
+                "symbolExpression": "%ctx%owner::Visibility%/ctx%",
                 "value": {
                   "objectType": "StaticValue",
                   "valueType": "tchmi:framework#/definitions/Visibility",
@@ -797,7 +782,7 @@
               {
                 "objectType": "WriteToSymbol",
                 "active": true,
-                "symbolExpression": "%ctrl%TcHmiRegion_2::Visibility%/ctrl%",
+                "symbolExpression": "%ctx%owner::Visibility%/ctx%",
                 "value": {
                   "objectType": "StaticValue",
                   "valueType": "tchmi:framework#/definitions/Visibility",
@@ -823,8 +808,7 @@
       }
     ]
   }
-]
-</script>
+]</script>
 </div>
 <div id="TcHmiDateTimeDisplay" data-tchmi-type="TcHmi.Controls.Beckhoff.TcHmiDateTimeDisplay" data-tchmi-height="33" data-tchmi-height-unit="px" data-tchmi-left="1120" data-tchmi-left-unit="px" data-tchmi-top="35" data-tchmi-top-unit="px" data-tchmi-width="150" data-tchmi-width-unit="px" data-tchmi-time-display-layout="Time">
 </div>
