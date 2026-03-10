@@ -158,11 +158,19 @@
 		</System>
 		<Plc>
 			<Project GUID="{997013A6-75D1-424B-98F5-A30289B2B96E}" Name="TE1108" PrjFilePath="TE1108\TE1108.plcproj" TmcFilePath="TE1108\TE1108.tmc" ReloadTmc="true" AmsPort="851" FileArchiveSettings="#x000e" SymbolicMapping="true">
-				<Instance Id="#x08502000" TcSmClass="TComPlcObjDef" KeepUnrestoredLinks="2" TmcHash="{F65B34C5-8498-372D-A65A-87C544979742}" TmcPath="TE1108\TE1108.tmc">
+				<Instance Id="#x08502000" TcSmClass="TComPlcObjDef" KeepUnrestoredLinks="2" TmcHash="{9BD105A8-3B21-C4B5-74E6-A7AE999E1A77}" TmcPath="TE1108\TE1108.tmc">
 					<Name>TE1108 Instance</Name>
 					<CLSID ClassFactory="TcPlc30">{08500001-0000-0000-F000-000000000064}</CLSID>
 					<Vars VarGrpType="2" AreaNo="1">
 						<Name>PlcTask Outputs</Name>
+						<Var>
+							<Name>GVL_CylinderTest.qCylinderUp</Name>
+							<Type>BOOL</Type>
+						</Var>
+						<Var>
+							<Name>GVL_CylinderTest.qCylinderDown</Name>
+							<Type>BOOL</Type>
+						</Var>
 						<Var>
 							<Name>GVL_IO.dw_T06_EL2904.qEnableAirSupply_PSR1</Name>
 							<Comment><![CDATA[ EL2904 channel 1]]></Comment>
@@ -546,17 +554,17 @@
 							<Name>GVL_IO.LeakTester2_IO.sti28General_I_O.bSetProgram</Name>
 							<Type GUID="{481A0C15-D2DB-59F6-F498-C30AA9C1998C}">ARRAY [0..7] OF BOOL</Type>
 						</Var>
-						<Var>
-							<Name>GVL_CylinderTest.qCylinderUp</Name>
-							<Type>BOOL</Type>
-						</Var>
-						<Var>
-							<Name>GVL_CylinderTest.qCylinderDown</Name>
-							<Type>BOOL</Type>
-						</Var>
 					</Vars>
 					<Vars VarGrpType="1">
 						<Name>PlcTask Inputs</Name>
+						<Var>
+							<Name>GVL_CylinderTest.iCylinderUp</Name>
+							<Type>BOOL</Type>
+						</Var>
+						<Var>
+							<Name>GVL_CylinderTest.iCylinderDown</Name>
+							<Type>BOOL</Type>
+						</Var>
 						<Var>
 							<Name>GVL_IO.dw_T01_EK1100.stTerminalInfo.nTerminal_State</Name>
 							<Comment><![CDATA[ Terminal State from IO Terminal Info Data]]></Comment>
@@ -1583,14 +1591,6 @@
 						<Var>
 							<Name>GVL_Master.stCycleData.stLeakTester_CycleData[1].aLeakTesterLastResult2.inUnitCode2</Name>
 							<Type>USINT</Type>
-						</Var>
-						<Var>
-							<Name>GVL_CylinderTest.iCylinderUp</Name>
-							<Type>BOOL</Type>
-						</Var>
-						<Var>
-							<Name>GVL_CylinderTest.iCylinderDown</Name>
-							<Type>BOOL</Type>
 						</Var>
 						<Var>
 							<Name>GVL_Persistent.aDataHistory[0].stLeakTester_CycleData[0].aLeakTesterLastResult1.inUniqueID</Name>

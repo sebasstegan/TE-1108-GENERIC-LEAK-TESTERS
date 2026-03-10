@@ -113,13 +113,6 @@
       "preloadBindings": false
     },
     {
-      "url": "Contents/11_Electric_Drawings.content",
-      "preload": false,
-      "keepAlive": false,
-      "loadSync": false,
-      "preloadBindings": false
-    },
-    {
       "url": "Contents/12_Operatinal_Manual.content",
       "preload": false,
       "keepAlive": false,

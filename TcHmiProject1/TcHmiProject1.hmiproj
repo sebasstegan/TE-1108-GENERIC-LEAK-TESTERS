@@ -167,9 +167,6 @@
     <Content Include="Contents\6_Settings.content">
       <SubType>Content</SubType>
     </Content>
-    <Content Include="Contents\11_Electric_Drawings.content">
-      <SubType>Content</SubType>
-    </Content>
     <Content Include="Contents\8_Info.content">
       <SubType>Content</SubType>
     </Content>
@@ -332,6 +329,9 @@
       <SubType>Content</SubType>
     </Content>
     <Content Include="Images\Icons\user.svg">
+      <SubType>Content</SubType>
+    </Content>
+    <Content Include="Images\JabilMasterLogo.png">
       <SubType>Content</SubType>
     </Content>
     <Content Include="Images\TeganInfo.png">
