@@ -211,6 +211,13 @@
       "preloadBindings": false
     },
     {
+      "url": "Contents/M/HeadMenu.content",
+      "preload": false,
+      "keepAlive": false,
+      "loadSync": false,
+      "preloadBindings": false
+    },
+    {
       "url": "Contents/Manual/1_Station1.content",
       "preload": false,
       "keepAlive": false,

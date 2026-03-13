@@ -129,6 +129,7 @@
     <Folder Include="Contents\Manual" />
     <Folder Include="Contents\CSS_JAVA" />
     <Folder Include="Contents\Events" />
+    <Folder Include="Contents\M" />
     <Folder Include="Contents\UserControl" />
     <Folder Include="Contents\popup" />
     <Folder Include="Contents\pdf" />
@@ -233,6 +234,9 @@
       <SubType>Content</SubType>
     </Content>
     <Content Include="Contents\Manual\1_Station1.content">
+      <SubType>Content</SubType>
+    </Content>
+    <Content Include="Contents\M\HeadMenu.content">
       <SubType>Content</SubType>
     </Content>
     <Content Include="Contents\pdf\TE1096_ EMALC_Stopper_Insertion.SDS.pdf">
