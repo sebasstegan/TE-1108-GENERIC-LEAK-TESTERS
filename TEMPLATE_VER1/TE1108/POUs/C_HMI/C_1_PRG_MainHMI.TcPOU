@@ -10,7 +10,8 @@ END_VAR
 ]]></Declaration>
     <Implementation>
       <ST><![CDATA[a_ACT_MachineStatusBaner();
-b_ACT_Timers();]]></ST>
+b_ACT_Timers();
+c_ACT_IO();]]></ST>
     </Implementation>
     <Action Name="a_ACT_MachineStatusBaner" Id="{0dc7bcd3-753a-4f06-be0f-fec0a8964021}">
       <Implementation>
@@ -128,6 +129,14 @@ stTimers.tStation2TimeOut		:= DINT_TO_TIME(stTimers.nStation2TimeOut * 1000) ;
 stTimers.tStation3TimeOut		:= DINT_TO_TIME(stTimers.nStation3TimeOut * 1000) ;
 stTimers.tTwoHandsSignal		:= DINT_TO_TIME(stTimers.nTwoHandsSignal * 1000) ;
 stTimers.tHeightTest			:= DINT_TO_TIME(stTimers.nHeightTest * 1000) ;]]></ST>
+      </Implementation>
+    </Action>
+    <Action Name="c_ACT_IO" Id="{5594a5d6-af1e-4a8b-85d6-f9bf1b336af1}">
+      <Implementation>
+        <ST><![CDATA[
+
+bLeftHand							:= dw_T05_EL1918.iLeftTouchButtonNO;
+bRightHand							:= dw_T05_EL1918.iRightTouchButtonNO;]]></ST>
       </Implementation>
     </Action>
   </POU>

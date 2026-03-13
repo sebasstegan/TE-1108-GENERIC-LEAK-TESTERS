@@ -2,21 +2,21 @@
 <TcSmProject xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:noNamespaceSchemaLocation="http://www.beckhoff.com/schemas/2012/07/TcSmProject" TcSmVersion="1.0" TcVersion="3.1.4026.20">
 	<DataTypes>
 		<DataType>
-			<Name GUID="{54195CC7-3340-E483-343B-EF7951C3211B}" IecBaseType="true" AutoDeleteType="true">ARRAY [0..1] OF BOOL</Name>
-			<BitSize>16</BitSize>
-			<BaseType GUID="{18071995-0000-0000-0000-000000000030}">BOOL</BaseType>
-			<ArrayInfo>
-				<LBound>0</LBound>
-				<Elements>2</Elements>
-			</ArrayInfo>
-		</DataType>
-		<DataType>
 			<Name GUID="{481A0C15-D2DB-59F6-F498-C30AA9C1998C}" IecBaseType="true" AutoDeleteType="true">ARRAY [0..7] OF BOOL</Name>
 			<BitSize>64</BitSize>
 			<BaseType GUID="{18071995-0000-0000-0000-000000000030}">BOOL</BaseType>
 			<ArrayInfo>
 				<LBound>0</LBound>
 				<Elements>8</Elements>
+			</ArrayInfo>
+		</DataType>
+		<DataType>
+			<Name GUID="{54195CC7-3340-E483-343B-EF7951C3211B}" IecBaseType="true" AutoDeleteType="true">ARRAY [0..1] OF BOOL</Name>
+			<BitSize>16</BitSize>
+			<BaseType GUID="{18071995-0000-0000-0000-000000000030}">BOOL</BaseType>
+			<ArrayInfo>
+				<LBound>0</LBound>
+				<Elements>2</Elements>
 			</ArrayInfo>
 		</DataType>
 		<DataType>
@@ -158,7 +158,7 @@
 		<ImageData Id="1006">424dd6020000000000003600000028000000100000000e0000000100180000000000a0020000c40e0000c40e00000000000000000000ff00ffff00ffff00ffff00ffff00ffff00ff808080808080808080808080808080ff00ffff00ffff00ffff00ffff00ffff00ffff00ffff00ffff00ffff00ffff00ffc0c0c0000000c0c0c0000000808080ff00ffff00ffff00ffff00ffff00ffff00ffff00ffff00ffff00ffff00ffff00ffc0c0c000ffffc0c0c000ffff808080ff00ffff00ffff00ffff00ffff00ffff00ffff00ffff00ffff00ffff00ffff00ffc0c0c0c0c0c0c0c0c0c0c0c0808080ff00ffff00ffff00ffff00ffff00ffff00ffff00ffff00ffff00ffff00ffff00ffc0c0c0000000c0c0c0000000808080ff00ffff00ffff00ffff00ffff00ffff00ffff00ffff00ffff00ffff00ffff00ffc0c0c0ff0000c0c0c0ff0000808080ff00ffff00ffff00ffff00ffff00ffff00ffff00ffff00ffff00ffff00ffff00ffc0c0c0c0c0c0c0c0c0c0c0c0808080ff00ffff00ffff00ffff00ffff00ff00ff0000ff0000ff0000ff0000ff0000ff00c0c0c0000000c0c0c0000000808080ff00ffff00ffff00ffff00ffff00ff00ff0000ff0000ff0000ff0000ff0000ff00c0c0c00000ffc0c0c00000ff808080ff00ffff00ffff00ffff00ffff00ff00ff0000ff0000ff0000ff0000ff0000ff00c0c0c0c0c0c0c0c0c0c0c0c0808080ff00ffff00ffff00ffff00ffff00ff00ff0000ff0000ff0000ff0000ff0000ff00c0c0c0000000c0c0c0000000808080ff00ffff00ffff00ffff00ffff00ff00ff0000ff0000ff0000ff0000ff0000ff00c0c0c0c0c0c0c0c0c0c0c0c0808080ff00ffff00ffff00ffff00ffff00ff00ff0000ff0000ff0000ff0000ff0000ff00c0c0c0008000c0c0c0008000808080ff00ffff00ffff00ffff00ffff00ff00ff0000ff0000ff0000ff0000ff0000ff00c0c0c0c0c0c0c0c0c0c0c0c0808080ff00ffff00ffff00ffff00ffff00ff</ImageData>
 		<ImageData Id="1007">424dd6020000000000003600000028000000100000000e0000000100180000000000a0020000c40e0000c40e00000000000000000000ff00ffff00ffff00ffff00ffff00ffff00ff808080808080808080ff00ffff00ffff00ffff00ffff00ffff00ffff00ffff00ffff00ffff00ffff00ffff00ffff00ffc0c0c0c0c0c0808080ff00ffff00ffff00ffff00ffff00ffff00ffff00ffff00ffff00ffff00ffff00ffff00ffff00ffc0c0c0c0c0c0808080ff00ffff00ffff00ffff00ffff00ffff00ffff00ffff00ffff00ffff00ffff00ffff00ffff00ffc0c0c0c0c0c0808080ff00ffff00ffff00ffff00ffff00ffff00ffff00ffff00ffff00ffff00ffff00ffff00ffff00ffc0c0c0c0c0c0808080ff00ffff00ffff00ffff00ffff00ffff00ffff00ffff00ffff00ffff00ffff00ffff00ffff00ffc0c0c0c0c0c0808080ff00ffff00ffff00ffff00ffff00ffff00ffff00ffff00ffff00ffff00ffff00ffff00ffff00ffc0c0c0c0c0c0808080ff00ffff00ffff00ffff00ffff00ffff00ffff00ff007fff007fff007fff007fff007fff007fffc0c0c0c0c0c0808080ff00ffff00ffff00ffff00ffff00ffff00ffff00ff007fff007fff007fff007fff007fff007fffc0c0c0c0c0c0808080ff00ffff00ffff00ffff00ffff00ffff00ffff00ff007fff007fff007fff007fff007fff007fffc0c0c0c0c0c0808080ff00ffff00ffff00ffff00ffff00ffff00ffff00ff007fff007fff007fff007fff007fff007fffc0c0c0c0c0c0808080ff00ffff00ffff00ffff00ffff00ffff00ffff00ff007fff007fff007fff007fff007fff007fffc0c0c0c0c0c0808080ff00ffff00ffff00ffff00ffff00ffff00ffff00ff007fff007fff007fff007fff007fff007fffc0c0c0c0c0c0808080ff00ffff00ffff00ffff00ffff00ffff00ffff00ff007fff007fff007fff007fff007fff007fffc0c0c0c0c0c0808080ff00ffff00ffff00ffff00ffff00ffff00ffff00ff</ImageData>
 	</ImageDatas>
-	<Project ProjectGUID="{AAED4EA2-0931-43D2-8590-E4ACDEB76CAB}" TargetNetId="192.168.7.20.1.1" Target64Bit="true" ShowHideConfigurations="#x6">
+	<Project ProjectGUID="{AAED4EA2-0931-43D2-8590-E4ACDEB76CAB}" Target64Bit="true" ShowHideConfigurations="#x6">
 		<System>
 			<Settings MaxCpus="20" NonWinCpus="1">
 				<Cpu CpuId="3"/>
@@ -180,7 +180,7 @@
 		</System>
 		<Plc>
 			<Project GUID="{997013A6-75D1-424B-98F5-A30289B2B96E}" Name="TE1108" PrjFilePath="TE1108\TE1108.plcproj" TmcFilePath="TE1108\TE1108.tmc" ReloadTmc="true" AmsPort="851" FileArchiveSettings="#x000e" SymbolicMapping="true">
-				<Instance Id="#x08502000" TcSmClass="TComPlcObjDef" KeepUnrestoredLinks="2" TmcHash="{5187B05F-1615-2F1F-8F03-4B6F8DAA3511}" TmcPath="TE1108\TE1108.tmc">
+				<Instance Id="#x08502000" TcSmClass="TComPlcObjDef" KeepUnrestoredLinks="2" TmcHash="{8E2CAAEE-9996-609E-012B-89C270D00C41}" TmcPath="TE1108\TE1108.tmc">
 					<Name>TE1108 Instance</Name>
 					<CLSID ClassFactory="TcPlc30">{08500001-0000-0000-F000-000000000064}</CLSID>
 					<Vars VarGrpType="2" AreaNo="1">
@@ -366,47 +366,6 @@
 							<Type>BOOL</Type>
 						</Var>
 						<Var>
-							<Name>GVL_IO.stTwinSAFE.iAirPressureMaxValue</Name>
-							<Comment><![CDATA[////////////////////////////////////////////////////////////////////////Safety OUTPUTS///////////////////////////////////////////////////////////////////////////////////////]]></Comment>
-							<Type>UINT</Type>
-						</Var>
-						<Var>
-							<Name>GVL_IO.stTwinSAFE.iAirPressureMinValue</Name>
-							<Type>UINT</Type>
-						</Var>
-						<Var>
-							<Name>GVL_IO.stTwinSAFE.iAirSupplyMeasurement</Name>
-							<Type>UINT</Type>
-						</Var>
-						<Var>
-							<Name>GVL_IO.stTwinSAFE.iMachineStoppedCondition</Name>
-							<Type>BOOL</Type>
-						</Var>
-						<Var>
-							<Name>GVL_IO.stTwinSAFE.iProcessCylinderLockCondition1</Name>
-							<Type>BOOL</Type>
-						</Var>
-						<Var>
-							<Name>GVL_IO.stTwinSAFE.iProcessCylinderLockCondition2</Name>
-							<Type>BOOL</Type>
-						</Var>
-						<Var>
-							<Name>GVL_IO.stTwinSAFE.iProcessDoorClosing</Name>
-							<Type>BOOL</Type>
-						</Var>
-						<Var>
-							<Name>GVL_IO.stTwinSAFE.iProcessDoorClosedCondition</Name>
-							<Type>BOOL</Type>
-						</Var>
-						<Var>
-							<Name>GVL_IO.stTwinSAFE.iSafetyErrorAcknowledge</Name>
-							<Type>BOOL</Type>
-						</Var>
-						<Var>
-							<Name>GVL_IO.stTwinSAFE.bMainDoor_AirFlag</Name>
-							<Type GUID="{54195CC7-3340-E483-343B-EF7951C3211B}">ARRAY [0..1] OF BOOL</Type>
-						</Var>
-						<Var>
 							<Name>GVL_IO.LeakTester1_IO.sti28General_I_O.bOutput1</Name>
 							<Comment><![CDATA[OUTPUTS]]></Comment>
 							<Type>BOOL</Type>
@@ -584,9 +543,322 @@
 							<Name>GVL_IO.LeakTester2_IO.sti28General_I_O.bSetProgram</Name>
 							<Type GUID="{481A0C15-D2DB-59F6-F498-C30AA9C1998C}">ARRAY [0..7] OF BOOL</Type>
 						</Var>
+						<Var>
+							<Name>GVL_IO.stTwinSAFE.iAirPressureMaxValue</Name>
+							<Comment><![CDATA[////////////////////////////////////////////////////////////////////////Safety OUTPUTS///////////////////////////////////////////////////////////////////////////////////////]]></Comment>
+							<Type>UINT</Type>
+						</Var>
+						<Var>
+							<Name>GVL_IO.stTwinSAFE.iAirPressureMinValue</Name>
+							<Type>UINT</Type>
+						</Var>
+						<Var>
+							<Name>GVL_IO.stTwinSAFE.iAirSupplyMeasurement</Name>
+							<Type>UINT</Type>
+						</Var>
+						<Var>
+							<Name>GVL_IO.stTwinSAFE.iMachineStoppedCondition</Name>
+							<Type>BOOL</Type>
+						</Var>
+						<Var>
+							<Name>GVL_IO.stTwinSAFE.iProcessCylinderLockCondition1</Name>
+							<Type>BOOL</Type>
+						</Var>
+						<Var>
+							<Name>GVL_IO.stTwinSAFE.iProcessCylinderLockCondition2</Name>
+							<Type>BOOL</Type>
+						</Var>
+						<Var>
+							<Name>GVL_IO.stTwinSAFE.iProcessDoorClosing</Name>
+							<Type>BOOL</Type>
+						</Var>
+						<Var>
+							<Name>GVL_IO.stTwinSAFE.iProcessDoorClosedCondition</Name>
+							<Type>BOOL</Type>
+						</Var>
+						<Var>
+							<Name>GVL_IO.stTwinSAFE.iSafetyErrorAcknowledge</Name>
+							<Type>BOOL</Type>
+						</Var>
+						<Var>
+							<Name>GVL_IO.stTwinSAFE.bMainDoor_AirFlag</Name>
+							<Type GUID="{54195CC7-3340-E483-343B-EF7951C3211B}">ARRAY [0..1] OF BOOL</Type>
+						</Var>
 					</Vars>
 					<Vars VarGrpType="1">
 						<Name>PlcTask Inputs</Name>
+						<Var>
+							<Name>GVL_Master.stCycleData.stLeakTester_CycleData[0].aLeakTesterLastResult1.inUniqueID</Name>
+							<Type>UDINT</Type>
+						</Var>
+						<Var>
+							<Name>GVL_Master.stCycleData.stLeakTester_CycleData[0].aLeakTesterLastResult1.inChannelNumber</Name>
+							<Type>USINT</Type>
+						</Var>
+						<Var>
+							<Name>GVL_Master.stCycleData.stLeakTester_CycleData[0].aLeakTesterLastResult1.inProgramNumber</Name>
+							<Type>USINT</Type>
+						</Var>
+						<Var>
+							<Name>GVL_Master.stCycleData.stLeakTester_CycleData[0].aLeakTesterLastResult1.inTestPort</Name>
+							<Type>USINT</Type>
+						</Var>
+						<Var>
+							<Name>GVL_Master.stCycleData.stLeakTester_CycleData[0].aLeakTesterLastResult1.inPartEvaluation</Name>
+							<Type>USINT</Type>
+						</Var>
+						<Var>
+							<Name>GVL_Master.stCycleData.stLeakTester_CycleData[0].aLeakTesterLastResult1.inTestType</Name>
+							<Type>USINT</Type>
+						</Var>
+						<Var>
+							<Name>GVL_Master.stCycleData.stLeakTester_CycleData[0].aLeakTesterLastResult1.inPrecisionCode</Name>
+							<Type>USINT</Type>
+						</Var>
+						<Var>
+							<Name>GVL_Master.stCycleData.stLeakTester_CycleData[0].aLeakTesterLastResult1.ibTestEvaluation0</Name>
+							<Type>BOOL</Type>
+						</Var>
+						<Var>
+							<Name>GVL_Master.stCycleData.stLeakTester_CycleData[0].aLeakTesterLastResult1.ibTestEvaluation1</Name>
+							<Type>BOOL</Type>
+						</Var>
+						<Var>
+							<Name>GVL_Master.stCycleData.stLeakTester_CycleData[0].aLeakTesterLastResult1.ibTestEvaluation2</Name>
+							<Type>BOOL</Type>
+						</Var>
+						<Var>
+							<Name>GVL_Master.stCycleData.stLeakTester_CycleData[0].aLeakTesterLastResult1.ibTestEvaluation3</Name>
+							<Type>BOOL</Type>
+						</Var>
+						<Var>
+							<Name>GVL_Master.stCycleData.stLeakTester_CycleData[0].aLeakTesterLastResult1.inMeasurement1</Name>
+							<Type>UDINT</Type>
+						</Var>
+						<Var>
+							<Name>GVL_Master.stCycleData.stLeakTester_CycleData[0].aLeakTesterLastResult1.inVariableCode1</Name>
+							<Type>UINT</Type>
+						</Var>
+						<Var>
+							<Name>GVL_Master.stCycleData.stLeakTester_CycleData[0].aLeakTesterLastResult1.inUnitCode1</Name>
+							<Type>USINT</Type>
+						</Var>
+						<Var>
+							<Name>GVL_Master.stCycleData.stLeakTester_CycleData[0].aLeakTesterLastResult1.inMeasurement2</Name>
+							<Type>UDINT</Type>
+						</Var>
+						<Var>
+							<Name>GVL_Master.stCycleData.stLeakTester_CycleData[0].aLeakTesterLastResult1.inVariableCode2</Name>
+							<Type>UINT</Type>
+						</Var>
+						<Var>
+							<Name>GVL_Master.stCycleData.stLeakTester_CycleData[0].aLeakTesterLastResult1.inUnitCode2</Name>
+							<Type>USINT</Type>
+						</Var>
+						<Var>
+							<Name>GVL_Master.stCycleData.stLeakTester_CycleData[0].aLeakTesterLastResult2.inUniqueID</Name>
+							<Type>UDINT</Type>
+						</Var>
+						<Var>
+							<Name>GVL_Master.stCycleData.stLeakTester_CycleData[0].aLeakTesterLastResult2.inChannelNumber</Name>
+							<Type>USINT</Type>
+						</Var>
+						<Var>
+							<Name>GVL_Master.stCycleData.stLeakTester_CycleData[0].aLeakTesterLastResult2.inProgramNumber</Name>
+							<Type>USINT</Type>
+						</Var>
+						<Var>
+							<Name>GVL_Master.stCycleData.stLeakTester_CycleData[0].aLeakTesterLastResult2.inTestPort</Name>
+							<Type>USINT</Type>
+						</Var>
+						<Var>
+							<Name>GVL_Master.stCycleData.stLeakTester_CycleData[0].aLeakTesterLastResult2.inPartEvaluation</Name>
+							<Type>USINT</Type>
+						</Var>
+						<Var>
+							<Name>GVL_Master.stCycleData.stLeakTester_CycleData[0].aLeakTesterLastResult2.inTestType</Name>
+							<Type>USINT</Type>
+						</Var>
+						<Var>
+							<Name>GVL_Master.stCycleData.stLeakTester_CycleData[0].aLeakTesterLastResult2.inPrecisionCode</Name>
+							<Type>USINT</Type>
+						</Var>
+						<Var>
+							<Name>GVL_Master.stCycleData.stLeakTester_CycleData[0].aLeakTesterLastResult2.ibTestEvaluation0</Name>
+							<Type>BOOL</Type>
+						</Var>
+						<Var>
+							<Name>GVL_Master.stCycleData.stLeakTester_CycleData[0].aLeakTesterLastResult2.ibTestEvaluation1</Name>
+							<Type>BOOL</Type>
+						</Var>
+						<Var>
+							<Name>GVL_Master.stCycleData.stLeakTester_CycleData[0].aLeakTesterLastResult2.ibTestEvaluation2</Name>
+							<Type>BOOL</Type>
+						</Var>
+						<Var>
+							<Name>GVL_Master.stCycleData.stLeakTester_CycleData[0].aLeakTesterLastResult2.ibTestEvaluation3</Name>
+							<Type>BOOL</Type>
+						</Var>
+						<Var>
+							<Name>GVL_Master.stCycleData.stLeakTester_CycleData[0].aLeakTesterLastResult2.inMeasurement1</Name>
+							<Type>UDINT</Type>
+						</Var>
+						<Var>
+							<Name>GVL_Master.stCycleData.stLeakTester_CycleData[0].aLeakTesterLastResult2.inVariableCode1</Name>
+							<Type>UINT</Type>
+						</Var>
+						<Var>
+							<Name>GVL_Master.stCycleData.stLeakTester_CycleData[0].aLeakTesterLastResult2.inUnitCode1</Name>
+							<Type>USINT</Type>
+						</Var>
+						<Var>
+							<Name>GVL_Master.stCycleData.stLeakTester_CycleData[0].aLeakTesterLastResult2.inMeasurement2</Name>
+							<Type>UDINT</Type>
+						</Var>
+						<Var>
+							<Name>GVL_Master.stCycleData.stLeakTester_CycleData[0].aLeakTesterLastResult2.inVariableCode2</Name>
+							<Type>UINT</Type>
+						</Var>
+						<Var>
+							<Name>GVL_Master.stCycleData.stLeakTester_CycleData[0].aLeakTesterLastResult2.inUnitCode2</Name>
+							<Type>USINT</Type>
+						</Var>
+						<Var>
+							<Name>GVL_Master.stCycleData.stLeakTester_CycleData[1].aLeakTesterLastResult1.inUniqueID</Name>
+							<Type>UDINT</Type>
+						</Var>
+						<Var>
+							<Name>GVL_Master.stCycleData.stLeakTester_CycleData[1].aLeakTesterLastResult1.inChannelNumber</Name>
+							<Type>USINT</Type>
+						</Var>
+						<Var>
+							<Name>GVL_Master.stCycleData.stLeakTester_CycleData[1].aLeakTesterLastResult1.inProgramNumber</Name>
+							<Type>USINT</Type>
+						</Var>
+						<Var>
+							<Name>GVL_Master.stCycleData.stLeakTester_CycleData[1].aLeakTesterLastResult1.inTestPort</Name>
+							<Type>USINT</Type>
+						</Var>
+						<Var>
+							<Name>GVL_Master.stCycleData.stLeakTester_CycleData[1].aLeakTesterLastResult1.inPartEvaluation</Name>
+							<Type>USINT</Type>
+						</Var>
+						<Var>
+							<Name>GVL_Master.stCycleData.stLeakTester_CycleData[1].aLeakTesterLastResult1.inTestType</Name>
+							<Type>USINT</Type>
+						</Var>
+						<Var>
+							<Name>GVL_Master.stCycleData.stLeakTester_CycleData[1].aLeakTesterLastResult1.inPrecisionCode</Name>
+							<Type>USINT</Type>
+						</Var>
+						<Var>
+							<Name>GVL_Master.stCycleData.stLeakTester_CycleData[1].aLeakTesterLastResult1.ibTestEvaluation0</Name>
+							<Type>BOOL</Type>
+						</Var>
+						<Var>
+							<Name>GVL_Master.stCycleData.stLeakTester_CycleData[1].aLeakTesterLastResult1.ibTestEvaluation1</Name>
+							<Type>BOOL</Type>
+						</Var>
+						<Var>
+							<Name>GVL_Master.stCycleData.stLeakTester_CycleData[1].aLeakTesterLastResult1.ibTestEvaluation2</Name>
+							<Type>BOOL</Type>
+						</Var>
+						<Var>
+							<Name>GVL_Master.stCycleData.stLeakTester_CycleData[1].aLeakTesterLastResult1.ibTestEvaluation3</Name>
+							<Type>BOOL</Type>
+						</Var>
+						<Var>
+							<Name>GVL_Master.stCycleData.stLeakTester_CycleData[1].aLeakTesterLastResult1.inMeasurement1</Name>
+							<Type>UDINT</Type>
+						</Var>
+						<Var>
+							<Name>GVL_Master.stCycleData.stLeakTester_CycleData[1].aLeakTesterLastResult1.inVariableCode1</Name>
+							<Type>UINT</Type>
+						</Var>
+						<Var>
+							<Name>GVL_Master.stCycleData.stLeakTester_CycleData[1].aLeakTesterLastResult1.inUnitCode1</Name>
+							<Type>USINT</Type>
+						</Var>
+						<Var>
+							<Name>GVL_Master.stCycleData.stLeakTester_CycleData[1].aLeakTesterLastResult1.inMeasurement2</Name>
+							<Type>UDINT</Type>
+						</Var>
+						<Var>
+							<Name>GVL_Master.stCycleData.stLeakTester_CycleData[1].aLeakTesterLastResult1.inVariableCode2</Name>
+							<Type>UINT</Type>
+						</Var>
+						<Var>
+							<Name>GVL_Master.stCycleData.stLeakTester_CycleData[1].aLeakTesterLastResult1.inUnitCode2</Name>
+							<Type>USINT</Type>
+						</Var>
+						<Var>
+							<Name>GVL_Master.stCycleData.stLeakTester_CycleData[1].aLeakTesterLastResult2.inUniqueID</Name>
+							<Type>UDINT</Type>
+						</Var>
+						<Var>
+							<Name>GVL_Master.stCycleData.stLeakTester_CycleData[1].aLeakTesterLastResult2.inChannelNumber</Name>
+							<Type>USINT</Type>
+						</Var>
+						<Var>
+							<Name>GVL_Master.stCycleData.stLeakTester_CycleData[1].aLeakTesterLastResult2.inProgramNumber</Name>
+							<Type>USINT</Type>
+						</Var>
+						<Var>
+							<Name>GVL_Master.stCycleData.stLeakTester_CycleData[1].aLeakTesterLastResult2.inTestPort</Name>
+							<Type>USINT</Type>
+						</Var>
+						<Var>
+							<Name>GVL_Master.stCycleData.stLeakTester_CycleData[1].aLeakTesterLastResult2.inPartEvaluation</Name>
+							<Type>USINT</Type>
+						</Var>
+						<Var>
+							<Name>GVL_Master.stCycleData.stLeakTester_CycleData[1].aLeakTesterLastResult2.inTestType</Name>
+							<Type>USINT</Type>
+						</Var>
+						<Var>
+							<Name>GVL_Master.stCycleData.stLeakTester_CycleData[1].aLeakTesterLastResult2.inPrecisionCode</Name>
+							<Type>USINT</Type>
+						</Var>
+						<Var>
+							<Name>GVL_Master.stCycleData.stLeakTester_CycleData[1].aLeakTesterLastResult2.ibTestEvaluation0</Name>
+							<Type>BOOL</Type>
+						</Var>
+						<Var>
+							<Name>GVL_Master.stCycleData.stLeakTester_CycleData[1].aLeakTesterLastResult2.ibTestEvaluation1</Name>
+							<Type>BOOL</Type>
+						</Var>
+						<Var>
+							<Name>GVL_Master.stCycleData.stLeakTester_CycleData[1].aLeakTesterLastResult2.ibTestEvaluation2</Name>
+							<Type>BOOL</Type>
+						</Var>
+						<Var>
+							<Name>GVL_Master.stCycleData.stLeakTester_CycleData[1].aLeakTesterLastResult2.ibTestEvaluation3</Name>
+							<Type>BOOL</Type>
+						</Var>
+						<Var>
+							<Name>GVL_Master.stCycleData.stLeakTester_CycleData[1].aLeakTesterLastResult2.inMeasurement1</Name>
+							<Type>UDINT</Type>
+						</Var>
+						<Var>
+							<Name>GVL_Master.stCycleData.stLeakTester_CycleData[1].aLeakTesterLastResult2.inVariableCode1</Name>
+							<Type>UINT</Type>
+						</Var>
+						<Var>
+							<Name>GVL_Master.stCycleData.stLeakTester_CycleData[1].aLeakTesterLastResult2.inUnitCode1</Name>
+							<Type>USINT</Type>
+						</Var>
+						<Var>
+							<Name>GVL_Master.stCycleData.stLeakTester_CycleData[1].aLeakTesterLastResult2.inMeasurement2</Name>
+							<Type>UDINT</Type>
+						</Var>
+						<Var>
+							<Name>GVL_Master.stCycleData.stLeakTester_CycleData[1].aLeakTesterLastResult2.inVariableCode2</Name>
+							<Type>UINT</Type>
+						</Var>
+						<Var>
+							<Name>GVL_Master.stCycleData.stLeakTester_CycleData[1].aLeakTesterLastResult2.inUnitCode2</Name>
+							<Type>USINT</Type>
+						</Var>
 						<Var>
 							<Name>GVL_IO.dw_T01_EK1100.stTerminalInfo.nTerminal_State</Name>
 							<Comment><![CDATA[ Terminal State from IO Terminal Info Data]]></Comment>
@@ -871,47 +1143,6 @@
 							<Name>GVL_IO.dw_T13_EL6633.stTerminalInfo.nTerminal_State</Name>
 							<Comment><![CDATA[ Terminal State from IO Terminal Info Data]]></Comment>
 							<Type>UINT</Type>
-						</Var>
-						<Var>
-							<Name>GVL_IO.stTwinSAFE.qAirErrorSignal</Name>
-							<Comment><![CDATA[////////////////////////////////////////////////////////////////////////Safety Inputs///////////////////////////////////////////////////////////////////////////////////////	]]></Comment>
-							<Type>BOOL</Type>
-						</Var>
-						<Var>
-							<Name>GVL_IO.stTwinSAFE.qAirPressureAbove</Name>
-							<Type>BOOL</Type>
-						</Var>
-						<Var>
-							<Name>GVL_IO.stTwinSAFE.qAirPressureBelow</Name>
-							<Type>BOOL</Type>
-						</Var>
-						<Var>
-							<Name>GVL_IO.stTwinSAFE.qAirPressureOK</Name>
-							<Type>BOOL</Type>
-						</Var>
-						<Var>
-							<Name>GVL_IO.stTwinSAFE.qSafetyOk</Name>
-							<Type>BOOL</Type>
-						</Var>
-						<Var>
-							<Name>GVL_IO.stTwinSAFE.qE_StopPressed</Name>
-							<Type>BOOL</Type>
-						</Var>
-						<Var>
-							<Name>GVL_IO.stTwinSAFE.qMainDoorUnsafe</Name>
-							<Type>BOOL</Type>
-						</Var>
-						<Var>
-							<Name>GVL_IO.stTwinSAFE.qProcessDoorUnSafe</Name>
-							<Type>BOOL</Type>
-						</Var>
-						<Var>
-							<Name>GVL_IO.stTwinSAFE.qTwoHandsUnsafe</Name>
-							<Type>BOOL</Type>
-						</Var>
-						<Var>
-							<Name>GVL_IO.stTwinSAFE.qProcessCylinderUnsafe</Name>
-							<Type>BOOL</Type>
 						</Var>
 						<Var>
 							<Name>GVL_IO.LeakTester1_IO.sti28General_I_O.bInput1</Name>
@@ -1385,278 +1616,6 @@
 						</Var>
 						<Var>
 							<Name>GVL_IO.LeakTester2_IO.sti28LiveMeasurement.inPrecisionCode4</Name>
-							<Type>USINT</Type>
-						</Var>
-						<Var>
-							<Name>GVL_Master.stCycleData.stLeakTester_CycleData[0].aLeakTesterLastResult1.inUniqueID</Name>
-							<Type>UDINT</Type>
-						</Var>
-						<Var>
-							<Name>GVL_Master.stCycleData.stLeakTester_CycleData[0].aLeakTesterLastResult1.inChannelNumber</Name>
-							<Type>USINT</Type>
-						</Var>
-						<Var>
-							<Name>GVL_Master.stCycleData.stLeakTester_CycleData[0].aLeakTesterLastResult1.inProgramNumber</Name>
-							<Type>USINT</Type>
-						</Var>
-						<Var>
-							<Name>GVL_Master.stCycleData.stLeakTester_CycleData[0].aLeakTesterLastResult1.inTestPort</Name>
-							<Type>USINT</Type>
-						</Var>
-						<Var>
-							<Name>GVL_Master.stCycleData.stLeakTester_CycleData[0].aLeakTesterLastResult1.inPartEvaluation</Name>
-							<Type>USINT</Type>
-						</Var>
-						<Var>
-							<Name>GVL_Master.stCycleData.stLeakTester_CycleData[0].aLeakTesterLastResult1.inTestType</Name>
-							<Type>USINT</Type>
-						</Var>
-						<Var>
-							<Name>GVL_Master.stCycleData.stLeakTester_CycleData[0].aLeakTesterLastResult1.inPrecisionCode</Name>
-							<Type>USINT</Type>
-						</Var>
-						<Var>
-							<Name>GVL_Master.stCycleData.stLeakTester_CycleData[0].aLeakTesterLastResult1.ibTestEvaluation0</Name>
-							<Type>BOOL</Type>
-						</Var>
-						<Var>
-							<Name>GVL_Master.stCycleData.stLeakTester_CycleData[0].aLeakTesterLastResult1.ibTestEvaluation1</Name>
-							<Type>BOOL</Type>
-						</Var>
-						<Var>
-							<Name>GVL_Master.stCycleData.stLeakTester_CycleData[0].aLeakTesterLastResult1.ibTestEvaluation2</Name>
-							<Type>BOOL</Type>
-						</Var>
-						<Var>
-							<Name>GVL_Master.stCycleData.stLeakTester_CycleData[0].aLeakTesterLastResult1.ibTestEvaluation3</Name>
-							<Type>BOOL</Type>
-						</Var>
-						<Var>
-							<Name>GVL_Master.stCycleData.stLeakTester_CycleData[0].aLeakTesterLastResult1.inMeasurement1</Name>
-							<Type>UDINT</Type>
-						</Var>
-						<Var>
-							<Name>GVL_Master.stCycleData.stLeakTester_CycleData[0].aLeakTesterLastResult1.inVariableCode1</Name>
-							<Type>UINT</Type>
-						</Var>
-						<Var>
-							<Name>GVL_Master.stCycleData.stLeakTester_CycleData[0].aLeakTesterLastResult1.inUnitCode1</Name>
-							<Type>USINT</Type>
-						</Var>
-						<Var>
-							<Name>GVL_Master.stCycleData.stLeakTester_CycleData[0].aLeakTesterLastResult1.inMeasurement2</Name>
-							<Type>UDINT</Type>
-						</Var>
-						<Var>
-							<Name>GVL_Master.stCycleData.stLeakTester_CycleData[0].aLeakTesterLastResult1.inVariableCode2</Name>
-							<Type>UINT</Type>
-						</Var>
-						<Var>
-							<Name>GVL_Master.stCycleData.stLeakTester_CycleData[0].aLeakTesterLastResult1.inUnitCode2</Name>
-							<Type>USINT</Type>
-						</Var>
-						<Var>
-							<Name>GVL_Master.stCycleData.stLeakTester_CycleData[0].aLeakTesterLastResult2.inUniqueID</Name>
-							<Type>UDINT</Type>
-						</Var>
-						<Var>
-							<Name>GVL_Master.stCycleData.stLeakTester_CycleData[0].aLeakTesterLastResult2.inChannelNumber</Name>
-							<Type>USINT</Type>
-						</Var>
-						<Var>
-							<Name>GVL_Master.stCycleData.stLeakTester_CycleData[0].aLeakTesterLastResult2.inProgramNumber</Name>
-							<Type>USINT</Type>
-						</Var>
-						<Var>
-							<Name>GVL_Master.stCycleData.stLeakTester_CycleData[0].aLeakTesterLastResult2.inTestPort</Name>
-							<Type>USINT</Type>
-						</Var>
-						<Var>
-							<Name>GVL_Master.stCycleData.stLeakTester_CycleData[0].aLeakTesterLastResult2.inPartEvaluation</Name>
-							<Type>USINT</Type>
-						</Var>
-						<Var>
-							<Name>GVL_Master.stCycleData.stLeakTester_CycleData[0].aLeakTesterLastResult2.inTestType</Name>
-							<Type>USINT</Type>
-						</Var>
-						<Var>
-							<Name>GVL_Master.stCycleData.stLeakTester_CycleData[0].aLeakTesterLastResult2.inPrecisionCode</Name>
-							<Type>USINT</Type>
-						</Var>
-						<Var>
-							<Name>GVL_Master.stCycleData.stLeakTester_CycleData[0].aLeakTesterLastResult2.ibTestEvaluation0</Name>
-							<Type>BOOL</Type>
-						</Var>
-						<Var>
-							<Name>GVL_Master.stCycleData.stLeakTester_CycleData[0].aLeakTesterLastResult2.ibTestEvaluation1</Name>
-							<Type>BOOL</Type>
-						</Var>
-						<Var>
-							<Name>GVL_Master.stCycleData.stLeakTester_CycleData[0].aLeakTesterLastResult2.ibTestEvaluation2</Name>
-							<Type>BOOL</Type>
-						</Var>
-						<Var>
-							<Name>GVL_Master.stCycleData.stLeakTester_CycleData[0].aLeakTesterLastResult2.ibTestEvaluation3</Name>
-							<Type>BOOL</Type>
-						</Var>
-						<Var>
-							<Name>GVL_Master.stCycleData.stLeakTester_CycleData[0].aLeakTesterLastResult2.inMeasurement1</Name>
-							<Type>UDINT</Type>
-						</Var>
-						<Var>
-							<Name>GVL_Master.stCycleData.stLeakTester_CycleData[0].aLeakTesterLastResult2.inVariableCode1</Name>
-							<Type>UINT</Type>
-						</Var>
-						<Var>
-							<Name>GVL_Master.stCycleData.stLeakTester_CycleData[0].aLeakTesterLastResult2.inUnitCode1</Name>
-							<Type>USINT</Type>
-						</Var>
-						<Var>
-							<Name>GVL_Master.stCycleData.stLeakTester_CycleData[0].aLeakTesterLastResult2.inMeasurement2</Name>
-							<Type>UDINT</Type>
-						</Var>
-						<Var>
-							<Name>GVL_Master.stCycleData.stLeakTester_CycleData[0].aLeakTesterLastResult2.inVariableCode2</Name>
-							<Type>UINT</Type>
-						</Var>
-						<Var>
-							<Name>GVL_Master.stCycleData.stLeakTester_CycleData[0].aLeakTesterLastResult2.inUnitCode2</Name>
-							<Type>USINT</Type>
-						</Var>
-						<Var>
-							<Name>GVL_Master.stCycleData.stLeakTester_CycleData[1].aLeakTesterLastResult1.inUniqueID</Name>
-							<Type>UDINT</Type>
-						</Var>
-						<Var>
-							<Name>GVL_Master.stCycleData.stLeakTester_CycleData[1].aLeakTesterLastResult1.inChannelNumber</Name>
-							<Type>USINT</Type>
-						</Var>
-						<Var>
-							<Name>GVL_Master.stCycleData.stLeakTester_CycleData[1].aLeakTesterLastResult1.inProgramNumber</Name>
-							<Type>USINT</Type>
-						</Var>
-						<Var>
-							<Name>GVL_Master.stCycleData.stLeakTester_CycleData[1].aLeakTesterLastResult1.inTestPort</Name>
-							<Type>USINT</Type>
-						</Var>
-						<Var>
-							<Name>GVL_Master.stCycleData.stLeakTester_CycleData[1].aLeakTesterLastResult1.inPartEvaluation</Name>
-							<Type>USINT</Type>
-						</Var>
-						<Var>
-							<Name>GVL_Master.stCycleData.stLeakTester_CycleData[1].aLeakTesterLastResult1.inTestType</Name>
-							<Type>USINT</Type>
-						</Var>
-						<Var>
-							<Name>GVL_Master.stCycleData.stLeakTester_CycleData[1].aLeakTesterLastResult1.inPrecisionCode</Name>
-							<Type>USINT</Type>
-						</Var>
-						<Var>
-							<Name>GVL_Master.stCycleData.stLeakTester_CycleData[1].aLeakTesterLastResult1.ibTestEvaluation0</Name>
-							<Type>BOOL</Type>
-						</Var>
-						<Var>
-							<Name>GVL_Master.stCycleData.stLeakTester_CycleData[1].aLeakTesterLastResult1.ibTestEvaluation1</Name>
-							<Type>BOOL</Type>
-						</Var>
-						<Var>
-							<Name>GVL_Master.stCycleData.stLeakTester_CycleData[1].aLeakTesterLastResult1.ibTestEvaluation2</Name>
-							<Type>BOOL</Type>
-						</Var>
-						<Var>
-							<Name>GVL_Master.stCycleData.stLeakTester_CycleData[1].aLeakTesterLastResult1.ibTestEvaluation3</Name>
-							<Type>BOOL</Type>
-						</Var>
-						<Var>
-							<Name>GVL_Master.stCycleData.stLeakTester_CycleData[1].aLeakTesterLastResult1.inMeasurement1</Name>
-							<Type>UDINT</Type>
-						</Var>
-						<Var>
-							<Name>GVL_Master.stCycleData.stLeakTester_CycleData[1].aLeakTesterLastResult1.inVariableCode1</Name>
-							<Type>UINT</Type>
-						</Var>
-						<Var>
-							<Name>GVL_Master.stCycleData.stLeakTester_CycleData[1].aLeakTesterLastResult1.inUnitCode1</Name>
-							<Type>USINT</Type>
-						</Var>
-						<Var>
-							<Name>GVL_Master.stCycleData.stLeakTester_CycleData[1].aLeakTesterLastResult1.inMeasurement2</Name>
-							<Type>UDINT</Type>
-						</Var>
-						<Var>
-							<Name>GVL_Master.stCycleData.stLeakTester_CycleData[1].aLeakTesterLastResult1.inVariableCode2</Name>
-							<Type>UINT</Type>
-						</Var>
-						<Var>
-							<Name>GVL_Master.stCycleData.stLeakTester_CycleData[1].aLeakTesterLastResult1.inUnitCode2</Name>
-							<Type>USINT</Type>
-						</Var>
-						<Var>
-							<Name>GVL_Master.stCycleData.stLeakTester_CycleData[1].aLeakTesterLastResult2.inUniqueID</Name>
-							<Type>UDINT</Type>
-						</Var>
-						<Var>
-							<Name>GVL_Master.stCycleData.stLeakTester_CycleData[1].aLeakTesterLastResult2.inChannelNumber</Name>
-							<Type>USINT</Type>
-						</Var>
-						<Var>
-							<Name>GVL_Master.stCycleData.stLeakTester_CycleData[1].aLeakTesterLastResult2.inProgramNumber</Name>
-							<Type>USINT</Type>
-						</Var>
-						<Var>
-							<Name>GVL_Master.stCycleData.stLeakTester_CycleData[1].aLeakTesterLastResult2.inTestPort</Name>
-							<Type>USINT</Type>
-						</Var>
-						<Var>
-							<Name>GVL_Master.stCycleData.stLeakTester_CycleData[1].aLeakTesterLastResult2.inPartEvaluation</Name>
-							<Type>USINT</Type>
-						</Var>
-						<Var>
-							<Name>GVL_Master.stCycleData.stLeakTester_CycleData[1].aLeakTesterLastResult2.inTestType</Name>
-							<Type>USINT</Type>
-						</Var>
-						<Var>
-							<Name>GVL_Master.stCycleData.stLeakTester_CycleData[1].aLeakTesterLastResult2.inPrecisionCode</Name>
-							<Type>USINT</Type>
-						</Var>
-						<Var>
-							<Name>GVL_Master.stCycleData.stLeakTester_CycleData[1].aLeakTesterLastResult2.ibTestEvaluation0</Name>
-							<Type>BOOL</Type>
-						</Var>
-						<Var>
-							<Name>GVL_Master.stCycleData.stLeakTester_CycleData[1].aLeakTesterLastResult2.ibTestEvaluation1</Name>
-							<Type>BOOL</Type>
-						</Var>
-						<Var>
-							<Name>GVL_Master.stCycleData.stLeakTester_CycleData[1].aLeakTesterLastResult2.ibTestEvaluation2</Name>
-							<Type>BOOL</Type>
-						</Var>
-						<Var>
-							<Name>GVL_Master.stCycleData.stLeakTester_CycleData[1].aLeakTesterLastResult2.ibTestEvaluation3</Name>
-							<Type>BOOL</Type>
-						</Var>
-						<Var>
-							<Name>GVL_Master.stCycleData.stLeakTester_CycleData[1].aLeakTesterLastResult2.inMeasurement1</Name>
-							<Type>UDINT</Type>
-						</Var>
-						<Var>
-							<Name>GVL_Master.stCycleData.stLeakTester_CycleData[1].aLeakTesterLastResult2.inVariableCode1</Name>
-							<Type>UINT</Type>
-						</Var>
-						<Var>
-							<Name>GVL_Master.stCycleData.stLeakTester_CycleData[1].aLeakTesterLastResult2.inUnitCode1</Name>
-							<Type>USINT</Type>
-						</Var>
-						<Var>
-							<Name>GVL_Master.stCycleData.stLeakTester_CycleData[1].aLeakTesterLastResult2.inMeasurement2</Name>
-							<Type>UDINT</Type>
-						</Var>
-						<Var>
-							<Name>GVL_Master.stCycleData.stLeakTester_CycleData[1].aLeakTesterLastResult2.inVariableCode2</Name>
-							<Type>UINT</Type>
-						</Var>
-						<Var>
-							<Name>GVL_Master.stCycleData.stLeakTester_CycleData[1].aLeakTesterLastResult2.inUnitCode2</Name>
 							<Type>USINT</Type>
 						</Var>
 						<Var>
@@ -56331,6 +56290,47 @@
 							<Name>GVL_Persistent.aDataHistory[200].stLeakTester_CycleData[1].aLeakTesterLastResult2.inUnitCode2</Name>
 							<Type>USINT</Type>
 						</Var>
+						<Var>
+							<Name>GVL_IO.stTwinSAFE.qAirErrorSignal</Name>
+							<Comment><![CDATA[////////////////////////////////////////////////////////////////////////Safety Inputs///////////////////////////////////////////////////////////////////////////////////////	]]></Comment>
+							<Type>BOOL</Type>
+						</Var>
+						<Var>
+							<Name>GVL_IO.stTwinSAFE.qAirPressureAbove</Name>
+							<Type>BOOL</Type>
+						</Var>
+						<Var>
+							<Name>GVL_IO.stTwinSAFE.qAirPressureBelow</Name>
+							<Type>BOOL</Type>
+						</Var>
+						<Var>
+							<Name>GVL_IO.stTwinSAFE.qAirPressureOK</Name>
+							<Type>BOOL</Type>
+						</Var>
+						<Var>
+							<Name>GVL_IO.stTwinSAFE.qSafetyOk</Name>
+							<Type>BOOL</Type>
+						</Var>
+						<Var>
+							<Name>GVL_IO.stTwinSAFE.qE_StopPressed</Name>
+							<Type>BOOL</Type>
+						</Var>
+						<Var>
+							<Name>GVL_IO.stTwinSAFE.qMainDoorUnsafe</Name>
+							<Type>BOOL</Type>
+						</Var>
+						<Var>
+							<Name>GVL_IO.stTwinSAFE.qProcessDoorUnSafe</Name>
+							<Type>BOOL</Type>
+						</Var>
+						<Var>
+							<Name>GVL_IO.stTwinSAFE.qTwoHandsUnsafe</Name>
+							<Type>BOOL</Type>
+						</Var>
+						<Var>
+							<Name>GVL_IO.stTwinSAFE.qProcessCylinderUnsafe</Name>
+							<Type>BOOL</Type>
+						</Var>
 					</Vars>
 					<UnrestoredVarLinks ImportTime="2026-02-16T14:24:37">
 						<OwnerA Name="InputDst" Prefix="TIPC^TE1108^TE1108 Instance" Type="1">
@@ -57908,9 +57908,7 @@ Bit1: Value bigger/equal Limit2]]></Comment>
 		<OwnerA Name="TIID^Device 3 (EtherCAT)">
 			<OwnerB Name="TIID^Device 3 (EtherCAT)^Term 1 (EK1100)^Term 12 (EL1918)">
 				<Link VarA="Term 1 (EK1100)^Term 3 (EL6910)^ConnectionInputs^Message_38 TxPDO" VarB="Module 1 (FSOE)^FSoE Outputs^FSOE"/>
-			</OwnerB>
-			<OwnerB Name="TIID^Device 3 (EtherCAT)^Term 1 (EK1100)^Term 3 (EL6910)">
-				<Link VarA="Term 1 (EK1100)^Term 12 (EL1918)^Module 1 (FSOE)^FSoE Inputs^FSOE" VarB="ConnectionOutputs^Message_38 RxPDO"/>
+				<Link VarA="Term 1 (EK1100)^Term 3 (EL6910)^ConnectionOutputs^Message_38 RxPDO" VarB="Module 1 (FSOE)^FSoE Inputs^FSOE"/>
 			</OwnerB>
 			<OwnerB Name="TIID^Device 3 (EtherCAT)^Term 1 (EK1100)^Term 4 (EL1918)">
 				<Link VarA="Term 1 (EK1100)^Term 3 (EL6910)^ConnectionInputs^Message_8 TxPDO" VarB="Module 1 (FSOE)^FSoE Outputs^FSOE"/>

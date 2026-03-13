@@ -31,9 +31,10 @@
 </div>
 <div id="Time_Icon" data-tchmi-type="TcHmi.Controls.Beckhoff.TcHmiImage" data-tchmi-height="35" data-tchmi-height-unit="px" data-tchmi-left="832" data-tchmi-left-unit="px" data-tchmi-src="Images/Icons/clock.svg" data-tchmi-top="43" data-tchmi-top-unit="px" data-tchmi-width="35" data-tchmi-width-unit="px" data-tchmi-zindex="2">
 </div>
-<div id="Main_Region" data-tchmi-type="TcHmi.Controls.System.TcHmiRegion" data-tchmi-height="480" data-tchmi-height-unit="px" data-tchmi-left="10" data-tchmi-left-unit="px" data-tchmi-top="89" data-tchmi-top-unit="px" data-tchmi-width="1340" data-tchmi-width-unit="px" data-tchmi-target-content="Contents/1_Main.content" data-tchmi-zindex="0">
+<div id="Main_Region" data-tchmi-type="TcHmi.Controls.System.TcHmiRegion" data-tchmi-height="480" data-tchmi-height-unit="px" data-tchmi-left="10" data-tchmi-left-unit="px" data-tchmi-top="89" data-tchmi-top-unit="px" data-tchmi-width="1346" data-tchmi-width-unit="px" data-tchmi-zindex="0">
 
-<script data-tchmi-target-attribute="data-tchmi-trigger" type="application/json">[
+<script data-tchmi-target-attribute="data-tchmi-trigger" type="application/json">
+[
   {
     "event": "%i%MainFrame%/i%",
     "actions": [
@@ -54,14 +55,164 @@
             },
             "actions": [
               {
-                "objectType": "WriteToSymbol",
+                "objectType": "Condition",
                 "active": true,
-                "symbolExpression": "%ctx%owner::TargetContent%/ctx%",
-                "value": {
-                  "objectType": "StaticValue",
-                  "valueType": "tchmi:framework#/definitions/ContentPath",
-                  "value": "Contents/1_Main.content"
-                },
+                "parts": [
+                  {
+                    "if": [
+                      {
+                        "compare1": {
+                          "objectType": "Symbol",
+                          "valueType": "tchmi:general#/definitions/BOOL",
+                          "symbolExpression": "%s%ADS.PLC1.GVL_HMI.abMachineDefinition.0%/s%"
+                        },
+                        "compare2": {
+                          "objectType": "StaticValue",
+                          "valueType": "tchmi:general#/definitions/BOOL",
+                          "value": true
+                        },
+                        "compareOperator": "==",
+                        "logic": null
+                      }
+                    ],
+                    "then": []
+                  },
+                  {
+                    "else": [
+                      {
+                        "objectType": "Condition",
+                        "active": true,
+                        "parts": [
+                          {
+                            "if": [
+                              {
+                                "compare1": {
+                                  "objectType": "Symbol",
+                                  "valueType": "tchmi:general#/definitions/BOOL",
+                                  "symbolExpression": "%s%ADS.PLC1.GVL_HMI.abMachineDefinition.1%/s%"
+                                },
+                                "compare2": {
+                                  "objectType": "StaticValue",
+                                  "valueType": "tchmi:general#/definitions/BOOL",
+                                  "value": true
+                                },
+                                "compareOperator": "==",
+                                "logic": null
+                              }
+                            ],
+                            "then": [
+                              {
+                                "objectType": "WriteToSymbol",
+                                "active": true,
+                                "symbolExpression": "%ctx%owner::TargetContent%/ctx%",
+                                "value": {
+                                  "objectType": "StaticValue",
+                                  "valueType": "tchmi:framework#/definitions/ContentPath",
+                                  "value": "Contents/Mains/1_Main_LT_HW_VC.content"
+                                },
+                                "asyncWait": true
+                              }
+                            ]
+                          },
+                          {
+                            "else": [
+                              {
+                                "objectType": "Condition",
+                                "active": true,
+                                "parts": [
+                                  {
+                                    "if": [
+                                      {
+                                        "compare1": {
+                                          "objectType": "Symbol",
+                                          "valueType": "tchmi:general#/definitions/BOOL",
+                                          "symbolExpression": "%s%ADS.PLC1.GVL_HMI.abMachineDefinition.2%/s%"
+                                        },
+                                        "compare2": {
+                                          "objectType": "StaticValue",
+                                          "valueType": "tchmi:general#/definitions/BOOL",
+                                          "value": true
+                                        },
+                                        "compareOperator": "==",
+                                        "logic": null
+                                      }
+                                    ],
+                                    "then": []
+                                  },
+                                  {
+                                    "else": [
+                                      {
+                                        "objectType": "Condition",
+                                        "active": true,
+                                        "parts": [
+                                          {
+                                            "if": [
+                                              {
+                                                "compare1": {
+                                                  "objectType": "Symbol",
+                                                  "valueType": "tchmi:general#/definitions/BOOL",
+                                                  "symbolExpression": "%s%ADS.PLC1.GVL_HMI.abMachineDefinition.3%/s%"
+                                                },
+                                                "compare2": {
+                                                  "objectType": "StaticValue",
+                                                  "valueType": "tchmi:general#/definitions/BOOL",
+                                                  "value": true
+                                                },
+                                                "compareOperator": "==",
+                                                "logic": null
+                                              }
+                                            ],
+                                            "then": []
+                                          },
+                                          {
+                                            "else": [
+                                              {
+                                                "objectType": "Condition",
+                                                "active": true,
+                                                "parts": [
+                                                  {
+                                                    "if": [
+                                                      {
+                                                        "compare1": {
+                                                          "objectType": "Symbol",
+                                                          "valueType": "tchmi:general#/definitions/BOOL",
+                                                          "symbolExpression": "%s%ADS.PLC1.GVL_HMI.abMachineDefinition.4%/s%"
+                                                        },
+                                                        "compare2": {
+                                                          "objectType": "StaticValue",
+                                                          "valueType": "tchmi:general#/definitions/BOOL",
+                                                          "value": true
+                                                        },
+                                                        "compareOperator": "==",
+                                                        "logic": null
+                                                      }
+                                                    ],
+                                                    "then": []
+                                                  },
+                                                  {
+                                                    "else": []
+                                                  }
+                                                ],
+                                                "asyncWait": true
+                                              }
+                                            ]
+                                          }
+                                        ],
+                                        "asyncWait": true
+                                      }
+                                    ]
+                                  }
+                                ],
+                                "asyncWait": true
+                              }
+                            ]
+                          }
+                        ],
+                        "asyncWait": true
+                      }
+                    ]
+                  }
+                ],
                 "asyncWait": true
               }
             ]
@@ -357,7 +508,8 @@
       }
     ]
   }
-]</script>
+]
+</script>
 </div>
 <div id="TcHmiDatagrid_5" data-tchmi-type="TcHmi.Controls.Beckhoff.TcHmiDatagrid" data-tchmi-height="137" data-tchmi-height-unit="px" data-tchmi-left="0" data-tchmi-left-unit="px" data-tchmi-top="569" data-tchmi-top-unit="px" data-tchmi-width="1360" data-tchmi-width-unit="px" data-tchmi-src-data="%s%PLC1.GVL_Master.astActiveEvents%/s%" data-tchmi-grid-font-size="20" data-tchmi-grid-font-style="Normal" data-tchmi-grid-font-weight="Bold" data-tchmi-zindex="2">
 <script data-tchmi-target-attribute="data-tchmi-cell-content-padding" type="application/json">

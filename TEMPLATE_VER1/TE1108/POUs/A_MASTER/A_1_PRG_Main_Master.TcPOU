@@ -72,9 +72,24 @@ END_IF
 
 /////////////////////////////////////////////////////////////////////////////////////STATIONS/////////////////////////////////////////////////////////////////////////////////////
 
-B_1_1_PRG_Master_Leak_Test();
-B_2_1_PRG_Master_Height_Test();
-B_3_1_PRG_Master_Camera();
+IF stMACHINE.bHeightTest OR stMACHINE.IP8X THEN
+	
+	B_2_1_PRG_Master_Height_Test();
+
+END_IF
+
+IF stMACHINE.bLeakTest OR stMACHINE.IP8X THEN
+	
+	B_1_1_PRG_Master_Leak_Test();
+
+END_IF
+
+IF stMACHINE.bVisionTest THEN
+	
+	B_3_1_PRG_Master_Camera();
+
+END_IF
+
 B_4_1_PRG_Master_ProcessCylinder();
 B_4_2_PRG_Master_ProcessDoor();
 
@@ -203,7 +218,7 @@ stEventsCSVProcess.nMAX_CSV_COLUMNS						:= 4;*)]]></ST>
     <Action Name="d_ACT_ShutdownAndQuit" Id="{b7dac9a1-fefc-426e-a57f-b21e21205edc}">
       <Implementation>
         <ST><![CDATA[closeChrome(
-    NetId := '',
+    NetId := NetAmsId,
     PathStr := 'C:\Windows\System32\mshta vbscript:Execute("CreateObject(""WScript.Shell"").Run ""powershell -c',
     DirName := 'C:\Windows\System32\WindowsPowerShell\v1.0',
     ComndLine := 'taskkill /F /IM chrome.exe /T"", 0: window.close")',

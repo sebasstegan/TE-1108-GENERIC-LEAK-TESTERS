@@ -130,6 +130,7 @@
     <Folder Include="Contents\CSS_JAVA" />
     <Folder Include="Contents\Events" />
     <Folder Include="Contents\M" />
+    <Folder Include="Contents\Mains" />
     <Folder Include="Contents\UserControl" />
     <Folder Include="Contents\popup" />
     <Folder Include="Contents\pdf" />
@@ -205,9 +206,6 @@
     <Content Include="Contents\2_Menu.content">
       <SubType>Content</SubType>
     </Content>
-    <Content Include="Contents\1_Main.content">
-      <SubType>Content</SubType>
-    </Content>
     <Content Include="Contents\CSS_JAVA\RowClassesProvider.function.json">
       <SubType>Content</SubType>
       <DependentUpon>Contents\CSS_JAVA\RowClassesProvider.js</DependentUpon>
@@ -225,6 +223,9 @@
       <SubType>Content</SubType>
     </Content>
     <Content Include="Contents\Events\History.content">
+      <SubType>Content</SubType>
+    </Content>
+    <Content Include="Contents\Mains\1_Main_LT_HW_VC.content">
       <SubType>Content</SubType>
     </Content>
     <Content Include="Contents\Manual\3_Station3.content">
@@ -337,6 +338,18 @@
       <SubType>Content</SubType>
     </Content>
     <Content Include="Images\JabilMasterLogo.png">
+      <SubType>Content</SubType>
+    </Content>
+    <Content Include="Images\left_hand - green.png">
+      <SubType>Content</SubType>
+    </Content>
+    <Content Include="Images\left_hand.png">
+      <SubType>Content</SubType>
+    </Content>
+    <Content Include="Images\right_hand - green.png">
+      <SubType>Content</SubType>
+    </Content>
+    <Content Include="Images\right_hand.png">
       <SubType>Content</SubType>
     </Content>
     <Content Include="Images\TeganInfo.png">

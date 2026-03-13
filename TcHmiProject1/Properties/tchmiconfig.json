@@ -99,13 +99,6 @@
   "controls": [],
   "content": [
     {
-      "url": "Contents/1_Main.content",
-      "preload": false,
-      "keepAlive": false,
-      "loadSync": false,
-      "preloadBindings": false
-    },
-    {
       "url": "Contents/10_Manage_Users.content",
       "preload": false,
       "keepAlive": false,
@@ -212,6 +205,13 @@
     },
     {
       "url": "Contents/M/HeadMenu.content",
+      "preload": false,
+      "keepAlive": false,
+      "loadSync": false,
+      "preloadBindings": false
+    },
+    {
+      "url": "Contents/Mains/1_Main_LT_HW_VC.content",
       "preload": false,
       "keepAlive": false,
       "loadSync": false,
@@ -369,6 +369,12 @@
       "delaytest": {
         "value": false,
         "type": "tchmi:general#/definitions/BOOL",
+        "persist": false,
+        "readonly": false
+      },
+      "CameraZIndex": {
+        "value": 0,
+        "type": "tchmi:general#/definitions/DINT",
         "persist": false,
         "readonly": false
       }
