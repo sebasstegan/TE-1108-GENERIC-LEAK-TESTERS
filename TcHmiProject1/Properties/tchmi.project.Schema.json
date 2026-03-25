@@ -48,6 +48,78 @@
       "frameworkUserControlConfig": "Contents\\UserControl\\led_RedAndGreen_1In.usercontrol.json",
       "type": "object",
       "id": "tchmi:project#/definitions/led_RedAndGreen_1In"
+    },
+    "IO": {
+      "frameworkControlNamespace": "TcHmi.Controls.Beckhoff",
+      "frameworkControlType": "TcHmi.Controls.System.TcHmiUserControl",
+      "frameworkInstanceOf": "TcHmi.Controls.System.TcHmiControl",
+      "frameworkUserControlConfig": "Contents\\UserControl\\IO.usercontrol.json",
+      "type": "object",
+      "id": "tchmi:project#/definitions/IO"
+    },
+    "4CH_Dig_IO_CARD": {
+      "frameworkControlNamespace": "TcHmi.Controls.Beckhoff",
+      "frameworkControlType": "TcHmi.Controls.System.TcHmiUserControl",
+      "frameworkInstanceOf": "TcHmi.Controls.System.TcHmiControl",
+      "frameworkUserControlConfig": "Contents\\UserControl\\4CH_Dig_IO_CARD.usercontrol.json",
+      "type": "object",
+      "id": "tchmi:project#/definitions/4CH_Dig_IO_CARD"
+    },
+    "08CH_Dig_IO_CARD": {
+      "frameworkControlNamespace": "TcHmi.Controls.Beckhoff",
+      "frameworkControlType": "TcHmi.Controls.System.TcHmiUserControl",
+      "frameworkInstanceOf": "TcHmi.Controls.System.TcHmiControl",
+      "frameworkUserControlConfig": "Contents\\UserControl\\08CH_Dig_IO_CARD.usercontrol.json",
+      "type": "object",
+      "id": "tchmi:project#/definitions/08CH_Dig_IO_CARD"
+    },
+    "16CH_Dig_IO_CARD": {
+      "frameworkControlNamespace": "TcHmi.Controls.Beckhoff",
+      "frameworkControlType": "TcHmi.Controls.System.TcHmiUserControl",
+      "frameworkInstanceOf": "TcHmi.Controls.System.TcHmiControl",
+      "frameworkUserControlConfig": "Contents\\UserControl\\16CH_Dig_IO_CARD.usercontrol.json",
+      "type": "object",
+      "id": "tchmi:project#/definitions/16CH_Dig_IO_CARD"
+    },
+    "8CH_Analog_Input_CARD_-_Copy": {
+      "frameworkControlNamespace": "TcHmi.Controls.Beckhoff",
+      "frameworkControlType": "TcHmi.Controls.System.TcHmiUserControl",
+      "frameworkInstanceOf": "TcHmi.Controls.System.TcHmiControl",
+      "frameworkUserControlConfig": "Contents\\UserControl\\8CH_Analog_Input_CARD - Copy.usercontrol.json",
+      "type": "object",
+      "id": "tchmi:project#/definitions/8CH_Analog_Input_CARD_-_Copy"
+    },
+    "UserControl1_0": {
+      "frameworkControlNamespace": "TcHmi.Controls.Beckhoff",
+      "frameworkControlType": "TcHmi.Controls.System.TcHmiUserControl",
+      "frameworkInstanceOf": "TcHmi.Controls.System.TcHmiControl",
+      "frameworkUserControlConfig": "Contents\\UserControl\\UserControl1.usercontrol.json",
+      "type": "object",
+      "id": "tchmi:project#/definitions/UserControl1_0"
+    },
+    "UserControl1_1": {
+      "frameworkControlNamespace": "TcHmi.Controls.Beckhoff",
+      "frameworkControlType": "TcHmi.Controls.System.TcHmiUserControl",
+      "frameworkInstanceOf": "TcHmi.Controls.System.TcHmiControl",
+      "frameworkUserControlConfig": "Contents\\UserControl\\UserControl1.usercontrol.json",
+      "type": "object",
+      "id": "tchmi:project#/definitions/UserControl1_1"
+    },
+    "GreenRedRectangle": {
+      "frameworkControlNamespace": "TcHmi.Controls.Beckhoff",
+      "frameworkControlType": "TcHmi.Controls.System.TcHmiUserControl",
+      "frameworkInstanceOf": "TcHmi.Controls.System.TcHmiControl",
+      "frameworkUserControlConfig": "Contents\\UserControl\\GreenRedRectangle.usercontrol.json",
+      "type": "object",
+      "id": "tchmi:project#/definitions/GreenRedRectangle"
+    },
+    "HeightTestManual": {
+      "frameworkControlNamespace": "TcHmi.Controls.Beckhoff",
+      "frameworkControlType": "TcHmi.Controls.System.TcHmiUserControl",
+      "frameworkInstanceOf": "TcHmi.Controls.System.TcHmiControl",
+      "frameworkUserControlConfig": "Contents\\UserControl\\HeightTest\\HeightTestManual.usercontrol.json",
+      "type": "object",
+      "id": "tchmi:project#/definitions/HeightTestManual"
     }
   }
 }

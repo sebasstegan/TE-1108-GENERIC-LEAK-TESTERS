@@ -1,5 +1,5 @@
 ﻿<?xml version="1.0" encoding="utf-8"?>
-<TcPlcObject Version="1.1.0.1" ProductVersion="3.1.4024.13">
+<TcPlcObject Version="1.1.0.1" ProductVersion="3.1.4026.17">
   <DUT Name="ST_EL2809_B" Id="{438dfc55-5c11-4336-82de-7949b5b4df07}">
     <Declaration><![CDATA[TYPE ST_EL2809_B :
 STRUCT
@@ -7,8 +7,8 @@ STRUCT
 	sTerminalName                                           :   STRING(200):= 'EL2809 | 16-Channel Digital Output';
 	//=============================================================================================================
 	// TERMINAL - EL2809	16-Channel Digital Output Terminal	 (Term 10)
-	qRectractProcessCylinder2 				AT %Q*			: 	BOOL;	// EL2809 channel 1
-	qExtendProcessCylinder2					AT %Q* 			: 	BOOL;	// EL2809 channel 2
+	qOpenProcessDoor 						AT %Q*			: 	BOOL;	// EL2809 channel 1
+	qCloseProcessDoor						AT %Q* 			: 	BOOL;	// EL2809 channel 2
 	qiEL2809_Ch3             				AT %Q*	 		: 	BOOL;	// EL2809 channel 3 			
 	qiEL2809_Ch4      						AT %Q*	 		: 	BOOL;	// EL2809 channel 4 
 	qiEL2809_Ch5							AT %Q*	 		: 	BOOL;	// EL2809 channel 5

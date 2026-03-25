@@ -84,7 +84,28 @@
   ],
   "userControls": [
     {
+      "url": "Contents/UserControl/08CH_Dig_IO_CARD.usercontrol"
+    },
+    {
+      "url": "Contents/UserControl/16CH_Dig_IO_CARD.usercontrol"
+    },
+    {
+      "url": "Contents/UserControl/4CH_Dig_IO_CARD.usercontrol"
+    },
+    {
+      "url": "Contents/UserControl/8CH_Analog_Input_CARD.usercontrol"
+    },
+    {
+      "url": "Contents/UserControl/HeightTest/HeightTestManual.usercontrol"
+    },
+    {
+      "url": "Contents/UserControl/LED_Green.usercontrol"
+    },
+    {
       "url": "Contents/UserControl/led_RedAndGreen_1In.usercontrol"
+    },
+    {
+      "url": "Contents/UserControl/led_RedAndGreen_1In_IO.usercontrol"
     },
     {
       "url": "Contents/UserControl/led_RedAndGreen_2In.usercontrol"
@@ -121,13 +142,6 @@
     },
     {
       "url": "Contents/2_Menu.content",
-      "preload": false,
-      "keepAlive": false,
-      "loadSync": false,
-      "preloadBindings": false
-    },
-    {
-      "url": "Contents/3_IO.content",
       "preload": false,
       "keepAlive": false,
       "loadSync": false,
@@ -204,6 +218,202 @@
       "preloadBindings": false
     },
     {
+      "url": "Contents/Hardware/C6010-0010.content",
+      "preload": false,
+      "keepAlive": false,
+      "loadSync": false,
+      "preloadBindings": false
+    },
+    {
+      "url": "Contents/Hardware/EL1809T12.content",
+      "preload": false,
+      "keepAlive": false,
+      "loadSync": false,
+      "preloadBindings": false
+    },
+    {
+      "url": "Contents/Hardware/EL9188.content",
+      "preload": false,
+      "keepAlive": false,
+      "loadSync": false,
+      "preloadBindings": false
+    },
+    {
+      "url": "Contents/Hardware/EL9189.content",
+      "preload": false,
+      "keepAlive": false,
+      "loadSync": false,
+      "preloadBindings": false
+    },
+    {
+      "url": "Contents/Hardware/Keyence_Probe_Set1.content",
+      "preload": false,
+      "keepAlive": false,
+      "loadSync": false,
+      "preloadBindings": false
+    },
+    {
+      "url": "Contents/Hardware/Keyence_Probe_Set2.content",
+      "preload": false,
+      "keepAlive": false,
+      "loadSync": false,
+      "preloadBindings": false
+    },
+    {
+      "url": "Contents/Hardware/KeyenceCamera1.content",
+      "preload": false,
+      "keepAlive": false,
+      "loadSync": false,
+      "preloadBindings": false
+    },
+    {
+      "url": "Contents/Hardware/KeyenceCamera2.content",
+      "preload": false,
+      "keepAlive": false,
+      "loadSync": false,
+      "preloadBindings": false
+    },
+    {
+      "url": "Contents/Hardware/KeyenceCamera3.content",
+      "preload": false,
+      "keepAlive": false,
+      "loadSync": false,
+      "preloadBindings": false
+    },
+    {
+      "url": "Contents/Hardware/KeyenceCamera4.content",
+      "preload": false,
+      "keepAlive": false,
+      "loadSync": false,
+      "preloadBindings": false
+    },
+    {
+      "url": "Contents/Hardware/LeakTester1.content",
+      "preload": false,
+      "keepAlive": false,
+      "loadSync": false,
+      "preloadBindings": false
+    },
+    {
+      "url": "Contents/Hardware/LeakTester2.content",
+      "preload": false,
+      "keepAlive": false,
+      "loadSync": false,
+      "preloadBindings": false
+    },
+    {
+      "url": "Contents/Hardware/T01_EK1100.content",
+      "preload": false,
+      "keepAlive": false,
+      "loadSync": false,
+      "preloadBindings": false
+    },
+    {
+      "url": "Contents/Hardware/T02_EL6070.content",
+      "preload": false,
+      "keepAlive": false,
+      "loadSync": false,
+      "preloadBindings": false
+    },
+    {
+      "url": "Contents/Hardware/T03_EL6910.content",
+      "preload": false,
+      "keepAlive": false,
+      "loadSync": false,
+      "preloadBindings": false
+    },
+    {
+      "url": "Contents/Hardware/T04_EL1918.content",
+      "preload": false,
+      "keepAlive": false,
+      "loadSync": false,
+      "preloadBindings": false
+    },
+    {
+      "url": "Contents/Hardware/T05_EL1918.content",
+      "preload": false,
+      "keepAlive": false,
+      "loadSync": false,
+      "preloadBindings": false
+    },
+    {
+      "url": "Contents/Hardware/T06_EL2904.content",
+      "preload": false,
+      "keepAlive": false,
+      "loadSync": false,
+      "preloadBindings": false
+    },
+    {
+      "url": "Contents/Hardware/T07_EL9410.content",
+      "preload": false,
+      "keepAlive": false,
+      "loadSync": false,
+      "preloadBindings": false
+    },
+    {
+      "url": "Contents/Hardware/T08_EL1809_A.content",
+      "preload": false,
+      "keepAlive": false,
+      "loadSync": false,
+      "preloadBindings": false
+    },
+    {
+      "url": "Contents/Hardware/T08_EL1809_B.content",
+      "preload": false,
+      "keepAlive": false,
+      "loadSync": false,
+      "preloadBindings": false
+    },
+    {
+      "url": "Contents/Hardware/T09_EL2809_A.content",
+      "preload": false,
+      "keepAlive": false,
+      "loadSync": false,
+      "preloadBindings": false
+    },
+    {
+      "url": "Contents/Hardware/T09_EL2809_B.content",
+      "preload": false,
+      "keepAlive": false,
+      "loadSync": false,
+      "preloadBindings": false
+    },
+    {
+      "url": "Contents/Hardware/T10_EL2809.content",
+      "preload": false,
+      "keepAlive": false,
+      "loadSync": false,
+      "preloadBindings": false
+    },
+    {
+      "url": "Contents/Hardware/T11_EL3058.content",
+      "preload": false,
+      "keepAlive": false,
+      "loadSync": false,
+      "preloadBindings": false
+    },
+    {
+      "url": "Contents/Hardware/T12-EL1918.content",
+      "preload": false,
+      "keepAlive": false,
+      "loadSync": false,
+      "preloadBindings": false
+    },
+    {
+      "url": "Contents/Hardware/T13_EL6633.content",
+      "preload": false,
+      "keepAlive": false,
+      "loadSync": false,
+      "preloadBindings": false
+    },
+    {
+      "url": "Contents/IOs/3_IO_LT_HW_VC.content",
+      "preload": false,
+      "keepAlive": false,
+      "loadSync": false,
+      "preloadBindings": false
+    },
+    {
       "url": "Contents/M/HeadMenu.content",
       "preload": false,
       "keepAlive": false,
@@ -218,21 +428,42 @@
       "preloadBindings": false
     },
     {
-      "url": "Contents/Manual/1_Station1.content",
+      "url": "Contents/Manual/Cameras.content",
       "preload": false,
       "keepAlive": false,
       "loadSync": false,
       "preloadBindings": false
     },
     {
-      "url": "Contents/Manual/2_Station2.content",
+      "url": "Contents/Manual/Cameras/CameraInterface.content",
       "preload": false,
       "keepAlive": false,
       "loadSync": false,
       "preloadBindings": false
     },
     {
-      "url": "Contents/Manual/3_Station3.content",
+      "url": "Contents/Manual/Cameras/CameraTriggerPopup.content",
+      "preload": false,
+      "keepAlive": false,
+      "loadSync": false,
+      "preloadBindings": false
+    },
+    {
+      "url": "Contents/Manual/Height_Test.content",
+      "preload": false,
+      "keepAlive": false,
+      "loadSync": false,
+      "preloadBindings": false
+    },
+    {
+      "url": "Contents/Manual/Leak_Test.content",
+      "preload": false,
+      "keepAlive": false,
+      "loadSync": false,
+      "preloadBindings": false
+    },
+    {
+      "url": "Contents/popup/popup.content",
       "preload": false,
       "keepAlive": false,
       "loadSync": false,
@@ -253,28 +484,14 @@
       "preloadBindings": false
     },
     {
-      "url": "Contents/Settings/1_SettingsStation1.content",
+      "url": "Contents/popup/popup3_QuitHMI.content",
       "preload": false,
       "keepAlive": false,
       "loadSync": false,
       "preloadBindings": false
     },
     {
-      "url": "Contents/Settings/2_SettingsStation2.content",
-      "preload": false,
-      "keepAlive": false,
-      "loadSync": false,
-      "preloadBindings": false
-    },
-    {
-      "url": "Contents/Settings/3_SettingsStation3.content",
-      "preload": false,
-      "keepAlive": false,
-      "loadSync": false,
-      "preloadBindings": false
-    },
-    {
-      "url": "Contents/Settings/4_Timers.content",
+      "url": "Contents/popup/popup4_ShutDown.content",
       "preload": false,
       "keepAlive": false,
       "loadSync": false,
@@ -299,12 +516,6 @@
       "MainFrame": {
         "value": 0,
         "type": "tchmi:general#/definitions/DINT",
-        "persist": false,
-        "readonly": false
-      },
-      "nIOScreen": {
-        "value": 0,
-        "type": "tchmi:general#/definitions/INT",
         "persist": false,
         "readonly": false
       },
@@ -375,6 +586,24 @@
       "CameraZIndex": {
         "value": 0,
         "type": "tchmi:general#/definitions/DINT",
+        "persist": false,
+        "readonly": false
+      },
+      "IO_Screen": {
+        "value": "Contents/Hardware/C6010-0010.content",
+        "type": "tchmi:framework#/definitions/Path",
+        "persist": false,
+        "readonly": false
+      },
+      "CameraFrame": {
+        "value": 0,
+        "type": "tchmi:general#/definitions/DINT",
+        "persist": false,
+        "readonly": false
+      },
+      "ClosePopUp": {
+        "value": false,
+        "type": "tchmi:general#/definitions/BOOL",
         "persist": false,
         "readonly": false
       }
@@ -533,19 +762,22 @@
     }
   ],
   "systemKeyboard": {
-    "providerName": "",
-    "autoOpen": false,
+    "providerName": "Beckhoff.TcHmiKeyboard",
+    "autoOpen": true,
     "projectKeyboardMapping": {
       "de": {
         "text": "KeyboardLayouts/German - compact.keyboard.json",
         "decimal": "KeyboardLayouts/Numpad (plusminus).keyboard.json",
-        "numeric": ""
+        "numeric": "KeyboardLayouts/Numpad (plusminus).keyboard.json"
       },
       "en": {
         "text": "KeyboardLayouts/US - compact.keyboard.json",
         "decimal": "KeyboardLayouts/Numpad (plusminus).keyboard.json",
-        "numeric": ""
+        "numeric": "KeyboardLayouts/Numpad (plusminus).keyboard.json"
       }
+    },
+    "layout": {
+      "position": "popup"
     }
   },
   "systemPopups": {

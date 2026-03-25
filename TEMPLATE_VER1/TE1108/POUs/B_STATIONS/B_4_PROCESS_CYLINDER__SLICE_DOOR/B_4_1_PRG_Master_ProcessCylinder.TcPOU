@@ -1,11 +1,12 @@
 ﻿<?xml version="1.0" encoding="utf-8"?>
-<TcPlcObject Version="1.1.0.1" ProductVersion="3.1.4024.13">
+<TcPlcObject Version="1.1.0.1" ProductVersion="3.1.4026.17">
   <POU Name="B_4_1_PRG_Master_ProcessCylinder" Id="{d0145914-e9cd-4253-a0f6-814edf8d9943}" SpecialFunc="None">
     <Declaration><![CDATA[PROGRAM B_4_1_PRG_Master_ProcessCylinder
 
 VAR
 
-	bEventsFlag							: ARRAY [0..100] OF BOOL;
+	
+	
 /////////////////////////////////////////////////////////////////////////////////////I O/////////////////////////////////////////////////////////////////////////////////////	
 	bExtended							: ARRAY [0..1] OF BOOL;
 	bRetracted							: ARRAY [0..1] OF BOOL;
@@ -19,6 +20,7 @@ END_VAR
       <ST><![CDATA[d_ACT_Set_Events_Station_4A();
 a_ACT_Ctrl_Station_4A();
 b_ACT_IO_A();
+c_Manual();
 ]]></ST>
     </Implementation>
     <Action Name="a_ACT_Ctrl_Station_4A" Id="{d4b732ce-22fe-4ec8-9a8f-7db7188e9535}">
@@ -191,139 +193,117 @@ bRetracted[0]							:= dw_T08_EL1809.iProcessCylinder1Retracted;
 bRetracted[1]							:= dw_T08_EL1809.iProcessCylinder2Retracted;
 
 dw_T09_EL2809.qExtendProcessCylinder1	:= bExtend[0];	
-dw_T10_EL2809.qExtendProcessCylinder2	:= bExtend[1];	
+dw_T09_EL2809.qExtendProcessCylinder2	:= bExtend[1];	
 dw_T09_EL2809.qRetractProcessCylinder1	:= bRetract[0];
-dw_T10_EL2809.qRectractProcessCylinder2	:= bRetract[1];
+dw_T09_EL2809.qRetractProcessCylinder2	:= bRetract[1];
 
+IF stStationEvents[3].aEvents[0].bEventTimer.Q THEN
+	
+	bRetract[0] := FALSE;
+
+END_IF
+
+IF stStationEvents[3].aEvents[1].bEventTimer.Q THEN
+	
+	bExtended[0] := FALSE;
+
+END_IF
+
+IF stStationEvents[3].aEvents[2].bEventTimer.Q THEN
+	
+	bRetract[1] := FALSE;
+
+END_IF
+
+IF stStationEvents[3].aEvents[3 ].bEventTimer.Q THEN
+	
+	bExtended[1] := FALSE;
+
+END_IF
+
+]]></ST>
+      </Implementation>
+    </Action>
+    <Action Name="c_Manual" Id="{0d3727e7-45d5-4409-b537-12f65f0f5507}">
+      <Implementation>
+        <ST><![CDATA[
+IF bProcessCylinder1_Up THEN
+	
+	bRetract[0] := TRUE;
+	
+ELSIF bRetracted[0] THEN
+	
+	bRetract[0] := FALSE;
+
+END_IF
+
+IF bProcessCylinder1_Down THEN
+	
+	bExtend[0] := TRUE;
+	
+ELSIF bExtended[0] THEN
+	
+	bExtend[0] := FALSE;
+
+END_IF
+
+IF bProcessCylinder2_Up THEN
+	
+	bRetract[1] := TRUE;
+	
+ELSIF bRetracted[1] THEN
+	
+	bRetract[1] := FALSE;
+
+END_IF
+
+IF bProcessCylinder2_Down THEN
+	
+	bExtend[1] := TRUE;
+	
+ELSIF bExtended[1] THEN
+	
+	bExtend[1] := FALSE;
+
+END_IF
 ]]></ST>
       </Implementation>
     </Action>
     <Action Name="d_ACT_Set_Events_Station_4A" Id="{d00bfd1e-e9ca-4865-8264-d52001d7fb58}">
       <Implementation>
-        <ST><![CDATA[//IMMEDIATE FAULTS
+        <ST><![CDATA[//FAULTS
 
+stStationEvents[3].aEvents[0].bEventTimer( IN := (bExtend[0] AND NOT bExtended[0]), PT := T#5S);
 stStationEvents[3].aEvents[0].bFault						:= TRUE;
-stStationEvents[3].aEvents[0].bEventFlag					:= bEventsFlag[0];
-stStationEvents[3].aEvents[0].bEventText					:= 'ST1 EVENT 0';
-stStationEvents[3].aEvents[0].sSolution						:= 'Solution 5';
+stStationEvents[3].aEvents[0].bEventFlag					:= stStationEvents[3].aEvents[0].bEventTimer.Q;
+stStationEvents[3].aEvents[0].bEventText					:= 'Process Cylinder 1 extend timeout';
+stStationEvents[3].aEvents[0].sSolution						:= 'Check cylinder, neumatic connections and sensors';
+
+stStationEvents[3].aEvents[1].bEventTimer( IN := (bRetract[0] AND NOT bRetracted[0]), PT := T#5S);
+stStationEvents[3].aEvents[1].bFault						:= TRUE;
+stStationEvents[3].aEvents[1].bEventFlag					:= stStationEvents[3].aEvents[1].bEventTimer.Q;
+stStationEvents[3].aEvents[1].bEventText					:= 'Process Cylinder retract timeout';
+stStationEvents[3].aEvents[1].sSolution						:= 'Check cylinder, neumatic connections and sensors';
+
+stStationEvents[3].aEvents[2].bEventTimer( IN := (bExtend[1] AND NOT bExtended[1]), PT := T#5S);
+stStationEvents[3].aEvents[2].bFault						:= TRUE;
+stStationEvents[3].aEvents[2].bEventFlag					:= stStationEvents[3].aEvents[2].bEventTimer.Q;
+stStationEvents[3].aEvents[2].bEventText					:= 'Process Cylinder 2 extend timeout';
+stStationEvents[3].aEvents[2].sSolution						:= 'Check cylinder, neumatic connections and sensors';
+
+stStationEvents[3].aEvents[3].bEventTimer( IN := (bRetract[1] AND NOT bRetracted[1]), PT := T#5S);
+stStationEvents[3].aEvents[3].bFault						:= TRUE;
+stStationEvents[3].aEvents[3].bEventFlag					:= stStationEvents[3].aEvents[3].bEventTimer.Q;
+stStationEvents[3].aEvents[3].bEventText					:= 'Process Cylinder 2 retract timeout';
+stStationEvents[3].aEvents[3].sSolution						:= 'Check cylinder, neumatic connections and sensors';
 
 
 //CYCLE STOP REQUEST
 
-stStationEvents[3].aEvents[2].bCycleStopRequest			:= TRUE;
-stStationEvents[3].aEvents[2].bEventFlag					:= bEventsFlag[2];
-stStationEvents[3].aEvents[2].bEventText					:= 'ST1 EVENT 7';]]></ST>
+(*stStationEvents[3].aEvents[2].bCycleStopRequest			:= TRUE;
+stStationEvents[3].aEvents[2].bEventFlag					:= ;
+stStationEvents[3].aEvents[2].bEventText					:= 'ST1 EVENT 7';*)]]></ST>
       </Implementation>
     </Action>
-    <LineIds Name="B_4_1_PRG_Master_ProcessCylinder">
-      <LineId Id="305" Count="2" />
-      <LineId Id="41" Count="0" />
-    </LineIds>
-    <LineIds Name="B_4_1_PRG_Master_ProcessCylinder.a_ACT_Ctrl_Station_4A">
-      <LineId Id="130" Count="0" />
-      <LineId Id="132" Count="0" />
-      <LineId Id="131" Count="0" />
-      <LineId Id="190" Count="0" />
-      <LineId Id="326" Count="0" />
-      <LineId Id="329" Count="1" />
-      <LineId Id="328" Count="0" />
-      <LineId Id="331" Count="0" />
-      <LineId Id="333" Count="0" />
-      <LineId Id="332" Count="0" />
-      <LineId Id="327" Count="0" />
-      <LineId Id="3" Count="1" />
-      <LineId Id="166" Count="4" />
-      <LineId Id="172" Count="1" />
-      <LineId Id="171" Count="0" />
-      <LineId Id="5" Count="1" />
-      <LineId Id="158" Count="0" />
-      <LineId Id="7" Count="0" />
-      <LineId Id="253" Count="0" />
-      <LineId Id="218" Count="0" />
-      <LineId Id="11" Count="0" />
-      <LineId Id="254" Count="2" />
-      <LineId Id="221" Count="0" />
-      <LineId Id="257" Count="1" />
-      <LineId Id="222" Count="0" />
-      <LineId Id="12" Count="1" />
-      <LineId Id="159" Count="0" />
-      <LineId Id="245" Count="0" />
-      <LineId Id="259" Count="0" />
-      <LineId Id="247" Count="2" />
-      <LineId Id="251" Count="0" />
-      <LineId Id="261" Count="2" />
-      <LineId Id="260" Count="0" />
-      <LineId Id="252" Count="0" />
-      <LineId Id="264" Count="0" />
-      <LineId Id="267" Count="0" />
-      <LineId Id="266" Count="0" />
-      <LineId Id="269" Count="2" />
-      <LineId Id="268" Count="0" />
-      <LineId Id="273" Count="6" />
-      <LineId Id="272" Count="0" />
-      <LineId Id="265" Count="0" />
-      <LineId Id="250" Count="0" />
-      <LineId Id="207" Count="0" />
-      <LineId Id="286" Count="28" />
-      <LineId Id="285" Count="0" />
-      <LineId Id="208" Count="0" />
-      <LineId Id="211" Count="2" />
-      <LineId Id="280" Count="0" />
-      <LineId Id="282" Count="0" />
-      <LineId Id="284" Count="0" />
-      <LineId Id="283" Count="0" />
-      <LineId Id="281" Count="0" />
-      <LineId Id="174" Count="0" />
-      <LineId Id="198" Count="0" />
-      <LineId Id="165" Count="0" />
-      <LineId Id="176" Count="0" />
-      <LineId Id="180" Count="0" />
-      <LineId Id="315" Count="4" />
-      <LineId Id="323" Count="0" />
-      <LineId Id="321" Count="0" />
-      <LineId Id="324" Count="1" />
-      <LineId Id="322" Count="0" />
-      <LineId Id="320" Count="0" />
-      <LineId Id="178" Count="0" />
-      <LineId Id="113" Count="0" />
-      <LineId Id="335" Count="0" />
-      <LineId Id="347" Count="0" />
-      <LineId Id="359" Count="0" />
-      <LineId Id="350" Count="8" />
-      <LineId Id="348" Count="0" />
-      <LineId Id="365" Count="0" />
-      <LineId Id="349" Count="0" />
-      <LineId Id="341" Count="0" />
-      <LineId Id="334" Count="0" />
-      <LineId Id="109" Count="0" />
-      <LineId Id="61" Count="2" />
-      <LineId Id="1" Count="0" />
-      <LineId Id="73" Count="0" />
-      <LineId Id="75" Count="0" />
-      <LineId Id="80" Count="0" />
-      <LineId Id="346" Count="0" />
-      <LineId Id="96" Count="0" />
-      <LineId Id="83" Count="0" />
-      <LineId Id="206" Count="0" />
-      <LineId Id="86" Count="0" />
-      <LineId Id="99" Count="0" />
-      <LineId Id="95" Count="0" />
-    </LineIds>
-    <LineIds Name="B_4_1_PRG_Master_ProcessCylinder.b_ACT_IO_A">
-      <LineId Id="15" Count="1" />
-      <LineId Id="23" Count="0" />
-      <LineId Id="17" Count="0" />
-      <LineId Id="24" Count="1" />
-      <LineId Id="22" Count="0" />
-      <LineId Id="26" Count="0" />
-      <LineId Id="28" Count="1" />
-      <LineId Id="27" Count="0" />
-      <LineId Id="5" Count="0" />
-    </LineIds>
-    <LineIds Name="B_4_1_PRG_Master_ProcessCylinder.d_ACT_Set_Events_Station_4A">
-      <LineId Id="50" Count="6" />
-      <LineId Id="65" Count="4" />
-      <LineId Id="1" Count="0" />
-    </LineIds>
   </POU>
 </TcPlcObject>

@@ -12,8 +12,11 @@ VAR
 	
 	ntShutdown								: TC2_Utilities.NT_Shutdown;
 	closeChrome 							: NT_StartProcess;
+	bCloseChromeBusy						: BOOL;
+	tonCloseChromeBusy						: TON;
 	tonUserLogOut							: TON;
 	fbUserLog								: FB_UserLog;
+	
 	
 	nFindAdm								: INT;
 	nFindEng								: INT;
@@ -30,6 +33,7 @@ VAR
 	fbScaleAirSupply						: FB_Scale;
 	
 	
+	
 ////////////////////////////////////////////////////////////////////////////////////CSV////////////////////////////////////////////////////////////////////////////	
 
 	//stEventsCSVProcess						:  ST_CSVProcess;
@@ -37,8 +41,8 @@ VAR
 	fbPDFMaker								: FB_PDFMaker;
 	stPDFMaker								: ST_PDFMaker;
 	i										: DINT;
-	
-
+	ntest									AT %Q* : UINT;	
+	ntest2									AT %Q* : UDINT;
 	
 
 	
@@ -217,16 +221,23 @@ stEventsCSVProcess.nMAX_CSV_COLUMNS						:= 4;*)]]></ST>
     </Action>
     <Action Name="d_ACT_ShutdownAndQuit" Id="{b7dac9a1-fefc-426e-a57f-b21e21205edc}">
       <Implementation>
-        <ST><![CDATA[closeChrome(
+        <ST><![CDATA[tonCloseChromeBusy( IN := bQuitHmi, PT := T#5S);
+IF  tonCloseChromeBusy.Q THEN
+	
+	bQuitHmi			:= FALSE;
+
+END_IF
+
+closeChrome(
     NetId := NetAmsId,
     PathStr := 'C:\Windows\System32\mshta vbscript:Execute("CreateObject(""WScript.Shell"").Run ""powershell -c',
     DirName := 'C:\Windows\System32\WindowsPowerShell\v1.0',
     ComndLine := 'taskkill /F /IM chrome.exe /T"", 0: window.close")',
     Start := bQuitHmi,
-    TmOut := DEFAULT_ADS_TIMEOUT
+    TmOut := DEFAULT_ADS_TIMEOUT,
+	BUSY => bCloseChromeBusy
 );
- 
-bQuitHmi:= FALSE;
+
 
 ntShutdown(NETID := NetAmsId, DELAY := 5, START := bShutDown);]]></ST>
       </Implementation>
@@ -284,43 +295,56 @@ fbUserLog(	nNumberOfData								:= 250,
     <Action Name="f_ACT_TerminalInfo" Id="{8299d142-9ce5-4d1b-9f3f-121127d1dbfb}">
       <Implementation>
         <ST><![CDATA[dw_T01_EK1100.stTerminalInfo.fbTerminalInfo( 	nTerminalState						:= dw_T01_EK1100.stTerminalInfo.nTerminal_State,
-												sTerminalState						=> dw_T01_EK1100.stTerminalInfo.sTerminalInfo);
+												sTerminalState						=> dw_T01_EK1100.stTerminalInfo.sTerminalInfo,
+												bTerminalOperational				=> dw_T01_EK1100.stTerminalInfo.bTerminalOperational);
 									
 dw_T02_EL6070.stTerminalInfo.fbTerminalInfo( 	nTerminalState						:= dw_T02_EL6070.stTerminalInfo.nTerminal_State,
-												sTerminalState						=> dw_T02_EL6070.stTerminalInfo.sTerminalInfo);
+												sTerminalState						=> dw_T02_EL6070.stTerminalInfo.sTerminalInfo,
+												bTerminalOperational				=> dw_T02_EL6070.stTerminalInfo.bTerminalOperational);
 
 dw_T03_EL6910.stTerminalInfo.fbTerminalInfo( 	nTerminalState						:= dw_T03_EL6910.stTerminalInfo.nTerminal_State,
-												sTerminalState						=> dw_T03_EL6910.stTerminalInfo.sTerminalInfo);
+												sTerminalState						=> dw_T03_EL6910.stTerminalInfo.sTerminalInfo,
+												bTerminalOperational				=> dw_T03_EL6910.stTerminalInfo.bTerminalOperational);
 												
 dw_T04_EL1918.stTerminalInfo.fbTerminalInfo(	nTerminalState						:= dw_T04_EL1918.stTerminalInfo.nTerminal_State,
-												sTerminalState						=> dw_T04_EL1918.stTerminalInfo.sTerminalInfo);
+												sTerminalState						=> dw_T04_EL1918.stTerminalInfo.sTerminalInfo,
+												bTerminalOperational				=> dw_T04_EL1918.stTerminalInfo.bTerminalOperational);
 												
 dw_T05_EL1918.stTerminalInfo.fbTerminalInfo(	nTerminalState						:= dw_T05_EL1918.stTerminalInfo.nTerminal_State,
-												sTerminalState						=> dw_T05_EL1918.stTerminalInfo.sTerminalInfo);
+												sTerminalState						=> dw_T05_EL1918.stTerminalInfo.sTerminalInfo,
+												bTerminalOperational				=> dw_T05_EL1918.stTerminalInfo.bTerminalOperational);
 												
 dw_T06_EL2904.stTerminalInfo.fbTerminalInfo(	nTerminalState						:= dw_T06_EL2904.stTerminalInfo.nTerminal_State,
-												sTerminalState						=> dw_T06_EL2904.stTerminalInfo.sTerminalInfo);
+												sTerminalState						=> dw_T06_EL2904.stTerminalInfo.sTerminalInfo,
+												bTerminalOperational				=> dw_T06_EL2904.stTerminalInfo.bTerminalOperational);
 												
 dw_T07_EL9410.stTerminalInfo.fbTerminalInfo(	nTerminalState						:= dw_T07_EL9410.stTerminalInfo.nTerminal_State,
-												sTerminalState						=> dw_T07_EL9410.stTerminalInfo.sTerminalInfo);
+												sTerminalState						=> dw_T07_EL9410.stTerminalInfo.sTerminalInfo,
+												bTerminalOperational				=> dw_T07_EL9410.stTerminalInfo.bTerminalOperational);
 											
 dw_T08_EL1809.stTerminalInfo.fbTerminalInfo(	nTerminalState						:= dw_T08_EL1809.stTerminalInfo.nTerminal_State,
-												sTerminalState						=> dw_T08_EL1809.stTerminalInfo.sTerminalInfo);
+												sTerminalState						=> dw_T08_EL1809.stTerminalInfo.sTerminalInfo,
+												bTerminalOperational				=> dw_T08_EL1809.stTerminalInfo.bTerminalOperational);
 												
 dw_T09_EL2809.stTerminalInfo.fbTerminalInfo(	nTerminalState						:= dw_T09_EL2809.stTerminalInfo.nTerminal_State,
-												sTerminalState						=> dw_T09_EL2809.stTerminalInfo.sTerminalInfo);
+												sTerminalState						=> dw_T09_EL2809.stTerminalInfo.sTerminalInfo,
+												bTerminalOperational				=> dw_T09_EL2809.stTerminalInfo.bTerminalOperational);
 												
 dw_T10_EL2809.stTerminalInfo.fbTerminalInfo(	nTerminalState						:= dw_T10_EL2809.stTerminalInfo.nTerminal_State,
-												sTerminalState						=> dw_T10_EL2809.stTerminalInfo.sTerminalInfo);
+												sTerminalState						=> dw_T10_EL2809.stTerminalInfo.sTerminalInfo,
+												bTerminalOperational				=> dw_T10_EL2809.stTerminalInfo.bTerminalOperational);
 												
 dw_T11_EL3058.stTerminalInfo.fbTerminalInfo(	nTerminalState						:= dw_T11_EL3058.stTerminalInfo.nTerminal_State,
-												sTerminalState						=> dw_T11_EL3058.stTerminalInfo.sTerminalInfo);
+												sTerminalState						=> dw_T11_EL3058.stTerminalInfo.sTerminalInfo,
+												bTerminalOperational				=> dw_T11_EL3058.stTerminalInfo.bTerminalOperational);
 												
 dw_T12_EL1918.stTerminalInfo.fbTerminalInfo(	nTerminalState						:= dw_T12_EL1918.stTerminalInfo.nTerminal_State,
-												sTerminalState						=> dw_T12_EL1918.stTerminalInfo.sTerminalInfo);
+												sTerminalState						=> dw_T12_EL1918.stTerminalInfo.sTerminalInfo,
+												bTerminalOperational				=> dw_T12_EL1918.stTerminalInfo.bTerminalOperational);
 												
 dw_T13_EL6633.stTerminalInfo.fbTerminalInfo(	nTerminalState						:= dw_T13_EL6633.stTerminalInfo.nTerminal_State,
-												sTerminalState						=> dw_T13_EL6633.stTerminalInfo.sTerminalInfo);
+												sTerminalState						=> dw_T13_EL6633.stTerminalInfo.sTerminalInfo,
+												bTerminalOperational				=> dw_T13_EL6633.stTerminalInfo.bTerminalOperational);
 												
 //add boxes]]></ST>
       </Implementation>
@@ -397,6 +421,58 @@ stTwinSAFE.bMainDoor_AirFlag[1]			:= bMainDoor_AirFlag[1];
 stTwinSAFE.iProcessCylinderLockCondition1 	:= bProcessCylinderLockConditionFlag;
 stTwinSAFE.iProcessCylinderLockCondition2 	:= bProcessCylinderLockConditionFlag;
 stTwinSAFE.iProcessDoorClosedCondition		:= bProcessDoorClosedConditionFlag;
+
+
+////////////////////////////////////////////////////////////TwinSAFE Outputs reading//////////////////////////////////////////////////////////
+
+dw_T06_EL2904.qEnableAirSupply_PSR1								:= SEL((dw_T06_EL2904_Reading.bResult[1]=1),FALSE,TRUE);
+dw_T06_EL2904.qResetAirSupply_PSR2								:= SEL((dw_T06_EL2904_Reading.bResult[2]=1),FALSE,TRUE);
+dw_T06_EL2904.qLockMainDoor										:= SEL((dw_T06_EL2904_Reading.bResult[3]=1),FALSE,TRUE);
+dw_T06_EL2904.qLockProcessCylinder								:= SEL((dw_T06_EL2904_Reading.bResult[4]=1),FALSE,TRUE);
+
+dw_T06_EL2904_Reading.fbReadOutSafety06[1]( 	sNetId 			:='192.168.7.20.4.1',
+	                					 		nSlaveAddr 		:=1006,
+					 							nSubIndex 		:=0001,
+					 							nIndex 			:=16#7001 ,
+					 							pDstBuf 		:=ADR(dw_T06_EL2904_Reading.bResult[1]),
+					 							cbBufLen 		:=SIZEOF(dw_T06_EL2904_Reading.bResult[1]),
+					 							bExecute 		:= stPuls.bFlash4Hz,
+					 							tTimeout 		:= T#500MS,
+					 							bBusy 			=> dw_T06_EL2904_Reading.bBusy[1],
+					 							bError 			=> dw_T06_EL2904_Reading.berror[1]);
+												
+dw_T06_EL2904_Reading.fbReadOutSafety06[2]( 	sNetId 			:='192.168.7.20.4.1',
+	                					 		nSlaveAddr 		:=1006,
+					 							nSubIndex 		:=0002,
+					 							nIndex 			:=16#7001 ,
+					 							pDstBuf 		:=ADR(dw_T06_EL2904_Reading.bResult[2]),
+					 							cbBufLen 		:=SIZEOF(dw_T06_EL2904_Reading.bResult[2]),
+					 							bExecute 		:= stPuls.bFlash4Hz,
+					 							tTimeout 		:= T#500MS,
+					 							bBusy 			=> dw_T06_EL2904_Reading.bBusy[2],
+					 							bError 			=> dw_T06_EL2904_Reading.berror[2]);
+												
+dw_T06_EL2904_Reading.fbReadOutSafety06[3]( 	sNetId 			:='192.168.7.20.4.1',
+	                					 		nSlaveAddr 		:=1006,
+					 							nSubIndex 		:=0003,
+					 							nIndex 			:=16#7001 ,
+					 							pDstBuf 		:=ADR(dw_T06_EL2904_Reading.bResult[3]),
+					 							cbBufLen 		:=SIZEOF(dw_T06_EL2904_Reading.bResult[3]),
+					 							bExecute 		:= stPuls.bFlash4Hz,
+					 							tTimeout 		:= T#500MS,
+					 							bBusy 			=> dw_T06_EL2904_Reading.bBusy[3],
+					 							bError 			=> dw_T06_EL2904_Reading.berror[3]);
+											
+dw_T06_EL2904_Reading.fbReadOutSafety06[4]( 	sNetId 			:='192.168.7.20.4.1',
+	                					 		nSlaveAddr 		:=1006,
+					 							nSubIndex 		:=0004,
+					 							nIndex 			:=16#7001 ,
+					 							pDstBuf 		:=ADR(dw_T06_EL2904_Reading.bResult[4]),
+					 							cbBufLen 		:=SIZEOF(dw_T06_EL2904_Reading.bResult[4]),
+					 							bExecute 		:= stPuls.bFlash4Hz,
+					 							tTimeout 		:= T#500MS,
+					 							bBusy 			=> dw_T06_EL2904_Reading.bBusy[4],
+					 							bError 			=> dw_T06_EL2904_Reading.berror[4]);
 ]]></ST>
       </Implementation>
     </Action>

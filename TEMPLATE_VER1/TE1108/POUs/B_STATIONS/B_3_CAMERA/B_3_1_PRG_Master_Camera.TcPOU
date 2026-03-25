@@ -1,5 +1,5 @@
 ﻿<?xml version="1.0" encoding="utf-8"?>
-<TcPlcObject Version="1.1.0.1" ProductVersion="3.1.4024.13">
+<TcPlcObject Version="1.1.0.1" ProductVersion="3.1.4026.17">
   <POU Name="B_3_1_PRG_Master_Camera" Id="{474f4225-5110-4ccd-bbcf-78541da80fa5}" SpecialFunc="None">
     <Declaration><![CDATA[PROGRAM B_3_1_PRG_Master_Camera
 
@@ -18,6 +18,7 @@ VAR
 	bPass								: BOOL;
 	bFail								: BOOL;
 	bTtigger							: BOOL;
+	bTriigerFail						: BOOL;
 	
 END_VAR
 ]]></Declaration>
@@ -117,10 +118,48 @@ stCamera.Status.bStopped	:= 	NOT stCamera.Status.bBusy;]]></ST>
     </Action>
     <Action Name="b_ACT_IO" Id="{440050ef-4990-4273-9ec8-027f575cfd9b}">
       <Implementation>
-        <ST><![CDATA[//bStopped								:=;
-//bError								:=;
-//bReady								:=;
-//bDone
+        <ST><![CDATA[
+bError									:= Camera1_IO.bError;
+bReady									:=  Camera1_IO.bReady AND Camera1_IO.bRun;
+bDone									:=  Camera1_IO.bResultReady;
+bPass									:= bDone AND (Camera1_IO.bTotalResult = TRUE);
+bFail									:= bDone AND (Camera1_IO.bTotalResult = FALSE);
+
+
+Camera1_IO.bReset						:= bReset;
+Camera1_IO.bTrigger						:= bTtigger OR bCameraTrigger[1];	
+Camera2_IO.bTrigger						:= bTtigger OR bCameraTrigger[2];
+Camera3_IO.bTrigger						:= bTtigger OR bCameraTrigger[3];
+Camera4_IO.bTrigger						:= bTtigger OR bCameraTrigger[4];
+		
+	
+
+
+
+//////////////////////////////////////////////////////////////////////HMI//////////////////////////////////////////////////////////////////////////////
+
+
+Camera1_IO.bResetStatistics				:= bCameraResetStatistics[1];
+Camera1_IO.bSettingNo					:= bCameraSettingNo[1];
+Camera1_IO.bSettingVal					:= bCameraSettingVal[1];
+Camera1_IO.bSetTreshold					:= bCameraSetTreshold[1];
+
+Camera2_IO.bResetStatistics				:= bCameraResetStatistics[2];
+Camera2_IO.bSettingNo					:= bCameraSettingNo[2];
+Camera2_IO.bSettingVal					:= bCameraSettingVal[2];
+Camera2_IO.bSetTreshold					:= bCameraSetTreshold[2];
+
+Camera3_IO.bResetStatistics				:= bCameraResetStatistics[3];
+Camera3_IO.bSettingNo					:= bCameraSettingNo[3];
+Camera3_IO.bSettingVal					:= bCameraSettingVal[3];
+Camera3_IO.bSetTreshold					:= bCameraSetTreshold[3];
+
+Camera4_IO.bResetStatistics				:= bCameraResetStatistics[4];
+Camera4_IO.bSettingNo					:= bCameraSettingNo[4];
+Camera4_IO.bSettingVal					:= bCameraSettingVal[4];
+Camera4_IO.bSetTreshold					:= bCameraSetTreshold[4];
+
+//Camera1_IO.bTriggerFail
 
 rReset( CLK := stCamera.CMD.bReset, Q => bReset);
 
@@ -195,107 +234,5 @@ stStationEvents[3].aEvents[2].bEventFlag					:= bEventsFlag[2];
 stStationEvents[3].aEvents[2].bEventText					:= 'ST1 EVENT 7';]]></ST>
       </Implementation>
     </Action>
-    <LineIds Name="B_3_1_PRG_Master_Camera">
-      <LineId Id="185" Count="0" />
-      <LineId Id="150" Count="1" />
-      <LineId Id="41" Count="0" />
-    </LineIds>
-    <LineIds Name="B_3_1_PRG_Master_Camera.a_ACT_Ctrl_Station_3">
-      <LineId Id="130" Count="0" />
-      <LineId Id="132" Count="0" />
-      <LineId Id="131" Count="0" />
-      <LineId Id="215" Count="1" />
-      <LineId Id="119" Count="0" />
-      <LineId Id="189" Count="0" />
-      <LineId Id="192" Count="0" />
-      <LineId Id="217" Count="3" />
-      <LineId Id="194" Count="0" />
-      <LineId Id="190" Count="0" />
-      <LineId Id="3" Count="1" />
-      <LineId Id="166" Count="4" />
-      <LineId Id="172" Count="1" />
-      <LineId Id="171" Count="0" />
-      <LineId Id="5" Count="1" />
-      <LineId Id="158" Count="0" />
-      <LineId Id="7" Count="0" />
-      <LineId Id="157" Count="0" />
-      <LineId Id="8" Count="0" />
-      <LineId Id="221" Count="0" />
-      <LineId Id="9" Count="0" />
-      <LineId Id="11" Count="2" />
-      <LineId Id="159" Count="0" />
-      <LineId Id="14" Count="0" />
-      <LineId Id="160" Count="0" />
-      <LineId Id="15" Count="0" />
-      <LineId Id="161" Count="0" />
-      <LineId Id="207" Count="1" />
-      <LineId Id="211" Count="2" />
-      <LineId Id="209" Count="1" />
-      <LineId Id="18" Count="0" />
-      <LineId Id="174" Count="1" />
-      <LineId Id="199" Count="2" />
-      <LineId Id="203" Count="0" />
-      <LineId Id="205" Count="0" />
-      <LineId Id="204" Count="0" />
-      <LineId Id="202" Count="0" />
-      <LineId Id="197" Count="1" />
-      <LineId Id="165" Count="0" />
-      <LineId Id="176" Count="1" />
-      <LineId Id="179" Count="0" />
-      <LineId Id="181" Count="1" />
-      <LineId Id="180" Count="0" />
-      <LineId Id="178" Count="0" />
-      <LineId Id="113" Count="0" />
-      <LineId Id="109" Count="0" />
-      <LineId Id="61" Count="2" />
-      <LineId Id="1" Count="0" />
-      <LineId Id="73" Count="0" />
-      <LineId Id="75" Count="0" />
-      <LineId Id="80" Count="0" />
-      <LineId Id="96" Count="0" />
-      <LineId Id="83" Count="0" />
-      <LineId Id="97" Count="0" />
-      <LineId Id="85" Count="0" />
-      <LineId Id="206" Count="0" />
-      <LineId Id="86" Count="0" />
-      <LineId Id="99" Count="0" />
-      <LineId Id="95" Count="0" />
-    </LineIds>
-    <LineIds Name="B_3_1_PRG_Master_Camera.b_ACT_IO">
-      <LineId Id="1" Count="3" />
-      <LineId Id="6" Count="1" />
-      <LineId Id="13" Count="0" />
-      <LineId Id="12" Count="0" />
-      <LineId Id="5" Count="0" />
-    </LineIds>
-    <LineIds Name="B_3_1_PRG_Master_Camera.c_ACT_Statistics_Station_3">
-      <LineId Id="2" Count="0" />
-      <LineId Id="31" Count="0" />
-      <LineId Id="30" Count="0" />
-      <LineId Id="3" Count="1" />
-      <LineId Id="13" Count="0" />
-      <LineId Id="12" Count="0" />
-      <LineId Id="17" Count="0" />
-      <LineId Id="7" Count="0" />
-      <LineId Id="18" Count="0" />
-      <LineId Id="16" Count="0" />
-      <LineId Id="8" Count="2" />
-      <LineId Id="19" Count="0" />
-      <LineId Id="11" Count="0" />
-      <LineId Id="20" Count="1" />
-      <LineId Id="1" Count="0" />
-      <LineId Id="23" Count="0" />
-      <LineId Id="22" Count="0" />
-      <LineId Id="24" Count="1" />
-      <LineId Id="27" Count="2" />
-      <LineId Id="26" Count="0" />
-      <LineId Id="33" Count="0" />
-      <LineId Id="46" Count="8" />
-      <LineId Id="14" Count="0" />
-    </LineIds>
-    <LineIds Name="B_3_1_PRG_Master_Camera.d_ACT_Set_Events_Station_3">
-      <LineId Id="50" Count="19" />
-      <LineId Id="1" Count="0" />
-    </LineIds>
   </POU>
 </TcPlcObject>

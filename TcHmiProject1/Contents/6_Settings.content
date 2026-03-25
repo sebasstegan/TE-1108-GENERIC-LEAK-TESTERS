@@ -1,62 +1,49 @@
 <div id="Content1_14" data-tchmi-type="TcHmi.Controls.System.TcHmiContent" data-tchmi-top="0" data-tchmi-left="0" data-tchmi-width="1340" data-tchmi-height="480">
 
-<div id="SettingsTab" data-tchmi-type="TcHmi.Controls.Beckhoff.TcHmiTabNavigation" data-tchmi-height="459" data-tchmi-height-unit="px" data-tchmi-left="18" data-tchmi-left-unit="px" data-tchmi-top="10" data-tchmi-top-unit="px" data-tchmi-width="1242" data-tchmi-width-unit="px" data-tchmi-tab-alignment="Top">
+<div id="TcHmiTabNavigation_2" data-tchmi-type="TcHmi.Controls.Beckhoff.TcHmiTabNavigation" data-tchmi-height="480" data-tchmi-height-unit="px" data-tchmi-left="0" data-tchmi-left-unit="px" data-tchmi-text-horizontal-alignment="Center" data-tchmi-text-vertical-alignment="Center" data-tchmi-top="0" data-tchmi-top-unit="px" data-tchmi-width="670" data-tchmi-width-unit="px">
 <script data-tchmi-target-attribute="data-tchmi-tabs" type="application/json">
 [
   {
-    "name": "Settings Station 1",
-    "displayName": "Station 1",
+    "displayName": "Position",
+    "name": "Position",
     "targetFile": {
-      "path": "Contents/Settings/1_SettingsStation1.content"
-    },
-    "targetFileHostPreload": false,
-    "targetFileHostPreAttach": false,
-    "targetFileHostKeepAlive": false,
-    "horizontalAlignment": "Left",
-    "verticalAlignment": "Center",
-    "icon": {
-      "iconPath": "Images/Buttons/HomeButton.png",
-      "iconWidth": 32.0,
-      "iconWidthUnit": "px",
-      "iconHeight": 32.0,
-      "iconHeightUnit": "px"
+      "path": "Contents/Settings/Position1.content"
     }
   },
   {
-    "name": "Settings Station 2",
-    "displayName": "Station 2",
-    "targetFile": {
-      "path": "Contents/Manual/2_Station2.content"
-    },
-    "targetFileHostPreload": false,
-    "targetFileHostPreAttach": false,
-    "targetFileHostKeepAlive": false,
-    "horizontalAlignment": "Left",
-    "verticalAlignment": "Center"
+    "displayName": "Calibration",
+    "name": "Calibration"
   },
   {
-    "name": "Settings Station 3",
-    "displayName": "Station 3",
-    "targetFile": {
-      "path": "Contents/Manual/3_Station3.content"
-    },
-    "targetFileHostPreload": false,
-    "targetFileHostPreAttach": false,
-    "targetFileHostKeepAlive": false,
-    "horizontalAlignment": "Left",
-    "verticalAlignment": "Center"
+    "displayName": "Distances",
+    "name": "Distances"
   },
   {
-    "name": "Timers",
-    "displayName": "Timers",
-    "targetFile": {
-      "path": "Contents/Settings/4_Timers.content"
-    },
-    "targetFileHostPreload": false,
-    "targetFileHostPreAttach": false,
-    "targetFileHostKeepAlive": false,
-    "horizontalAlignment": "Left",
-    "verticalAlignment": "Center"
+    "displayName": "Tolerances",
+    "name": "Tolerances"
+  },
+  {
+    "displayName": "Image",
+    "name": "Image"
+  }
+]
+</script>
+
+</div>
+<div id="TcHmiTabNavigation_3" data-tchmi-type="TcHmi.Controls.Beckhoff.TcHmiTabNavigation" data-tchmi-height="480" data-tchmi-height-unit="px" data-tchmi-left="670" data-tchmi-left-unit="px" data-tchmi-text-horizontal-alignment="Center" data-tchmi-text-vertical-alignment="Center" data-tchmi-top="0" data-tchmi-top-unit="px" data-tchmi-width="670" data-tchmi-width-unit="px">
+<script data-tchmi-target-attribute="data-tchmi-tabs" type="application/json">
+[
+  {
+    "name": "tab1",
+    "displayName": "Tab 1"
+  },
+  {
+    "name": "tab2",
+    "displayName": "Tab 2"
+  },
+  {
+    "name": "tab3",
+    "displayName": "Tab 3"
   }
 ]
 </script>

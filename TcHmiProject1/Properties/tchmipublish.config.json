@@ -33,7 +33,7 @@
     "createPublishLog": false,
     "salt": "e64e90a2d4bc49758fcf612a88fb688d",
     "encryptedTcHmiServerPassword": "Faj0Y+jobzJpz6aZ8pL+XQ==",
-    "tcHmiServerHost": "LT-WH-VC-LEAK_TEST_1",
+    "tcHmiServerHost": "192.168.7.5",
     "tcHmiServerPort": "1040",
     "uploadTimeout": "60",
     "connectionTimeout": "5",
@@ -45,7 +45,7 @@
     "launchBrowserAfterPublish": true,
     "createVirtualDirectoriesOnTargetSystem": false,
     "tcHmiServerUserName": "__SystemAdministrator",
-    "tcHmiDestinationUrl": "https://lt-wh-vc-leak_test_1:1040/",
+    "tcHmiDestinationUrl": "https://192.168.7.5:1040/",
     "publishConfiguration": "remote",
     "tcHmiIgnoreCertificateErrors": true
   },

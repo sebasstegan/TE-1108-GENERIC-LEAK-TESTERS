@@ -48,6 +48,28 @@
 	nMachineDefinitionIndex				: INT;
 	bMachineDefinitionSet				: BOOL;
 	
+	bProcessCylinder1_Up				: BOOL;
+	bProcessCylinder1_Down				: BOOL;
+	bProcessCylinder2_Up				: BOOL;
+	bProcessCylinder2_Down				: BOOL;
+	bProcessDoor_Up						: BOOL;
+	bProcessDoor_Down					: BOOL;
+	
+	bLeaktester1_Start					: BOOL;
+	bLeaktester2_Start					: BOOL;
+	bLeaktester1_Stop					: BOOL;
+	bLeaktester2_Stop					: BOOL;
+	bLeaktester1_Reset					: BOOL;
+	bLeaktester2_Reset					: BOOL;
+	bCameraResetStatistics				: ARRAY[1..4] OF BOOL;
+	bCameraSettingNo					: ARRAY[1..4] OF UINT;
+	bCameraSettingVal					: ARRAY[1..4] OF UDINT;
+	bCameraSetTreshold					: ARRAY[1..4] OF BOOL;
+	bCameraTrigger						: ARRAY[1..4] OF BOOL;
+	
+	
+	
+	
 /////////////////////////////////////////////////////////////////////////////////////Generics/////////////////////////////////////////////////////////////////////////////////////	
 		
 	bLeftHand							: BOOL;

@@ -1,5 +1,5 @@
 ﻿<?xml version="1.0" encoding="utf-8"?>
-<TcPlcObject Version="1.1.0.1" ProductVersion="3.1.4024.13">
+<TcPlcObject Version="1.1.0.1" ProductVersion="3.1.4026.17">
   <DUT Name="ST_EL2809_A" Id="{b4247617-0c63-4291-9ee1-02e0a92b28da}">
     <Declaration><![CDATA[TYPE ST_EL2809_A :
 STRUCT
@@ -11,8 +11,8 @@ STRUCT
 	qStartButtonLED							AT %Q* 			: 	BOOL;	// EL2809 channel 2
 	qRetractProcessCylinder1             	AT %Q*	 		: 	BOOL;	// EL2809 channel 3 			
 	qExtendProcessCylinder1      			AT %Q*	 		: 	BOOL;	// EL2809 channel 4 
-	qOpenProcessDoor  						AT %Q*	 		: 	BOOL;	// EL2809 channel 5
-	qCloseProcessDoor 						AT %Q*	 		: 	BOOL;	// EL2809 channel 6 	
+	qRetractProcessCylinder2  				AT %Q*	 		: 	BOOL;	// EL2809 channel 5
+	qExtendProcessCylinder2 				AT %Q*	 		: 	BOOL;	// EL2809 channel 6 	
 	qPanelLightLED         		    		AT %Q*			: 	BOOL;	// EL2809 channel 7	
 	qIndicatorLED1_Red						AT %Q*	 		: 	BOOL;	// EL2809 channel 8	
 	qIndicatorLED1_Green                 	AT %Q*          :   BOOL;   // EL2809 channel 9

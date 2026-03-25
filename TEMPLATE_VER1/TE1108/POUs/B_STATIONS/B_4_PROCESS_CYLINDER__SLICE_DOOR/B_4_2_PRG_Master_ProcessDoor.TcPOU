@@ -21,6 +21,7 @@ END_VAR
       <ST><![CDATA[d_ACT_Set_Events_Station_4B();
 a_ACT_Ctrl_Station_4B();
 b_ACT_IO_B();
+c_Manual();
 ]]></ST>
     </Implementation>
     <Action Name="a_ACT_Ctrl_Station_4B" Id="{08b1d871-01b9-45fa-bb18-30d558502fc6}">
@@ -141,32 +142,56 @@ stProcessDoor.Status.bStopped		:= 	NOT stProcessDoor.Status.bBusy;]]></ST>
         <ST><![CDATA[tonDoorOpened( IN := NOT bDoorClosed AND bDoorOpeningFlag	, PT := stTimers.tDoorOpenedSignal);
 
 
-//bDoorClosed								:= stTwinSAFE.qProcessDoorClosed;
+bDoorClosed								:= dw_T05_EL1918.iProcessDoorClosed1 AND dw_T05_EL1918.iProcessDoorClosed2 AND dw_T05_EL1918.iProcessDoorFB;
 bDoorOpened								:= tonDoorOpened.Q; 
 
-dw_T09_EL2809.qOpenProcessDoor	:= bOpenDoor;	
-dw_T09_EL2809.qCloseProcessDoor	:= bCloseDoor;
+dw_T10_EL2809.qOpenProcessDoor	:= bOpenDoor;	
+dw_T10_EL2809.qCloseProcessDoor	:= bCloseDoor;
 
 
 ]]></ST>
+      </Implementation>
+    </Action>
+    <Action Name="c_Manual" Id="{af74f668-26ed-493a-861d-9af0f131bf72}">
+      <Implementation>
+        <ST><![CDATA[IF bProcessDoor_Up THEN
+	
+	bOpenDoor						:= TRUE;
+	
+ELSIF bDoorOpened THEN
+	
+	bOpenDoor						:= FALSE;
+
+END_IF
+
+IF  bProcessDoor_Down THEN
+	
+	bCloseDoor						:= TRUE;
+	
+ELSIF bDoorClosed THEN
+	
+	bCloseDoor						:= FALSE;
+
+END_IF]]></ST>
       </Implementation>
     </Action>
     <Action Name="d_ACT_Set_Events_Station_4B" Id="{6917e64e-8f14-430a-8afe-2820b830fd4d}">
       <Implementation>
         <ST><![CDATA[//IMMEDIATE FAULTS
 
-stStationEvents[3].aEvents[0].bFault						:= TRUE;
-stStationEvents[3].aEvents[0].bEventFlag					:= bEventsFlag[0];
-stStationEvents[3].aEvents[0].bEventText					:= 'ST1 EVENT 0';
-stStationEvents[3].aEvents[0].sSolution						:= 'Solution 5';
+stStationEvents[4].aEvents[0].bEventTimer( IN := bCloseDoor AND NOT bDoorClosed, PT := T#5S);
+stStationEvents[4].aEvents[0].bFault						:= TRUE;
+stStationEvents[4].aEvents[0].bEventFlag					:= stStationEvents[4].aEvents[0].bEventTimer.Q;
+stStationEvents[4].aEvents[0].bEventText					:= 'Process Door extend timeout';
+stStationEvents[4].aEvents[0].sSolution						:= 'Check cylinders, neumatic connections and sensors';
 
 
 
 //CYCLE STOP REQUEST
 
-stStationEvents[3].aEvents[2].bCycleStopRequest			:= TRUE;
-stStationEvents[3].aEvents[2].bEventFlag					:= bEventsFlag[2];
-stStationEvents[3].aEvents[2].bEventText					:= 'ST1 EVENT 7';]]></ST>
+(*stStationEvents[4].aEvents[2].bCycleStopRequest			:= TRUE;
+stStationEvents[4].aEvents[2].bEventFlag					:= bEventsFlag[2];
+stStationEvents[4].aEvents[2].bEventText					:= 'ST1 EVENT 7';*)]]></ST>
       </Implementation>
     </Action>
   </POU>
