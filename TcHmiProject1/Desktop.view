@@ -64,7 +64,7 @@
                         "compare1": {
                           "objectType": "Symbol",
                           "valueType": "tchmi:general#/definitions/BOOL",
-                          "symbolExpression": "%s%ADS.PLC1.GVL_HMI.abMachineDefinition.0%/s%"
+                          "symbolExpression": "%s%ADS.PLC1.GVL_Master.stMACHINE.bMachine.0%/s%"
                         },
                         "compare2": {
                           "objectType": "StaticValue",
@@ -89,7 +89,7 @@
                                 "compare1": {
                                   "objectType": "Symbol",
                                   "valueType": "tchmi:general#/definitions/BOOL",
-                                  "symbolExpression": "%s%ADS.PLC1.GVL_HMI.abMachineDefinition.1%/s%"
+                                  "symbolExpression": "%s%ADS.PLC1.GVL_Master.stMACHINE.bMachine.1%/s%"
                                 },
                                 "compare2": {
                                   "objectType": "StaticValue",
@@ -126,7 +126,7 @@
                                         "compare1": {
                                           "objectType": "Symbol",
                                           "valueType": "tchmi:general#/definitions/BOOL",
-                                          "symbolExpression": "%s%ADS.PLC1.GVL_HMI.abMachineDefinition.2%/s%"
+                                          "symbolExpression": "%s%ADS.PLC1.GVL_Master.stMACHINE.bMachine.2%/s%"
                                         },
                                         "compare2": {
                                           "objectType": "StaticValue",
@@ -151,7 +151,7 @@
                                                 "compare1": {
                                                   "objectType": "Symbol",
                                                   "valueType": "tchmi:general#/definitions/BOOL",
-                                                  "symbolExpression": "%s%ADS.PLC1.GVL_HMI.abMachineDefinition.3%/s%"
+                                                  "symbolExpression": "%s%ADS.PLC1.GVL_Master.stMACHINE.bMachine.3%/s%"
                                                 },
                                                 "compare2": {
                                                   "objectType": "StaticValue",
@@ -176,7 +176,7 @@
                                                         "compare1": {
                                                           "objectType": "Symbol",
                                                           "valueType": "tchmi:general#/definitions/BOOL",
-                                                          "symbolExpression": "%s%ADS.PLC1.GVL_HMI.abMachineDefinition.4%/s%"
+                                                          "symbolExpression": "%s%ADS.PLC1.GVL_Master.stMACHINE.bMachine.4%/s%"
                                                         },
                                                         "compare2": {
                                                           "objectType": "StaticValue",
@@ -806,7 +806,7 @@
 </div>
 <div id="TcHmiRegion_8" data-tchmi-type="TcHmi.Controls.System.TcHmiRegion" data-tchmi-height="79" data-tchmi-height-unit="px" data-tchmi-left="0" data-tchmi-left-unit="px" data-tchmi-top="0" data-tchmi-top-unit="px" data-tchmi-width="390" data-tchmi-width-unit="px" data-tchmi-zindex="1" data-tchmi-target-content="Contents/M/HeadMenu.content">
 </div>
-<div id="TcHmiPopup_1" data-tchmi-type="TcHmi.Controls.System.TcHmiPopup" data-tchmi-height="768" data-tchmi-height-unit="px" data-tchmi-left="254" data-tchmi-left-unit="px" data-tchmi-top="0" data-tchmi-top-unit="px" data-tchmi-width="768" data-tchmi-width-unit="px" data-tchmi-is-enabled="True" data-tchmi-scrolling="Yes" data-tchmi-modal="True" data-tchmi-creator-visibility="Collapsed">
+<div id="TcHmiPopup_1" data-tchmi-type="TcHmi.Controls.System.TcHmiPopup" data-tchmi-height="768" data-tchmi-height-unit="px" data-tchmi-left="254" data-tchmi-left-unit="px" data-tchmi-top="0" data-tchmi-top-unit="px" data-tchmi-width="768" data-tchmi-width-unit="px" data-tchmi-is-enabled="True" data-tchmi-scrolling="Yes" data-tchmi-modal="True" data-tchmi-creator-visibility="Visible" data-tchmi-close-on-background="False">
 <script data-tchmi-target-attribute="data-tchmi-target-file" type="application/json">
 {
   "path": "Contents/Manual/Cameras/CameraInterface.content"

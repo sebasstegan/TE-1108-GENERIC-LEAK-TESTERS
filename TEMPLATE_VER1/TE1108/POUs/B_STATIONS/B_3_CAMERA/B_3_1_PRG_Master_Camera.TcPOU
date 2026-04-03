@@ -5,20 +5,24 @@
 
 VAR
 	
-	rGoodStatistics						: R_TRIG;
-	rBadStatistics						: R_TRIG;
-	rEfficency							: STRING(510);
+	rGoodStatistics						: ARRAY [0..1] OF R_TRIG;
+	rBadStatistics						: ARRAY [0..1] OF R_TRIG;
+	rEfficency							: ARRAY [0..1] OF STRING(510);
 	bEventsFlag							: ARRAY [0..100] OF BOOL;
 /////////////////////////////////////////////////////////////////////////////////////I O/////////////////////////////////////////////////////////////////////////////////////	
-	bError								: BOOL;
+	bError								: ARRAY [1..4] OF BOOL;
 	rReset								: R_TRIG;
 	bReset								: BOOL;
 	bReady								: BOOL;
-	bDone								: BOOL;
-	bPass								: BOOL;
-	bFail								: BOOL;
-	bTtigger							: BOOL;
-	bTriigerFail						: BOOL;
+	bDone								: ARRAY [1..2] OF BOOL;
+	bPass								: ARRAY [1..2] OF BOOL;
+	rsPass								: ARRAY [1..2] OF RS;
+	bFail								: ARRAY [1..2] OF BOOL;
+	bTtigger							: ARRAY [1..4] OF BOOL;
+	bTriggerFail						: ARRAY [1..4] OF BOOL;
+	bBusy								: ARRAY [1..4] OF BOOL;
+	bGeneralBusy						: BOOL;
+	bClearBuffer						: BOOL;
 	
 END_VAR
 ]]></Declaration>
@@ -33,9 +37,8 @@ c_ACT_Statistics_Station_3();]]></ST>
         <ST><![CDATA[/////////////////////////////////////////////////////////////////////////////////////UTILITIES/////////////////////////////////////////////////////////////////////////////////////
 
 /////////////////////////////////////////////////////////////////////////////////////CONDITIONS/////////////////////////////////////////////////////////////////////////////////////
-bTtigger								:= stCamera.State	= E_Camera_State.TAKING_PICTURE;
 
-IF bError THEN
+IF bError[1] OR bError[2] OR bError[3] OR bError[4] THEN
 	
 	stCamera.State						:= E_Camera_State.ERROR;
 	
@@ -49,33 +52,135 @@ CASE stCamera.State OF
 	
 	E_Camera_State.ABORTED:
 	
+								
+								
+	
 								IF bReady AND stCamera.CMD.bEnable THEN
 									
-									stCamera.State						:= E_Camera_State.READY;
+									stCamera.State						:= E_Camera_State.HOMING;
 								
 								END_IF
+	E_Camera_State.HOMING:
 	
+								IF bReady THEN
+									
+									stCamera.State						:= E_Camera_State.READY;
+									
+								END_IF
+	
+						
 	E_Camera_State.READY:
-	
+								bClearBuffer							:= TRUE;
+							
 								IF stCamera.CMD.bExecute THEN
 									
 									stCamera.State						:= E_Camera_State.TAKING_PICTURE;
-									
+									bClearBuffer						:= FALSE;
 									
 								END_IF
 	
 	E_Camera_State.TAKING_PICTURE:
-						
-								IF bDone THEN
+								
+								bClearBuffer							:= FALSE;
+								
+								IF stCamera.CMD.CameraCMD.Inspect1 AND stCamera.CMD.CameraCMD.Inspect2 THEN
 									
-									stCamera.State						:= E_Camera_State.RESULTS;
+									bTtigger[1]							:= TRUE;
+									bTtigger[2]							:= TRUE;
+									bTtigger[3]							:= TRUE;
+									bTtigger[4]							:= TRUE;
+									
+									IF bDone[1] AND bDone[2] AND NOT bGeneralBusy  THEN
+										
+										bTtigger[1]						:= FALSE;
+										bTtigger[2]						:= FALSE;
+										bTtigger[3]						:= FALSE;
+										bTtigger[4]						:= FALSE;
+								
+										
+										stCamera.State					:= E_Camera_State.RESULTS;
+										
+									END_IF
+									
+								ELSIF stCamera.CMD.CameraCMD.Inspect1 AND NOT stCamera.CMD.CameraCMD.Inspect2 THEN
+									
+									bTtigger[1]							:= TRUE;
+									bTtigger[2]							:= TRUE;
+									
+									IF bDone[1] AND NOT bGeneralBusy THEN
+										
+										bTtigger[1]						:= FALSE;
+										bTtigger[2]						:= FALSE;
+									
+										
+										stCamera.State						:= E_Camera_State.RESULTS;
+										
+									END_IF
+								
+								ELSIF NOT stCamera.CMD.CameraCMD.Inspect1 AND stCamera.CMD.CameraCMD.Inspect2 THEN
+									
+									bTtigger[3]							:= TRUE;
+									bTtigger[4]							:= TRUE;
+									
+									IF bDone[2] AND NOT bGeneralBusy THEN
+
+										bTtigger[3]						:= FALSE;
+										bTtigger[4]						:= FALSE;
+										
+										stCamera.State						:= E_Camera_State.RESULTS;
+										
+									END_IF
+								
 									
 								END_IF
 								
+								
 	E_Camera_State.RESULTS:
+								IF stCamera.CMD.CameraCMD.Inspect1 THEN
+									
+									IF rsPass[1].Q1 THEN
+									
+										bPass[1]							:= TRUE;
+									
+									ELSE bFail[1]							:= TRUE;
+									
+									END_IF
+								
+								END_IF
+								
+								IF stCamera.CMD.CameraCMD.Inspect2 THEN
+								
+									IF rsPass[2].Q1 THEN
+									
+										bPass[2]							:= TRUE;
+									
+									ELSE bFail[2]							:= TRUE;
+									
+									END_IF
+								END_IF
+								
+								stCycleDataNest1.Camera_Pass			:= bPass[1];
+								stCycleDataNest1.Camera_Fail			:= bFail[1];
+								stCycleDataNest2.Camera_Pass			:= bPass[2];
+								stCycleDataNest2.Camera_Fail			:= bFail[2];
+								
+								Camera1_IO.bResultReadyAck				:= FALSE;
+								Camera2_IO.bResultReadyAck				:= FALSE;
+								Camera3_IO.bResultReadyAck				:= FALSE;
+								Camera4_IO.bResultReadyAck				:= FALSE;
+								stCamera.State						:= E_Camera_State.RESET_CMD;
+								
+	E_Camera_State.RESET_CMD:						
 	
-								stCycleData.stCamera_CycleData.bPass	:= bPass;
-								stCycleData.stCamera_CycleData.bFail	:= bFail;
+								bTtigger[1]								:= FALSE;
+								bTtigger[2]								:= FALSE;
+								bTtigger[3]								:= FALSE;
+								bTtigger[4]								:= FALSE;
+								
+								bPass[1]								:= FALSE;
+								bPass[2]								:= FALSE;
+								bFail[1]								:= FALSE;
+								bFail[2]								:= FALSE;
 								
 								stCamera.State						:= E_Camera_State.DONE;
 								
@@ -87,11 +192,11 @@ CASE stCamera.State OF
 									stCamera.State						:= E_Camera_State.READY;
 								
 								END_IF
-	
+								
 	
 	E_Camera_State.ERROR:	
 	
-								IF NOT bError THEN
+								IF NOT bError[1] OR bError[2] OR bError[3] OR bError[4] THEN
 									
 									stCamera.State					:= E_Camera_State.ABORTED;
 								
@@ -119,24 +224,64 @@ stCamera.Status.bStopped	:= 	NOT stCamera.Status.bBusy;]]></ST>
     <Action Name="b_ACT_IO" Id="{440050ef-4990-4273-9ec8-027f575cfd9b}">
       <Implementation>
         <ST><![CDATA[
-bError									:= Camera1_IO.bError;
-bReady									:=  Camera1_IO.bReady AND Camera1_IO.bRun;
-bDone									:=  Camera1_IO.bResultReady;
-bPass									:= bDone AND (Camera1_IO.bTotalResult = TRUE);
-bFail									:= bDone AND (Camera1_IO.bTotalResult = FALSE);
+bError[1]								:= Camera1_IO.bError;
+bError[2]								:= Camera2_IO.bError;
+bError[3]								:= Camera3_IO.bError;
+bError[4]								:= Camera4_IO.bError;
 
+bReady									:=  (Camera1_IO.bReady AND Camera1_IO.bRun) AND (Camera2_IO.bReady AND Camera2_IO.bRun) AND 
+											(Camera3_IO.bReady AND Camera3_IO.bRun) AND (Camera4_IO.bReady AND Camera4_IO.bRun);
+
+bDone[1]								:= Camera1_IO.bResultReady AND Camera2_IO.bResultReady;
+bDone[2]								:= Camera3_IO.bResultReady AND Camera4_IO.bResultReady;
+
+rsPass[1]( SET := bDone[1] AND (Camera1_IO.bTotalResult = TRUE AND Camera2_IO.bTotalResult = TRUE), RESET1 := stCamera.State = E_Camera_State.ABORTED);
+rsPass[2]( SET := bDone[2] AND (Camera3_IO.bTotalResult = TRUE AND Camera4_IO.bTotalResult = TRUE), RESET1 := stCamera.State = E_Camera_State.ABORTED);
+
+
+bBusy[1]								:= Camera1_IO.bBusy;
+bBusy[2]								:= Camera2_IO.bBusy;
+bBusy[3]								:= Camera3_IO.bBusy;
+bBusy[4]								:= Camera4_IO.bBusy;
+
+bGeneralBusy							:= bBusy[1] OR bBusy[2] OR bBusy[3] OR bBusy[4];
+
+bTriggerFail[1]							:= Camera1_IO.bTriggerFail;
+bTriggerFail[2]							:= Camera2_IO.bTriggerFail;
+bTriggerFail[3]							:= Camera3_IO.bTriggerFail;
+bTriggerFail[4]							:= Camera4_IO.bTriggerFail;
 
 Camera1_IO.bReset						:= bReset;
-Camera1_IO.bTrigger						:= bTtigger OR bCameraTrigger[1];	
-Camera2_IO.bTrigger						:= bTtigger OR bCameraTrigger[2];
-Camera3_IO.bTrigger						:= bTtigger OR bCameraTrigger[3];
-Camera4_IO.bTrigger						:= bTtigger OR bCameraTrigger[4];
-		
+Camera2_IO.bReset						:= bReset;
+Camera3_IO.bReset						:= bReset;
+Camera4_IO.bReset						:= bReset;
+
+Camera1_IO.bTrigger						:= bTtigger[1] OR bCameraTrigger[1];	
+Camera2_IO.bTrigger						:= bTtigger[2] OR bCameraTrigger[2];
+Camera3_IO.bTrigger						:= bTtigger[3] OR bCameraTrigger[3];
+Camera4_IO.bTrigger						:= bTtigger[4] OR bCameraTrigger[4];
+
+IF bClearBuffer	THEN
 	
+	Camera1_IO.bClearBuffer				:= TRUE;
+	Camera2_IO.bClearBuffer				:= TRUE;
+	Camera3_IO.bClearBuffer				:= TRUE;
+	Camera4_IO.bClearBuffer				:= TRUE;
 
+ELSE
 
+	Camera1_IO.bClearBuffer				:= FALSE;
+	Camera2_IO.bClearBuffer				:= FALSE;
+	Camera3_IO.bClearBuffer				:= FALSE;
+	Camera4_IO.bClearBuffer				:= FALSE;
+
+END_IF
 
 //////////////////////////////////////////////////////////////////////HMI//////////////////////////////////////////////////////////////////////////////
+bCameraSettingNo[1]						:= 2;
+bCameraSettingNo[2]						:= 2;
+bCameraSettingNo[3]						:= 2;
+bCameraSettingNo[4]						:= 2;
 
 
 Camera1_IO.bResetStatistics				:= bCameraResetStatistics[1];
@@ -169,20 +314,23 @@ rReset( CLK := stCamera.CMD.bReset, Q => bReset);
     </Action>
     <Action Name="c_ACT_Statistics_Station_3" Id="{b9943b98-9d8e-469d-a7a3-a69e1222f6e9}">
       <Implementation>
-        <ST><![CDATA[stStatisticsHMI[5].sName			:= 'Vision System';
+        <ST><![CDATA[stStatisticsHMI[5].sName			:= 'Vision System 1';
+stStatisticsHMI[6].sName			:= 'Vision System 2';
 
 
-rGoodStatistics( CLK := (stCycleData.stCamera_CycleData.bPass AND (stCamera.State	= E_Camera_State.RESULTS)));
-rBadStatistics( CLK := (stCycleData.stCamera_CycleData.bFail AND (stCamera.State	= E_Camera_State.RESULTS)));
+rGoodStatistics[0]( CLK := stCycleDataNest1.Camera_Pass);
+rBadStatistics[0]( CLK := stCycleDataNest1.Camera_Fail);
+rGoodStatistics[1]( CLK := stCycleDataNest2.Camera_Pass);
+rBadStatistics[1]( CLK := stCycleDataNest2.Camera_Fail);
 
-IF 	rGoodStatistics.Q THEN
+IF 	rGoodStatistics[0].Q THEN
 	
 	stStatisticsHMI[5].nGood		:= stStatisticsHMI[5].nGood + 1;
 	stStatisticsHMI[5].nTotalGood	:= stStatisticsHMI[5].nTotalGood + 1;
 	
 END_IF
 								
-IF 	rBadStatistics.Q THEN
+IF 	rBadStatistics[0].Q THEN
 	
 	stStatisticsHMI[5].nBad			:= stStatisticsHMI[5].nBad + 1;
 	stStatisticsHMI[5].nTotalBad	:= stStatisticsHMI[5].nTotalBad + 1;
@@ -197,16 +345,69 @@ IF stStatisticsHMI[5].bResetBad THEN
 	stStatisticsHMI[5].nBad			:= 0;
 END_IF
 
+IF 	rGoodStatistics[1].Q THEN
+	
+	stStatisticsHMI[6].nGood		:= stStatisticsHMI[6].nGood + 1;
+	stStatisticsHMI[6].nTotalGood	:= stStatisticsHMI[6].nTotalGood + 1;
+	
+END_IF
+								
+IF 	rBadStatistics[1].Q THEN
+	
+	stStatisticsHMI[6].nBad			:= stStatisticsHMI[6].nBad + 1;
+	stStatisticsHMI[6].nTotalBad	:= stStatisticsHMI[6].nTotalBad + 1;
+	
+END_IF
+
+IF stStatisticsHMI[6].bResetGood THEN
+	stStatisticsHMI[6].nGood		:= 0;
+END_IF
+
+IF stStatisticsHMI[6].bResetBad THEN
+	stStatisticsHMI[6].nBad			:= 0;
+END_IF
+
 IF (( stStatisticsHMI[5].nGood + stStatisticsHMI[5].nBad) <> 0) THEN
 	
-	rEfficency							:= LREAL_TO_FMTSTR(in := (DINT_TO_REAL(stStatisticsHMI[5].nGood) /( DINT_TO_REAL(stStatisticsHMI[5].nGood) + DINT_TO_REAL(stStatisticsHMI[5].nBad))) * 100.0,iPrecision := 2, bRound := TRUE);
-	stStatisticsHMI[5].nEfficency		:= CONCAT(STR1 := '%', STR2 := (rEfficency));
+	rEfficency[0]							:= LREAL_TO_FMTSTR(in := (DINT_TO_REAL(stStatisticsHMI[5].nGood) /( DINT_TO_REAL(stStatisticsHMI[5].nGood) + DINT_TO_REAL(stStatisticsHMI[5].nBad))) * 100.0,iPrecision := 2, bRound := TRUE);
+	stStatisticsHMI[5].nEfficency		:= CONCAT(STR1 := '%', STR2 := (rEfficency[0]));
 
 ELSE stStatisticsHMI[5].nEfficency		:= CONCAT(STR1 := '%', STR2 := (DINT_TO_STRING(0)));
 	
 END_IF
 
-]]></ST>
+IF (( stStatisticsHMI[6].nGood + stStatisticsHMI[6].nBad) <> 0) THEN
+	
+	rEfficency[1]							:= LREAL_TO_FMTSTR(in := (DINT_TO_REAL(stStatisticsHMI[6].nGood) /( DINT_TO_REAL(stStatisticsHMI[6].nGood) + DINT_TO_REAL(stStatisticsHMI[6].nBad))) * 100.0,iPrecision := 2, bRound := TRUE);
+	stStatisticsHMI[6].nEfficency		:= CONCAT(STR1 := '%', STR2 := (rEfficency[1]));
+
+ELSE stStatisticsHMI[6].nEfficency		:= CONCAT(STR1 := '%', STR2 := (DINT_TO_STRING(0)));
+	
+END_IF
+
+//RESET
+
+IF stStatisticsHMI[5].bResetGood THEN
+	
+	stStatisticsHMI[5].nGood		:= 0;
+
+END_IF
+IF stStatisticsHMI[5].bResetBad THEN
+	
+	stStatisticsHMI[5].nBad			:= 0;
+
+END_IF
+
+IF stStatisticsHMI[6].bResetGood THEN
+	
+	stStatisticsHMI[6].nGood		:= 0;
+
+END_IF
+IF stStatisticsHMI[6].bResetBad THEN
+	
+	stStatisticsHMI[6].nBad			:= 0;
+
+END_IF]]></ST>
       </Implementation>
     </Action>
     <Action Name="d_ACT_Set_Events_Station_3" Id="{05e142ea-c5f7-47d9-a898-cf4cc797e73e}">
@@ -214,17 +415,47 @@ END_IF
         <ST><![CDATA[//IMMEDIATE FAULTS
 
 stStationEvents[3].aEvents[0].bFault						:= TRUE;
-stStationEvents[3].aEvents[0].bEventFlag					:= bEventsFlag[0];
-stStationEvents[3].aEvents[0].bEventText					:= 'ST1 EVENT 0';
-stStationEvents[3].aEvents[0].sSolution						:= 'Solution 5';
+stStationEvents[3].aEvents[0].bEventFlag					:= bError[1];
+stStationEvents[3].aEvents[0].bEventText					:= 'Error camera 1';
+stStationEvents[3].aEvents[0].sSolution						:= 'Check camera 1';
+
+stStationEvents[3].aEvents[1].bFault						:= TRUE;
+stStationEvents[3].aEvents[1].bEventFlag					:= bError[2];
+stStationEvents[3].aEvents[1].bEventText					:= 'Error camera 2';
+stStationEvents[3].aEvents[1].sSolution						:= 'Check camera 2';
+
+stStationEvents[3].aEvents[2].bFault						:= TRUE;
+stStationEvents[3].aEvents[2].bEventFlag					:= bError[3];
+stStationEvents[3].aEvents[2].bEventText					:= 'Error camera 3';
+stStationEvents[3].aEvents[2].sSolution						:= 'Check camera 3';
+
+stStationEvents[3].aEvents[3].bFault						:= TRUE;
+stStationEvents[3].aEvents[3].bEventFlag					:= bError[4];
+stStationEvents[3].aEvents[3].bEventText					:= 'Error camera 4';
+stStationEvents[3].aEvents[3].sSolution						:= 'Check camera 4';
 
 
 //CYCLE STOP FAULT
 
-stStationEvents[3].aEvents[1].bFault						:= TRUE;
-stStationEvents[3].aEvents[1].bEventFlag					:= bEventsFlag[1];
-stStationEvents[3].aEvents[1].bEventText					:= 'ST1 EVENT 1';
-stStationEvents[3].aEvents[1].sSolution						:= 'Solution 6';
+stStationEvents[3].aEvents[20].bCycleStopRequest			:= TRUE;
+stStationEvents[3].aEvents[20].bEventFlag					:= bTriggerFail[1];
+stStationEvents[3].aEvents[20].bEventText					:= 'Trigger failed in camera 1';
+stStationEvents[3].aEvents[20].sSolution					:= 'Check camera 1';
+
+stStationEvents[3].aEvents[21].bCycleStopRequest			:= TRUE;
+stStationEvents[3].aEvents[21].bEventFlag					:= bTriggerFail[2];
+stStationEvents[3].aEvents[21].bEventText					:= 'Trigger failed in camera 2';
+stStationEvents[3].aEvents[21].sSolution					:= 'Check camera 2';
+
+stStationEvents[3].aEvents[22].bCycleStopRequest			:= TRUE;
+stStationEvents[3].aEvents[22].bEventFlag					:= bTriggerFail[3];
+stStationEvents[3].aEvents[22].bEventText					:= 'Trigger failed in camera 3';
+stStationEvents[3].aEvents[22].sSolution					:= 'Check camera 3';
+
+stStationEvents[3].aEvents[23].bCycleStopRequest			:= TRUE;
+stStationEvents[3].aEvents[23].bEventFlag					:= bTriggerFail[4];
+stStationEvents[3].aEvents[23].bEventText					:= 'Trigger failed in camera 4';
+stStationEvents[3].aEvents[23].sSolution					:= 'Check camera 4';
 
 
 //CYCLE STOP REQUEST

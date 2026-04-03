@@ -96,6 +96,9 @@
       "url": "Contents/UserControl/8CH_Analog_Input_CARD.usercontrol"
     },
     {
+      "url": "Contents/UserControl/Green_Red_Rectangle.usercontrol"
+    },
+    {
       "url": "Contents/UserControl/HeightTest/HeightTestManual.usercontrol"
     },
     {
@@ -179,7 +182,14 @@
       "preloadBindings": false
     },
     {
-      "url": "Contents/9_Data_History.content",
+      "url": "Contents/9_Data_HistoryNest1.content",
+      "preload": false,
+      "keepAlive": false,
+      "loadSync": false,
+      "preloadBindings": false
+    },
+    {
+      "url": "Contents/9_Data_HistoryNest2.content",
       "preload": false,
       "keepAlive": false,
       "loadSync": false,
@@ -424,6 +434,13 @@
       "preloadBindings": false
     },
     {
+      "url": "Contents/Mains/1_Main_LT_HW_VC_ver2.content",
+      "preload": false,
+      "keepAlive": false,
+      "loadSync": false,
+      "preloadBindings": false
+    },
+    {
       "url": "Contents/Manual/Cameras.content",
       "preload": false,
       "keepAlive": false,
@@ -488,6 +505,13 @@
     },
     {
       "url": "Contents/popup/popup4_ShutDown.content",
+      "preload": false,
+      "keepAlive": false,
+      "loadSync": false,
+      "preloadBindings": false
+    },
+    {
+      "url": "Contents/popup/popup4_UserManagement.content",
       "preload": false,
       "keepAlive": false,
       "loadSync": false,
@@ -562,13 +586,7 @@
         "persist": false,
         "readonly": false
       },
-      "User": {
-        "value": "",
-        "type": "tchmi:general#/definitions/String",
-        "persist": false,
-        "readonly": false
-      },
-      "Password": {
+      "PasswordField": {
         "value": "",
         "type": "tchmi:general#/definitions/String",
         "persist": false,
@@ -677,6 +695,72 @@
       "ExpectedByDrawing3": {
         "value": 0.0,
         "type": "tchmi:general#/definitions/REAL",
+        "persist": false,
+        "readonly": false
+      },
+      "HeightTolerance1": {
+        "value": 0,
+        "type": "tchmi:general#/definitions/DINT",
+        "persist": false,
+        "readonly": false
+      },
+      "HeightTolerance2": {
+        "value": 0,
+        "type": "tchmi:general#/definitions/DINT",
+        "persist": false,
+        "readonly": false
+      },
+      "HeightTolerance3": {
+        "value": 0,
+        "type": "tchmi:general#/definitions/DINT",
+        "persist": false,
+        "readonly": false
+      },
+      "test": {
+        "value": 0,
+        "type": "tchmi:general#/definitions/DINT",
+        "persist": false,
+        "readonly": false
+      },
+      "EventFilter": {
+        "value": 0,
+        "type": "tchmi:general#/definitions/INT",
+        "persist": false,
+        "readonly": false
+      },
+      "UserName": {
+        "value": "",
+        "type": "tchmi:general#/definitions/String",
+        "persist": false,
+        "readonly": false
+      },
+      "UserGroups": {
+        "value": "",
+        "type": "tchmi:general#/definitions/String",
+        "persist": false,
+        "readonly": false
+      },
+      "SelectedUser": {
+        "value": "",
+        "type": "tchmi:general#/definitions/String",
+        "persist": false,
+        "readonly": false
+      },
+      "UserManager_Action": {
+        "value": "",
+        "type": "tchmi:general#/definitions/String",
+        "persist": false,
+        "readonly": false
+      },
+      "UserManager_PopupHeader": {
+        "value": "",
+        "type": "tchmi:general#/definitions/String",
+        "persist": false,
+        "readonly": false
+      },
+      "UserManager_PopupText": {
+        "value": "",
+        "type": "tchmi:general#/definitions/String",
         "persist": false,
         "readonly": false
       }

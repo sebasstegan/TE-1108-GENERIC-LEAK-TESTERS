@@ -19,7 +19,7 @@ END_VAR
 
 
 stMasterCtrl.bNoFault 												:= 	NOT stStationEvents[0].bFault AND NOT stStationEvents[1].bFault AND
-                                            							NOT stStationEvents[2].bFault AND NOT stStationEvents[3].bFault;
+                                            							NOT stStationEvents[2].bFault AND NOT stStationEvents[3].bFault AND NOT stStationEvents[4].bFault;
 
 stMasterCtrl.bCycleStopRequest										:= stStationEvents[0].bCycleStopRequest OR stStationEvents[0].bCycleStopRequest OR
 																		stStationEvents[0].bCycleStopRequest OR stStationEvents[0].bCycleStopRequest;
@@ -62,7 +62,7 @@ stStationEvents[0].aEvents[5].bEventText					:= 'E-STOP Pressed' ;
 stStationEvents[0].aEvents[5].sSolution						:= 'Release E-STOP';
 
 stStationEvents[0].aEvents[6].bFault						:= TRUE;
-stStationEvents[0].aEvents[6].bEventFlag					:= ((bMainDoor_AirFlag[0] AND tonSafety.Q) OR bMainDoor_AirFlag[1]) AND NOT stTwinSAFE.qSafetyOk;
+stStationEvents[0].aEvents[6].bEventFlag					:= (((bMainDoor_AirFlag[0] AND tonSafety.Q) OR bMainDoor_AirFlag[1]) AND NOT stTwinSAFE.qSafetyOk);
 stStationEvents[0].aEvents[6].bEventText					:= 'Safe system error' ;
 stStationEvents[0].aEvents[6].sSolution						:= 'Check safety elements';
 
@@ -149,9 +149,10 @@ stStationEvents[0].aEvents[23].bEventFlag					:= NOT stMachineStatus.bSystemPowe
 stStationEvents[0].aEvents[23].bEventText					:= 'T13_EL6633 card in fault' ;
 stStationEvents[0].aEvents[23].sSolution					:= 'Reset System';
 
-
-
-
+stStationEvents[0].aEvents[24].bFault						:= TRUE;
+stStationEvents[0].aEvents[24].bEventFlag					:= bDoorClosingFlag AND (NOT dw_T05_EL1918.iLeftTouchButtonNO OR NOT dw_T05_EL1918.iRightTouchButtonNO);
+stStationEvents[0].aEvents[24].bEventText					:= 'Hands out before door was closed' ;
+stStationEvents[0].aEvents[24].sSolution					:= 'Reset System';
 ]]></ST>
       </Implementation>
     </Action>

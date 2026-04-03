@@ -28,6 +28,8 @@ c_Manual();
         <ST><![CDATA[/////////////////////////////////////////////////////////////////////////////////////UTILITIES/////////////////////////////////////////////////////////////////////////////////////
 
 /////////////////////////////////////////////////////////////////////////////////////CONDITIONS/////////////////////////////////////////////////////////////////////////////////////
+
+
 IF stProcessCylinder.CMD.bAbort THEN
 	
 	stProcessCylinder.State				:= E_ProcessCylinder_State.RESET;
@@ -44,7 +46,19 @@ CASE stProcessCylinder.State OF
 	
 								IF stProcessCylinder.CMD.bEnable THEN
 									
+									stProcessCylinder.State				:= E_ProcessCylinder_State.HOMING;
+								
+								END_IF
+								
+	E_ProcessCylinder_State.HOMING:
+	
+								bRetract[0]								:= TRUE;
+								
+								IF bRetracted[0] THEN
+									
+									bRetract[0]							:= FALSE;
 									stProcessCylinder.State				:= E_ProcessCylinder_State.READY;
+									
 								
 								END_IF
 	
@@ -175,7 +189,8 @@ END_CASE
 /////////////////////////////////////////////////////////////////////////////////////STATUS/////////////////////////////////////////////////////////////////////////////////////
 
 stProcessCylinder.Status.bBusy		:= 	stProcessCylinder.State	= E_ProcessCylinder_State.EXTEND OR
-										stProcessCylinder.State	= E_ProcessCylinder_State.RETRACT;
+										stProcessCylinder.State	= E_ProcessCylinder_State.RETRACT OR 
+										stProcessCylinder.State	= E_ProcessCylinder_State.STOPPING;
 								
 stProcessCylinder.Status.bDone		:=	stProcessCylinder.State	= E_ProcessCylinder_State.DONE;
 
@@ -192,9 +207,9 @@ bExtended[1]							:= dw_T08_EL1809.iProcessCylinder2Extended;
 bRetracted[0]							:= stTwinSAFE.qProcessCylinder1Retracted;
 bRetracted[1]							:= stTwinSAFE.qProcessCylinder2Retracted;
 
-dw_T09_EL2809.qExtendProcessCylinder1	:= bExtend[0] OR bProcessCylinder1_Down;	
+dw_T09_EL2809.qExtendProcessCylinder1	:= bExtend[0] OR bProcessCylinder1_Down ;	
 dw_T10_EL2809.qExtendProcessCylinder2	:= bExtend[1];	
-dw_T09_EL2809.qRetractProcessCylinder1	:= bRetract[0] OR bProcessCylinder1_Up;
+dw_T09_EL2809.qRetractProcessCylinder1	:= bRetract[0] OR bProcessCylinder1_Up OR bProcessCylinderSafetyPosition;
 dw_T10_EL2809.qRetractProcessCylinder2	:= bRetract[1];
 
 IF stStationEvents[3].aEvents[0].bEventTimer.Q THEN

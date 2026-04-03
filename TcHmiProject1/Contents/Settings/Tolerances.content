@@ -20,7 +20,7 @@
 }
 </script>
 </div>
-<div id="D1_Toler_Field" data-tchmi-type="TcHmi.Controls.Beckhoff.TcHmiTextbox" data-tchmi-height="30" data-tchmi-height-unit="px" data-tchmi-left="689" data-tchmi-left-unit="px" data-tchmi-text="%s%ADS.PLC1.GVL_Persistent.stProbesSettings.anTolerances.0|BindingMode=TwoWay%/s%" data-tchmi-top="170" data-tchmi-top-unit="px" data-tchmi-width="88" data-tchmi-width-unit="px" data-tchmi-zindex="20" data-tchmi-text-horizontal-alignment="Center" data-tchmi-is-enabled="True">
+<div id="D1_Toler_Field" data-tchmi-type="TcHmi.Controls.Beckhoff.TcHmiTextbox" data-tchmi-height="30" data-tchmi-height-unit="px" data-tchmi-left="689" data-tchmi-left-unit="px" data-tchmi-text="%i%HeightTolerance1|BindingMode=TwoWay%/i%" data-tchmi-top="170" data-tchmi-top-unit="px" data-tchmi-width="88" data-tchmi-width-unit="px" data-tchmi-zindex="20" data-tchmi-text-horizontal-alignment="Center" data-tchmi-is-enabled="True">
 <script data-tchmi-target-attribute="data-tchmi-content-padding" type="application/json">
 {
   "top": 3,
@@ -120,35 +120,43 @@
 ]
 </script>
 
+
+
 <script data-tchmi-target-attribute="data-tchmi-trigger" type="application/json">
 [
   {
-    "event": "%ctx%owner::Id|EventRegistrationMode=Resolve%/ctx%.onStatePressed",
+    "event": "%ctx%owner::Id|EventRegistrationMode=Resolve%/ctx%.onPressed",
     "actions": [
       {
         "objectType": "WriteToSymbol",
         "active": true,
-        "symbolExpression": "%s%ADS.PLC1.GVL_HMI.bSetTolerances%/s%",
+        "symbolExpression": "%s%ADS.PLC1.GVL_Persistent.stProbesSettings.anTolerances.0%/s%",
         "value": {
-          "objectType": "StaticValue",
-          "valueType": "tchmi:general#/definitions/BOOL",
-          "value": true
+          "objectType": "Symbol",
+          "valueType": "tchmi:general#/definitions/REAL",
+          "symbolExpression": "%i%HeightTolerance1%/i%"
         },
         "asyncWait": true
-      }
-    ]
-  },
-  {
-    "event": "%ctx%owner::Id|EventRegistrationMode=Resolve%/ctx%.onStateReleased",
-    "actions": [
+      },
       {
         "objectType": "WriteToSymbol",
         "active": true,
-        "symbolExpression": "%s%ADS.PLC1.GVL_HMI.bSetTolerances%/s%",
+        "symbolExpression": "%s%ADS.PLC1.GVL_Persistent.stProbesSettings.anTolerances.1%/s%",
         "value": {
-          "objectType": "StaticValue",
-          "valueType": "tchmi:general#/definitions/BOOL",
-          "value": false
+          "objectType": "Symbol",
+          "valueType": "tchmi:general#/definitions/REAL",
+          "symbolExpression": "%i%HeightTolerance2%/i%"
+        },
+        "asyncWait": true
+      },
+      {
+        "objectType": "WriteToSymbol",
+        "active": true,
+        "symbolExpression": "%s%ADS.PLC1.GVL_Persistent.stProbesSettings.anTolerances.2%/s%",
+        "value": {
+          "objectType": "Symbol",
+          "valueType": "tchmi:general#/definitions/REAL",
+          "symbolExpression": "%i%HeightTolerance3%/i%"
         },
         "asyncWait": true
       }
@@ -200,7 +208,7 @@
 }
 </script>
 </div>
-<div id="D2_Toler_Field_2" data-tchmi-type="TcHmi.Controls.Beckhoff.TcHmiTextbox" data-tchmi-height="30" data-tchmi-height-unit="px" data-tchmi-left="689" data-tchmi-left-unit="px" data-tchmi-text="%s%ADS.PLC1.GVL_Persistent.stProbesSettings.anTolerances.1|BindingMode=TwoWay%/s%" data-tchmi-top="210" data-tchmi-top-unit="px" data-tchmi-width="88" data-tchmi-width-unit="px" data-tchmi-zindex="20" data-tchmi-text-horizontal-alignment="Center" data-tchmi-is-enabled="True">
+<div id="D2_Toler_Field_2" data-tchmi-type="TcHmi.Controls.Beckhoff.TcHmiTextbox" data-tchmi-height="30" data-tchmi-height-unit="px" data-tchmi-left="689" data-tchmi-left-unit="px" data-tchmi-text="%i%HeightTolerance2|BindingMode=TwoWay%/i%" data-tchmi-top="210" data-tchmi-top-unit="px" data-tchmi-width="88" data-tchmi-width-unit="px" data-tchmi-zindex="20" data-tchmi-text-horizontal-alignment="Center" data-tchmi-is-enabled="True">
 <script data-tchmi-target-attribute="data-tchmi-content-padding" type="application/json">
 {
   "top": 3,
@@ -232,7 +240,7 @@
 }
 </script>
 </div>
-<div id="D2_Toler_Field_1" data-tchmi-type="TcHmi.Controls.Beckhoff.TcHmiTextbox" data-tchmi-height="30" data-tchmi-height-unit="px" data-tchmi-left="689" data-tchmi-left-unit="px" data-tchmi-text="%s%ADS.PLC1.GVL_Persistent.stProbesSettings.anTolerances.2|BindingMode=TwoWay%/s%" data-tchmi-top="250" data-tchmi-top-unit="px" data-tchmi-width="88" data-tchmi-width-unit="px" data-tchmi-zindex="20" data-tchmi-text-horizontal-alignment="Center" data-tchmi-is-enabled="True">
+<div id="D2_Toler_Field_1" data-tchmi-type="TcHmi.Controls.Beckhoff.TcHmiTextbox" data-tchmi-height="30" data-tchmi-height-unit="px" data-tchmi-left="689" data-tchmi-left-unit="px" data-tchmi-text="%i%HeightTolerance3|BindingMode=TwoWay%/i%" data-tchmi-top="250" data-tchmi-top-unit="px" data-tchmi-width="88" data-tchmi-width-unit="px" data-tchmi-zindex="20" data-tchmi-text-horizontal-alignment="Center" data-tchmi-is-enabled="True">
 <script data-tchmi-target-attribute="data-tchmi-content-padding" type="application/json">
 {
   "top": 3,

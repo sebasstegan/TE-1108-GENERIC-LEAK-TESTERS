@@ -120,6 +120,14 @@
       "frameworkUserControlConfig": "Contents\\UserControl\\HeightTest\\HeightTestManual.usercontrol.json",
       "type": "object",
       "id": "tchmi:project#/definitions/HeightTestManual"
+    },
+    "Green_Red_Rectangle": {
+      "frameworkControlNamespace": "TcHmi.Controls.Beckhoff",
+      "frameworkControlType": "TcHmi.Controls.System.TcHmiUserControl",
+      "frameworkInstanceOf": "TcHmi.Controls.System.TcHmiControl",
+      "frameworkUserControlConfig": "Contents\\UserControl\\Green_Red_Rectangle.usercontrol.json",
+      "type": "object",
+      "id": "tchmi:project#/definitions/Green_Red_Rectangle"
     }
   }
 }

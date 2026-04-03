@@ -10,6 +10,8 @@
 	bShutDown							: BOOL;
 	stStatusBanner						: ST_StatusBanner;
 	nPopUp								: DINT;
+	stTableCycleDataNest1				: ARRAY[0..2000] OF ST_TableCycleData;
+	stTableCycleDataNest2				: ARRAY[0..2000] OF ST_TableCycleData;
 	
 	
 
@@ -90,12 +92,13 @@ END_VAR
 VAR_GLOBAL PERSISTENT
 	
 	stTimers							: ST_Timers;
-	stStatisticsHMI						: ARRAY [0..5] OF ST_StatisticsHMI;	//0: GENERAL
+	stStatisticsHMI						: ARRAY [0..6] OF ST_StatisticsHMI;	//0: GENERAL
 																	//1: Leak Tester 1
 																	//2: Leak Tester 2
 																	//3: Height Test 1
 																	//4: Height Test 2
-																	//5: Camera
+																	//5: Camera set 1
+																	//6: camera set 2
 														
 	/////////////////////////////////////////////////////////////////////////////////////SETTINGS/////////////////////////////////////////////////////////////////////////////////////	
 	

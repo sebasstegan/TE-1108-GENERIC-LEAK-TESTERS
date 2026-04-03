@@ -14,8 +14,6 @@ VAR
 
 /////////////////////////////////////////////////////////////////////////////////////I O/////////////////////////////////////////////////////////////////////////////////////	
 	
-	bError								: ARRAY[0..1] OF BOOL;
-	bReady								: BOOL;
 	abPass1								: ARRAY [1..3] OF BOOL;
 	abFail1								: ARRAY [1..3] OF BOOL;
 	abPass2								: ARRAY [1..3] OF BOOL;
@@ -26,6 +24,7 @@ VAR
 
 	abProbeError1						: ARRAY[1..4] OF BOOL;
 	abProbeError2						: ARRAY[1..4] OF BOOL;
+	bGeneralProbeError					: BOOL;
 	bGeneralError						: BOOL;
 	anRawMesurement1					: ARRAY[1..4] OF REAL;
 	anRawMesurement2					: ARRAY[1..4] OF REAL;
@@ -54,7 +53,7 @@ g_ACT_Settings();]]></ST>
     <Action Name="a_ACT_Ctrl_Station_2" Id="{c76df57f-a608-46ce-a480-681c36fd146a}">
       <Implementation>
         <ST><![CDATA[/////////////////////////////////////////////////////////////////////////////////////UTILITIES/////////////////////////////////////////////////////////////////////////////////////
-IF bError[0] OR bError[1] OR stHeightTests.CMD.bAbort OR stHeightTests.CMD.bEndCycle THEN
+IF bGeneralProbeError OR bGeneralError OR stHeightTests.CMD.bAbort OR stHeightTests.CMD.bEndCycle THEN
 	
 	stHeightTests.State			:= E_HeightTest_State.RESET;
 
@@ -109,16 +108,21 @@ CASE stHeightTests.State OF
 								
 								e_ACT_Measurement();
 								
-								stCycleData.stHeightTest_CycleData[0].anRawMeasurement		:= anRawMesurement1;
+								IF stHeightTests.CMD.HeightTest_CMD.Measurement1 THEN
+									
+									stCycleDataNest1.HeightTest_anRawMeasurement				:= anRawMesurement1;
+									stCycleDataNest1.HeightTest_anDistancesResult 				:= anRealDistance1;
+									stCycleDataNest1.HeightTest_bDistancesResult				:= abPass1;
+									
+								END_IF
+								IF stHeightTests.CMD.HeightTest_CMD.Measurement2 THEN
+									
+									stCycleDataNest2.HeightTest_anRawMeasurement				:= anRawMesurement2;																
+									stCycleDataNest2.HeightTest_anDistancesResult 				:= anRealDistance2;																
+									stCycleDataNest2.HeightTest_bDistancesResult				:= abPass2;
+									
+								END_IF
 								
-								stCycleData.stHeightTest_CycleData[1].anRawMeasurement		:= anRawMesurement2;
-								
-								stCycleData.stHeightTest_CycleData[0].anDistancesResult[1] := anRealDistance1[1];
-								stCycleData.stHeightTest_CycleData[0].anDistancesResult[2] := anRealDistance1[2];
-								stCycleData.stHeightTest_CycleData[0].anDistancesResult[3] := anRealDistance1[3];
-								
-								stCycleData.stHeightTest_CycleData[1].anDistancesResult := anRealDistance1;
-	
 								
 								IF bMeasurementDone THEN
 			
@@ -127,10 +131,10 @@ CASE stHeightTests.State OF
 								END_IF
 										
 	E_HeightTest_State.DONE:
-								IF  stLeakTesters.CMD.bAcknowledge THEN
+								IF  stHeightTests.CMD.bAcknowledge THEN
 									
-									stLeakTesters.CMD.bAcknowledge 						:= FALSE;
-									stLeakTesters.State									:= E_LeakTester_State.RESULTS;
+									stHeightTests.CMD.bAcknowledge 						:= FALSE;
+									stHeightTests.State									:= E_HeightTest_State.RESULTS;
 									
 								END_IF	
 								
@@ -139,40 +143,41 @@ CASE stHeightTests.State OF
 								IF abMeaurement[0] THEN
 									IF abPass1[1] AND abPass1[2] AND abPass1[3] THEN
 									
-										stCycleData.stHeightTest_CycleData[0].bPass	:= TRUE;
+										stCycleDataNest1.HeightTest_Pass				:= TRUE;
 									
-									ELSE stCycleData.stHeightTest_CycleData[0].bFail := FALSE;
+									ELSE stCycleDataNest1.HeightTest_Fail 				:= TRUE;
 								
 									END_IF
 								END_IF
 								
 								IF abMeaurement[1] THEN
-									IF abPass1[1] AND abPass1[2] AND abPass1[3] THEN
+									IF abPass2[1] AND abPass2[2] AND abPass2[3] THEN
 									
-										stCycleData.stHeightTest_CycleData[1].bPass	:= TRUE;
+										stCycleDataNest2.HeightTest_Pass				:= TRUE;
 									
-									ELSE stCycleData.stHeightTest_CycleData[1].bFail := FALSE;
+									ELSE stCycleDataNest2.HeightTest_Fail  			:= TRUE;
 								
 									END_IF
 								END_IF	
 								
-								stLeakTesters.State										:= E_LeakTester_State.RESET;
+								stHeightTests.State										:= E_HeightTest_State.RESET;
 								
 	E_HeightTest_State.RESET:
 	
-								abMeaurement[0]			:= FALSE;
-								abMeaurement[1]			:= FALSE;
+								abMeaurement[0]											:= FALSE;
+								abMeaurement[1]											:= FALSE;
+								bMeasurementDone										:= FALSE;
 
 								FOR i := 1 TO 3 DO
 									
-									abPass1[i]			:= FALSE;
-									abFail1[i]			:= FALSE;
-									abPass2[i]			:= FALSE;
-									abFail2[i]			:= FALSE;
+									abPass1[i]											:= FALSE;
+									abFail1[i]											:= FALSE;
+									abPass2[i]											:= FALSE;
+									abFail2[i]											:= FALSE;
 								
 								END_FOR
 								
-								IF bError[0] OR bError[1] THEN
+								IF bGeneralProbeError OR bGeneralError THEN
 									
 									stHeightTests.State									:= E_HeightTest_State.ERROR;
 								
@@ -188,7 +193,7 @@ CASE stHeightTests.State OF
 	
 	E_HeightTest_State.ERROR:
 	
-								IF NOT bError[0] AND bError[1] THEN
+								IF NOT bGeneralProbeError OR bGeneralError THEN
 									
 									stHeightTests.State									:= E_HeightTest_State.RESET;
 									
@@ -197,6 +202,12 @@ CASE stHeightTests.State OF
 	E_HeightTest_State.MANUAL_MODE:
 	
 								f_ACT_ManualMode();
+								
+								IF NOT stHeightTests.CMD.bManualMode THEN
+									
+									stHeightTests.State									:= E_HeightTest_State.ABORTED;
+									
+								END_IF
 								
 	
 								
@@ -227,41 +238,13 @@ stHeightTests.Status.bStopped := NOT stHeightTests.Status.bBusy;
 	anRawMesurement1				:= Probes.stProbesSet[1].anScaledRawMeasurement;
 	anRawMesurement2				:= Probes.stProbesSet[2].anScaledRawMeasurement;
 	
-	
-	(*
-	stCycleData.stHeightTest_CycleData[0].anDistanceCalibrationBlock[0]	:= anDistanceCalibrationBlock[0];
-	stCycleData.stHeightTest_CycleData[0].anDistanceCalibrationBlock[1]	:= anDistanceCalibrationBlock[1];
-	stCycleData.stHeightTest_CycleData[0].anDistanceCalibrationBlock[2]	:= anDistanceCalibrationBlock[2];
-	
-	stCycleData.stHeightTest_CycleData[1].anDistanceCalibrationBlock[0]	:= anDistanceCalibrationBlock[3];
-	stCycleData.stHeightTest_CycleData[1].anDistanceCalibrationBlock[1]	:= anDistanceCalibrationBlock[4];
-	stCycleData.stHeightTest_CycleData[1].anDistanceCalibrationBlock[2]	:= anDistanceCalibrationBlock[5];
-	
-	stCycleData.stHeightTest_CycleData[0].anExpectedDistances[0]			:= anExpectedDistances[0];
-	stCycleData.stHeightTest_CycleData[0].anExpectedDistances[1]			:= anExpectedDistances[1];
-	stCycleData.stHeightTest_CycleData[0].anExpectedDistances[2]			:= anExpectedDistances[2];
-	
-	stCycleData.stHeightTest_CycleData[1].anExpectedDistances[0]			:= anExpectedDistances[0];
-	stCycleData.stHeightTest_CycleData[1].anExpectedDistances[1]			:= anExpectedDistances[1];
-	stCycleData.stHeightTest_CycleData[1].anExpectedDistances[2]			:= anExpectedDistances[2];
-	
-	stCycleData.stHeightTest_CycleData[0].anHeightSetByCalibration[0]		:= anHeightSetByCalibration[0];
-	stCycleData.stHeightTest_CycleData[0].anHeightSetByCalibration[1]		:= anHeightSetByCalibration[1];
-	stCycleData.stHeightTest_CycleData[0].anHeightSetByCalibration[2]		:= anHeightSetByCalibration[2];
-	
-	stCycleData.stHeightTest_CycleData[1].anHeightSetByCalibration[0]		:= anHeightSetByCalibration[0];
-	stCycleData.stHeightTest_CycleData[1].anHeightSetByCalibration[1]		:= anHeightSetByCalibration[1];
-	stCycleData.stHeightTest_CycleData[1].anHeightSetByCalibration[2]		:= anHeightSetByCalibration[2];
-	
-	stCycleData.stHeightTest_CycleData[0].anTolerances[0]					:= anTolerances[0];
-	stCycleData.stHeightTest_CycleData[0].anTolerances[1]					:= anTolerances[1];
-	stCycleData.stHeightTest_CycleData[0].anTolerances[2]					:= anTolerances[2];
-	
-	stCycleData.stHeightTest_CycleData[1].anTolerances[0]					:= anTolerances[0];
-	stCycleData.stHeightTest_CycleData[1].anTolerances[1]					:= anTolerances[1];
-	stCycleData.stHeightTest_CycleData[1].anTolerances[2]					:= anTolerances[2];
-*)
-]]></ST>
+
+
+	bGeneralProbeError				:= 	abProbeError1[1] OR abProbeError1[2] OR abProbeError1[3] OR abProbeError1[4] OR
+										abProbeError2[1] OR abProbeError2[2] OR abProbeError2[3] OR abProbeError2[4];
+										
+	stCycleDataNest1.HeightTest_anSetPoint := stProbesSettings.anExpectedDistances;
+	stCycleDataNest2.HeightTest_anSetPoint := stProbesSettings.anExpectedDistances;]]></ST>
       </Implementation>
     </Action>
     <Action Name="c_ACT_Statistics_Station_2" Id="{a944e097-f352-4ee2-9b3c-c47d97294856}">
@@ -270,10 +253,10 @@ stHeightTests.Status.bStopped := NOT stHeightTests.Status.bBusy;
 stStatisticsHMI[4].sName			:= 'Height Test 2';
 
 
-rGoodStatistics[0]( CLK := (stCycleData.stHeightTest_CycleData[0].bPass AND (stHeightTests.State = E_HeightTest_State.RESULTS)));
-rGoodStatistics[1]( CLK := (stCycleData.stHeightTest_CycleData[1].bPass AND (stHeightTests.State = E_HeightTest_State.RESULTS)));
-rBadStatistics[0]	( CLK := (stCycleData.stHeightTest_CycleData[0].bFail AND (stHeightTests.State = E_HeightTest_State.RESULTS)));
-rBadStatistics[1]	( CLK := (stCycleData.stHeightTest_CycleData[1].bFail AND (stHeightTests.State = E_HeightTest_State.RESULTS)));
+rGoodStatistics[0]( CLK := stCycleDataNest1.HeightTest_Pass);
+rGoodStatistics[1]( CLK := stCycleDataNest2.HeightTest_Pass);
+rBadStatistics[0]	( CLK := stCycleDataNest1.HeightTest_Fail);
+rBadStatistics[1]	( CLK := stCycleDataNest2.HeightTest_Fail);
 
 //statistics 1
 IF 	rGoodStatistics[0].Q THEN
@@ -336,20 +319,61 @@ IF (( stStatisticsHMI[4].nGood + stStatisticsHMI[4].nBad) <> 0) THEN
 
 ELSE stStatisticsHMI[4].nEfficency		:= CONCAT(STR1 := '%', STR2 := (DINT_TO_STRING(0)));
 	
-END_IF]]></ST>
+END_IF
+
+]]></ST>
       </Implementation>
     </Action>
     <Action Name="d_ACT_Set_Events_Station_2" Id="{6b5d796c-fea6-4e93-a1a0-85599a4684bc}">
       <Implementation>
-        <ST><![CDATA[(*//IMMEDIATE FAULTS
+        <ST><![CDATA[//FAULTS
 
 stStationEvents[2].aEvents[0].bFault						:= TRUE;
-stStationEvents[2].aEvents[0].bEventFlag					:= bEventsFlag[0];
-stStationEvents[2].aEvents[0].bEventText					:= 'ST1 EVENT 0';
-stStationEvents[2].aEvents[0].sSolution						:= 'Solution 3';
+stStationEvents[2].aEvents[0].bEventFlag					:= bGeneralError;
+stStationEvents[2].aEvents[0].bEventText					:= 'Probes general error';
+stStationEvents[2].aEvents[0].sSolution						:= 'Check probes amplifier and ethercat unit';
 
+stStationEvents[2].aEvents[1].bFault						:= TRUE;
+stStationEvents[2].aEvents[1].bEventFlag					:= abProbeError1[1];
+stStationEvents[2].aEvents[1].bEventText					:= 'Probes 1 error';
+stStationEvents[2].aEvents[1].sSolution						:= 'Check probe 1';
 
-//CYCLE STOP FAULT
+stStationEvents[2].aEvents[2].bFault						:= TRUE;
+stStationEvents[2].aEvents[2].bEventFlag					:= abProbeError1[2];
+stStationEvents[2].aEvents[2].bEventText					:= 'Probes 2 error';
+stStationEvents[2].aEvents[2].sSolution						:= 'Check probe 2';
+
+stStationEvents[2].aEvents[3].bFault						:= TRUE;
+stStationEvents[2].aEvents[3].bEventFlag					:= abProbeError1[3];
+stStationEvents[2].aEvents[3].bEventText					:= 'Probes 3 error';
+stStationEvents[2].aEvents[3].sSolution						:= 'Check probe 3';
+
+stStationEvents[2].aEvents[4].bFault						:= TRUE;
+stStationEvents[2].aEvents[4].bEventFlag					:= abProbeError1[4];
+stStationEvents[2].aEvents[4].bEventText					:= 'Probes 4 error';
+stStationEvents[2].aEvents[4].sSolution						:= 'Check probe 4';
+
+stStationEvents[2].aEvents[5].bFault						:= TRUE;
+stStationEvents[2].aEvents[5].bEventFlag					:= abProbeError2[1];
+stStationEvents[2].aEvents[5].bEventText					:= 'Probes 5 error';
+stStationEvents[2].aEvents[5].sSolution						:= 'Check probe 5';
+
+stStationEvents[2].aEvents[6].bFault						:= TRUE;
+stStationEvents[2].aEvents[6].bEventFlag					:= abProbeError2[2];
+stStationEvents[2].aEvents[6].bEventText					:= 'Probes 6 error';
+stStationEvents[2].aEvents[6].sSolution						:= 'Check probe 6';
+
+stStationEvents[2].aEvents[7].bFault						:= TRUE;
+stStationEvents[2].aEvents[7].bEventFlag					:= abProbeError2[3];
+stStationEvents[2].aEvents[7].bEventText					:= 'Probes 7 error';
+stStationEvents[2].aEvents[7].sSolution						:= 'Check probe 7';
+
+stStationEvents[2].aEvents[8].bFault						:= TRUE;
+stStationEvents[2].aEvents[8].bEventFlag					:= abProbeError2[4];
+stStationEvents[2].aEvents[8].bEventText					:= 'Probes 8 error';
+stStationEvents[2].aEvents[8].sSolution						:= 'Check probe 8';
+
+(*//CYCLE STOP FAULT
 
 stStationEvents[2].aEvents[1].bFault						:= TRUE;
 stStationEvents[2].aEvents[1].bEventFlag					:= bEventsFlag[1];
@@ -367,7 +391,7 @@ stStationEvents[2].aEvents[2].bEventText					:= 'ST1 EVENT 2';*)]]></ST>
     <Action Name="e_ACT_Measurement" Id="{4c79a236-7589-4d28-bfec-9644f041c168}">
       <Implementation>
         <ST><![CDATA[
-tonTakeMeasure(IN:= stHeightTests.State = E_HeightTest_State.MEASURE, PT := T#5S);
+tonTakeMeasure(IN:= stHeightTests.State = E_HeightTest_State.WAIT_MEASUREMENT, PT := T#5S);
 
 IF tonTakeMeasure.Q THEN
 	
@@ -449,16 +473,16 @@ END_IF
     <Action Name="g_ACT_Settings" Id="{fae1e451-2bc2-4fa0-95fc-07d08bdcd182}">
       <Implementation>
         <ST><![CDATA[//settings tolerances
-IF bSetTolerances THEN
-	FOR j := 1 TO 3 DO
-	
-		anMinimumDistance[j]					:= stProbesSettings.anExpectedDistances[j] - stProbesSettings.anTolerances[j];//settings from HMI
-		anMaximumDistance[j]					:= stProbesSettings.anExpectedDistances[j] + stProbesSettings.anTolerances[j];//settings from HMI
 
-	END_FOR
-	j									:= 0;
-	bSetTolerances								:= FALSE;
-END_IF
+anMinimumDistance[1]					:= stProbesSettings.anExpectedDistances[1] - stProbesSettings.anTolerances[1];//settings from HMI
+anMaximumDistance[1]					:= stProbesSettings.anExpectedDistances[1] + stProbesSettings.anTolerances[1];//settings from HMI
+anMinimumDistance[2]					:= stProbesSettings.anExpectedDistances[2] - stProbesSettings.anTolerances[2];//settings from HMI
+anMaximumDistance[2]					:= stProbesSettings.anExpectedDistances[2] + stProbesSettings.anTolerances[2];//settings from HMI
+anMinimumDistance[3]					:= stProbesSettings.anExpectedDistances[3] - stProbesSettings.anTolerances[3];//settings from HMI
+anMaximumDistance[3]					:= stProbesSettings.anExpectedDistances[3] + stProbesSettings.anTolerances[3];//settings from HMI
+
+
+
 
 
 //setting the bit according to the probe from bit 1 to bit 8

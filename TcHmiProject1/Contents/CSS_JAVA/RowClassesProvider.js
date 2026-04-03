@@ -22,9 +22,6 @@
                 if (RowData.sType == "Message") {
                     cssStyles.push("Message");
                 }
-              
-           
-
                 return cssStyles;
             }
             TcHmiProject1.RowClassesProvider = RowClassesProvider;

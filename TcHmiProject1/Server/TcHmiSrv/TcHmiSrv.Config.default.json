@@ -30,6 +30,600 @@
     "DEFAULTTIMEFORMATLOCALE": "client",
     "DEFAULTTIMEZONE": "client",
     "DEFINITIONS": {
+        "ADS": {
+            "ADS-PLC1.ARRAY_0..2000_OF-ST_CycleData": {
+                "items": {
+                    "$ref": "tchmi:server#/definitions/ADS-PLC1.ST_CycleData"
+                },
+                "maxItems": 2001,
+                "minItems": 2001,
+                "type": "array"
+            },
+            "ADS-PLC1.ARRAY_0..2000_OF-ST_TableCycleData": {
+                "items": {
+                    "$ref": "tchmi:server#/definitions/ADS-PLC1.ST_TableCycleData"
+                },
+                "maxItems": 2001,
+                "minItems": 2001,
+                "type": "array"
+            },
+            "ADS-PLC1.ARRAY_0..200_OF-ST_TableCycleData": {
+                "items": {
+                    "$ref": "tchmi:server#/definitions/ADS-PLC1.ST_TableCycleData"
+                },
+                "maxItems": 201,
+                "minItems": 201,
+                "type": "array"
+            },
+            "ADS-PLC1.ARRAY_0..5_OF-ST_StatisticsHMI": {
+                "items": {
+                    "$ref": "tchmi:server#/definitions/ADS-PLC1.ST_StatisticsHMI"
+                },
+                "maxItems": 6,
+                "minItems": 6,
+                "type": "array"
+            },
+            "ADS-PLC1.ARRAY_1..3_OF-BOOL": {
+                "items": {
+                    "$ref": "tchmi:general#/definitions/BOOL"
+                },
+                "maxItems": 3,
+                "minItems": 3,
+                "startOffset": 1,
+                "type": "array"
+            },
+            "ADS-PLC1.ARRAY_1..3_OF-REAL": {
+                "items": {
+                    "$ref": "tchmi:general#/definitions/REAL"
+                },
+                "maxItems": 3,
+                "minItems": 3,
+                "startOffset": 1,
+                "type": "array"
+            },
+            "ADS-PLC1.ARRAY_1..4_OF-REAL": {
+                "items": {
+                    "$ref": "tchmi:general#/definitions/REAL"
+                },
+                "maxItems": 4,
+                "minItems": 4,
+                "startOffset": 1,
+                "type": "array"
+            },
+            "ADS-PLC1.ST_CycleData": {
+                "additionalProperties": false,
+                "properties": {
+                    "Camera_Fail": {
+                        "allOf": [
+                            {
+                                "$ref": "tchmi:general#/definitions/BOOL"
+                            },
+                            {
+                                "propertyOrder": 7
+                            }
+                        ]
+                    },
+                    "Camera_Pass": {
+                        "allOf": [
+                            {
+                                "$ref": "tchmi:general#/definitions/BOOL"
+                            },
+                            {
+                                "propertyOrder": 6
+                            }
+                        ]
+                    },
+                    "HeightTest_Fail": {
+                        "allOf": [
+                            {
+                                "$ref": "tchmi:general#/definitions/BOOL"
+                            },
+                            {
+                                "propertyOrder": 15
+                            }
+                        ]
+                    },
+                    "HeightTest_Pass": {
+                        "allOf": [
+                            {
+                                "$ref": "tchmi:general#/definitions/BOOL"
+                            },
+                            {
+                                "propertyOrder": 14
+                            }
+                        ]
+                    },
+                    "HeightTest_anDistancesResult": {
+                        "allOf": [
+                            {
+                                "$ref": "tchmi:server#/definitions/ADS-PLC1.ARRAY_1..3_OF-REAL"
+                            },
+                            {
+                                "comment": "Height test",
+                                "propertyOrder": 10
+                            }
+                        ]
+                    },
+                    "HeightTest_anRawMeasurement": {
+                        "allOf": [
+                            {
+                                "$ref": "tchmi:server#/definitions/ADS-PLC1.ARRAY_1..4_OF-REAL"
+                            },
+                            {
+                                "propertyOrder": 13
+                            }
+                        ]
+                    },
+                    "HeightTest_anSetPoint": {
+                        "allOf": [
+                            {
+                                "$ref": "tchmi:server#/definitions/ADS-PLC1.ARRAY_1..3_OF-REAL"
+                            },
+                            {
+                                "propertyOrder": 11
+                            }
+                        ]
+                    },
+                    "HeightTest_bDistancesResult": {
+                        "allOf": [
+                            {
+                                "$ref": "tchmi:server#/definitions/ADS-PLC1.ARRAY_1..3_OF-BOOL"
+                            },
+                            {
+                                "propertyOrder": 12
+                            }
+                        ]
+                    },
+                    "LeakTest_Fail": {
+                        "allOf": [
+                            {
+                                "$ref": "tchmi:general#/definitions/BOOL"
+                            },
+                            {
+                                "propertyOrder": 9
+                            }
+                        ]
+                    },
+                    "LeakTest_Pass": {
+                        "allOf": [
+                            {
+                                "$ref": "tchmi:general#/definitions/BOOL"
+                            },
+                            {
+                                "propertyOrder": 8
+                            }
+                        ]
+                    },
+                    "bFail": {
+                        "allOf": [
+                            {
+                                "$ref": "tchmi:general#/definitions/BOOL"
+                            },
+                            {
+                                "propertyOrder": 3
+                            }
+                        ]
+                    },
+                    "bPass": {
+                        "allOf": [
+                            {
+                                "$ref": "tchmi:general#/definitions/BOOL"
+                            },
+                            {
+                                "propertyOrder": 2
+                            }
+                        ]
+                    },
+                    "nNest": {
+                        "allOf": [
+                            {
+                                "$ref": "tchmi:general#/definitions/INT"
+                            },
+                            {
+                                "comment": "-----------------------------------------------------------------------------------GENERAL------------------------------------------------------------------------------------//",
+                                "propertyOrder": 1
+                            }
+                        ]
+                    },
+                    "sCameraResult": {
+                        "allOf": [
+                            {
+                                "$ref": "tchmi:general#/definitions/STRING%2880%29"
+                            },
+                            {
+                                "propertyOrder": 17
+                            }
+                        ]
+                    },
+                    "sDate": {
+                        "allOf": [
+                            {
+                                "$ref": "tchmi:general#/definitions/STRING%2880%29"
+                            },
+                            {
+                                "propertyOrder": 4
+                            }
+                        ]
+                    },
+                    "sDistance1": {
+                        "allOf": [
+                            {
+                                "$ref": "tchmi:general#/definitions/STRING%2880%29"
+                            },
+                            {
+                                "propertyOrder": 20
+                            }
+                        ]
+                    },
+                    "sDistance2": {
+                        "allOf": [
+                            {
+                                "$ref": "tchmi:general#/definitions/STRING%2880%29"
+                            },
+                            {
+                                "propertyOrder": 21
+                            }
+                        ]
+                    },
+                    "sDistance3": {
+                        "allOf": [
+                            {
+                                "$ref": "tchmi:general#/definitions/STRING%2880%29"
+                            },
+                            {
+                                "propertyOrder": 22
+                            }
+                        ]
+                    },
+                    "sGeneralResult": {
+                        "allOf": [
+                            {
+                                "$ref": "tchmi:general#/definitions/STRING%2880%29"
+                            },
+                            {
+                                "comment": "HMI, CSV",
+                                "propertyOrder": 16
+                            }
+                        ]
+                    },
+                    "sHeightTestResult": {
+                        "allOf": [
+                            {
+                                "$ref": "tchmi:general#/definitions/STRING%2880%29"
+                            },
+                            {
+                                "propertyOrder": 18
+                            }
+                        ]
+                    },
+                    "sLeakTesterResult": {
+                        "allOf": [
+                            {
+                                "$ref": "tchmi:general#/definitions/STRING%2880%29"
+                            },
+                            {
+                                "propertyOrder": 19
+                            }
+                        ]
+                    },
+                    "sSetpoint1": {
+                        "allOf": [
+                            {
+                                "$ref": "tchmi:general#/definitions/STRING%2880%29"
+                            },
+                            {
+                                "propertyOrder": 23
+                            }
+                        ]
+                    },
+                    "sSetpoint2": {
+                        "allOf": [
+                            {
+                                "$ref": "tchmi:general#/definitions/STRING%2880%29"
+                            },
+                            {
+                                "propertyOrder": 24
+                            }
+                        ]
+                    },
+                    "sSetpoint3": {
+                        "allOf": [
+                            {
+                                "$ref": "tchmi:general#/definitions/STRING%2880%29"
+                            },
+                            {
+                                "propertyOrder": 25
+                            }
+                        ]
+                    },
+                    "sTime": {
+                        "allOf": [
+                            {
+                                "$ref": "tchmi:general#/definitions/STRING%2880%29"
+                            },
+                            {
+                                "propertyOrder": 5
+                            }
+                        ]
+                    }
+                },
+                "required": [
+                    "nNest",
+                    "bPass",
+                    "bFail",
+                    "sDate",
+                    "sTime",
+                    "Camera_Pass",
+                    "Camera_Fail",
+                    "LeakTest_Pass",
+                    "LeakTest_Fail",
+                    "HeightTest_anDistancesResult",
+                    "HeightTest_anSetPoint",
+                    "HeightTest_bDistancesResult",
+                    "HeightTest_anRawMeasurement",
+                    "HeightTest_Pass",
+                    "HeightTest_Fail",
+                    "sGeneralResult",
+                    "sCameraResult",
+                    "sHeightTestResult",
+                    "sLeakTesterResult",
+                    "sDistance1",
+                    "sDistance2",
+                    "sDistance3",
+                    "sSetpoint1",
+                    "sSetpoint2",
+                    "sSetpoint3"
+                ],
+                "type": "object"
+            },
+            "ADS-PLC1.ST_StatisticsHMI": {
+                "additionalProperties": false,
+                "properties": {
+                    "bResetBad": {
+                        "allOf": [
+                            {
+                                "$ref": "tchmi:general#/definitions/BOOL"
+                            },
+                            {
+                                "propertyOrder": 7
+                            }
+                        ]
+                    },
+                    "bResetGood": {
+                        "allOf": [
+                            {
+                                "$ref": "tchmi:general#/definitions/BOOL"
+                            },
+                            {
+                                "propertyOrder": 6
+                            }
+                        ]
+                    },
+                    "nBad": {
+                        "allOf": [
+                            {
+                                "$ref": "tchmi:general#/definitions/DINT"
+                            },
+                            {
+                                "propertyOrder": 3
+                            }
+                        ]
+                    },
+                    "nEfficency": {
+                        "allOf": [
+                            {
+                                "$ref": "tchmi:general#/definitions/STRING%2880%29"
+                            },
+                            {
+                                "propertyOrder": 8
+                            }
+                        ]
+                    },
+                    "nGood": {
+                        "allOf": [
+                            {
+                                "$ref": "tchmi:general#/definitions/DINT"
+                            },
+                            {
+                                "propertyOrder": 2
+                            }
+                        ]
+                    },
+                    "nTotalBad": {
+                        "allOf": [
+                            {
+                                "$ref": "tchmi:general#/definitions/DINT"
+                            },
+                            {
+                                "propertyOrder": 5
+                            }
+                        ]
+                    },
+                    "nTotalGood": {
+                        "allOf": [
+                            {
+                                "$ref": "tchmi:general#/definitions/DINT"
+                            },
+                            {
+                                "propertyOrder": 4
+                            }
+                        ]
+                    },
+                    "sName": {
+                        "allOf": [
+                            {
+                                "$ref": "tchmi:general#/definitions/STRING%2880%29"
+                            },
+                            {
+                                "propertyOrder": 1
+                            }
+                        ]
+                    }
+                },
+                "required": [
+                    "sName",
+                    "nGood",
+                    "nBad",
+                    "nTotalGood",
+                    "nTotalBad",
+                    "bResetGood",
+                    "bResetBad",
+                    "nEfficency"
+                ],
+                "type": "object"
+            },
+            "ADS-PLC1.ST_TableCycleData": {
+                "additionalProperties": false,
+                "properties": {
+                    "nDistance1": {
+                        "allOf": [
+                            {
+                                "$ref": "tchmi:general#/definitions/REAL"
+                            },
+                            {
+                                "propertyOrder": 6
+                            }
+                        ]
+                    },
+                    "nDistance2": {
+                        "allOf": [
+                            {
+                                "$ref": "tchmi:general#/definitions/REAL"
+                            },
+                            {
+                                "propertyOrder": 8
+                            }
+                        ]
+                    },
+                    "nDistance3": {
+                        "allOf": [
+                            {
+                                "$ref": "tchmi:general#/definitions/REAL"
+                            },
+                            {
+                                "propertyOrder": 10
+                            }
+                        ]
+                    },
+                    "nNest": {
+                        "allOf": [
+                            {
+                                "$ref": "tchmi:general#/definitions/INT"
+                            },
+                            {
+                                "propertyOrder": 1
+                            }
+                        ]
+                    },
+                    "nSetpoint1": {
+                        "allOf": [
+                            {
+                                "$ref": "tchmi:general#/definitions/REAL"
+                            },
+                            {
+                                "propertyOrder": 7
+                            }
+                        ]
+                    },
+                    "nSetpoint2": {
+                        "allOf": [
+                            {
+                                "$ref": "tchmi:general#/definitions/REAL"
+                            },
+                            {
+                                "propertyOrder": 9
+                            }
+                        ]
+                    },
+                    "nSetpoint3": {
+                        "allOf": [
+                            {
+                                "$ref": "tchmi:general#/definitions/REAL"
+                            },
+                            {
+                                "propertyOrder": 11
+                            }
+                        ]
+                    },
+                    "sCameraResult": {
+                        "allOf": [
+                            {
+                                "$ref": "tchmi:general#/definitions/STRING%2880%29"
+                            },
+                            {
+                                "propertyOrder": 3
+                            }
+                        ]
+                    },
+                    "sDate": {
+                        "allOf": [
+                            {
+                                "$ref": "tchmi:general#/definitions/STRING%2880%29"
+                            },
+                            {
+                                "propertyOrder": 13
+                            }
+                        ]
+                    },
+                    "sGeneralResult": {
+                        "allOf": [
+                            {
+                                "$ref": "tchmi:general#/definitions/STRING%2880%29"
+                            },
+                            {
+                                "propertyOrder": 2
+                            }
+                        ]
+                    },
+                    "sHeightTestResult": {
+                        "allOf": [
+                            {
+                                "$ref": "tchmi:general#/definitions/STRING%2880%29"
+                            },
+                            {
+                                "propertyOrder": 4
+                            }
+                        ]
+                    },
+                    "sLeakTesterResult": {
+                        "allOf": [
+                            {
+                                "$ref": "tchmi:general#/definitions/STRING%2880%29"
+                            },
+                            {
+                                "propertyOrder": 5
+                            }
+                        ]
+                    },
+                    "sTime": {
+                        "allOf": [
+                            {
+                                "$ref": "tchmi:general#/definitions/STRING%2880%29"
+                            },
+                            {
+                                "propertyOrder": 12
+                            }
+                        ]
+                    }
+                },
+                "required": [
+                    "nNest",
+                    "sGeneralResult",
+                    "sCameraResult",
+                    "sHeightTestResult",
+                    "sLeakTesterResult",
+                    "nDistance1",
+                    "nSetpoint1",
+                    "nDistance2",
+                    "nSetpoint2",
+                    "nDistance3",
+                    "nSetpoint3",
+                    "sTime",
+                    "sDate"
+                ],
+                "type": "object"
+            }
+        },
         "TcHmiSrv": {
             "PLC1.ARRAY_0..2000_OF-ST_EventsPDF": {
                 "items": {
@@ -1754,6 +2348,36 @@
             },
             "USEMAPPING": true
         },
+        "ADS.PLC1.B_2_1_PRG_Master_Height_Test.anRealDistance1.0": {
+            "ACCESS": 3,
+            "DOMAIN": "ADS",
+            "DYNAMIC": true,
+            "MAPPING": "PLC1::B_2_1_PRG_Master_Height_Test::anRealDistance1[0]",
+            "SCHEMA": {
+                "$ref": "tchmi:general#/definitions/REAL"
+            },
+            "USEMAPPING": true
+        },
+        "ADS.PLC1.B_2_1_PRG_Master_Height_Test.anRealDistance1.1": {
+            "ACCESS": 3,
+            "DOMAIN": "ADS",
+            "DYNAMIC": true,
+            "MAPPING": "PLC1::B_2_1_PRG_Master_Height_Test::anRealDistance1[1]",
+            "SCHEMA": {
+                "$ref": "tchmi:general#/definitions/REAL"
+            },
+            "USEMAPPING": true
+        },
+        "ADS.PLC1.B_2_1_PRG_Master_Height_Test.anRealDistance1.2": {
+            "ACCESS": 3,
+            "DOMAIN": "ADS",
+            "DYNAMIC": true,
+            "MAPPING": "PLC1::B_2_1_PRG_Master_Height_Test::anRealDistance1[2]",
+            "SCHEMA": {
+                "$ref": "tchmi:general#/definitions/REAL"
+            },
+            "USEMAPPING": true
+        },
         "ADS.PLC1.B_2_1_PRG_Master_Height_Test.anRealDistance2.0": {
             "ACCESS": 3,
             "DOMAIN": "ADS",
@@ -1869,6 +2493,46 @@
             "DOMAIN": "ADS",
             "DYNAMIC": true,
             "MAPPING": "PLC1::GVL_HMI::abMachineDefinition[4]",
+            "SCHEMA": {
+                "$ref": "tchmi:general#/definitions/BOOL"
+            },
+            "USEMAPPING": true
+        },
+        "ADS.PLC1.GVL_HMI.abPresetProbe.0": {
+            "ACCESS": 3,
+            "DOMAIN": "ADS",
+            "DYNAMIC": true,
+            "MAPPING": "PLC1::GVL_HMI::abPresetProbe[0]",
+            "SCHEMA": {
+                "$ref": "tchmi:general#/definitions/BOOL"
+            },
+            "USEMAPPING": true
+        },
+        "ADS.PLC1.GVL_HMI.abPresetProbe.1": {
+            "ACCESS": 3,
+            "DOMAIN": "ADS",
+            "DYNAMIC": true,
+            "MAPPING": "PLC1::GVL_HMI::abPresetProbe[1]",
+            "SCHEMA": {
+                "$ref": "tchmi:general#/definitions/BOOL"
+            },
+            "USEMAPPING": true
+        },
+        "ADS.PLC1.GVL_HMI.abPresetProbe.2": {
+            "ACCESS": 3,
+            "DOMAIN": "ADS",
+            "DYNAMIC": true,
+            "MAPPING": "PLC1::GVL_HMI::abPresetProbe[2]",
+            "SCHEMA": {
+                "$ref": "tchmi:general#/definitions/BOOL"
+            },
+            "USEMAPPING": true
+        },
+        "ADS.PLC1.GVL_HMI.abPresetProbe.3": {
+            "ACCESS": 3,
+            "DOMAIN": "ADS",
+            "DYNAMIC": true,
+            "MAPPING": "PLC1::GVL_HMI::abPresetProbe[3]",
             "SCHEMA": {
                 "$ref": "tchmi:general#/definitions/BOOL"
             },
@@ -2165,6 +2829,247 @@
                         "comment": "Probes"
                     }
                 ]
+            },
+            "USEMAPPING": true
+        },
+        "ADS.PLC1.GVL_HMI.stStatisticsHMI": {
+            "ACCESS": 3,
+            "DOMAIN": "ADS",
+            "DYNAMIC": true,
+            "MAPPING": "PLC1::GVL_HMI::stStatisticsHMI",
+            "SCHEMA": {
+                "allOf": [
+                    {
+                        "comment": "0: GENERAL"
+                    },
+                    {
+                        "$ref": "tchmi:server#/definitions/ADS-PLC1.ARRAY_0..5_OF-ST_StatisticsHMI"
+                    }
+                ]
+            },
+            "USEMAPPING": true
+        },
+        "ADS.PLC1.GVL_HMI.stStatisticsHMI.1.bResetBad": {
+            "ACCESS": 3,
+            "DOMAIN": "ADS",
+            "DYNAMIC": true,
+            "MAPPING": "PLC1::GVL_HMI::stStatisticsHMI[1]::bResetBad",
+            "SCHEMA": {
+                "allOf": [
+                    {
+                        "$ref": "tchmi:general#/definitions/BOOL"
+                    },
+                    {
+                        "propertyOrder": 7
+                    }
+                ]
+            },
+            "USEMAPPING": true
+        },
+        "ADS.PLC1.GVL_HMI.stStatisticsHMI.1.bResetGood": {
+            "ACCESS": 3,
+            "DOMAIN": "ADS",
+            "DYNAMIC": true,
+            "MAPPING": "PLC1::GVL_HMI::stStatisticsHMI[1]::bResetGood",
+            "SCHEMA": {
+                "allOf": [
+                    {
+                        "$ref": "tchmi:general#/definitions/BOOL"
+                    },
+                    {
+                        "propertyOrder": 6
+                    }
+                ]
+            },
+            "USEMAPPING": true
+        },
+        "ADS.PLC1.GVL_HMI.stStatisticsHMI.2.bResetBad": {
+            "ACCESS": 3,
+            "DOMAIN": "ADS",
+            "DYNAMIC": true,
+            "MAPPING": "PLC1::GVL_HMI::stStatisticsHMI[2]::bResetBad",
+            "SCHEMA": {
+                "allOf": [
+                    {
+                        "$ref": "tchmi:general#/definitions/BOOL"
+                    },
+                    {
+                        "propertyOrder": 7
+                    }
+                ]
+            },
+            "USEMAPPING": true
+        },
+        "ADS.PLC1.GVL_HMI.stStatisticsHMI.2.bResetGood": {
+            "ACCESS": 3,
+            "DOMAIN": "ADS",
+            "DYNAMIC": true,
+            "MAPPING": "PLC1::GVL_HMI::stStatisticsHMI[2]::bResetGood",
+            "SCHEMA": {
+                "allOf": [
+                    {
+                        "$ref": "tchmi:general#/definitions/BOOL"
+                    },
+                    {
+                        "propertyOrder": 6
+                    }
+                ]
+            },
+            "USEMAPPING": true
+        },
+        "ADS.PLC1.GVL_HMI.stStatisticsHMI.3.bResetBad": {
+            "ACCESS": 3,
+            "DOMAIN": "ADS",
+            "DYNAMIC": true,
+            "MAPPING": "PLC1::GVL_HMI::stStatisticsHMI[3]::bResetBad",
+            "SCHEMA": {
+                "allOf": [
+                    {
+                        "$ref": "tchmi:general#/definitions/BOOL"
+                    },
+                    {
+                        "propertyOrder": 7
+                    }
+                ]
+            },
+            "USEMAPPING": true
+        },
+        "ADS.PLC1.GVL_HMI.stStatisticsHMI.3.bResetGood": {
+            "ACCESS": 3,
+            "DOMAIN": "ADS",
+            "DYNAMIC": true,
+            "MAPPING": "PLC1::GVL_HMI::stStatisticsHMI[3]::bResetGood",
+            "SCHEMA": {
+                "allOf": [
+                    {
+                        "$ref": "tchmi:general#/definitions/BOOL"
+                    },
+                    {
+                        "propertyOrder": 6
+                    }
+                ]
+            },
+            "USEMAPPING": true
+        },
+        "ADS.PLC1.GVL_HMI.stStatisticsHMI.4.bResetBad": {
+            "ACCESS": 3,
+            "DOMAIN": "ADS",
+            "DYNAMIC": true,
+            "MAPPING": "PLC1::GVL_HMI::stStatisticsHMI[4]::bResetBad",
+            "SCHEMA": {
+                "allOf": [
+                    {
+                        "$ref": "tchmi:general#/definitions/BOOL"
+                    },
+                    {
+                        "propertyOrder": 7
+                    }
+                ]
+            },
+            "USEMAPPING": true
+        },
+        "ADS.PLC1.GVL_HMI.stStatisticsHMI.4.bResetGood": {
+            "ACCESS": 3,
+            "DOMAIN": "ADS",
+            "DYNAMIC": true,
+            "MAPPING": "PLC1::GVL_HMI::stStatisticsHMI[4]::bResetGood",
+            "SCHEMA": {
+                "allOf": [
+                    {
+                        "$ref": "tchmi:general#/definitions/BOOL"
+                    },
+                    {
+                        "propertyOrder": 6
+                    }
+                ]
+            },
+            "USEMAPPING": true
+        },
+        "ADS.PLC1.GVL_HMI.stStatisticsHMI.5.bResetBad": {
+            "ACCESS": 3,
+            "DOMAIN": "ADS",
+            "DYNAMIC": true,
+            "MAPPING": "PLC1::GVL_HMI::stStatisticsHMI[5]::bResetBad",
+            "SCHEMA": {
+                "allOf": [
+                    {
+                        "$ref": "tchmi:general#/definitions/BOOL"
+                    },
+                    {
+                        "propertyOrder": 7
+                    }
+                ]
+            },
+            "USEMAPPING": true
+        },
+        "ADS.PLC1.GVL_HMI.stStatisticsHMI.5.bResetGood": {
+            "ACCESS": 3,
+            "DOMAIN": "ADS",
+            "DYNAMIC": true,
+            "MAPPING": "PLC1::GVL_HMI::stStatisticsHMI[5]::bResetGood",
+            "SCHEMA": {
+                "allOf": [
+                    {
+                        "$ref": "tchmi:general#/definitions/BOOL"
+                    },
+                    {
+                        "propertyOrder": 6
+                    }
+                ]
+            },
+            "USEMAPPING": true
+        },
+        "ADS.PLC1.GVL_HMI.stStatisticsHMI.6.bResetBad": {
+            "ACCESS": 3,
+            "DOMAIN": "ADS",
+            "DYNAMIC": true,
+            "MAPPING": "PLC1::GVL_HMI::stStatisticsHMI[6]::bResetBad",
+            "SCHEMA": {
+                "allOf": [
+                    {
+                        "$ref": "tchmi:general#/definitions/BOOL"
+                    },
+                    {
+                        "propertyOrder": 7
+                    }
+                ]
+            },
+            "USEMAPPING": true
+        },
+        "ADS.PLC1.GVL_HMI.stStatisticsHMI.6.bResetGood": {
+            "ACCESS": 3,
+            "DOMAIN": "ADS",
+            "DYNAMIC": true,
+            "MAPPING": "PLC1::GVL_HMI::stStatisticsHMI[6]::bResetGood",
+            "SCHEMA": {
+                "allOf": [
+                    {
+                        "$ref": "tchmi:general#/definitions/BOOL"
+                    },
+                    {
+                        "propertyOrder": 6
+                    }
+                ]
+            },
+            "USEMAPPING": true
+        },
+        "ADS.PLC1.GVL_HMI.stTableCycleDataNest1": {
+            "ACCESS": 3,
+            "DOMAIN": "ADS",
+            "DYNAMIC": true,
+            "MAPPING": "PLC1::GVL_HMI::stTableCycleDataNest1",
+            "SCHEMA": {
+                "$ref": "tchmi:server#/definitions/ADS-PLC1.ARRAY_0..200_OF-ST_TableCycleData"
+            },
+            "USEMAPPING": true
+        },
+        "ADS.PLC1.GVL_HMI.stTableCycleDataNest2": {
+            "ACCESS": 3,
+            "DOMAIN": "ADS",
+            "DYNAMIC": true,
+            "MAPPING": "PLC1::GVL_HMI::stTableCycleDataNest2",
+            "SCHEMA": {
+                "$ref": "tchmi:server#/definitions/ADS-PLC1.ARRAY_0..2000_OF-ST_TableCycleData"
             },
             "USEMAPPING": true
         },
@@ -3993,6 +4898,873 @@
                         "propertyOrder": 3
                     }
                 ]
+            },
+            "USEMAPPING": true
+        },
+        "ADS.PLC1.GVL_Master.stCycleData.bFail1": {
+            "ACCESS": 3,
+            "DOMAIN": "ADS",
+            "DYNAMIC": true,
+            "MAPPING": "PLC1::GVL_Master::stCycleData::bFail1",
+            "SCHEMA": {
+                "allOf": [
+                    {
+                        "$ref": "tchmi:general#/definitions/BOOL"
+                    },
+                    {
+                        "propertyOrder": 2
+                    }
+                ]
+            },
+            "USEMAPPING": true
+        },
+        "ADS.PLC1.GVL_Master.stCycleData.bFail2": {
+            "ACCESS": 3,
+            "DOMAIN": "ADS",
+            "DYNAMIC": true,
+            "MAPPING": "PLC1::GVL_Master::stCycleData::bFail2",
+            "SCHEMA": {
+                "allOf": [
+                    {
+                        "$ref": "tchmi:general#/definitions/BOOL"
+                    },
+                    {
+                        "propertyOrder": 4
+                    }
+                ]
+            },
+            "USEMAPPING": true
+        },
+        "ADS.PLC1.GVL_Master.stCycleData.bPass1": {
+            "ACCESS": 3,
+            "DOMAIN": "ADS",
+            "DYNAMIC": true,
+            "MAPPING": "PLC1::GVL_Master::stCycleData::bPass1",
+            "SCHEMA": {
+                "allOf": [
+                    {
+                        "$ref": "tchmi:general#/definitions/BOOL"
+                    },
+                    {
+                        "comment": "-----------------------------------------------------------------------------------GENERAL------------------------------------------------------------------------------------//",
+                        "propertyOrder": 1
+                    }
+                ]
+            },
+            "USEMAPPING": true
+        },
+        "ADS.PLC1.GVL_Master.stCycleData.bPass2": {
+            "ACCESS": 3,
+            "DOMAIN": "ADS",
+            "DYNAMIC": true,
+            "MAPPING": "PLC1::GVL_Master::stCycleData::bPass2",
+            "SCHEMA": {
+                "allOf": [
+                    {
+                        "$ref": "tchmi:general#/definitions/BOOL"
+                    },
+                    {
+                        "propertyOrder": 3
+                    }
+                ]
+            },
+            "USEMAPPING": true
+        },
+        "ADS.PLC1.GVL_Master.stCycleData.stCamera_CycleData.bFail1": {
+            "ACCESS": 3,
+            "DOMAIN": "ADS",
+            "DYNAMIC": true,
+            "MAPPING": "PLC1::GVL_Master::stCycleData::stCamera_CycleData::bFail1",
+            "SCHEMA": {
+                "allOf": [
+                    {
+                        "$ref": "tchmi:general#/definitions/BOOL"
+                    },
+                    {
+                        "propertyOrder": 2
+                    }
+                ]
+            },
+            "USEMAPPING": true
+        },
+        "ADS.PLC1.GVL_Master.stCycleData.stCamera_CycleData.bFail2": {
+            "ACCESS": 3,
+            "DOMAIN": "ADS",
+            "DYNAMIC": true,
+            "MAPPING": "PLC1::GVL_Master::stCycleData::stCamera_CycleData::bFail2",
+            "SCHEMA": {
+                "allOf": [
+                    {
+                        "$ref": "tchmi:general#/definitions/BOOL"
+                    },
+                    {
+                        "propertyOrder": 4
+                    }
+                ]
+            },
+            "USEMAPPING": true
+        },
+        "ADS.PLC1.GVL_Master.stCycleData.stCamera_CycleData.bPass1": {
+            "ACCESS": 3,
+            "DOMAIN": "ADS",
+            "DYNAMIC": true,
+            "MAPPING": "PLC1::GVL_Master::stCycleData::stCamera_CycleData::bPass1",
+            "SCHEMA": {
+                "allOf": [
+                    {
+                        "$ref": "tchmi:general#/definitions/BOOL"
+                    },
+                    {
+                        "comment": "//////////////////////////////////////////////////////////////////////////////////SETTINGS/////////////////////////////////////////////////////////////////////////////////////\t\t\t\r\n//////////////////////////////////////////////////////////////////////////////////GENERAL DATA/////////////////////////////////////////////////////////////////////////////////////\t\t\t\r\n/////////////////////////////////////////////////////////////////////////////////RESULTS////////////////////////////////////////////////////////////////////////////////////////",
+                        "propertyOrder": 1
+                    }
+                ]
+            },
+            "USEMAPPING": true
+        },
+        "ADS.PLC1.GVL_Master.stCycleData.stCamera_CycleData.bPass2": {
+            "ACCESS": 3,
+            "DOMAIN": "ADS",
+            "DYNAMIC": true,
+            "MAPPING": "PLC1::GVL_Master::stCycleData::stCamera_CycleData::bPass2",
+            "SCHEMA": {
+                "allOf": [
+                    {
+                        "$ref": "tchmi:general#/definitions/BOOL"
+                    },
+                    {
+                        "propertyOrder": 3
+                    }
+                ]
+            },
+            "USEMAPPING": true
+        },
+        "ADS.PLC1.GVL_Master.stCycleData.stHeightTest_CycleData.anDistancesResult1.0": {
+            "ACCESS": 3,
+            "DOMAIN": "ADS",
+            "DYNAMIC": true,
+            "MAPPING": "PLC1::GVL_Master::stCycleData::stHeightTest_CycleData::anDistancesResult1[0]",
+            "SCHEMA": {
+                "$ref": "tchmi:general#/definitions/REAL"
+            },
+            "USEMAPPING": true
+        },
+        "ADS.PLC1.GVL_Master.stCycleData.stHeightTest_CycleData.anDistancesResult1.1": {
+            "ACCESS": 3,
+            "DOMAIN": "ADS",
+            "DYNAMIC": true,
+            "MAPPING": "PLC1::GVL_Master::stCycleData::stHeightTest_CycleData::anDistancesResult1[1]",
+            "SCHEMA": {
+                "$ref": "tchmi:general#/definitions/REAL"
+            },
+            "USEMAPPING": true
+        },
+        "ADS.PLC1.GVL_Master.stCycleData.stHeightTest_CycleData.anDistancesResult1.2": {
+            "ACCESS": 3,
+            "DOMAIN": "ADS",
+            "DYNAMIC": true,
+            "MAPPING": "PLC1::GVL_Master::stCycleData::stHeightTest_CycleData::anDistancesResult1[2]",
+            "SCHEMA": {
+                "$ref": "tchmi:general#/definitions/REAL"
+            },
+            "USEMAPPING": true
+        },
+        "ADS.PLC1.GVL_Master.stCycleData.stHeightTest_CycleData.anDistancesResult2.0": {
+            "ACCESS": 3,
+            "DOMAIN": "ADS",
+            "DYNAMIC": true,
+            "MAPPING": "PLC1::GVL_Master::stCycleData::stHeightTest_CycleData::anDistancesResult2[0]",
+            "SCHEMA": {
+                "$ref": "tchmi:general#/definitions/REAL"
+            },
+            "USEMAPPING": true
+        },
+        "ADS.PLC1.GVL_Master.stCycleData.stHeightTest_CycleData.anDistancesResult2.1": {
+            "ACCESS": 3,
+            "DOMAIN": "ADS",
+            "DYNAMIC": true,
+            "MAPPING": "PLC1::GVL_Master::stCycleData::stHeightTest_CycleData::anDistancesResult2[1]",
+            "SCHEMA": {
+                "$ref": "tchmi:general#/definitions/REAL"
+            },
+            "USEMAPPING": true
+        },
+        "ADS.PLC1.GVL_Master.stCycleData.stHeightTest_CycleData.anDistancesResult2.2": {
+            "ACCESS": 3,
+            "DOMAIN": "ADS",
+            "DYNAMIC": true,
+            "MAPPING": "PLC1::GVL_Master::stCycleData::stHeightTest_CycleData::anDistancesResult2[2]",
+            "SCHEMA": {
+                "$ref": "tchmi:general#/definitions/REAL"
+            },
+            "USEMAPPING": true
+        },
+        "ADS.PLC1.GVL_Master.stCycleData.stHeightTest_CycleData.bDistancesResult1.0": {
+            "ACCESS": 3,
+            "DOMAIN": "ADS",
+            "DYNAMIC": true,
+            "MAPPING": "PLC1::GVL_Master::stCycleData::stHeightTest_CycleData::bDistancesResult1[0]",
+            "SCHEMA": {
+                "$ref": "tchmi:general#/definitions/BOOL"
+            },
+            "USEMAPPING": true
+        },
+        "ADS.PLC1.GVL_Master.stCycleData.stHeightTest_CycleData.bDistancesResult1.1": {
+            "ACCESS": 3,
+            "DOMAIN": "ADS",
+            "DYNAMIC": true,
+            "MAPPING": "PLC1::GVL_Master::stCycleData::stHeightTest_CycleData::bDistancesResult1[1]",
+            "SCHEMA": {
+                "$ref": "tchmi:general#/definitions/BOOL"
+            },
+            "USEMAPPING": true
+        },
+        "ADS.PLC1.GVL_Master.stCycleData.stHeightTest_CycleData.bDistancesResult1.2": {
+            "ACCESS": 3,
+            "DOMAIN": "ADS",
+            "DYNAMIC": true,
+            "MAPPING": "PLC1::GVL_Master::stCycleData::stHeightTest_CycleData::bDistancesResult1[2]",
+            "SCHEMA": {
+                "$ref": "tchmi:general#/definitions/BOOL"
+            },
+            "USEMAPPING": true
+        },
+        "ADS.PLC1.GVL_Master.stCycleData.stHeightTest_CycleData.bDistancesResult2.0": {
+            "ACCESS": 3,
+            "DOMAIN": "ADS",
+            "DYNAMIC": true,
+            "MAPPING": "PLC1::GVL_Master::stCycleData::stHeightTest_CycleData::bDistancesResult2[0]",
+            "SCHEMA": {
+                "$ref": "tchmi:general#/definitions/BOOL"
+            },
+            "USEMAPPING": true
+        },
+        "ADS.PLC1.GVL_Master.stCycleData.stHeightTest_CycleData.bDistancesResult2.1": {
+            "ACCESS": 3,
+            "DOMAIN": "ADS",
+            "DYNAMIC": true,
+            "MAPPING": "PLC1::GVL_Master::stCycleData::stHeightTest_CycleData::bDistancesResult2[1]",
+            "SCHEMA": {
+                "$ref": "tchmi:general#/definitions/BOOL"
+            },
+            "USEMAPPING": true
+        },
+        "ADS.PLC1.GVL_Master.stCycleData.stHeightTest_CycleData.bDistancesResult2.2": {
+            "ACCESS": 3,
+            "DOMAIN": "ADS",
+            "DYNAMIC": true,
+            "MAPPING": "PLC1::GVL_Master::stCycleData::stHeightTest_CycleData::bDistancesResult2[2]",
+            "SCHEMA": {
+                "$ref": "tchmi:general#/definitions/BOOL"
+            },
+            "USEMAPPING": true
+        },
+        "ADS.PLC1.GVL_Master.stCycleData.stHeightTest_CycleData.bFail1": {
+            "ACCESS": 3,
+            "DOMAIN": "ADS",
+            "DYNAMIC": true,
+            "MAPPING": "PLC1::GVL_Master::stCycleData::stHeightTest_CycleData::bFail1",
+            "SCHEMA": {
+                "allOf": [
+                    {
+                        "$ref": "tchmi:general#/definitions/BOOL"
+                    },
+                    {
+                        "propertyOrder": 9
+                    }
+                ]
+            },
+            "USEMAPPING": true
+        },
+        "ADS.PLC1.GVL_Master.stCycleData.stHeightTest_CycleData.bFail2": {
+            "ACCESS": 3,
+            "DOMAIN": "ADS",
+            "DYNAMIC": true,
+            "MAPPING": "PLC1::GVL_Master::stCycleData::stHeightTest_CycleData::bFail2",
+            "SCHEMA": {
+                "allOf": [
+                    {
+                        "$ref": "tchmi:general#/definitions/BOOL"
+                    },
+                    {
+                        "propertyOrder": 11
+                    }
+                ]
+            },
+            "USEMAPPING": true
+        },
+        "ADS.PLC1.GVL_Master.stCycleData.stHeightTest_CycleData.bPass1": {
+            "ACCESS": 3,
+            "DOMAIN": "ADS",
+            "DYNAMIC": true,
+            "MAPPING": "PLC1::GVL_Master::stCycleData::stHeightTest_CycleData::bPass1",
+            "SCHEMA": {
+                "allOf": [
+                    {
+                        "$ref": "tchmi:general#/definitions/BOOL"
+                    },
+                    {
+                        "comment": "/////////////////////////////////////////////////////////////////////////////////RESULTS////////////////////////////////////////////////////////////////////////////////////////",
+                        "propertyOrder": 8
+                    }
+                ]
+            },
+            "USEMAPPING": true
+        },
+        "ADS.PLC1.GVL_Master.stCycleData.stHeightTest_CycleData.bPass2": {
+            "ACCESS": 3,
+            "DOMAIN": "ADS",
+            "DYNAMIC": true,
+            "MAPPING": "PLC1::GVL_Master::stCycleData::stHeightTest_CycleData::bPass2",
+            "SCHEMA": {
+                "allOf": [
+                    {
+                        "$ref": "tchmi:general#/definitions/BOOL"
+                    },
+                    {
+                        "propertyOrder": 10
+                    }
+                ]
+            },
+            "USEMAPPING": true
+        },
+        "ADS.PLC1.GVL_Master.stCycleData.stLeakTester_CycleData.0.bFail": {
+            "ACCESS": 3,
+            "DOMAIN": "ADS",
+            "DYNAMIC": true,
+            "MAPPING": "PLC1::GVL_Master::stCycleData::stLeakTester_CycleData[0]::bFail",
+            "SCHEMA": {
+                "allOf": [
+                    {
+                        "$ref": "tchmi:general#/definitions/BOOL"
+                    },
+                    {
+                        "propertyOrder": 3
+                    }
+                ]
+            },
+            "USEMAPPING": true
+        },
+        "ADS.PLC1.GVL_Master.stCycleData.stLeakTester_CycleData.0.bPass": {
+            "ACCESS": 3,
+            "DOMAIN": "ADS",
+            "DYNAMIC": true,
+            "MAPPING": "PLC1::GVL_Master::stCycleData::stLeakTester_CycleData[0]::bPass",
+            "SCHEMA": {
+                "allOf": [
+                    {
+                        "$ref": "tchmi:general#/definitions/BOOL"
+                    },
+                    {
+                        "propertyOrder": 2
+                    }
+                ]
+            },
+            "USEMAPPING": true
+        },
+        "ADS.PLC1.GVL_Master.stCycleData.stLeakTester_CycleData.1.bFail": {
+            "ACCESS": 3,
+            "DOMAIN": "ADS",
+            "DYNAMIC": true,
+            "MAPPING": "PLC1::GVL_Master::stCycleData::stLeakTester_CycleData[1]::bFail",
+            "SCHEMA": {
+                "allOf": [
+                    {
+                        "$ref": "tchmi:general#/definitions/BOOL"
+                    },
+                    {
+                        "propertyOrder": 3
+                    }
+                ]
+            },
+            "USEMAPPING": true
+        },
+        "ADS.PLC1.GVL_Master.stCycleData.stLeakTester_CycleData.1.bPass": {
+            "ACCESS": 3,
+            "DOMAIN": "ADS",
+            "DYNAMIC": true,
+            "MAPPING": "PLC1::GVL_Master::stCycleData::stLeakTester_CycleData[1]::bPass",
+            "SCHEMA": {
+                "allOf": [
+                    {
+                        "$ref": "tchmi:general#/definitions/BOOL"
+                    },
+                    {
+                        "propertyOrder": 2
+                    }
+                ]
+            },
+            "USEMAPPING": true
+        },
+        "ADS.PLC1.GVL_Master.stCycleDataNest1.Camera_Fail": {
+            "ACCESS": 3,
+            "DOMAIN": "ADS",
+            "DYNAMIC": true,
+            "MAPPING": "PLC1::GVL_Master::stCycleDataNest1::Camera_Fail",
+            "SCHEMA": {
+                "allOf": [
+                    {
+                        "$ref": "tchmi:general#/definitions/BOOL"
+                    },
+                    {
+                        "propertyOrder": 7
+                    }
+                ]
+            },
+            "USEMAPPING": true
+        },
+        "ADS.PLC1.GVL_Master.stCycleDataNest1.Camera_Pass": {
+            "ACCESS": 3,
+            "DOMAIN": "ADS",
+            "DYNAMIC": true,
+            "MAPPING": "PLC1::GVL_Master::stCycleDataNest1::Camera_Pass",
+            "SCHEMA": {
+                "allOf": [
+                    {
+                        "$ref": "tchmi:general#/definitions/BOOL"
+                    },
+                    {
+                        "propertyOrder": 6
+                    }
+                ]
+            },
+            "USEMAPPING": true
+        },
+        "ADS.PLC1.GVL_Master.stCycleDataNest1.HeightTest_Fail": {
+            "ACCESS": 3,
+            "DOMAIN": "ADS",
+            "DYNAMIC": true,
+            "MAPPING": "PLC1::GVL_Master::stCycleDataNest1::HeightTest_Fail",
+            "SCHEMA": {
+                "allOf": [
+                    {
+                        "$ref": "tchmi:general#/definitions/BOOL"
+                    },
+                    {
+                        "propertyOrder": 15
+                    }
+                ]
+            },
+            "USEMAPPING": true
+        },
+        "ADS.PLC1.GVL_Master.stCycleDataNest1.HeightTest_Pass": {
+            "ACCESS": 3,
+            "DOMAIN": "ADS",
+            "DYNAMIC": true,
+            "MAPPING": "PLC1::GVL_Master::stCycleDataNest1::HeightTest_Pass",
+            "SCHEMA": {
+                "allOf": [
+                    {
+                        "$ref": "tchmi:general#/definitions/BOOL"
+                    },
+                    {
+                        "propertyOrder": 14
+                    }
+                ]
+            },
+            "USEMAPPING": true
+        },
+        "ADS.PLC1.GVL_Master.stCycleDataNest1.HeightTest_anDistancesResult.0": {
+            "ACCESS": 3,
+            "DOMAIN": "ADS",
+            "DYNAMIC": true,
+            "MAPPING": "PLC1::GVL_Master::stCycleDataNest1::HeightTest_anDistancesResult[0]",
+            "SCHEMA": {
+                "$ref": "tchmi:general#/definitions/REAL"
+            },
+            "USEMAPPING": true
+        },
+        "ADS.PLC1.GVL_Master.stCycleDataNest1.HeightTest_anDistancesResult.1": {
+            "ACCESS": 3,
+            "DOMAIN": "ADS",
+            "DYNAMIC": true,
+            "MAPPING": "PLC1::GVL_Master::stCycleDataNest1::HeightTest_anDistancesResult[1]",
+            "SCHEMA": {
+                "$ref": "tchmi:general#/definitions/REAL"
+            },
+            "USEMAPPING": true
+        },
+        "ADS.PLC1.GVL_Master.stCycleDataNest1.HeightTest_anDistancesResult.2": {
+            "ACCESS": 3,
+            "DOMAIN": "ADS",
+            "DYNAMIC": true,
+            "MAPPING": "PLC1::GVL_Master::stCycleDataNest1::HeightTest_anDistancesResult[2]",
+            "SCHEMA": {
+                "$ref": "tchmi:general#/definitions/REAL"
+            },
+            "USEMAPPING": true
+        },
+        "ADS.PLC1.GVL_Master.stCycleDataNest1.HeightTest_bDistancesResult.0": {
+            "ACCESS": 3,
+            "DOMAIN": "ADS",
+            "DYNAMIC": true,
+            "MAPPING": "PLC1::GVL_Master::stCycleDataNest1::HeightTest_bDistancesResult[0]",
+            "SCHEMA": {
+                "$ref": "tchmi:general#/definitions/BOOL"
+            },
+            "USEMAPPING": true
+        },
+        "ADS.PLC1.GVL_Master.stCycleDataNest1.HeightTest_bDistancesResult.1": {
+            "ACCESS": 3,
+            "DOMAIN": "ADS",
+            "DYNAMIC": true,
+            "MAPPING": "PLC1::GVL_Master::stCycleDataNest1::HeightTest_bDistancesResult[1]",
+            "SCHEMA": {
+                "$ref": "tchmi:general#/definitions/BOOL"
+            },
+            "USEMAPPING": true
+        },
+        "ADS.PLC1.GVL_Master.stCycleDataNest1.HeightTest_bDistancesResult.2": {
+            "ACCESS": 3,
+            "DOMAIN": "ADS",
+            "DYNAMIC": true,
+            "MAPPING": "PLC1::GVL_Master::stCycleDataNest1::HeightTest_bDistancesResult[2]",
+            "SCHEMA": {
+                "$ref": "tchmi:general#/definitions/BOOL"
+            },
+            "USEMAPPING": true
+        },
+        "ADS.PLC1.GVL_Master.stCycleDataNest1.LeakTest_Fail": {
+            "ACCESS": 3,
+            "DOMAIN": "ADS",
+            "DYNAMIC": true,
+            "MAPPING": "PLC1::GVL_Master::stCycleDataNest1::LeakTest_Fail",
+            "SCHEMA": {
+                "allOf": [
+                    {
+                        "$ref": "tchmi:general#/definitions/BOOL"
+                    },
+                    {
+                        "propertyOrder": 9
+                    }
+                ]
+            },
+            "USEMAPPING": true
+        },
+        "ADS.PLC1.GVL_Master.stCycleDataNest1.LeakTest_Pass": {
+            "ACCESS": 3,
+            "DOMAIN": "ADS",
+            "DYNAMIC": true,
+            "MAPPING": "PLC1::GVL_Master::stCycleDataNest1::LeakTest_Pass",
+            "SCHEMA": {
+                "allOf": [
+                    {
+                        "$ref": "tchmi:general#/definitions/BOOL"
+                    },
+                    {
+                        "propertyOrder": 8
+                    }
+                ]
+            },
+            "USEMAPPING": true
+        },
+        "ADS.PLC1.GVL_Master.stCycleDataNest1.bFail": {
+            "ACCESS": 3,
+            "DOMAIN": "ADS",
+            "DYNAMIC": true,
+            "MAPPING": "PLC1::GVL_Master::stCycleDataNest1::bFail",
+            "SCHEMA": {
+                "allOf": [
+                    {
+                        "$ref": "tchmi:general#/definitions/BOOL"
+                    },
+                    {
+                        "propertyOrder": 3
+                    }
+                ]
+            },
+            "USEMAPPING": true
+        },
+        "ADS.PLC1.GVL_Master.stCycleDataNest1.bPass": {
+            "ACCESS": 3,
+            "DOMAIN": "ADS",
+            "DYNAMIC": true,
+            "MAPPING": "PLC1::GVL_Master::stCycleDataNest1::bPass",
+            "SCHEMA": {
+                "allOf": [
+                    {
+                        "$ref": "tchmi:general#/definitions/BOOL"
+                    },
+                    {
+                        "propertyOrder": 2
+                    }
+                ]
+            },
+            "USEMAPPING": true
+        },
+        "ADS.PLC1.GVL_Master.stCycleDataNest2.Camera_Fail": {
+            "ACCESS": 3,
+            "DOMAIN": "ADS",
+            "DYNAMIC": true,
+            "MAPPING": "PLC1::GVL_Master::stCycleDataNest2::Camera_Fail",
+            "SCHEMA": {
+                "allOf": [
+                    {
+                        "$ref": "tchmi:general#/definitions/BOOL"
+                    },
+                    {
+                        "propertyOrder": 7
+                    }
+                ]
+            },
+            "USEMAPPING": true
+        },
+        "ADS.PLC1.GVL_Master.stCycleDataNest2.Camera_Pass": {
+            "ACCESS": 3,
+            "DOMAIN": "ADS",
+            "DYNAMIC": true,
+            "MAPPING": "PLC1::GVL_Master::stCycleDataNest2::Camera_Pass",
+            "SCHEMA": {
+                "allOf": [
+                    {
+                        "$ref": "tchmi:general#/definitions/BOOL"
+                    },
+                    {
+                        "propertyOrder": 6
+                    }
+                ]
+            },
+            "USEMAPPING": true
+        },
+        "ADS.PLC1.GVL_Master.stCycleDataNest2.HeightTest_Fail": {
+            "ACCESS": 3,
+            "DOMAIN": "ADS",
+            "DYNAMIC": true,
+            "MAPPING": "PLC1::GVL_Master::stCycleDataNest2::HeightTest_Fail",
+            "SCHEMA": {
+                "allOf": [
+                    {
+                        "$ref": "tchmi:general#/definitions/BOOL"
+                    },
+                    {
+                        "propertyOrder": 15
+                    }
+                ]
+            },
+            "USEMAPPING": true
+        },
+        "ADS.PLC1.GVL_Master.stCycleDataNest2.HeightTest_Pass": {
+            "ACCESS": 3,
+            "DOMAIN": "ADS",
+            "DYNAMIC": true,
+            "MAPPING": "PLC1::GVL_Master::stCycleDataNest2::HeightTest_Pass",
+            "SCHEMA": {
+                "allOf": [
+                    {
+                        "$ref": "tchmi:general#/definitions/BOOL"
+                    },
+                    {
+                        "propertyOrder": 14
+                    }
+                ]
+            },
+            "USEMAPPING": true
+        },
+        "ADS.PLC1.GVL_Master.stCycleDataNest2.HeightTest_anDistancesResult.0": {
+            "ACCESS": 3,
+            "DOMAIN": "ADS",
+            "DYNAMIC": true,
+            "MAPPING": "PLC1::GVL_Master::stCycleDataNest2::HeightTest_anDistancesResult[0]",
+            "SCHEMA": {
+                "$ref": "tchmi:general#/definitions/REAL"
+            },
+            "USEMAPPING": true
+        },
+        "ADS.PLC1.GVL_Master.stCycleDataNest2.HeightTest_anDistancesResult.1": {
+            "ACCESS": 3,
+            "DOMAIN": "ADS",
+            "DYNAMIC": true,
+            "MAPPING": "PLC1::GVL_Master::stCycleDataNest2::HeightTest_anDistancesResult[1]",
+            "SCHEMA": {
+                "$ref": "tchmi:general#/definitions/REAL"
+            },
+            "USEMAPPING": true
+        },
+        "ADS.PLC1.GVL_Master.stCycleDataNest2.HeightTest_anDistancesResult.2": {
+            "ACCESS": 3,
+            "DOMAIN": "ADS",
+            "DYNAMIC": true,
+            "MAPPING": "PLC1::GVL_Master::stCycleDataNest2::HeightTest_anDistancesResult[2]",
+            "SCHEMA": {
+                "$ref": "tchmi:general#/definitions/REAL"
+            },
+            "USEMAPPING": true
+        },
+        "ADS.PLC1.GVL_Master.stCycleDataNest2.HeightTest_bDistancesResult.0": {
+            "ACCESS": 3,
+            "DOMAIN": "ADS",
+            "DYNAMIC": true,
+            "MAPPING": "PLC1::GVL_Master::stCycleDataNest2::HeightTest_bDistancesResult[0]",
+            "SCHEMA": {
+                "$ref": "tchmi:general#/definitions/BOOL"
+            },
+            "USEMAPPING": true
+        },
+        "ADS.PLC1.GVL_Master.stCycleDataNest2.HeightTest_bDistancesResult.1": {
+            "ACCESS": 3,
+            "DOMAIN": "ADS",
+            "DYNAMIC": true,
+            "MAPPING": "PLC1::GVL_Master::stCycleDataNest2::HeightTest_bDistancesResult[1]",
+            "SCHEMA": {
+                "$ref": "tchmi:general#/definitions/BOOL"
+            },
+            "USEMAPPING": true
+        },
+        "ADS.PLC1.GVL_Master.stCycleDataNest2.HeightTest_bDistancesResult.2": {
+            "ACCESS": 3,
+            "DOMAIN": "ADS",
+            "DYNAMIC": true,
+            "MAPPING": "PLC1::GVL_Master::stCycleDataNest2::HeightTest_bDistancesResult[2]",
+            "SCHEMA": {
+                "$ref": "tchmi:general#/definitions/BOOL"
+            },
+            "USEMAPPING": true
+        },
+        "ADS.PLC1.GVL_Master.stCycleDataNest2.LeakTest_Fail": {
+            "ACCESS": 3,
+            "DOMAIN": "ADS",
+            "DYNAMIC": true,
+            "MAPPING": "PLC1::GVL_Master::stCycleDataNest2::LeakTest_Fail",
+            "SCHEMA": {
+                "allOf": [
+                    {
+                        "$ref": "tchmi:general#/definitions/BOOL"
+                    },
+                    {
+                        "propertyOrder": 9
+                    }
+                ]
+            },
+            "USEMAPPING": true
+        },
+        "ADS.PLC1.GVL_Master.stCycleDataNest2.LeakTest_Pass": {
+            "ACCESS": 3,
+            "DOMAIN": "ADS",
+            "DYNAMIC": true,
+            "MAPPING": "PLC1::GVL_Master::stCycleDataNest2::LeakTest_Pass",
+            "SCHEMA": {
+                "allOf": [
+                    {
+                        "$ref": "tchmi:general#/definitions/BOOL"
+                    },
+                    {
+                        "propertyOrder": 8
+                    }
+                ]
+            },
+            "USEMAPPING": true
+        },
+        "ADS.PLC1.GVL_Master.stCycleDataNest2.bFail": {
+            "ACCESS": 3,
+            "DOMAIN": "ADS",
+            "DYNAMIC": true,
+            "MAPPING": "PLC1::GVL_Master::stCycleDataNest2::bFail",
+            "SCHEMA": {
+                "allOf": [
+                    {
+                        "$ref": "tchmi:general#/definitions/BOOL"
+                    },
+                    {
+                        "propertyOrder": 3
+                    }
+                ]
+            },
+            "USEMAPPING": true
+        },
+        "ADS.PLC1.GVL_Master.stCycleDataNest2.bPass": {
+            "ACCESS": 3,
+            "DOMAIN": "ADS",
+            "DYNAMIC": true,
+            "MAPPING": "PLC1::GVL_Master::stCycleDataNest2::bPass",
+            "SCHEMA": {
+                "allOf": [
+                    {
+                        "$ref": "tchmi:general#/definitions/BOOL"
+                    },
+                    {
+                        "propertyOrder": 2
+                    }
+                ]
+            },
+            "USEMAPPING": true
+        },
+        "ADS.PLC1.GVL_Master.stMACHINE.bMachine.0": {
+            "ACCESS": 3,
+            "DOMAIN": "ADS",
+            "DYNAMIC": true,
+            "MAPPING": "PLC1::GVL_Master::stMACHINE::bMachine[0]",
+            "SCHEMA": {
+                "$ref": "tchmi:general#/definitions/BOOL"
+            },
+            "USEMAPPING": true
+        },
+        "ADS.PLC1.GVL_Master.stMACHINE.bMachine.1": {
+            "ACCESS": 3,
+            "DOMAIN": "ADS",
+            "DYNAMIC": true,
+            "MAPPING": "PLC1::GVL_Master::stMACHINE::bMachine[1]",
+            "SCHEMA": {
+                "$ref": "tchmi:general#/definitions/BOOL"
+            },
+            "USEMAPPING": true
+        },
+        "ADS.PLC1.GVL_Master.stMACHINE.bMachine.2": {
+            "ACCESS": 3,
+            "DOMAIN": "ADS",
+            "DYNAMIC": true,
+            "MAPPING": "PLC1::GVL_Master::stMACHINE::bMachine[2]",
+            "SCHEMA": {
+                "$ref": "tchmi:general#/definitions/BOOL"
+            },
+            "USEMAPPING": true
+        },
+        "ADS.PLC1.GVL_Master.stMACHINE.bMachine.3": {
+            "ACCESS": 3,
+            "DOMAIN": "ADS",
+            "DYNAMIC": true,
+            "MAPPING": "PLC1::GVL_Master::stMACHINE::bMachine[3]",
+            "SCHEMA": {
+                "$ref": "tchmi:general#/definitions/BOOL"
+            },
+            "USEMAPPING": true
+        },
+        "ADS.PLC1.GVL_Master.stMACHINE.bMachine.4": {
+            "ACCESS": 3,
+            "DOMAIN": "ADS",
+            "DYNAMIC": true,
+            "MAPPING": "PLC1::GVL_Master::stMACHINE::bMachine[4]",
+            "SCHEMA": {
+                "$ref": "tchmi:general#/definitions/BOOL"
+            },
+            "USEMAPPING": true
+        },
+        "ADS.PLC1.GVL_Persistent.aDataHistoryNest1": {
+            "ACCESS": 3,
+            "DOMAIN": "ADS",
+            "DYNAMIC": true,
+            "MAPPING": "PLC1::GVL_Persistent::aDataHistoryNest1",
+            "SCHEMA": {
+                "$ref": "tchmi:server#/definitions/ADS-PLC1.ARRAY_0..2000_OF-ST_CycleData"
+            },
+            "USEMAPPING": true
+        },
+        "ADS.PLC1.GVL_Persistent.aDataHistoryNest1.0.HeightTest_anDistancesResult.0": {
+            "ACCESS": 3,
+            "DOMAIN": "ADS",
+            "DYNAMIC": true,
+            "MAPPING": "PLC1::GVL_Persistent::aDataHistoryNest1[0]::HeightTest_anDistancesResult[0]",
+            "SCHEMA": {
+                "$ref": "tchmi:general#/definitions/REAL"
+            },
+            "USEMAPPING": true
+        },
+        "ADS.PLC1.GVL_Persistent.aDataHistoryNest2": {
+            "ACCESS": 3,
+            "DOMAIN": "ADS",
+            "DYNAMIC": true,
+            "MAPPING": "PLC1::GVL_Persistent::aDataHistoryNest2",
+            "SCHEMA": {
+                "$ref": "tchmi:server#/definitions/ADS-PLC1.ARRAY_0..2000_OF-ST_CycleData"
             },
             "USEMAPPING": true
         },
@@ -7738,6 +9510,22 @@
                 "GetCurrentUser": 3
             }
         },
+        "Developer": {
+            "ENABLED": true,
+            "FILEACCESS": 3,
+            "FILES": {},
+            "SYMBOLACCESS": 0,
+            "SYMBOLS": {
+                "AddOrChangeUser": 0,
+                "ChangeUserSettings": 0,
+                "RemoveUser": 0,
+                "TcHmiUserManagement.AddUser": 0,
+                "TcHmiUserManagement.DisableUser": 0,
+                "TcHmiUserManagement.EnableUser": 0,
+                "TcHmiUserManagement.RemoveUser": 0,
+                "TcHmiUserManagement.RenameUser": 0
+            }
+        },
         "Engineer": {
             "ENABLED": true,
             "FILEACCESS": 3,
@@ -7828,6 +9616,9 @@
                 "ADS.PLC1.B_2_1_PRG_Master_Height_Test.anMinimumDistance.0": 3,
                 "ADS.PLC1.B_2_1_PRG_Master_Height_Test.anMinimumDistance.1": 3,
                 "ADS.PLC1.B_2_1_PRG_Master_Height_Test.anMinimumDistance.2": 3,
+                "ADS.PLC1.B_2_1_PRG_Master_Height_Test.anRealDistance1.0": 3,
+                "ADS.PLC1.B_2_1_PRG_Master_Height_Test.anRealDistance1.1": 3,
+                "ADS.PLC1.B_2_1_PRG_Master_Height_Test.anRealDistance1.2": 3,
                 "ADS.PLC1.B_2_1_PRG_Master_Height_Test.anRealDistance2.0": 3,
                 "ADS.PLC1.B_2_1_PRG_Master_Height_Test.anRealDistance2.1": 3,
                 "ADS.PLC1.B_2_1_PRG_Master_Height_Test.anRealDistance2.2": 3,
@@ -7840,6 +9631,10 @@
                 "ADS.PLC1.GVL_HMI.abMachineDefinition.2": 3,
                 "ADS.PLC1.GVL_HMI.abMachineDefinition.3": 3,
                 "ADS.PLC1.GVL_HMI.abMachineDefinition.4": 3,
+                "ADS.PLC1.GVL_HMI.abPresetProbe.0": 3,
+                "ADS.PLC1.GVL_HMI.abPresetProbe.1": 3,
+                "ADS.PLC1.GVL_HMI.abPresetProbe.2": 3,
+                "ADS.PLC1.GVL_HMI.abPresetProbe.3": 3,
                 "ADS.PLC1.GVL_HMI.abPresetProbe.4": 3,
                 "ADS.PLC1.GVL_HMI.abPresetProbe.5": 3,
                 "ADS.PLC1.GVL_HMI.abPresetProbe.6": 3,
@@ -7868,6 +9663,21 @@
                 "ADS.PLC1.GVL_HMI.bSetCalibrationBlock1": 3,
                 "ADS.PLC1.GVL_HMI.bSetCalibrationBlock2": 3,
                 "ADS.PLC1.GVL_HMI.bSetTolerances": 3,
+                "ADS.PLC1.GVL_HMI.stStatisticsHMI": 3,
+                "ADS.PLC1.GVL_HMI.stStatisticsHMI.1.bResetBad": 3,
+                "ADS.PLC1.GVL_HMI.stStatisticsHMI.1.bResetGood": 3,
+                "ADS.PLC1.GVL_HMI.stStatisticsHMI.2.bResetBad": 3,
+                "ADS.PLC1.GVL_HMI.stStatisticsHMI.2.bResetGood": 3,
+                "ADS.PLC1.GVL_HMI.stStatisticsHMI.3.bResetBad": 3,
+                "ADS.PLC1.GVL_HMI.stStatisticsHMI.3.bResetGood": 3,
+                "ADS.PLC1.GVL_HMI.stStatisticsHMI.4.bResetBad": 3,
+                "ADS.PLC1.GVL_HMI.stStatisticsHMI.4.bResetGood": 3,
+                "ADS.PLC1.GVL_HMI.stStatisticsHMI.5.bResetBad": 3,
+                "ADS.PLC1.GVL_HMI.stStatisticsHMI.5.bResetGood": 3,
+                "ADS.PLC1.GVL_HMI.stStatisticsHMI.6.bResetBad": 3,
+                "ADS.PLC1.GVL_HMI.stStatisticsHMI.6.bResetGood": 3,
+                "ADS.PLC1.GVL_HMI.stTableCycleDataNest1": 3,
+                "ADS.PLC1.GVL_HMI.stTableCycleDataNest2": 3,
                 "ADS.PLC1.GVL_IO.Camera1_IO.bResetStatistics": 3,
                 "ADS.PLC1.GVL_IO.Camera1_IO.bSetTreshold": 3,
                 "ADS.PLC1.GVL_IO.Camera1_IO.bSettingVal": 3,
@@ -7980,6 +9790,70 @@
                 "ADS.PLC1.GVL_IO.dw_T13_EL6633.stTerminalInfo.bTerminalOperational": 3,
                 "ADS.PLC1.GVL_IO.dw_T13_EL6633.stTerminalInfo.sTerminalInfo": 3,
                 "ADS.PLC1.GVL_IO.stTwinSAFE.iAirSupplyMeasurement": 3,
+                "ADS.PLC1.GVL_Master.stCycleData.bFail1": 3,
+                "ADS.PLC1.GVL_Master.stCycleData.bFail2": 3,
+                "ADS.PLC1.GVL_Master.stCycleData.bPass1": 3,
+                "ADS.PLC1.GVL_Master.stCycleData.bPass2": 3,
+                "ADS.PLC1.GVL_Master.stCycleData.stCamera_CycleData.bFail1": 3,
+                "ADS.PLC1.GVL_Master.stCycleData.stCamera_CycleData.bFail2": 3,
+                "ADS.PLC1.GVL_Master.stCycleData.stCamera_CycleData.bPass1": 3,
+                "ADS.PLC1.GVL_Master.stCycleData.stCamera_CycleData.bPass2": 3,
+                "ADS.PLC1.GVL_Master.stCycleData.stHeightTest_CycleData.anDistancesResult1.0": 3,
+                "ADS.PLC1.GVL_Master.stCycleData.stHeightTest_CycleData.anDistancesResult1.1": 3,
+                "ADS.PLC1.GVL_Master.stCycleData.stHeightTest_CycleData.anDistancesResult1.2": 3,
+                "ADS.PLC1.GVL_Master.stCycleData.stHeightTest_CycleData.anDistancesResult2.0": 3,
+                "ADS.PLC1.GVL_Master.stCycleData.stHeightTest_CycleData.anDistancesResult2.1": 3,
+                "ADS.PLC1.GVL_Master.stCycleData.stHeightTest_CycleData.anDistancesResult2.2": 3,
+                "ADS.PLC1.GVL_Master.stCycleData.stHeightTest_CycleData.bDistancesResult1.0": 3,
+                "ADS.PLC1.GVL_Master.stCycleData.stHeightTest_CycleData.bDistancesResult1.1": 3,
+                "ADS.PLC1.GVL_Master.stCycleData.stHeightTest_CycleData.bDistancesResult1.2": 3,
+                "ADS.PLC1.GVL_Master.stCycleData.stHeightTest_CycleData.bDistancesResult2.0": 3,
+                "ADS.PLC1.GVL_Master.stCycleData.stHeightTest_CycleData.bDistancesResult2.1": 3,
+                "ADS.PLC1.GVL_Master.stCycleData.stHeightTest_CycleData.bDistancesResult2.2": 3,
+                "ADS.PLC1.GVL_Master.stCycleData.stHeightTest_CycleData.bFail1": 3,
+                "ADS.PLC1.GVL_Master.stCycleData.stHeightTest_CycleData.bFail2": 3,
+                "ADS.PLC1.GVL_Master.stCycleData.stHeightTest_CycleData.bPass1": 3,
+                "ADS.PLC1.GVL_Master.stCycleData.stHeightTest_CycleData.bPass2": 3,
+                "ADS.PLC1.GVL_Master.stCycleData.stLeakTester_CycleData.0.bFail": 3,
+                "ADS.PLC1.GVL_Master.stCycleData.stLeakTester_CycleData.0.bPass": 3,
+                "ADS.PLC1.GVL_Master.stCycleData.stLeakTester_CycleData.1.bFail": 3,
+                "ADS.PLC1.GVL_Master.stCycleData.stLeakTester_CycleData.1.bPass": 3,
+                "ADS.PLC1.GVL_Master.stCycleDataNest1.Camera_Fail": 3,
+                "ADS.PLC1.GVL_Master.stCycleDataNest1.Camera_Pass": 3,
+                "ADS.PLC1.GVL_Master.stCycleDataNest1.HeightTest_Fail": 3,
+                "ADS.PLC1.GVL_Master.stCycleDataNest1.HeightTest_Pass": 3,
+                "ADS.PLC1.GVL_Master.stCycleDataNest1.HeightTest_anDistancesResult.0": 3,
+                "ADS.PLC1.GVL_Master.stCycleDataNest1.HeightTest_anDistancesResult.1": 3,
+                "ADS.PLC1.GVL_Master.stCycleDataNest1.HeightTest_anDistancesResult.2": 3,
+                "ADS.PLC1.GVL_Master.stCycleDataNest1.HeightTest_bDistancesResult.0": 3,
+                "ADS.PLC1.GVL_Master.stCycleDataNest1.HeightTest_bDistancesResult.1": 3,
+                "ADS.PLC1.GVL_Master.stCycleDataNest1.HeightTest_bDistancesResult.2": 3,
+                "ADS.PLC1.GVL_Master.stCycleDataNest1.LeakTest_Fail": 3,
+                "ADS.PLC1.GVL_Master.stCycleDataNest1.LeakTest_Pass": 3,
+                "ADS.PLC1.GVL_Master.stCycleDataNest1.bFail": 3,
+                "ADS.PLC1.GVL_Master.stCycleDataNest1.bPass": 3,
+                "ADS.PLC1.GVL_Master.stCycleDataNest2.Camera_Fail": 3,
+                "ADS.PLC1.GVL_Master.stCycleDataNest2.Camera_Pass": 3,
+                "ADS.PLC1.GVL_Master.stCycleDataNest2.HeightTest_Fail": 3,
+                "ADS.PLC1.GVL_Master.stCycleDataNest2.HeightTest_Pass": 3,
+                "ADS.PLC1.GVL_Master.stCycleDataNest2.HeightTest_anDistancesResult.0": 3,
+                "ADS.PLC1.GVL_Master.stCycleDataNest2.HeightTest_anDistancesResult.1": 3,
+                "ADS.PLC1.GVL_Master.stCycleDataNest2.HeightTest_anDistancesResult.2": 3,
+                "ADS.PLC1.GVL_Master.stCycleDataNest2.HeightTest_bDistancesResult.0": 3,
+                "ADS.PLC1.GVL_Master.stCycleDataNest2.HeightTest_bDistancesResult.1": 3,
+                "ADS.PLC1.GVL_Master.stCycleDataNest2.HeightTest_bDistancesResult.2": 3,
+                "ADS.PLC1.GVL_Master.stCycleDataNest2.LeakTest_Fail": 3,
+                "ADS.PLC1.GVL_Master.stCycleDataNest2.LeakTest_Pass": 3,
+                "ADS.PLC1.GVL_Master.stCycleDataNest2.bFail": 3,
+                "ADS.PLC1.GVL_Master.stCycleDataNest2.bPass": 3,
+                "ADS.PLC1.GVL_Master.stMACHINE.bMachine.0": 3,
+                "ADS.PLC1.GVL_Master.stMACHINE.bMachine.1": 3,
+                "ADS.PLC1.GVL_Master.stMACHINE.bMachine.2": 3,
+                "ADS.PLC1.GVL_Master.stMACHINE.bMachine.3": 3,
+                "ADS.PLC1.GVL_Master.stMACHINE.bMachine.4": 3,
+                "ADS.PLC1.GVL_Persistent.aDataHistoryNest1": 3,
+                "ADS.PLC1.GVL_Persistent.aDataHistoryNest1.0.HeightTest_anDistancesResult.0": 3,
+                "ADS.PLC1.GVL_Persistent.aDataHistoryNest2": 3,
                 "ADS.PLC1.GVL_Persistent.stProbesSettings.anDistanceCalibrationBlock.0": 3,
                 "ADS.PLC1.GVL_Persistent.stProbesSettings.anDistanceCalibrationBlock.1": 3,
                 "ADS.PLC1.GVL_Persistent.stProbesSettings.anDistanceCalibrationBlock.2": 3,
@@ -8117,6 +9991,31 @@
                 "USERGROUPUSERS_LOCALE": "project",
                 "USERGROUPUSERS_TIMEFORMATLOCALE": "project",
                 "USERGROUPUSERS_TIMEZONE": "project"
+            },
+            "newUser": {
+                "USERGROUPUSERS_AUTO_LOGOFF": "PT0S",
+                "USERGROUPUSERS_GROUPS": [
+                    "__SystemUsers"
+                ],
+                "USERGROUPUSERS_LOCALE": "project"
+            },
+            "sebastian.ulloa": {
+                "USERGROUPUSERS_AUTO_LOGOFF": "PT1H",
+                "USERGROUPUSERS_FORCE_PASSWORD_CHANGE": false,
+                "USERGROUPUSERS_GROUPS": [
+                    "__SystemUsers",
+                    "Developer"
+                ],
+                "USERGROUPUSERS_LOCALE": "client",
+                "USERGROUPUSERS_TIMEFORMATLOCALE": "project",
+                "USERGROUPUSERS_TIMEZONE": "project"
+            },
+            "sq": {
+                "USERGROUPUSERS_AUTO_LOGOFF": "PT0S",
+                "USERGROUPUSERS_GROUPS": [
+                    "__SystemUsers"
+                ],
+                "USERGROUPUSERS_LOCALE": "project"
             }
         }
     },

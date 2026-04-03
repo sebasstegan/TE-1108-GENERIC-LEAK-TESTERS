@@ -22,6 +22,16 @@
     "accessright": "observe",
     "group": "Administrator",
     "permission": "Allow"
+  },
+  {
+    "accessright": "operate",
+    "group": "Developer",
+    "permission": "Allow"
+  },
+  {
+    "accessright": "observe",
+    "group": "Developer",
+    "permission": "Allow"
   }
 ]
 </script>
@@ -121,7 +131,7 @@
 ]
 </script>
 </div>
-<div id="TcHmiButton_10" data-tchmi-type="TcHmi.Controls.Beckhoff.TcHmiButton" data-tchmi-height="50" data-tchmi-height-unit="px" data-tchmi-left="403" data-tchmi-left-unit="px" data-tchmi-text="MANUAL" data-tchmi-top="122" data-tchmi-top-unit="px" data-tchmi-width="122" data-tchmi-width-unit="px" data-tchmi-word-wrap="true" data-tchmi-text-font-size="20" data-tchmi-zindex="1" data-tchmi-opacity="1" data-tchmi-visibility="Visible">
+<div id="TcHmiButton_10" data-tchmi-type="TcHmi.Controls.Beckhoff.TcHmiButton" data-tchmi-height="50" data-tchmi-height-unit="px" data-tchmi-left="403" data-tchmi-left-unit="px" data-tchmi-text="MANUAL" data-tchmi-top="122" data-tchmi-top-unit="px" data-tchmi-width="122" data-tchmi-width-unit="px" data-tchmi-word-wrap="true" data-tchmi-text-font-size="20" data-tchmi-zindex="1" data-tchmi-opacity="1" data-tchmi-visibility="Visible" data-tchmi-is-enabled="%f%%s%PLC1.GVL_HMI.bEnableManual%/s%%/f%">
 <script data-tchmi-target-attribute="data-tchmi-trigger" type="application/json">[
   {
     "event": "%ctx%owner::Id|EventRegistrationMode=Resolve%/ctx%.onPressed",
@@ -269,6 +279,26 @@
   {
     "accessright": "observe",
     "group": "Operator",
+    "permission": "Deny"
+  },
+  {
+    "accessright": "observe",
+    "group": "Developer",
+    "permission": "Allow"
+  },
+  {
+    "accessright": "operate",
+    "group": "Developer",
+    "permission": "Allow"
+  },
+  {
+    "accessright": "operate",
+    "group": "Administrator",
+    "permission": "Deny"
+  },
+  {
+    "accessright": "observe",
+    "group": "Administrator",
     "permission": "Deny"
   }
 ]

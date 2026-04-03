@@ -10,6 +10,7 @@ VAR_INPUT
 	sSystemDate				: STRING(255);
 	bDataWritedInCSV		: BOOL;
 	nArraySize				: DINT;
+	bMachineMessage			: STRING;
 	
 END_VAR
 
@@ -17,9 +18,6 @@ VAR_OUTPUT
 
 	astActiveEvents			: ARRAY [0..50] OF ST_ActiveEvents;
 	astEventsHistory		: ARRAY[0..200] OF ST_EventsHistory;
-	bWriteDataInCSV			: BOOL;
-	nDataHistoryIndex		: DINT;
-	
 
 END_VAR
 
@@ -49,8 +47,6 @@ END_VAR
     <Implementation>
       <ST><![CDATA[ACT_FaultTrig();
 ACT_ActiveEvents_DataHistory();
-ACT_WriteToCSV();
-
 
 IF bEventsAssigmentSignal THEN
 	ACT_EventTextAssigment();
@@ -63,7 +59,7 @@ END_IF
     </Implementation>
     <Action Name="ACT_ActiveEvents_DataHistory" Id="{189c7dfd-f9f1-43a8-9266-a00a732d0443}">
       <Implementation>
-        <ST><![CDATA[IF bPulse AND NOT bWriteDataInCSV THEN
+        <ST><![CDATA[IF bPulse  THEN
 
 FOR k[0] := 0 TO nArraySize DO
 	
@@ -72,20 +68,20 @@ FOR k[0] := 0 TO nArraySize DO
 		IF stStationEvents[k[0]].aEvents[k[1]].bFault AND stStationEvents[k[0]].aEvents[k[1]].bEventFlag AND NOT stStationEvents[k[0]].aEvents[k[1]].bActive THEN
 			
 			//ACTIVE EVENTS
-			astActiveEvents[l].sEventTex				:= 	stStationEvents[k[0]].aEvents[k[1]].bEventTextHMI;
-			astActiveEvents[l].sType					:= 'Fault';						
-			astActiveEvents[l].abType					:= 1; 
-			astActiveEvents[l].sSolution				:= stStationEvents[k[0]].aEvents[k[1]].sSolution;
+			astActiveEvents[l+1].sEventTex				:= 	stStationEvents[k[0]].aEvents[k[1]].bEventTextHMI;
+			astActiveEvents[l+1].sType					:= 'Fault';						
+			astActiveEvents[l+1].abType					:= 1; 
+			astActiveEvents[l+1].sSolution				:= stStationEvents[k[0]].aEvents[k[1]].sSolution;
 			stStationEvents[k[0]].aEvents[k[1]].bActive := TRUE;
 			
 			//EVENTS HISTORY
-			FOR n := 199 TO 0 BY -1 DO
+			FOR n := 200 TO 1 BY -1 DO
 							
-				astEventsHistory[n+1].sEventTex				:= astEventsHistory[n].sEventTex;
-				astEventsHistory[n+1].sType					:= astEventsHistory[n].sType;
-				astEventsHistory[n+1].abType				:= astEventsHistory[n].abType;
-				astEventsHistory[n+1].sDate					:= astEventsHistory[n].sDate;										
-				astEventsHistory[n+1].sTime					:= astEventsHistory[n].sTime;
+				astEventsHistory[n ].sEventTex				:= astEventsHistory[n - 1].sEventTex;
+				astEventsHistory[n ].sType					:= astEventsHistory[n - 1].sType;
+				astEventsHistory[n].abType					:= astEventsHistory[n - 1].abType;
+				astEventsHistory[n ].sDate					:= astEventsHistory[n - 1].sDate;										
+				astEventsHistory[n ].sTime					:= astEventsHistory[n - 1].sTime;
 				
 			END_FOR
 
@@ -95,27 +91,27 @@ FOR k[0] := 0 TO nArraySize DO
 			astEventsHistory[0].sDate					:= 	sSystemDate;										
 			astEventsHistory[0].sTime					:= 	sSystemTime;
 			l											:= l + 1;			
-			nDataHistoryIndex							:= 1 + nDataHistoryIndex;		
+			
 			
 		END_IF
 		
 		IF stStationEvents[k[0]].aEvents[k[1]].bCycleStopRequest AND stStationEvents[k[0]].aEvents[k[1]].bEventFlag AND NOT stStationEvents[k[0]].aEvents[k[1]].bActive THEN
 			
 			//ACTIVE EVENTS
-			astActiveEvents[l].sEventTex				:= 	stStationEvents[k[0]].aEvents[k[1]].bEventTextHMI;
-			astActiveEvents[l].sType					:= 'Cycle Stop Request';						
-			astActiveEvents[l].abType					:= 2; 
-			astActiveEvents[l].sSolution				:= stStationEvents[k[0]].aEvents[k[1]].sSolution;
+			astActiveEvents[l+1].sEventTex				:= 	stStationEvents[k[0]].aEvents[k[1]].bEventTextHMI;
+			astActiveEvents[l+1].sType					:= 'Cycle Stop Request';						
+			astActiveEvents[l+1].abType					:= 2; 
+			astActiveEvents[l+1].sSolution				:= stStationEvents[k[0]].aEvents[k[1]].sSolution;
 			stStationEvents[k[0]].aEvents[k[1]].bActive := TRUE;
 			
 			//EVENTS HISTORY
-			FOR n := 199 TO 0 BY -1 DO
+			FOR n := 200 TO 0 BY -1 DO
 							
-				astEventsHistory[n+1].sEventTex				:= astEventsHistory[n].sEventTex;
-				astEventsHistory[n+1].sType					:= astEventsHistory[n].sType;
-				astEventsHistory[n+1].abType				:= astEventsHistory[n].abType;
-				astEventsHistory[n+1].sDate					:= astEventsHistory[n].sDate;										
-				astEventsHistory[n+1].sTime					:= astEventsHistory[n].sTime;
+				astEventsHistory[n].sEventTex				:= astEventsHistory[n - 1].sEventTex;
+				astEventsHistory[n].sType					:= astEventsHistory[n - 1].sType;
+				astEventsHistory[n].abType				:= astEventsHistory[n - 1].abType;
+				astEventsHistory[n].sDate					:= astEventsHistory[n - 1].sDate;										
+				astEventsHistory[n].sTime					:= astEventsHistory[n - 1].sTime;
 				
 			END_FOR
 
@@ -126,27 +122,27 @@ FOR k[0] := 0 TO nArraySize DO
 			astEventsHistory[0].sTime					:= 	sSystemTime;
 															
 			l											:= l + 1;	
-			nDataHistoryIndex							:= 1 + nDataHistoryIndex;	
+			
 						
 		END_IF
 		
 		IF stStationEvents[k[0]].aEvents[k[1]].bMessage AND stStationEvents[k[0]].aEvents[k[1]].bEventFlag AND NOT stStationEvents[k[0]].aEvents[k[1]].bActive THEN
 			
 			//ACTIVE EVENTS
-			astActiveEvents[l].sEventTex				:= 	stStationEvents[k[0]].aEvents[k[1]].bEventTextHMI;
-			astActiveEvents[l].sType					:= 'Message';						
-			astActiveEvents[l].abType					:= 3; 
-			astActiveEvents[l].sSolution				:= stStationEvents[k[0]].aEvents[k[1]].sSolution;
+			astActiveEvents[l+1].sEventTex				:= 	stStationEvents[k[0]].aEvents[k[1]].bEventTextHMI;
+			astActiveEvents[l+1].sType					:= 'Message';						
+			astActiveEvents[l+1].abType					:= 3; 
+			astActiveEvents[l+1].sSolution				:= stStationEvents[k[0]].aEvents[k[1]].sSolution;
 			stStationEvents[k[0]].aEvents[k[1]].bActive := TRUE;
 			
 			//EVENTS HISTORY
-			FOR n := 199 TO 0 BY -1 DO
+			FOR n := 200 TO 0 BY -1 DO
 							
-				astEventsHistory[n+1].sEventTex				:= astEventsHistory[n].sEventTex;
-				astEventsHistory[n+1].sType					:= astEventsHistory[n].sType;
-				astEventsHistory[n+1].abType				:= astEventsHistory[n].abType;
-				astEventsHistory[n+1].sDate					:= astEventsHistory[n].sDate;										
-				astEventsHistory[n+1].sTime					:= astEventsHistory[n].sTime;
+				astEventsHistory[n].sEventTex				:= astEventsHistory[n - 1].sEventTex;
+				astEventsHistory[n].sType					:= astEventsHistory[n - 1].sType;
+				astEventsHistory[n].abType				:= astEventsHistory[n - 1].abType;
+				astEventsHistory[n].sDate					:= astEventsHistory[n - 1].sDate;										
+				astEventsHistory[n].sTime					:= astEventsHistory[n - 1].sTime;
 				
 			END_FOR
 
@@ -157,7 +153,7 @@ FOR k[0] := 0 TO nArraySize DO
 			astEventsHistory[0].sTime					:= 	sSystemTime;
 															
 			l											:= l + 1;
-			nDataHistoryIndex							:= 1 + nDataHistoryIndex;
+			
 										
 		END_IF
 		
@@ -167,7 +163,7 @@ FOR k[0] := 0 TO nArraySize DO
 END_FOR
 
 ELSIF bResetFaults THEN
-	FOR l := 0 TO 50 DO
+	FOR l := 1 TO 50 DO
 	
 			astActiveEvents[l].sEventTex			:= 	'';
 			astActiveEvents[l].sType				:= '';						
@@ -194,7 +190,8 @@ ELSE
 	
 END_IF
 
-
+astActiveEvents[0].sEventTex						:= bMachineMessage;
+astActiveEvents[0].sType							:= 'Message';
 
 ]]></ST>
       </Implementation>
@@ -297,22 +294,6 @@ m[3]														:= 0;]]></ST>
 
 ELSE 	i[0]														:= 0;
 		i[1]														:= 0;	
-END_IF]]></ST>
-      </Implementation>
-    </Action>
-    <Action Name="ACT_WriteToCSV" Id="{dfd367d8-f7e2-4974-baea-f1d973148a39}">
-      <Implementation>
-        <ST><![CDATA[IF nDataHistoryIndex = 201 THEN
-	
-	bWriteDataInCSV									:= TRUE;
-
-END_IF 
-	
-IF bDataWritedInCSV THEN
-	
-	bWriteDataInCSV									:= FALSE;
-	nDataHistoryIndex								:= 0;
-	
 END_IF]]></ST>
       </Implementation>
     </Action>

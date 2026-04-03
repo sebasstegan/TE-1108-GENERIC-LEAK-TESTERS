@@ -1,5 +1,5 @@
 ﻿<?xml version="1.0" encoding="utf-8"?>
-<TcPlcObject Version="1.1.0.1" ProductVersion="3.1.4024.13">
+<TcPlcObject Version="1.1.0.1" ProductVersion="3.1.4026.17">
   <DUT Name="E_General_ProcessCycle" Id="{efc1fb3f-e466-425d-af8e-a4df616b7389}">
     <Declaration><![CDATA[{attribute 'qualified_only'}
 {attribute 'strict'}
@@ -28,7 +28,8 @@ WAIT_TO_SAVE_DATA				,
 RESULTS							,
 SAVE_DATA						,
 SAVE_DATA2						,
-CSV								,
+CSV_NEST1						,
+CSV_NEST2						,
 
 RESET_ALL_CMD						
 

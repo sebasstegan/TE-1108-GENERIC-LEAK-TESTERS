@@ -8,7 +8,8 @@ VAR_GLOBAL PERSISTENT
 	
 	stUserLog					: ARRAY [0..250] OF ST_UserLog;
 	
-	aDataHistory				: ARRAY[0..200] OF ST_CycleData;
+	aDataHistoryNest1			: ARRAY[0..2000] OF ST_CycleData;
+	aDataHistoryNest2			: ARRAY[0..2000] OF ST_CycleData;
 	astEventsHistory			: ARRAY[0..200] OF ST_EventsHistory;
 	stJavasCriptPDF				: ST_JavasCriptPDF;
 

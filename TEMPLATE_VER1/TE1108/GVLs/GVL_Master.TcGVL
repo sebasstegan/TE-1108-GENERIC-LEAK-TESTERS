@@ -14,8 +14,8 @@
 	stButtonsLamps					: ST_ButtonsLamps;
 	stPuls							: ST_Puls;		
 
-	stCSV_EventsHistory				: ST_CSV;
-	stCycleData						: ST_CycleData;
+	stCycleDataNest1				: ST_CycleData;
+	stCycleDataNest2				: ST_CycleData;
 	
 	stMACHINE						: ST_MACHINE;	//THIS STRUCTURE WILL DEFINDE THE PROCESS IN AUTO CYCLE DEPENDING OF WHAT MACHINE YOU ARE WORKING WITH
 													//THE bMachine boolean array will define the machine			//1. LT-RT: LEAK TEST RESERVOIR
@@ -23,12 +23,11 @@
 																													//3. LT-WH LEAK TEST: RESERVOIR TO DOCKSEAL (VACUUM), HEIGHT TEST: ST WELDING
 																													//4. LT-WH(IPX8) LEAK TEST: IPX8 UPPER AND LOWER SHELL ASSEMBLY, HEIGHT TEST: US & LS WELDING
 																													//5. WH: HEIGHT TEST: FPB WELDING
-	bDoorClosingFlag				: BOOL;
-	bDoorOpeningFlag				: BOOL;
-	bProcessDoorClosedConditionFlag	: BOOL;
-	bProcessCylinderUnlockConditionFlag: BOOL;
-	tonSafety						: TON;
-	bMainDoor_AirFlag				: ARRAY[0..1] OF  BOOL;
+	
+	bWriteNest1				: BOOL;
+	bWriteNest2				: BOOL;
+	bCSVDone				: BOOL;
+	bCSVReady				: BOOL;
 /////////////////////////////////////////////////////////////////////////////////////Event Log/////////////////////////////////////////////////////////////////////////////////////
 	
 	stStationEvents				: ARRAY[0..4] OF  ST_StationEvents;//0: GENERAL
@@ -38,12 +37,15 @@
 																	//4: Cylinders
 	astActiveEvents				: ARRAY [0..50] OF ST_ActiveEvents;
 	stEventsAssigment			: ST_EventsAssigmentGeneral;
+	bMachineMessages			: BOOL;
+	sMachineMessage				: STRING;
 
 /////////////////////////////////////////////////////////////////////////////////////MACHINE CONTROL////////////////////////////////////////////////////////////////////////////
 	
 	stMachineStatus					: ST_MachineStatus;	
 	stMasterCtrl					: ST_MasterCTRL;
 	bStatisticsTest					: ARRAY[0..6] OF  BOOL;
+	
 	
 ////////////////////////////////////////////////////////////////////////////////////SYSTEM////////////////////////////////////////////////////////////////////////////
 	stSystemTime				: TIMESTRUCT;
@@ -53,8 +55,16 @@
 	bResetTest					: BOOL;
 	bTestFlag					: ARRAY[0..10] OF BOOL;
 
+////////////////////////////////////////////////////////////////////////////////////SAFETY////////////////////////////////////////////////////////////////////////////
 
-	
+	bDoorClosingFlag				: BOOL;
+	bDoorOpeningFlag				: BOOL;
+	bProcessDoorClosedConditionFlag	: BOOL;
+	bProcessCylinderUnlockConditionFlag: BOOL;
+	tonSafety						: TON;
+	bMainDoor_AirFlag				: ARRAY[0..1] OF  BOOL;
+	bProcessDoorUpInitialising		: BOOL;
+	bProcessCylinderSafetyPosition	: BOOL;
 	
 END_VAR]]></Declaration>
   </GVL>

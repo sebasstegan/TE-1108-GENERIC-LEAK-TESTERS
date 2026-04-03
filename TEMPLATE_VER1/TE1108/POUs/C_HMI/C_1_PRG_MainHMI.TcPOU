@@ -5,13 +5,16 @@
 VAR
 	
 	bResetTest				: BOOL;
+	i						: DINT;
+	n						: DINT;//TABLE INDEX
 
 END_VAR
 ]]></Declaration>
     <Implementation>
       <ST><![CDATA[a_ACT_MachineStatusBaner();
 b_ACT_Timers();
-c_ACT_IO();]]></ST>
+c_ACT_IO();
+]]></ST>
     </Implementation>
     <Action Name="a_ACT_MachineStatusBaner" Id="{0dc7bcd3-753a-4f06-be0f-fec0a8964021}">
       <Implementation>

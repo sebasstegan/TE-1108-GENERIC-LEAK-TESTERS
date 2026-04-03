@@ -24,6 +24,7 @@ STRUCT
 	bSettingNo								AT %Q*			: UINT;	
 	bSettingVal								AT %Q*			: UDINT;	
 	bResetStatistics						AT %Q*			: BOOL;	
+	bClearBuffer							AT %Q*			: BOOL;
 	
 END_STRUCT
 END_TYPE

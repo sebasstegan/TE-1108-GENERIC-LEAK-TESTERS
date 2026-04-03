@@ -9,6 +9,7 @@ VAR
 	
 	fbStringFormatter       				: Tc2_Utilities.FB_FormatString;
 	fbEventsManager							: FB_EventsManager;
+	bResetEvents							: BOOL;
 	
 	ntShutdown								: TC2_Utilities.NT_Shutdown;
 	closeChrome 							: NT_StartProcess;
@@ -32,19 +33,15 @@ VAR
 	
 	fbScaleAirSupply						: FB_Scale;
 	
+	fMessageReset							: F_TRIG;
+	j										: DINT;
+	i										: DINT;
+	
 	
 	
 ////////////////////////////////////////////////////////////////////////////////////CSV////////////////////////////////////////////////////////////////////////////	
 
-	//stEventsCSVProcess						:  ST_CSVProcess;
-	//fbWriteDataToCSV_Events					: FB_WriteDataToCSV;
-	fbPDFMaker								: FB_PDFMaker;
-	stPDFMaker								: ST_PDFMaker;
-	i										: DINT;
-	ntest									AT %Q* : UINT;	
-	ntest2									AT %Q* : UDINT;
 	
-
 	
 END_VAR
 ]]></Declaration>
@@ -52,7 +49,6 @@ END_VAR
       <ST><![CDATA[/////////////////////////////////////////////////////////////////////////////////////GENERAL/////////////////////////////////////////////////////////////////////////////////////
 A_3_PRG_FaultHandling();
 a_ACT_ButtonsLamps();
-b_ACT_PDFMaker();
 d_ACT_ShutdownAndQuit();
 e_ACT_UserLog();
 f_ACT_TerminalInfo();
@@ -62,7 +58,6 @@ i_ACT_TwinSAFE();
 j_ACT_MachineDefinition();
 
 C_1_PRG_MainHMI();
-D_1_CSV();
 //D_1_1_PROG_Write_Data_To_CSV();
 //D_2_1_PROG_Write_Data_To_CSV();
 
@@ -112,14 +107,13 @@ fbEventsManager	(			//INPUTS
 							sSystemTime						:= sSystemTime,
 							sSystemDate						:= sSystemDate,
  							stEventsAssigment				:= stEventsAssigment,
-							bDataWritedInCSV				:= stCSV_EventsHistory.bDataWrited,
+							bDataWritedInCSV				:= ,
 							nArraySize						:= 4,
+							bMachineMessage					:= sMachineMessage,
 							
 							//OUTPUTS
 							astActiveEvents 				=> astActiveEvents,
 							astEventsHistory				=> astEventsHistory,
-							bWriteDataInCSV					=> stCSV_EventsHistory.bWriteData,
-							nDataHistoryIndex				=> stCSV_EventsHistory.nDataHistoryIndex
 							);
 
 
@@ -138,7 +132,19 @@ sSystemDate					:= 	CONCAT( STR1 := WORD_TO_STRING(stSystemTime.wDay), STR2 :=
 								CONCAT(STR1 := '/', STR2 := WORD_TO_STRING(stSystemTime.wYear)))));
 
 
+stCycleDataNest1.nNest		:= 1;
+stCycleDataNest2.nNest		:= 2;
 
+////////////////////////////////////////////////////////////////////////////////////CSV////////////////////////////////////////////////////////////////////////////	
+
+	
+
+D_1_PRG_CycleDataCSV( 	stCycleDataNest1 	:= stCycleDataNest1,
+						stCycleDataNest2 	:= stCycleDataNest2,
+						bWriteNest1			:= bWriteNest1,
+						bWriteNest2			:= bWriteNest2,
+						bCSVDone			=> bCSVDone,
+						bReady				=> bCSVReady);
 
 
 
@@ -168,55 +174,6 @@ dw_T09_EL2809.qResetButtonLED				:= (stMachineStatus.bFault AND stPuls.bFlash1Hz
 dw_T09_EL2809.qStartButtonLED				:= (stMachineStatus.bReadyToStart AND stPuls.bFlash1Hz) OR stMachineStatus.bAutoCycle OR stMachineStatus.bManualMode;
 
 ]]></ST>
-      </Implementation>
-    </Action>
-    <Action Name="b_ACT_PDFMaker" Id="{eda48c17-c939-4052-a903-aa51ced32374}">
-      <Implementation>
-        <ST><![CDATA[//EVENTS TO CSV
-
-fbPDFMaker(					
-							aDataHistory				:= astEventsHistory,
-							bWriteData					:= stPDFMaker.bWriteData,
-							sDate						:= stPDFMaker.sDate,
-							aDataHistoryArrayLength		:= 1000,
-							nDataHistoryIndex			:= stPDFMaker.nDataHistoryIndex,
-							sUser						:= 'sebastian',//sUserName,
-							sGroup						:= 'administrator',//sUserGroupOut,
-							sMachineName				:= 'example',
-							
-							bDataWrited					=> stPDFMaker.bDataWrited,
-							stJavasCriptPDF				=> stJavasCriptPDF,
-							bMakePdf					=> stJavasCriptPDF.bMakePDF
-							);
-
-(*stPDFMaker.sDate			:= 	CONCAT( STR1 := WORD_TO_STRING(stSystemTime.wDay), STR2 := 
-								CONCAT(STR1 := '_', STR2 := CONCAT(STR1 := WORD_TO_STRING(stSystemTime.wMonth), STR2 := 
-								CONCAT(STR1 := '_', STR2 := WORD_TO_STRING(stSystemTime.wYear)))));	*)
-//CSV
-(*fbWriteDataToCSV_Events( 	bWriteData					:= stEventsCSVProcess.bWriteData,
-							sFileNamePath				:= stEventsCSVProcess.sFileNamePath,
-							sDate						:= stEventsCSVProcess.sDate,
-							aDataHistoryArrayLength		:= stEventsCSVProcess.aDataHistoryArrayLength,
-							nMAX_CSV_ROWS				:= stEventsCSVProcess.nMAX_CSV_ROWS,
-							nMAX_CSV_COLUMNS			:= stEventsCSVProcess.nMAX_CSV_COLUMNS,
-							nDataHistoryIndex			:= stEventsCSVProcess.nDataHistoryIndex,
-							
-							bBusy						=> stEventsCSVProcess.bBusy,
-							bError						=> stEventsCSVProcess.bError,
-							nErrId						=>,
-							bDataWrited					=> stEventsCSVProcess.bDataWrited,
-							aDataHistory				:= astEventsHistory);
-							
-
-(*stEventsCSVProcess.sDate	:= 	CONCAT( STR1 := WORD_TO_STRING(stSystemTime.wDay), STR2 := 
-								CONCAT(STR1 := '_', STR2 := CONCAT(STR1 := WORD_TO_STRING(stSystemTime.wMonth), STR2 := 
-								CONCAT(STR1 := '_', STR2 := WORD_TO_STRING(stSystemTime.wYear)))));		*)				
-								
-
-stEventsCSVProcess.sFileNamePath						:= 'C:\Users\Sebastian.Ulloa\Desktop\GIT PROJECTS\TEMPLATES\TEMPLATE_VER1\CSV\EVENTS\';								
-stEventsCSVProcess.aDataHistoryArrayLength				:= 200;
-stEventsCSVProcess.nMAX_CSV_ROWS						:= 1000;
-stEventsCSVProcess.nMAX_CSV_COLUMNS						:= 4;*)]]></ST>
       </Implementation>
     </Action>
     <Action Name="d_ACT_ShutdownAndQuit" Id="{b7dac9a1-fefc-426e-a57f-b21e21205edc}">
@@ -366,7 +323,6 @@ ELSE
 	stMasterCtrl.bManualModeRequest							:= FALSE; 
 	bManualModeOffFlag										:= TRUE;											
 END_IF
-
 ]]></ST>
       </Implementation>
     </Action>
@@ -374,10 +330,10 @@ END_IF
       <Implementation>
         <ST><![CDATA[stStatisticsHMI[0].sName			:= 'TOTAL';
 
-stStatisticsHMI[0].nGood		:= stStatisticsHMI[1].nGood + stStatisticsHMI[2].nGood + stStatisticsHMI[3].nGood;
-stStatisticsHMI[0].nTotalGood	:= stStatisticsHMI[1].nTotalGood + stStatisticsHMI[2].nTotalGood + stStatisticsHMI[3].nTotalGood;
-stStatisticsHMI[0].nBad			:= stStatisticsHMI[1].nBad + stStatisticsHMI[2].nBad + stStatisticsHMI[3].nBad;
-stStatisticsHMI[0].nTotalBad	:= stStatisticsHMI[1].nTotalBad + stStatisticsHMI[2].nTotalBad + stStatisticsHMI[3].nTotalBad;
+stStatisticsHMI[0].nGood		:= stStatisticsHMI[1].nGood + stStatisticsHMI[2].nGood + stStatisticsHMI[3].nGood + stStatisticsHMI[4].nGood + stStatisticsHMI[5].nGood + stStatisticsHMI[6].nGood;
+stStatisticsHMI[0].nTotalGood	:= stStatisticsHMI[1].nTotalGood + stStatisticsHMI[2].nTotalGood + stStatisticsHMI[3].nTotalGood + stStatisticsHMI[4].nTotalGood + stStatisticsHMI[5].nTotalGood + stStatisticsHMI[6].nTotalGood;
+stStatisticsHMI[0].nBad			:= stStatisticsHMI[1].nBad + stStatisticsHMI[2].nBad + stStatisticsHMI[3].nBad + stStatisticsHMI[4].nBad + stStatisticsHMI[5].nBad + stStatisticsHMI[6].nBad;
+stStatisticsHMI[0].nTotalBad	:= stStatisticsHMI[1].nTotalBad + stStatisticsHMI[2].nTotalBad + stStatisticsHMI[3].nTotalBad + stStatisticsHMI[4].nTotalBad + stStatisticsHMI[5].nTotalBad + stStatisticsHMI[6].nTotalBad;
 
 								
 
@@ -411,7 +367,7 @@ stTwinSAFE.iAirPressureMinValue			:= nAirPressureMinValue;
 stTwinSAFE.iProcessDoorClosing			:= bDoorClosingFlag;
 
 bMainDoor_AirFlag[0]					:= (stMachineStatus.eMachineState = E_MachineState.SYSTEM_AUTO_CYCLE) OR ( stMachineStatus.eMachineState = E_MachineState.MANUAL_MODE) OR (stMachineStatus.eMachineState = E_MachineState.SYSTEM_INITIALISING) OR 
-											(stMachineStatus.eMachineState = E_MachineState.SAFETY);
+											(stMachineStatus.eMachineState = E_MachineState.SAFETY) OR (stMachineStatus.eMachineState = E_MachineState.SYSTEM_READY_TO_START);
 
 bMainDoor_AirFlag[1]					:= (stMachineStatus.eMachineState = E_MachineState.STOPPING) OR (stMachineStatus.eMachineState = E_MachineState.STOPPED);
 

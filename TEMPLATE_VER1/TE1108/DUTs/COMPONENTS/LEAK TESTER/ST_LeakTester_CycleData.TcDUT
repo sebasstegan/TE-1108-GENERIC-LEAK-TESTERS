@@ -1,11 +1,8 @@
 ﻿<?xml version="1.0" encoding="utf-8"?>
-<TcPlcObject Version="1.1.0.1" ProductVersion="3.1.4024.13">
+<TcPlcObject Version="1.1.0.1" ProductVersion="3.1.4026.17">
   <DUT Name="ST_LeakTester_CycleData" Id="{a87f5642-6635-4d10-aef6-f9a75b94d380}">
     <Declaration><![CDATA[TYPE ST_LeakTester_CycleData :
 STRUCT
-
-	aLeakTesterLastResult1			: st_i28LasResult;
-	aLeakTesterLastResult2			: st_i28LasResult;
 	
 	bPass							: BOOL;
 	bFail							: BOOL;	

@@ -179,7 +179,7 @@
     <Content Include="Contents\8_Info.content">
       <SubType>Content</SubType>
     </Content>
-    <Content Include="Contents\10_Manage_Users.content">
+    <Content Include="Contents\9_Data_HistoryNest2.content">
       <SubType>Content</SubType>
     </Content>
     <Content Include="Contents\CSS_JAVA\Enable buttons.js">
@@ -194,7 +194,7 @@
     <Content Include="Contents\CSS_JAVA\PDF Maker\relatori.js">
       <SubType>Content</SubType>
     </Content>
-    <Content Include="Contents\9_Data_History.content">
+    <Content Include="Contents\9_Data_HistoryNest1.content">
       <SubType>Content</SubType>
     </Content>
     <Content Include="Contents\4_Events.content">
@@ -309,7 +309,13 @@
     <Content Include="Contents\IOs\3_IO_LT_HW_VC.content">
       <SubType>Content</SubType>
     </Content>
+    <Content Include="Contents\Mains\1_Main_LT_HW_VC_ver2.content">
+      <SubType>Content</SubType>
+    </Content>
     <Content Include="Contents\Mains\1_Main_LT_HW_VC.content">
+      <SubType>Content</SubType>
+    </Content>
+    <Content Include="Contents\10_Manage_Users.content">
       <SubType>Content</SubType>
     </Content>
     <Content Include="Contents\Manual\Cameras\CameraTriggerPopup.content">
@@ -339,6 +345,9 @@
     <Content Include="Contents\popup\popup.content">
       <SubType>Content</SubType>
     </Content>
+    <Content Include="Contents\popup\popup4_UserManagement.content">
+      <SubType>Content</SubType>
+    </Content>
     <Content Include="Contents\popup\popup4_Shutdown.content">
       <SubType>Content</SubType>
     </Content>
@@ -354,10 +363,10 @@
     <Content Include="Contents\Settings\6_Settings_LT_HW_VC.content">
       <SubType>Content</SubType>
     </Content>
-    <Content Include="Contents\Settings\Calibration_Set2.content">
+    <Content Include="Contents\Settings\Calibration_Set1.content">
       <SubType>Content</SubType>
     </Content>
-    <Content Include="Contents\Settings\Calibration_Set1.content">
+    <Content Include="Contents\Settings\Calibration_Set2.content">
       <SubType>Content</SubType>
     </Content>
     <Content Include="Contents\Settings\Distances.content">
@@ -393,6 +402,13 @@
     <Content Include="Contents\UserControl\16CH_Dig_IO_CARD.usercontrol.json">
       <SubType>Content</SubType>
       <DependentUpon>Contents\UserControl\16CH_Dig_IO_CARD.usercontrol</DependentUpon>
+    </Content>
+    <Content Include="Contents\UserControl\Green_Red_Rectangle.usercontrol">
+      <SubType>Content</SubType>
+    </Content>
+    <Content Include="Contents\UserControl\Green_Red_Rectangle.usercontrol.json">
+      <SubType>Content</SubType>
+      <DependentUpon>Contents\UserControl\Green_Red_Rectangle.usercontrol</DependentUpon>
     </Content>
     <Content Include="Contents\UserControl\HeightTest\HeightTestManual.usercontrol">
       <SubType>Content</SubType>

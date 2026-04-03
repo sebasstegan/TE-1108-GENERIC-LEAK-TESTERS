@@ -32,6 +32,30 @@
             "PASSWORD_HISTORY": [],
             "SALT": "",
             "TWO_FACTOR_AUTHENTICATION_ENABLED": false
+        },
+        "newUser": {
+            "ALGORITHM": 1,
+            "ENABLED": true,
+            "LAST_PASSWORD_CHANGE": "2026-04-03T16:05:29.8835347Z",
+            "PASSWORD": "ba8f91da02eb3d2d79e22c5ce853f9e26e27229229f6cae9de171542746f1d5bdf70b87c9fb0230b102437b0606873d542d6d05340684a5d3f194fa8c32297f5",
+            "SALT": "keiGekyBoFQeIrSk2UVNPyWLotaD9h5x/wEDcuzF9im3tOdzgCtbdHPH3eRKNDkANy523Fo3OpB23FlW9KPgoQ==",
+            "TWO_FACTOR_AUTHENTICATION_ENABLED": false
+        },
+        "sebastian.ulloa": {
+            "ALGORITHM": 1,
+            "ENABLED": true,
+            "LAST_PASSWORD_CHANGE": "2026-03-30T13:49:38.6312454Z",
+            "PASSWORD": "ae437f559c8965df2d5b85c2e1115dbe8c812b25106f868e3e9f1afe55db5728dd8ca9add4ce7d79d94abe4722dc8ad370ea81839d74014e4a909d2dfc043f13",
+            "SALT": "kugt5wL0TkDsG0cv5XUQZMqj9vzAeoIWCsnsahyY3ZLmfSPu3e6r8RH0zzw0caGQER/JMcV/gZ4VYkWZbfrtpg==",
+            "TWO_FACTOR_AUTHENTICATION_ENABLED": false
+        },
+        "sq": {
+            "ALGORITHM": 1,
+            "ENABLED": true,
+            "LAST_PASSWORD_CHANGE": "2026-04-03T16:28:32.3089034Z",
+            "PASSWORD": "05a9de690fb0a6cb2a403658c23bab1a156c5bc1c5fb7b7be3e3f5b828a36346eb59aeeed6c2374e0211d14df64a2867a617c5a3192298e1d78198f7235c0d58",
+            "SALT": "mPS4TABanNfflFHp4ex1Xgl/o5R2ef1fQJhOKpwb6wcTz3SFQEcsMUiiX7F8ZJ5E9EsgMwX+SMvpSdOoKtp98w==",
+            "TWO_FACTOR_AUTHENTICATION_ENABLED": false
         }
     }
 }

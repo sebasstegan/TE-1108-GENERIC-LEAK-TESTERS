@@ -11,9 +11,8 @@ VAR
 	bOpenDoor							: BOOL;
 	bCloseDoor							: BOOL;
 	bDoorClosed							: BOOL;
-	bDoorOpened							: BOOL;
 	tonDoorOpened						: TON;
-
+	bDoorOpened							: BOOL;
 	
 END_VAR
 ]]></Declaration>
@@ -29,6 +28,8 @@ c_Manual();
         <ST><![CDATA[/////////////////////////////////////////////////////////////////////////////////////UTILITIES/////////////////////////////////////////////////////////////////////////////////////
 
 /////////////////////////////////////////////////////////////////////////////////////CONDITIONS/////////////////////////////////////////////////////////////////////////////////////
+
+
 IF stProcessDoor.CMD.bAbort THEN
 	
 	stProcessDoor.State				:= E_ProcessDoor_State.RESET;
@@ -45,9 +46,21 @@ CASE stProcessDoor.State OF
 	
 								IF stProcessDoor.CMD.bEnable THEN
 									
-									stProcessDoor.State				:= E_ProcessDoor_State.READY;
+									stProcessDoor.State				:= E_ProcessDoor_State.HOMING;
 								
 								END_IF
+								
+		E_ProcessDoor_State.HOMING: 
+	
+								bOpenDoor							:= TRUE;
+								
+								IF bDoorOpened THEN
+									
+									stProcessDoor.State				:= E_ProcessDoor_State.READY;									
+									bOpenDoor						:= FALSE;
+																	
+								END_IF
+	
 	
 	E_ProcessDoor_State.READY:
 	
@@ -61,6 +74,7 @@ CASE stProcessDoor.State OF
 																		
 								END_IF
 	
+
 	E_ProcessDoor_State.OPEN:
 	
 								bOpenDoor							:= TRUE;
@@ -83,8 +97,6 @@ CASE stProcessDoor.State OF
 								
 	E_ProcessDoor_State.DONE:
 	
-								bOpenDoor							:= FALSE;
-								bCloseDoor							:= FALSE;
 	
 								IF stProcessDoor.CMD.bAcknowledge THEN
 									
@@ -101,7 +113,7 @@ CASE stProcessDoor.State OF
 								
 								IF NOT stProcessDoor.CMD.bAbort AND NOT stProcessDoor.CMD.bEndCycle THEN
 									
-									stProcessDoor.State				:= E_ProcessDoor_State.OPEN;
+									stProcessDoor.State				:= E_ProcessDoor_State.READY;
 									
 								ELSE stProcessDoor.State			:= E_ProcessDoor_State.ABORTED;
 								END_IF
@@ -128,7 +140,8 @@ END_CASE
 /////////////////////////////////////////////////////////////////////////////////////STATUS/////////////////////////////////////////////////////////////////////////////////////
 
 stProcessDoor.Status.bBusy			:= 	stProcessDoor.State	= E_ProcessDoor_State.CLOSE OR
-										stProcessDoor.State	= E_ProcessDoor_State.OPEN;
+										stProcessDoor.State	= E_ProcessDoor_State.OPEN OR 
+										stProcessDoor.State	= E_ProcessDoor_State.STOPPING;
 								
 stProcessDoor.Status.bDone			:=	stProcessDoor.State	= E_ProcessDoor_State.DONE;
 
@@ -139,13 +152,14 @@ stProcessDoor.Status.bStopped		:= 	NOT stProcessDoor.Status.bBusy;]]></ST>
     </Action>
     <Action Name="b_ACT_IO_B" Id="{7a24ac88-21cc-4219-af73-2aba76419ebf}">
       <Implementation>
-        <ST><![CDATA[tonDoorOpened( IN := NOT bDoorClosed AND bDoorOpeningFlag	, PT := stTimers.tDoorOpenedSignal);
+        <ST><![CDATA[tonDoorOpened( IN := NOT bDoorClosed, PT := stTimers.tDoorOpenedSignal);
 
 
 bDoorClosed								:= dw_T05_EL1918.iProcessDoorClosed1 AND dw_T05_EL1918.iProcessDoorClosed2 AND dw_T05_EL1918.iProcessDoorFB;
 bDoorOpened								:= tonDoorOpened.Q; 
 
-dw_T09_EL2809.qOpenProcessDoor	:= bOpenDoor OR bProcessDoor_Up;	
+
+dw_T09_EL2809.qOpenProcessDoor	:= bOpenDoor OR bProcessDoor_Up OR bProcessDoorUpInitialising;	
 dw_T09_EL2809.qCloseProcessDoor	:= bCloseDoor OR bProcessDoor_Down;
 
 
@@ -183,7 +197,15 @@ stStationEvents[4].aEvents[0].bEventTimer( IN := bCloseDoor AND NOT bDoorClosed,
 stStationEvents[4].aEvents[0].bFault						:= TRUE;
 stStationEvents[4].aEvents[0].bEventFlag					:= stStationEvents[4].aEvents[0].bEventTimer.Q;
 stStationEvents[4].aEvents[0].bEventText					:= 'Process Door extend timeout';
-stStationEvents[4].aEvents[0].sSolution						:= 'Check cylinders, neumatic connections and sensors';
+stStationEvents[4].aEvents[0].sSolution						:= 'Check cylinder, neumatic connections and sensors';
+
+stStationEvents[4].aEvents[1].bEventTimer( IN := bOpenDoor AND NOT bDoorOpened, PT := T#5S);
+stStationEvents[4].aEvents[1].bFault						:= TRUE;
+stStationEvents[4].aEvents[1].bEventFlag					:= stStationEvents[4].aEvents[1].bEventTimer.Q;
+stStationEvents[4].aEvents[1].bEventText					:= 'Process Door Retract timeout';
+stStationEvents[4].aEvents[1].sSolution						:= 'Check cylinder, neumatic connections and sensors';
+
+
 
 
 
