@@ -271,35 +271,65 @@
 ]
 </script>
 
+
+
 <script data-tchmi-target-attribute="data-tchmi-trigger" type="application/json">
 [
   {
-    "event": "%ctx%owner::Id|EventRegistrationMode=Resolve%/ctx%.onStatePressed",
+    "event": "%ctx%owner::Id|EventRegistrationMode=Resolve%/ctx%.onPressed",
     "actions": [
       {
         "objectType": "WriteToSymbol",
         "active": true,
-        "symbolExpression": "%s%ADS.PLC1.GVL_HMI.bSetCalibrationBlock1%/s%",
-        "value": {
-          "objectType": "StaticValue",
-          "valueType": "tchmi:general#/definitions/BOOL",
-          "value": true
-        },
-        "asyncWait": true
-      }
-    ]
-  },
-  {
-    "event": "%ctx%owner::Id|EventRegistrationMode=Resolve%/ctx%.onStateReleased",
-    "actions": [
-      {
-        "objectType": "WriteToSymbol",
-        "active": true,
-        "symbolExpression": "%s%ADS.PLC1.GVL_HMI.bSetCalibrationBlock1%/s%",
+        "symbolExpression": "%i%YESNOpopup_close%/i%",
         "value": {
           "objectType": "StaticValue",
           "valueType": "tchmi:general#/definitions/BOOL",
           "value": false
+        },
+        "asyncWait": true
+      },
+      {
+        "objectType": "WriteToSymbol",
+        "active": true,
+        "symbolExpression": "%ctrl%yes_no_popup::Visibility%/ctrl%",
+        "value": {
+          "objectType": "StaticValue",
+          "valueType": "tchmi:framework#/definitions/Visibility",
+          "value": "Visible"
+        },
+        "asyncWait": true
+      },
+      {
+        "objectType": "WriteToSymbol",
+        "active": true,
+        "symbolExpression": "%i%YESNOpopup_Header%/i%",
+        "value": {
+          "objectType": "StaticValue",
+          "valueType": "tchmi:general#/definitions/String",
+          "value": "CALIBRATION SETTING"
+        },
+        "asyncWait": true
+      },
+      {
+        "objectType": "WriteToSymbol",
+        "active": true,
+        "symbolExpression": "%i%YESNOpopup_Text%/i%",
+        "value": {
+          "objectType": "StaticValue",
+          "valueType": "tchmi:general#/definitions/String",
+          "value": "DO YOU WANT TO SET VALUES FOR CALIBRATION PART?"
+        },
+        "asyncWait": true
+      },
+      {
+        "objectType": "WriteToSymbol",
+        "active": true,
+        "symbolExpression": "%i%YESNOpopup_setting_in%/i%",
+        "value": {
+          "objectType": "StaticValue",
+          "valueType": "tchmi:general#/definitions/DINT",
+          "value": 15
         },
         "asyncWait": true
       }
@@ -372,35 +402,65 @@
 </div>
 <div id="TcHmiButton_100" data-tchmi-type="TcHmi.Controls.Beckhoff.TcHmiButton" data-tchmi-height="36" data-tchmi-height-unit="px" data-tchmi-left="68" data-tchmi-left-unit="px" data-tchmi-text="Preset" data-tchmi-top="439" data-tchmi-top-unit="px" data-tchmi-width="92" data-tchmi-width-unit="px" data-tchmi-word-wrap="True" data-tchmi-zindex="2">
 
+
+
 <script data-tchmi-target-attribute="data-tchmi-trigger" type="application/json">
 [
   {
-    "event": "%ctx%owner::Id|EventRegistrationMode=Resolve%/ctx%.onStatePressed",
+    "event": "%ctx%owner::Id|EventRegistrationMode=Resolve%/ctx%.onPressed",
     "actions": [
       {
         "objectType": "WriteToSymbol",
         "active": true,
-        "symbolExpression": "%s%ADS.PLC1.GVL_HMI.abPresetProbe.0%/s%",
-        "value": {
-          "objectType": "StaticValue",
-          "valueType": "tchmi:general#/definitions/BOOL",
-          "value": true
-        },
-        "asyncWait": true
-      }
-    ]
-  },
-  {
-    "event": "%ctx%owner::Id|EventRegistrationMode=Resolve%/ctx%.onStateReleased",
-    "actions": [
-      {
-        "objectType": "WriteToSymbol",
-        "active": true,
-        "symbolExpression": "%s%ADS.PLC1.GVL_HMI.abPresetProbe.0%/s%",
+        "symbolExpression": "%i%YESNOpopup_close%/i%",
         "value": {
           "objectType": "StaticValue",
           "valueType": "tchmi:general#/definitions/BOOL",
           "value": false
+        },
+        "asyncWait": true
+      },
+      {
+        "objectType": "WriteToSymbol",
+        "active": true,
+        "symbolExpression": "%ctrl%yes_no_popup::Visibility%/ctrl%",
+        "value": {
+          "objectType": "StaticValue",
+          "valueType": "tchmi:framework#/definitions/Visibility",
+          "value": "Visible"
+        },
+        "asyncWait": true
+      },
+      {
+        "objectType": "WriteToSymbol",
+        "active": true,
+        "symbolExpression": "%i%YESNOpopup_Header%/i%",
+        "value": {
+          "objectType": "StaticValue",
+          "valueType": "tchmi:general#/definitions/String",
+          "value": "PRESET SET 1 - DATUM"
+        },
+        "asyncWait": true
+      },
+      {
+        "objectType": "WriteToSymbol",
+        "active": true,
+        "symbolExpression": "%i%YESNOpopup_Text%/i%",
+        "value": {
+          "objectType": "StaticValue",
+          "valueType": "tchmi:general#/definitions/String",
+          "value": "DO YOU WANT TO PRESET DATUM?"
+        },
+        "asyncWait": true
+      },
+      {
+        "objectType": "WriteToSymbol",
+        "active": true,
+        "symbolExpression": "%i%YESNOpopup_setting_in%/i%",
+        "value": {
+          "objectType": "StaticValue",
+          "valueType": "tchmi:general#/definitions/DINT",
+          "value": 7
         },
         "asyncWait": true
       }
@@ -411,35 +471,65 @@
 </div>
 <div id="TcHmiButton_99" data-tchmi-type="TcHmi.Controls.Beckhoff.TcHmiButton" data-tchmi-height="36" data-tchmi-height-unit="px" data-tchmi-left="218" data-tchmi-left-unit="px" data-tchmi-text="Preset" data-tchmi-top="439" data-tchmi-top-unit="px" data-tchmi-width="92" data-tchmi-width-unit="px" data-tchmi-word-wrap="True" data-tchmi-zindex="2">
 
+
+
 <script data-tchmi-target-attribute="data-tchmi-trigger" type="application/json">
 [
   {
-    "event": "%ctx%owner::Id|EventRegistrationMode=Resolve%/ctx%.onStatePressed",
+    "event": "%ctx%owner::Id|EventRegistrationMode=Resolve%/ctx%.onPressed",
     "actions": [
       {
         "objectType": "WriteToSymbol",
         "active": true,
-        "symbolExpression": "%s%ADS.PLC1.GVL_HMI.abPresetProbe.1%/s%",
-        "value": {
-          "objectType": "StaticValue",
-          "valueType": "tchmi:general#/definitions/BOOL",
-          "value": true
-        },
-        "asyncWait": true
-      }
-    ]
-  },
-  {
-    "event": "%ctx%owner::Id|EventRegistrationMode=Resolve%/ctx%.onStateReleased",
-    "actions": [
-      {
-        "objectType": "WriteToSymbol",
-        "active": true,
-        "symbolExpression": "%s%ADS.PLC1.GVL_HMI.abPresetProbe.1%/s%",
+        "symbolExpression": "%i%YESNOpopup_close%/i%",
         "value": {
           "objectType": "StaticValue",
           "valueType": "tchmi:general#/definitions/BOOL",
           "value": false
+        },
+        "asyncWait": true
+      },
+      {
+        "objectType": "WriteToSymbol",
+        "active": true,
+        "symbolExpression": "%ctrl%yes_no_popup::Visibility%/ctrl%",
+        "value": {
+          "objectType": "StaticValue",
+          "valueType": "tchmi:framework#/definitions/Visibility",
+          "value": "Visible"
+        },
+        "asyncWait": true
+      },
+      {
+        "objectType": "WriteToSymbol",
+        "active": true,
+        "symbolExpression": "%i%YESNOpopup_Header%/i%",
+        "value": {
+          "objectType": "StaticValue",
+          "valueType": "tchmi:general#/definitions/String",
+          "value": "PRESET SET 1 - PROBE 1"
+        },
+        "asyncWait": true
+      },
+      {
+        "objectType": "WriteToSymbol",
+        "active": true,
+        "symbolExpression": "%i%YESNOpopup_Text%/i%",
+        "value": {
+          "objectType": "StaticValue",
+          "valueType": "tchmi:general#/definitions/String",
+          "value": "DO YOU WANT TO PRESET PROBE 1?"
+        },
+        "asyncWait": true
+      },
+      {
+        "objectType": "WriteToSymbol",
+        "active": true,
+        "symbolExpression": "%i%YESNOpopup_setting_in%/i%",
+        "value": {
+          "objectType": "StaticValue",
+          "valueType": "tchmi:general#/definitions/DINT",
+          "value": 8
         },
         "asyncWait": true
       }
@@ -450,35 +540,65 @@
 </div>
 <div id="TcHmiButton_98" data-tchmi-type="TcHmi.Controls.Beckhoff.TcHmiButton" data-tchmi-height="36" data-tchmi-height-unit="px" data-tchmi-left="368" data-tchmi-left-unit="px" data-tchmi-text="Preset" data-tchmi-top="439" data-tchmi-top-unit="px" data-tchmi-width="92" data-tchmi-width-unit="px" data-tchmi-word-wrap="True" data-tchmi-zindex="2">
 
+
+
 <script data-tchmi-target-attribute="data-tchmi-trigger" type="application/json">
 [
   {
-    "event": "%ctx%owner::Id|EventRegistrationMode=Resolve%/ctx%.onStatePressed",
+    "event": "%ctx%owner::Id|EventRegistrationMode=Resolve%/ctx%.onPressed",
     "actions": [
       {
         "objectType": "WriteToSymbol",
         "active": true,
-        "symbolExpression": "%s%ADS.PLC1.GVL_HMI.abPresetProbe.2%/s%",
-        "value": {
-          "objectType": "StaticValue",
-          "valueType": "tchmi:general#/definitions/BOOL",
-          "value": true
-        },
-        "asyncWait": true
-      }
-    ]
-  },
-  {
-    "event": "%ctx%owner::Id|EventRegistrationMode=Resolve%/ctx%.onStateReleased",
-    "actions": [
-      {
-        "objectType": "WriteToSymbol",
-        "active": true,
-        "symbolExpression": "%s%ADS.PLC1.GVL_HMI.abPresetProbe.2%/s%",
+        "symbolExpression": "%i%YESNOpopup_close%/i%",
         "value": {
           "objectType": "StaticValue",
           "valueType": "tchmi:general#/definitions/BOOL",
           "value": false
+        },
+        "asyncWait": true
+      },
+      {
+        "objectType": "WriteToSymbol",
+        "active": true,
+        "symbolExpression": "%ctrl%yes_no_popup::Visibility%/ctrl%",
+        "value": {
+          "objectType": "StaticValue",
+          "valueType": "tchmi:framework#/definitions/Visibility",
+          "value": "Visible"
+        },
+        "asyncWait": true
+      },
+      {
+        "objectType": "WriteToSymbol",
+        "active": true,
+        "symbolExpression": "%i%YESNOpopup_Header%/i%",
+        "value": {
+          "objectType": "StaticValue",
+          "valueType": "tchmi:general#/definitions/String",
+          "value": "PRESET SET 1 - PROBE 2"
+        },
+        "asyncWait": true
+      },
+      {
+        "objectType": "WriteToSymbol",
+        "active": true,
+        "symbolExpression": "%i%YESNOpopup_Text%/i%",
+        "value": {
+          "objectType": "StaticValue",
+          "valueType": "tchmi:general#/definitions/String",
+          "value": "DO YOU WANT TO PRESET PROBE 2?"
+        },
+        "asyncWait": true
+      },
+      {
+        "objectType": "WriteToSymbol",
+        "active": true,
+        "symbolExpression": "%i%YESNOpopup_setting_in%/i%",
+        "value": {
+          "objectType": "StaticValue",
+          "valueType": "tchmi:general#/definitions/DINT",
+          "value": 9
         },
         "asyncWait": true
       }
@@ -489,35 +609,65 @@
 </div>
 <div id="TcHmiButton_97" data-tchmi-type="TcHmi.Controls.Beckhoff.TcHmiButton" data-tchmi-height="36" data-tchmi-height-unit="px" data-tchmi-left="518" data-tchmi-left-unit="px" data-tchmi-text="Preset" data-tchmi-top="439" data-tchmi-top-unit="px" data-tchmi-width="92" data-tchmi-width-unit="px" data-tchmi-word-wrap="True" data-tchmi-zindex="2">
 
+
+
 <script data-tchmi-target-attribute="data-tchmi-trigger" type="application/json">
 [
   {
-    "event": "%ctx%owner::Id|EventRegistrationMode=Resolve%/ctx%.onStatePressed",
+    "event": "%ctx%owner::Id|EventRegistrationMode=Resolve%/ctx%.onPressed",
     "actions": [
       {
         "objectType": "WriteToSymbol",
         "active": true,
-        "symbolExpression": "%s%ADS.PLC1.GVL_HMI.abPresetProbe.3%/s%",
-        "value": {
-          "objectType": "StaticValue",
-          "valueType": "tchmi:general#/definitions/BOOL",
-          "value": true
-        },
-        "asyncWait": true
-      }
-    ]
-  },
-  {
-    "event": "%ctx%owner::Id|EventRegistrationMode=Resolve%/ctx%.onStateReleased",
-    "actions": [
-      {
-        "objectType": "WriteToSymbol",
-        "active": true,
-        "symbolExpression": "%s%ADS.PLC1.GVL_HMI.abPresetProbe.3%/s%",
+        "symbolExpression": "%i%YESNOpopup_close%/i%",
         "value": {
           "objectType": "StaticValue",
           "valueType": "tchmi:general#/definitions/BOOL",
           "value": false
+        },
+        "asyncWait": true
+      },
+      {
+        "objectType": "WriteToSymbol",
+        "active": true,
+        "symbolExpression": "%ctrl%yes_no_popup::Visibility%/ctrl%",
+        "value": {
+          "objectType": "StaticValue",
+          "valueType": "tchmi:framework#/definitions/Visibility",
+          "value": "Visible"
+        },
+        "asyncWait": true
+      },
+      {
+        "objectType": "WriteToSymbol",
+        "active": true,
+        "symbolExpression": "%i%YESNOpopup_Header%/i%",
+        "value": {
+          "objectType": "StaticValue",
+          "valueType": "tchmi:general#/definitions/String",
+          "value": "PRESET SET 1 - PROBE 3"
+        },
+        "asyncWait": true
+      },
+      {
+        "objectType": "WriteToSymbol",
+        "active": true,
+        "symbolExpression": "%i%YESNOpopup_Text%/i%",
+        "value": {
+          "objectType": "StaticValue",
+          "valueType": "tchmi:general#/definitions/String",
+          "value": "DO YOU WANT TO PRESET PROBE 3?"
+        },
+        "asyncWait": true
+      },
+      {
+        "objectType": "WriteToSymbol",
+        "active": true,
+        "symbolExpression": "%i%YESNOpopup_setting_in%/i%",
+        "value": {
+          "objectType": "StaticValue",
+          "valueType": "tchmi:general#/definitions/DINT",
+          "value": 10
         },
         "asyncWait": true
       }

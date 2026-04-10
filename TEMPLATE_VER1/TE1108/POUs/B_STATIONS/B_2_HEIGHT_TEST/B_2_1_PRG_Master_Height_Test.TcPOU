@@ -31,6 +31,7 @@ VAR
 	anRealDistance1						: ARRAY[1..3] OF REAL;
 	anRealDistance2						: ARRAY[1..3] OF REAL;
 	
+
 	
 	i									: DINT;
 	j									: DINT; //Index for settings
@@ -53,7 +54,7 @@ g_ACT_Settings();]]></ST>
     <Action Name="a_ACT_Ctrl_Station_2" Id="{c76df57f-a608-46ce-a480-681c36fd146a}">
       <Implementation>
         <ST><![CDATA[/////////////////////////////////////////////////////////////////////////////////////UTILITIES/////////////////////////////////////////////////////////////////////////////////////
-IF bGeneralProbeError OR bGeneralError OR stHeightTests.CMD.bAbort OR stHeightTests.CMD.bEndCycle THEN
+IF bGeneralProbeError OR bGeneralError OR stHeightTests.CMD.bAbort THEN
 	
 	stHeightTests.State			:= E_HeightTest_State.RESET;
 
@@ -76,6 +77,8 @@ CASE stHeightTests.State OF
 									stHeightTests.State			:= E_HeightTest_State.READY;
 								
 								END_IF
+								
+								
 
 	E_HeightTest_State.READY:
 	
@@ -133,8 +136,8 @@ CASE stHeightTests.State OF
 	E_HeightTest_State.DONE:
 								IF  stHeightTests.CMD.bAcknowledge THEN
 									
-									stHeightTests.CMD.bAcknowledge 						:= FALSE;
 									stHeightTests.State									:= E_HeightTest_State.RESULTS;
+									stHeightTests.CMD.bAcknowledge 						:= FALSE;
 									
 								END_IF	
 								
@@ -181,7 +184,7 @@ CASE stHeightTests.State OF
 									
 									stHeightTests.State									:= E_HeightTest_State.ERROR;
 								
-								ELSIF stHeightTests.CMD.bAbort OR stHeightTests.CMD.bEndCycle THEN
+								ELSIF stHeightTests.CMD.bAbort THEN
 									
 									stHeightTests.State									:= E_HeightTest_State.ABORTED;
 								
@@ -373,6 +376,12 @@ stStationEvents[2].aEvents[8].bEventFlag					:= abProbeError2[4];
 stStationEvents[2].aEvents[8].bEventText					:= 'Probes 8 error';
 stStationEvents[2].aEvents[8].sSolution						:= 'Check probe 8';
 
+stStationEvents[2].aEvents[9].bFault						:= TRUE;
+stStationEvents[2].aEvents[9].bEventTimer(IN := stHeightTests.Status.bBusy, PT := stTimers.tStation2TimeOut);
+stStationEvents[2].aEvents[9].bEventFlag					:= stStationEvents[2].aEvents[9].bEventTimer.Q;
+stStationEvents[2].aEvents[9].bEventText					:= 'Height test cycle Timeout';
+stStationEvents[2].aEvents[9].sSolution						:= 'Reset System';
+
 (*//CYCLE STOP FAULT
 
 stStationEvents[2].aEvents[1].bFault						:= TRUE;
@@ -391,7 +400,7 @@ stStationEvents[2].aEvents[2].bEventText					:= 'ST1 EVENT 2';*)]]></ST>
     <Action Name="e_ACT_Measurement" Id="{4c79a236-7589-4d28-bfec-9644f041c168}">
       <Implementation>
         <ST><![CDATA[
-tonTakeMeasure(IN:= stHeightTests.State = E_HeightTest_State.WAIT_MEASUREMENT, PT := T#5S);
+tonTakeMeasure(IN:= stHeightTests.State = E_HeightTest_State.WAIT_MEASUREMENT, PT := stTimers.tHeightTest);
 
 IF tonTakeMeasure.Q THEN
 	

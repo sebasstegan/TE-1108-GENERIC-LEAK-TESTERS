@@ -10,21 +10,26 @@
 	bShutDown							: BOOL;
 	stStatusBanner						: ST_StatusBanner;
 	nPopUp								: DINT;
-	stTableCycleDataNest1				: ARRAY[0..2000] OF ST_TableCycleData;
-	stTableCycleDataNest2				: ARRAY[0..2000] OF ST_TableCycleData;
+	
+	
+	bHMIInitialized						: BOOL;
+	bPartPresent						: ARRAY [0..1] OF BOOL;
+	stStatisticsWH						: ARRAY [0..2] OF ST_StatisticsHMI;
+	stStatisticsLT						: ARRAY [0..2] OF ST_StatisticsHMI;
 	
 	
 
 /////////////////////////////////////////////////////////////////////////////////////SYSTEM INFO/////////////////////////////////////////////////////////////////////////////////////
 
 	sSoftwareVersion					: STRING := ' 1.0 ';
-	sSoftwareDate						: STRING := ' 10.December.2024 ';
-	sTC3Version							: STRING := ' v3.1.4024.53, Runtime v3.1.4024.40 ';
-	sHMIVersion							: STRING := ' TcXaeShell Version 15.0.28010.2050 D15.8 ';
-	sSystemName							: STRING := ' Print & Applay Labeller ' ;
-	sProjectID							: STRING := ' TE 1099 PAL' ;
-	sAplication                     	: STRING := ' Print & Applay Labeller ';
+	sSoftwareDate						: STRING := '09/04/206';
+	sTC3Version							: STRING := ' v3.1.4026.20, Runtime v3.1.4026.21 ';
+	sHMIVersion							: STRING := '  ';
+	sSystemName							: STRING := ' LT - FLUID PATH CAP ' ;
+	sProjectID							: STRING := ' TE 11108' ;
+	sAplication                     	: STRING := ' LT - WH - VI ';
 	sHMIServer                			: STRING := ' ---- ';
+	
 	
 	NetAmsId        	       			: T_AmsNetId := '192.168.7.20.1.1'; // AMS-ID for com port setup 
 	
@@ -33,22 +38,24 @@
 	sUserGroupIn						: STRING;
 	sUserGroupOut						: STRING;
 	sUserName							: STRING;
-	bUserLoggedIn						: BOOL;			
-	bLogOut								: BOOL;	
-	rUserLoggedIn						: R_TRIG;
+	bUserLogOut							: BOOL;
 
 /////////////////////////////////////////////////////////////////////////////////////MANUAL/////////////////////////////////////////////////////////////////////////////////////
 
 	bEnableManual						: BOOL;
 	nMainRegion							: DINT;
 	bManualModeOffFlag					: BOOL;
-	
+	bManualScreen						: BOOL;
+	tonManualMode						: TON;
+	bEnableSettings						: BOOL;
 
 	
 	
 	stAnimations						: ST_Animations;
-	nMachineDefinitionIndex				: INT;
-	bMachineDefinitionSet				: BOOL;
+	nMachineDefinitionIndex2			: INT;
+	bMachineDefinitionSet2				: BOOL;
+	rMachineDefinitionSet2				: R_TRIG;
+	fMachineDefinitionSet2				: F_TRIG;
 	
 	bProcessCylinder1_Up				: BOOL;
 	bProcessCylinder1_Down				: BOOL;
@@ -82,10 +89,13 @@
 	
 	
 	
+	
 /////////////////////////////////////////////////////////////////////////////////////Generics/////////////////////////////////////////////////////////////////////////////////////	
 		
 	bLeftHand							: BOOL;
 	bRightHand							: BOOL;
+	
+	test								: ARRAY [1..8] OF BOOL;
 	
 END_VAR
 
@@ -110,6 +120,8 @@ VAR_GLOBAL PERSISTENT
 	nAirPressureMaxValue				: UINT;	
 	nAirPressureMinValue				: UINT;	
 	abMachineDefinition					: ARRAY[1..5] OF  BOOL;
+	stTableCycleDataNest1				: ARRAY[0..2000] OF ST_TableCycleData;
+	stTableCycleDataNest2				: ARRAY[0..2000] OF ST_TableCycleData;
 	
 
 	

@@ -30,7 +30,6 @@ VAR
 	fbFilePuts		: FB_FilePuts;(* Writes one record (line) *)
 	
 	done: BOOL;
-	lastDate: STRING;
 	
 	f1_Nest			: STRING;
 	f2_GeneralResult: STRING;
@@ -46,12 +45,12 @@ VAR
 	f12_Date		: STRING;
 	f13_Time		: STRING;
 	
-	sSystemDate1	: STRING;
 	bWritingFirstRow : BOOL;
 	bWrite			: BOOL;
 	rWriteNest1		: R_TRIG;
 	rWriteNest2		: R_TRIG;
-END_VAR]]></Declaration>
+END_VAR
+]]></Declaration>
     <Implementation>
       <ST><![CDATA[
 
@@ -164,10 +163,10 @@ CASE step OF
 
 END_CASE
 
-IF lastDate <> sSystemDate1	 THEN
-lastDate:= sSystemDate1;
-sFileName:= 'C:\Users\Administrator\Desktop\csv\CycleData#date#.csv';
-FindAndReplace(pSrcString:= ADR(sFileName), pDeleteString:= ADR('#date#'), pInsertString:= ADR(lastDate), pDstString:= ADR(sFileName), nDstSize:= SIZEOF(sFileName));
+IF lastDateCSV <> sSystemDate	 THEN
+lastDateCSV:= sSystemDate;
+sFileName:= 'C:\Users\Administrator\Desktop\csv\CycleData_#date#.csv';
+FindAndReplace(pSrcString:= ADR(sFileName), pDeleteString:= ADR('#date#'), pInsertString:= ADR(lastDateCSV), pDstString:= ADR(sFileName), nDstSize:= SIZEOF(sFileName));
 
 f1_Nest			:= 'NEST';
 f2_GeneralResult:= 'GENERAL RESULTS';

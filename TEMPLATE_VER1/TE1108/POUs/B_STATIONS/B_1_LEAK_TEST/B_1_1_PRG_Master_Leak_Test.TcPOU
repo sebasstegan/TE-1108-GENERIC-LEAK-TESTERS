@@ -11,7 +11,7 @@ VAR
 	rBadStatistics						: ARRAY [0..1] OF R_TRIG;
 	rEfficency							: ARRAY [0..1] OF STRING(510);
 	
-	bEventsFlag							: ARRAY [0..100] OF BOOL;
+	tonWaitResults						: TON;
 /////////////////////////////////////////////////////////////////////////////////////I O/////////////////////////////////////////////////////////////////////////////////////	
 
 	bStopped							: ARRAY [0..1] OF BOOL;
@@ -44,7 +44,7 @@ d_ACT_Set_Events_Station_1();]]></ST>
         <ST><![CDATA[/////////////////////////////////////////////////////////////////////////////////////UTILITIES/////////////////////////////////////////////////////////////////////////////////////
 tonStationStopped( IN := bStopped[0] AND bStopped[1], PT := T#1S);
 tonExecute(IN := stLeakTesters.State = E_LeakTester_State.RUN_LEAK_TESTERS, PT := T#500MS);
-
+tonWaitResults(IN := (stLeakTesters.State = E_LeakTester_State.WAIT_RESULTS), PT := T#100MS);
 
 /////////////////////////////////////////////////////////////////////////////////////CONDITIONS/////////////////////////////////////////////////////////////////////////////////////
 
@@ -112,7 +112,7 @@ CASE stLeakTesters.State OF
 										
 										IF bLeakTestDone[0] AND bLeakTestDone[1] THEN
 											
-											stLeakTesters.State	:= E_LeakTester_State.RESULTS;
+											stLeakTesters.State	:= E_LeakTester_State.WAIT_RESULTS;
 											
 										END_IF
 									
@@ -120,7 +120,7 @@ CASE stLeakTesters.State OF
 										
 										IF bLeakTestDone[0]  THEN
 											
-											stLeakTesters.State	:= E_LeakTester_State.RESULTS;
+											stLeakTesters.State	:= E_LeakTester_State.WAIT_RESULTS;
 											
 										END_IF
 									
@@ -128,13 +128,22 @@ CASE stLeakTesters.State OF
 										
 										IF bLeakTestDone[1]  THEN
 											
-											stLeakTesters.State	:= E_LeakTester_State.RESULTS;
+											stLeakTesters.State	:= E_LeakTester_State.WAIT_RESULTS;
 											
 										END_IF
 									
 								END_IF
 	
-								
+	E_LeakTester_State.WAIT_RESULTS:
+	
+								IF tonWaitResults.Q THEN
+									
+									stLeakTesters.State	:= E_LeakTester_State.RESULTS;
+									
+								END_IF
+
+
+		
 	E_LeakTester_State.RESULTS:
 								
 								IF stLeakTesters.CMD.LeakTestersCMD.RunLeakTester1 THEN
@@ -142,11 +151,17 @@ CASE stLeakTesters.State OF
 									IF bPass[0] THEN
 									
 										stCycleDataNest1.LeakTest_Pass := TRUE;
+										stCycleDataNest1.LeakTest_Fail := FALSE;
+										
+										stLeakTesters.State	:= E_LeakTester_State.DONE;
 								
 									ELSIF bFail[0] THEN
 									
 										stCycleDataNest1.LeakTest_Fail := TRUE;
+										stCycleDataNest1.LeakTest_Pass := FALSE;
 								
+										stLeakTesters.State	:= E_LeakTester_State.DONE;
+										
 								END_IF
 									
 								END_IF
@@ -156,16 +171,22 @@ CASE stLeakTesters.State OF
 									IF bPass[1] THEN
 									
 										stCycleDataNest2.LeakTest_Pass := TRUE;
+										stCycleDataNest2.LeakTest_Fail	:= FALSE;
+										
+										stLeakTesters.State	:= E_LeakTester_State.DONE;
 								
 									ELSIF bFail[1] THEN
 									
 										stCycleDataNest2.LeakTest_Fail	:= TRUE;
+										stCycleDataNest2.LeakTest_Pass := FALSE;
+										
+										stLeakTesters.State	:= E_LeakTester_State.DONE;
 								
 								END_IF
 									
 								END_IF
 								
-								stLeakTesters.State	:= E_LeakTester_State.DONE;
+								
 								
 		E_LeakTester_State.DONE:
 								IF  stLeakTesters.CMD.bAcknowledge THEN
@@ -188,6 +209,10 @@ CASE stLeakTesters.State OF
 								bStop[1]						:= FALSE;
 								bLeakTestDone[0]				:= FALSE;
 								bLeakTestDone[1]				:= FALSE;
+								bPass[0]						:= FALSE;
+								bPass[1]						:= FALSE;
+								bFail[0]						:= FALSE;
+								bFail[1]						:= FALSE;
 								
 								IF bError[0] OR bError[1] THEN
 
@@ -252,16 +277,12 @@ bError[0]								:= LeakTester1_IO.sti28General_I_O.bMalfunction;
 bError[1]								:= LeakTester2_IO.sti28General_I_O.bMalfunction;
 bReady[0]								:= LeakTester1_IO.sti28General_I_O.bInstrumentReady;
 bReady[1]								:= LeakTester2_IO.sti28General_I_O.bInstrumentReady;
-bPass[0]								:= LeakTester1_IO.sti28General_I_O.bProgramAccept;
-bPass[1]								:= LeakTester2_IO.sti28General_I_O.bProgramAccept;
-bFail[0]								:= LeakTester1_IO.sti28General_I_O.bProgramReject;
-bFail[1]								:= LeakTester2_IO.sti28General_I_O.bProgramReject;
 LeakTester1_IO.sti28General_I_O.bReset	:= bReset[0] OR bLeaktester1_Reset;	
 LeakTester2_IO.sti28General_I_O.bReset	:= bReset[1] OR bLeaktester2_Reset;	
 LeakTester1_IO.sti28General_I_O.bStart	:= bStart[0] OR bLeaktester1_Start;
 LeakTester2_IO.sti28General_I_O.bStart	:= bStart[1] OR bLeaktester2_Start;
-LeakTester1_IO.sti28General_I_O.bStop	:= bStop[0] OR bLeaktester1_Stop OR stLeakTesters.CMD.bEndCycle;
-LeakTester2_IO.sti28General_I_O.bStop	:= bStop[1] OR bLeaktester2_Stop OR stLeakTesters.CMD.bEndCycle;
+LeakTester1_IO.sti28General_I_O.bStop	:= bStop[0] OR bLeaktester1_Stop OR stLeakTesters.CMD.bAbort;
+LeakTester2_IO.sti28General_I_O.bStop	:= bStop[1] OR bLeaktester2_Stop OR stLeakTesters.CMD.bAbort;
 
 
 
@@ -397,9 +418,12 @@ END_IF
         <ST><![CDATA[//IMMEDIATE FAULTS
 
 stStationEvents[1].aEvents[0].bFault						:= TRUE;
-stStationEvents[1].aEvents[0].bEventFlag					:= bEventsFlag[0];
-stStationEvents[1].aEvents[0].bEventText					:= 'ST1 EVENT 0';
-stStationEvents[1].aEvents[0].sSolution						:= 'Solution 1';
+stStationEvents[1].aEvents[0].bEventTimer( IN := (stLeakTesters.State = E_LeakTester_State.RUN_LEAK_TESTERS) OR (stLeakTesters.State = E_LeakTester_State.WAIT_LEAK_TESTERS), PT := stTimers.tStation1TimeOut);
+stStationEvents[1].aEvents[0].bEventFlag					:= stStationEvents[1].aEvents[0].bEventTimer.Q;
+stStationEvents[1].aEvents[0].bEventText					:= 'Leak tester cycle Timeout';
+stStationEvents[1].aEvents[0].sSolution						:= 'Reset System';
+
+
 
 //CYCLE STOP REQUEST
 
@@ -411,14 +435,14 @@ stStationEvents[1].aEvents[20].sSolution						:= 'Check Leak tester 1';
 stStationEvents[1].aEvents[21].bCycleStopRequest				:= TRUE;
 stStationEvents[1].aEvents[21].bEventFlag					:= NOT bReady[1] AND (stLeakTesters.State = E_LeakTester_State.HOMING);// AND (stLeakTesters.State = E_LeakTester_State.HOMING);
 stStationEvents[1].aEvents[21].bEventText					:= 'Leak Tester 2 not ready';
-stStationEvents[1].aEvents[21].sSolution						:= 'Check Leak tester 1';
+stStationEvents[1].aEvents[21].sSolution						:= 'Check Leak tester 2';
 
 //Message
-
+(*
 stStationEvents[1].aEvents[3].bMessage						:= TRUE;
 stStationEvents[1].aEvents[3].bEventFlag					:= bEventsFlag[3];
 stStationEvents[1].aEvents[3].bEventText					:= 'Message 3';
-stStationEvents[1].aEvents[3].sSolution						:= '';]]></ST>
+stStationEvents[1].aEvents[3].sSolution						:= '';*)]]></ST>
       </Implementation>
     </Action>
   </POU>

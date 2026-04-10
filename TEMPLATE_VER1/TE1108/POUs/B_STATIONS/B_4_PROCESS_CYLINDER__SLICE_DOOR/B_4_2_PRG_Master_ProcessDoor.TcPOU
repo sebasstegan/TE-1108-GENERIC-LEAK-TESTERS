@@ -10,9 +10,11 @@ VAR
 	
 	bOpenDoor							: BOOL;
 	bCloseDoor							: BOOL;
+	bCloseDoorHMI						: BOOL;
 	bDoorClosed							: BOOL;
 	tonDoorOpened						: TON;
 	bDoorOpened							: BOOL;
+	
 	
 END_VAR
 ]]></Declaration>
@@ -160,7 +162,7 @@ bDoorOpened								:= tonDoorOpened.Q;
 
 
 dw_T09_EL2809.qOpenProcessDoor	:= bOpenDoor OR bProcessDoor_Up OR bProcessDoorUpInitialising;	
-dw_T09_EL2809.qCloseProcessDoor	:= bCloseDoor OR bProcessDoor_Down;
+dw_T09_EL2809.qCloseProcessDoor	:= bCloseDoor OR bCloseDoorHMI;
 
 
 ]]></ST>
@@ -168,23 +170,13 @@ dw_T09_EL2809.qCloseProcessDoor	:= bCloseDoor OR bProcessDoor_Down;
     </Action>
     <Action Name="c_Manual" Id="{af74f668-26ed-493a-861d-9af0f131bf72}">
       <Implementation>
-        <ST><![CDATA[IF bProcessDoor_Up THEN
+        <ST><![CDATA[
+IF bProcessDoor_Down AND dw_T05_EL1918.iLeftTouchButtonNO AND dw_T05_EL1918.iRightTouchButtonNO THEN
 	
-	bOpenDoor						:= TRUE;
+	bCloseDoorHMI					:= TRUE;
+	bProcessDoor_Down				:= FALSE;
 	
-ELSIF bDoorOpened THEN
-	
-	bOpenDoor						:= FALSE;
-
-END_IF
-
-IF  bProcessDoor_Down THEN
-	
-	bCloseDoor						:= TRUE;
-	
-ELSIF bDoorClosed THEN
-	
-	bCloseDoor						:= FALSE;
+ELSE bCloseDoorHMI					:= FALSE;
 
 END_IF]]></ST>
       </Implementation>

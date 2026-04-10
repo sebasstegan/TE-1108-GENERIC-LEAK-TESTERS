@@ -74,7 +74,7 @@
                     {
                       "path": "sType",
                       "comparator": "==",
-                      "value": "Alert",
+                      "value": "Cycle Stop Request",
                       "valueType": "tchmi:general#/definitions/String"
                     },
                     {
@@ -137,7 +137,8 @@
                     {
                       "path": "sType",
                       "comparator": "==",
-                      "value": "Alert"
+                      "value": "Cycle Stop Request",
+                      "valueType": "tchmi:general#/definitions/String"
                     }
                   ]
                 },
@@ -210,7 +211,7 @@
 }
 </script>
 </div>
-<div id="TcHmiDatagrid_13" data-tchmi-type="TcHmi.Controls.Beckhoff.TcHmiDatagrid" data-tchmi-height="429" data-tchmi-height-unit="px" data-tchmi-left="239" data-tchmi-left-unit="px" data-tchmi-top="25" data-tchmi-top-unit="px" data-tchmi-width="1081" data-tchmi-width-unit="px" data-tchmi-src-data="%s%PLC1.GVL_Persistent.astEventsHistory%/s%" data-tchmi-grid-font-size="20" data-tchmi-grid-font-style="Normal" data-tchmi-grid-font-weight="Bold" data-tchmi-zindex="1" data-tchmi-data-symbol="%s%PLC1.GVL_Persistent.astEventsHistory%/s%">
+<div id="TcHmiDatagrid_13" data-tchmi-type="TcHmi.Controls.Beckhoff.TcHmiDatagrid" data-tchmi-height="429" data-tchmi-height-unit="px" data-tchmi-left="239" data-tchmi-left-unit="px" data-tchmi-top="25" data-tchmi-top-unit="px" data-tchmi-width="1081" data-tchmi-width-unit="px" data-tchmi-src-data="%s%PLC1.GVL_Persistent.astEventsHistory%/s%" data-tchmi-grid-font-size="20" data-tchmi-grid-font-style="Normal" data-tchmi-grid-font-weight="Bold" data-tchmi-zindex="1" data-tchmi-data-symbol="%s%PLC1.GVL_Persistent.astEventsHistory%/s%" data-tchmi-show-row-numbers="False">
 <script data-tchmi-target-attribute="data-tchmi-cell-content-padding" type="application/json">
 {
   "left": 3,
@@ -292,7 +293,7 @@
     "name": "sEventTex",
     "label": "EVENT",
     "control": "TextBox",
-    "width": 410,
+    "width": 610,
     "widthUnit": "px",
     "resize": false,
     "minWidth": 100,
@@ -314,7 +315,7 @@
     "name": "sTime",
     "label": "TIME",
     "control": "TextBox",
-    "width": 200,
+    "width": 100,
     "widthUnit": "px",
     "resize": false,
     "minWidth": 100,
@@ -333,7 +334,7 @@
     "name": "sDate",
     "label": "DATE",
     "control": "TextBox",
-    "width": 200,
+    "width": 100,
     "widthUnit": "px",
     "resize": false,
     "minWidth": 100,

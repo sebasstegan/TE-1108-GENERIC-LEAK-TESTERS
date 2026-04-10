@@ -14,7 +14,7 @@
 	dw_T07_EL9410														: st_EL9410;//E-Bus Power supply
 	dw_T08_EL1809														: st_EL1809;// 16 Channel Digital Input ( 24VDC )
 	dw_T09_EL2809														: st_EL2809_A;// 16 Channel Digital Output ( 24VDC ) 
-	dw_T10_EL2809														: st_EL2809_B;// 16 Channel Digital Output ( 24VDC ) 
+	
 	dw_T11_EL3058                                                		: st_EL3058;// 4 Channel Analog Input
 	dw_T12_EL1918														: st_EL1918_C;//EL1918 8 Channel Safety Digital Input
 	dw_T13_EL6633                                                		: ST_EL6633; // Profinet Protocol

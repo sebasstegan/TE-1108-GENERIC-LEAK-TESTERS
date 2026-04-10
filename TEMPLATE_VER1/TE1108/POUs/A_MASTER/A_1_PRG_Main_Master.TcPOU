@@ -4,8 +4,6 @@
     <Declaration><![CDATA[PROGRAM A_1_PRG_Main_Master
 VAR
 	
-	rtrigButton             				: ARRAY[1..3] OF Tc2_Standard.R_TRIG;
-	ftrigButton             				: ARRAY[1..3] OF Tc2_Standard.F_TRIG; 
 	
 	fbStringFormatter       				: Tc2_Utilities.FB_FormatString;
 	fbEventsManager							: FB_EventsManager;
@@ -15,8 +13,7 @@ VAR
 	closeChrome 							: NT_StartProcess;
 	bCloseChromeBusy						: BOOL;
 	tonCloseChromeBusy						: TON;
-	tonUserLogOut							: TON;
-	fbUserLog								: FB_UserLog;
+	//fbUserLog								: FB_UserLog;
 	
 	
 	nFindAdm								: INT;
@@ -37,6 +34,11 @@ VAR
 	j										: DINT;
 	i										: DINT;
 	
+	rGoodStatistics						: ARRAY [0..1] OF R_TRIG;
+	rBadStatistics						: ARRAY [0..1] OF R_TRIG;
+	
+	rsTest								: ARRAY [0..4] OF  RS;
+	rResetTest							:  ARRAY [0..4] OF BOOL;
 	
 	
 ////////////////////////////////////////////////////////////////////////////////////CSV////////////////////////////////////////////////////////////////////////////	
@@ -71,13 +73,13 @@ END_IF
 
 /////////////////////////////////////////////////////////////////////////////////////STATIONS/////////////////////////////////////////////////////////////////////////////////////
 
-IF stMACHINE.bHeightTest OR stMACHINE.IP8X THEN
+IF stMACHINE.bHeightTest  THEN
 	
 	B_2_1_PRG_Master_Height_Test();
 
 END_IF
 
-IF stMACHINE.bLeakTest OR stMACHINE.IP8X THEN
+IF stMACHINE.bLeakTest  THEN
 	
 	B_1_1_PRG_Master_Leak_Test();
 
@@ -128,8 +130,8 @@ sSystemTime					:= 	CONCAT( STR1 := WORD_TO_STRING(stSystemTime.wHour), STR2 := 
 								CONCAT(STR1 := ':', STR2 := WORD_TO_STRING(stSystemTime.wSecond)))));
 								
 sSystemDate					:= 	CONCAT( STR1 := WORD_TO_STRING(stSystemTime.wDay), STR2 := 
-								CONCAT(STR1 := '/', STR2 := CONCAT(STR1 := WORD_TO_STRING(stSystemTime.wMonth), STR2 := 
-								CONCAT(STR1 := '/', STR2 := WORD_TO_STRING(stSystemTime.wYear)))));
+								CONCAT(STR1 := '_', STR2 := CONCAT(STR1 := WORD_TO_STRING(stSystemTime.wMonth), STR2 := 
+								CONCAT(STR1 := '_', STR2 := WORD_TO_STRING(stSystemTime.wYear)))));
 
 
 stCycleDataNest1.nNest		:= 1;
@@ -182,6 +184,7 @@ dw_T09_EL2809.qStartButtonLED				:= (stMachineStatus.bReadyToStart AND stPuls.bF
 IF  tonCloseChromeBusy.Q THEN
 	
 	bQuitHmi			:= FALSE;
+	bHMIInitialized		:= FALSE;
 
 END_IF
 
@@ -196,7 +199,9 @@ closeChrome(
 );
 
 
-ntShutdown(NETID := NetAmsId, DELAY := 5, START := bShutDown);]]></ST>
+ntShutdown(NETID := NetAmsId, DELAY := 5, START := bShutDown);
+
+]]></ST>
       </Implementation>
     </Action>
     <Action Name="e_ACT_UserLog" Id="{804f315c-0a35-4a48-b9b3-6593241a417c}">
@@ -221,22 +226,14 @@ ELSIF nFindOpe <> 0 THEN
 ELSE sUserGroupOut															:= '';
 END_IF
 
-tonUserLogOut( IN := (sUserGroupOut <> 'Administrator' OR sUserGroupOut <> 'Engineer') AND bUserLoggedIn , PT := T#10M);
-
-IF tonUserLogOut.Q THEN
-	bLogOut 											:= TRUE;
-ELSE bLogOut 											:= FALSE;
-END_IF
-
-rUserLoggedIn( CLK := bUserLoggedIn);
-
+(*
 fbUserLog(	nNumberOfData								:= 250,
 			bSaveSignal									:= rUserLoggedIn.Q, 
 			sUser										:= sUserName,
 			sGroup										:= sUserGroupOut,
 			sDate										:= sSystemDate,
 			sTime										:= sSystemTime,
-			aDataOutput									:= stUserLog);
+			aDataOutput									:= stUserLog);*)
 			
 
 
@@ -287,9 +284,6 @@ dw_T09_EL2809.stTerminalInfo.fbTerminalInfo(	nTerminalState						:= dw_T09_EL280
 												sTerminalState						=> dw_T09_EL2809.stTerminalInfo.sTerminalInfo,
 												bTerminalOperational				=> dw_T09_EL2809.stTerminalInfo.bTerminalOperational);
 												
-dw_T10_EL2809.stTerminalInfo.fbTerminalInfo(	nTerminalState						:= dw_T10_EL2809.stTerminalInfo.nTerminal_State,
-												sTerminalState						=> dw_T10_EL2809.stTerminalInfo.sTerminalInfo,
-												bTerminalOperational				=> dw_T10_EL2809.stTerminalInfo.bTerminalOperational);
 												
 dw_T11_EL3058.stTerminalInfo.fbTerminalInfo(	nTerminalState						:= dw_T11_EL3058.stTerminalInfo.nTerminal_State,
 												sTerminalState						=> dw_T11_EL3058.stTerminalInfo.sTerminalInfo,
@@ -308,34 +302,89 @@ dw_T13_EL6633.stTerminalInfo.fbTerminalInfo(	nTerminalState						:= dw_T13_EL663
     </Action>
     <Action Name="g_ACT_Manual" Id="{87b8b019-9eb6-46b9-b781-3301c89600c8}">
       <Implementation>
-        <ST><![CDATA[
+        <ST><![CDATA[tonManualMode( IN := bManualScreen, PT := T#1S);
 
 IF stMachineStatus.bReadyToStart THEN
 	bEnableManual											:= TRUE;
 ELSE bEnableManual											:= FALSE;
 END_IF
+	
+bManualModeOffFlag										:= FALSE;
 
-IF (nMainRegion = 5) AND stMasterCtrl.bNoFault 
-	AND NOT stMasterCtrl.bCycleStopRequest AND NOT stButtonsLamps.bStopButtonFallingEdge THEN
+
+
+IF bManualScreen  THEN
+	
 	stMasterCtrl.bManualModeRequest							:= TRUE;
-	bManualModeOffFlag										:= FALSE;
+	
+	IF (stMachineStatus.eMachineState <> E_MachineState.MANUAL_MODE) AND tonManualMode.Q THEN
+				
+		stMasterCtrl.bManualModeRequest							:= FALSE; 
+		bManualModeOffFlag										:= TRUE;
+		
+	END_IF
+	
 ELSE 
 	stMasterCtrl.bManualModeRequest							:= FALSE; 
-	bManualModeOffFlag										:= TRUE;											
+												
 END_IF
+
 ]]></ST>
       </Implementation>
     </Action>
     <Action Name="h_ACT_Statistics" Id="{00b1c5d7-138a-4e5a-aad9-c5f6ae987c75}">
       <Implementation>
-        <ST><![CDATA[stStatisticsHMI[0].sName			:= 'TOTAL';
+        <ST><![CDATA[rsTest[0]( SET := stCycleDataNest1.bFail, RESET1 := rResetTest[0]);
+rsTest[1]( SET := stCycleDataNest2.bFail, RESET1 := rResetTest[0]);
 
-stStatisticsHMI[0].nGood		:= stStatisticsHMI[1].nGood + stStatisticsHMI[2].nGood + stStatisticsHMI[3].nGood + stStatisticsHMI[4].nGood + stStatisticsHMI[5].nGood + stStatisticsHMI[6].nGood;
-stStatisticsHMI[0].nTotalGood	:= stStatisticsHMI[1].nTotalGood + stStatisticsHMI[2].nTotalGood + stStatisticsHMI[3].nTotalGood + stStatisticsHMI[4].nTotalGood + stStatisticsHMI[5].nTotalGood + stStatisticsHMI[6].nTotalGood;
-stStatisticsHMI[0].nBad			:= stStatisticsHMI[1].nBad + stStatisticsHMI[2].nBad + stStatisticsHMI[3].nBad + stStatisticsHMI[4].nBad + stStatisticsHMI[5].nBad + stStatisticsHMI[6].nBad;
-stStatisticsHMI[0].nTotalBad	:= stStatisticsHMI[1].nTotalBad + stStatisticsHMI[2].nTotalBad + stStatisticsHMI[3].nTotalBad + stStatisticsHMI[4].nTotalBad + stStatisticsHMI[5].nTotalBad + stStatisticsHMI[6].nTotalBad;
+IF rsTest[0].Q1 THEN
+	
+	rResetTest[1]				:= TRUE;
+	
+ELSE rResetTest[1]				:= FALSE;
 
+END_IF
+
+IF rsTest[1].Q1 THEN
+	
+	rResetTest[2]				:= TRUE;
+	
+ELSE rResetTest[2]				:= FALSE;
+
+END_IF
+
+stStatisticsHMI[0].sName			:= 'Total';
+
+
+
+rGoodStatistics[0]( CLK := stCycleDataNest1.bPass);
+rBadStatistics[0]( CLK := stCycleDataNest1.bFail);
+rGoodStatistics[1]( CLK := stCycleDataNest2.bPass);
+rBadStatistics[1]( CLK := stCycleDataNest2.bFail);
+
+IF 	rGoodStatistics[0].Q OR rGoodStatistics[1].Q THEN
+	
+	stStatisticsHMI[0].nGood		:= stStatisticsHMI[0].nGood + 1;
+	stStatisticsHMI[0].nTotalGood	:= stStatisticsHMI[0].nTotalGood + 1;
+
+ELSIF 	rBadStatistics[0].Q OR rBadStatistics[1].Q THEN
+	
+	stStatisticsHMI[0].nBad			:= stStatisticsHMI[0].nBad + 1;
+	stStatisticsHMI[0].nTotalBad	:= stStatisticsHMI[0].nTotalBad + 1;
+		
+END_IF
 								
+
+
+IF stStatisticsHMI[0].bResetGood THEN
+	stStatisticsHMI[0].nGood		:= 0;
+END_IF
+
+IF stStatisticsHMI[0].bResetBad THEN
+	stStatisticsHMI[0].nBad			:= 0;
+END_IF
+
+
 
 IF (( stStatisticsHMI[0].nGood + stStatisticsHMI[0].nBad) <> 0) THEN
 	
@@ -345,6 +394,8 @@ IF (( stStatisticsHMI[0].nGood + stStatisticsHMI[0].nBad) <> 0) THEN
 ELSE stStatisticsHMI[0].nEfficency		:= CONCAT(STR1 := '%', STR2 := (DINT_TO_STRING(0)));
 	
 END_IF
+
+
 
 ]]></ST>
       </Implementation>
@@ -367,7 +418,7 @@ stTwinSAFE.iAirPressureMinValue			:= nAirPressureMinValue;
 stTwinSAFE.iProcessDoorClosing			:= bDoorClosingFlag;
 
 bMainDoor_AirFlag[0]					:= (stMachineStatus.eMachineState = E_MachineState.SYSTEM_AUTO_CYCLE) OR ( stMachineStatus.eMachineState = E_MachineState.MANUAL_MODE) OR (stMachineStatus.eMachineState = E_MachineState.SYSTEM_INITIALISING) OR 
-											(stMachineStatus.eMachineState = E_MachineState.SAFETY) OR (stMachineStatus.eMachineState = E_MachineState.SYSTEM_READY_TO_START);
+											(stMachineStatus.eMachineState = E_MachineState.SAFETY ) OR (stMachineStatus.eMachineState = E_MachineState.SYSTEM_READY_TO_START)  OR (stMachineStatus.eMachineState = E_MachineState.MANUAL_MODE);
 
 bMainDoor_AirFlag[1]					:= (stMachineStatus.eMachineState = E_MachineState.STOPPING) OR (stMachineStatus.eMachineState = E_MachineState.STOPPED);
 
@@ -433,105 +484,79 @@ dw_T06_EL2904_Reading.fbReadOutSafety06[4]( 	sNetId 			:='192.168.7.20.4.1',
     </Action>
     <Action Name="j_ACT_MachineDefinition" Id="{d060be37-8904-4e66-8914-eb7f14b7082a}">
       <Implementation>
-        <ST><![CDATA[
-IF bMachineDefinitionSet THEN
+        <ST><![CDATA[rMachineDefinitionSet2(CLK := bMachineDefinitionSet2);
+fMachineDefinitionSet2(CLK := bMachineDefinitionSet2);
+
+IF rMachineDefinitionSet2.Q THEN
 	
 	abMachineDefinition[1]								:= FALSE;
 	abMachineDefinition[2]								:= FALSE;
 	abMachineDefinition[3]								:= FALSE;
-	abMachineDefinition[4]								:= FALSE;
-	abMachineDefinition[5]								:= FALSE;
-
-	FOR i := 1 TO 5 DO
 	
-		IF 	nMachineDefinitionIndex = i THEN
+	stMACHINE.bHeightTest								:= FALSE;
+	stMACHINE.bLeakTest									:= FALSE;
+	stMACHINE.bVisionTest								:= FALSE;
+	stMACHINE.sName										:= '';
+	stMACHINE.bMachine[1]								:= FALSE;
+	stMACHINE.bMachine[2]								:= FALSE;
+	stMACHINE.bMachine[3]								:= FALSE;
+
+END_IF
+
+IF fMachineDefinitionSet2.Q THEN
+
+	FOR i := 1 TO 3 DO
+	
+		IF 	nMachineDefinitionIndex2 = i THEN
 			
 			abMachineDefinition[i] 						:= TRUE;
 		
 		END_IF
 	
 	END_FOR
-
-	bMachineDefinitionSet								:=FALSE;
-	i													:= 0;
+ELSE i													:= 0;
 	
 END_IF
 
 
 IF abMachineDefinition[1] THEN
 	
-	stMACHINE.bHeightTest								:= FALSE;
+	stMACHINE.bHeightTest								:= TRUE;
 	stMACHINE.bLeakTest									:= TRUE;
-	stMACHINE.bVisionTest								:= FALSE;
-	stMACHINE.IP8X										:= FALSE;
-	stMACHINE.sName										:= 'LT-RT: LEAK TEST RESERVOIR';
+	stMACHINE.bVisionTest								:= TRUE;
+	stMACHINE.sName										:= 'LT-WH-VC LEAK TEST: FLUID PATH , HEIGHT TEST: FPB WELDING, VISION CHECK: EWIS FOAM';
 	stMACHINE.bMachine[1]								:= TRUE;
 	stMACHINE.bMachine[2]								:= FALSE;
 	stMACHINE.bMachine[3]								:= FALSE;
-	stMACHINE.bMachine[4]								:= FALSE;
-	stMACHINE.bMachine[5]								:= FALSE;
 
 END_IF
 
 IF abMachineDefinition[2] THEN
 	
 	stMACHINE.bHeightTest								:= TRUE;
-	stMACHINE.bLeakTest									:= TRUE;
-	stMACHINE.bVisionTest								:= TRUE;
-	stMACHINE.IP8X										:= FALSE;
-	stMACHINE.sName										:= 'LT-WH-VC LEAK TEST: FLUID PATH, HEIGHT TEST: FPB WELDING, VISION CHECK: EWIS FOAM';
+	stMACHINE.bLeakTest									:= FALSE;
+	stMACHINE.bVisionTest								:= FALSE;
+	stMACHINE.sName										:= 'WH: HEIGHT TEST: FPB WELDING';
 	stMACHINE.bMachine[1]								:= FALSE;
 	stMACHINE.bMachine[2]								:= TRUE;
 	stMACHINE.bMachine[3]								:= FALSE;
-	stMACHINE.bMachine[4]								:= FALSE;
-	stMACHINE.bMachine[5]								:= FALSE;
 	
 END_IF
 
 IF abMachineDefinition[3] THEN
 	
-	stMACHINE.bHeightTest								:= TRUE;
+	stMACHINE.bHeightTest								:= FALSE;
 	stMACHINE.bLeakTest									:= TRUE;
 	stMACHINE.bVisionTest								:= FALSE;
-	stMACHINE.IP8X										:= FALSE;
-	stMACHINE.sName										:= 'LT-WH LEAK TEST: RESERVOIR TO DOCKSEAL (VACUUM), HEIGHT TEST: ST WELDING';
+	stMACHINE.sName										:= 'LT LEAK TEST: RESERVOIR ';
 	stMACHINE.bMachine[1]								:= FALSE;
 	stMACHINE.bMachine[2]								:= FALSE;
 	stMACHINE.bMachine[3]								:= TRUE;
-	stMACHINE.bMachine[4]								:= FALSE;
-	stMACHINE.bMachine[5]								:= FALSE;
 	
 END_IF
 
-IF abMachineDefinition[4] THEN
-	
-	stMACHINE.bHeightTest								:= FALSE;
-	stMACHINE.bLeakTest									:= FALSE;
-	stMACHINE.bVisionTest								:= FALSE;
-	stMACHINE.IP8X										:= TRUE;
-	stMACHINE.sName										:= 'LT-WH(IPX8) LEAK TEST: IPX8 UPPER AND LOWER SHELL ASSEMBLY, HEIGHT TEST: US & LS WELDING';
-	stMACHINE.bMachine[1]								:= FALSE;
-	stMACHINE.bMachine[2]								:= FALSE;
-	stMACHINE.bMachine[3]								:= FALSE;
-	stMACHINE.bMachine[4]								:= TRUE;
-	stMACHINE.bMachine[5]								:= FALSE;
-	
-END_IF
 
-IF abMachineDefinition[5] THEN
-	
-	stMACHINE.bHeightTest								:= TRUE;
-	stMACHINE.bLeakTest									:= FALSE;
-	stMACHINE.bVisionTest								:= FALSE;
-	stMACHINE.IP8X										:= FALSE;
-	stMACHINE.sName										:= 'WH: HEIGHT TEST: FPB WELDING';
-	stMACHINE.bMachine[1]								:= FALSE;
-	stMACHINE.bMachine[2]								:= FALSE;
-	stMACHINE.bMachine[3]								:= FALSE;
-	stMACHINE.bMachine[4]								:= FALSE;
-	stMACHINE.bMachine[5]								:= TRUE;
-	
-END_IF]]></ST>
+]]></ST>
       </Implementation>
     </Action>
   </POU>

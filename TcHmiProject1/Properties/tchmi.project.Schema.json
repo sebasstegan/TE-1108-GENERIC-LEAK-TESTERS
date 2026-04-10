@@ -128,6 +128,14 @@
       "frameworkUserControlConfig": "Contents\\UserControl\\Green_Red_Rectangle.usercontrol.json",
       "type": "object",
       "id": "tchmi:project#/definitions/Green_Red_Rectangle"
+    },
+    "YesNo_ver2": {
+      "frameworkControlNamespace": "TcHmi.Controls.Beckhoff",
+      "frameworkControlType": "TcHmi.Controls.System.TcHmiUserControl",
+      "frameworkInstanceOf": "TcHmi.Controls.System.TcHmiControl",
+      "frameworkUserControlConfig": "Contents\\UserControl\\PopUp\\YesNo_ver2.usercontrol.json",
+      "type": "object",
+      "id": "tchmi:project#/definitions/YesNo_ver2"
     }
   }
 }

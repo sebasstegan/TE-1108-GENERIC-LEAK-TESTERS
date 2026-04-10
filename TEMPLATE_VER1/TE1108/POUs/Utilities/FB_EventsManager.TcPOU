@@ -105,11 +105,12 @@ FOR k[0] := 0 TO nArraySize DO
 			stStationEvents[k[0]].aEvents[k[1]].bActive := TRUE;
 			
 			//EVENTS HISTORY
-			FOR n := 200 TO 0 BY -1 DO
+			n:= 200;
+			FOR n := 200 TO 1 BY -1 DO
 							
 				astEventsHistory[n].sEventTex				:= astEventsHistory[n - 1].sEventTex;
 				astEventsHistory[n].sType					:= astEventsHistory[n - 1].sType;
-				astEventsHistory[n].abType				:= astEventsHistory[n - 1].abType;
+				astEventsHistory[n].abType					:= astEventsHistory[n - 1].abType;
 				astEventsHistory[n].sDate					:= astEventsHistory[n - 1].sDate;										
 				astEventsHistory[n].sTime					:= astEventsHistory[n - 1].sTime;
 				
@@ -136,7 +137,7 @@ FOR k[0] := 0 TO nArraySize DO
 			stStationEvents[k[0]].aEvents[k[1]].bActive := TRUE;
 			
 			//EVENTS HISTORY
-			FOR n := 200 TO 0 BY -1 DO
+			FOR n := 200 TO 1 BY -1 DO
 							
 				astEventsHistory[n].sEventTex				:= astEventsHistory[n - 1].sEventTex;
 				astEventsHistory[n].sType					:= astEventsHistory[n - 1].sType;

@@ -1,5 +1,5 @@
 ﻿<?xml version="1.0" encoding="utf-8"?>
-<TcPlcObject Version="1.1.0.1" ProductVersion="3.1.4024.13">
+<TcPlcObject Version="1.1.0.1" ProductVersion="3.1.4026.17">
   <DUT Name="ST_Timers" Id="{9021a1a9-aac4-4fae-9346-03545d78fd35}">
     <Declaration><![CDATA[TYPE ST_Timers :
 STRUCT
@@ -11,6 +11,7 @@ STRUCT
 	nDoorOpenedSignal					: DINT;
 	nTwoHandsSignal						: DINT;
 	nHeightTest							: DINT;
+	nAutoCycleIDLETimeOut				: DINT;
 	
 	tAutoCycleTimeOut					: TIME;
 	tStation1TimeOut					: TIME;
@@ -19,6 +20,7 @@ STRUCT
 	tDoorOpenedSignal					: TIME;
 	tTwoHandsSignal						: TIME;
 	tHeightTest							: TIME;
+	tAutoCycleIDLETimeOut				: TIME;
 
 END_STRUCT
 END_TYPE

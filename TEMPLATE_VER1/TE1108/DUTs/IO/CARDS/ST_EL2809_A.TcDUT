@@ -18,10 +18,10 @@ STRUCT
 	qIndicatorLED1_Green                 	AT %Q*          :   BOOL;   // EL2809 channel 9
 	qIndicatorLED2_Red             			AT %Q*          :   BOOL;   // EL2809 channel 10   	
 	qIndicatorLED2_Green     				AT %Q*	 		: 	BOOL;	// EL2809 channel 11	
-	qIndicatorLED3_Red   					AT %Q*	 		: 	BOOL;	// EL2809 channel 12 
-    qIndicatorLED3_Green			        AT %Q*	 		: 	BOOL;	// EL2809 channel 13 
-	qIndicatorLED4_Red                 		AT %Q*	 		: 	BOOL;	// EL2809 channel 14 
-	qIndicatorLED4_Green					AT %Q*	 		: 	BOOL;	// EL2809 channel 15 
+	qiEL2809_Ch12   						AT %Q*	 		: 	BOOL;	// EL2809 channel 12 
+    qiEL2809_Ch13			        		AT %Q*	 		: 	BOOL;	// EL2809 channel 13 
+	qiEL2809_Ch14                 			AT %Q*	 		: 	BOOL;	// EL2809 channel 14 
+	qiEL2809_Ch15							AT %Q*	 		: 	BOOL;	// EL2809 channel 15 
     qiEL2809_Ch16         		        	AT %Q*	 		: 	BOOL;	// EL2809 channel 16  
 	
 	stTerminalInfo											: 	ST_Terminal_Info;

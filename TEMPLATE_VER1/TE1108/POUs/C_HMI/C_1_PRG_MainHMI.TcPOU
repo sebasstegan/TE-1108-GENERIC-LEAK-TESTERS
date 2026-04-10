@@ -14,7 +14,16 @@ END_VAR
       <ST><![CDATA[a_ACT_MachineStatusBaner();
 b_ACT_Timers();
 c_ACT_IO();
-]]></ST>
+
+bEnableSettings				:= (stMachineStatus.eMachineState = E_MachineState.STOPPED);
+
+stStatisticsWH[0]			:= stStatisticsHMI[0];
+stStatisticsWH[1]			:= stStatisticsHMI[3];
+stStatisticsWH[2]			:= stStatisticsHMI[4];
+
+stStatisticsLT[0]			:= stStatisticsHMI[0];
+stStatisticsLT[1]			:= stStatisticsHMI[1];
+stStatisticsLT[2]			:= stStatisticsHMI[2];]]></ST>
     </Implementation>
     <Action Name="a_ACT_MachineStatusBaner" Id="{0dc7bcd3-753a-4f06-be0f-fec0a8964021}">
       <Implementation>
@@ -39,11 +48,11 @@ END_IF
 
 (* SAFETY *)
 IF stMachineStatus.bSafety THEN	
-	stStatusBanner.sMachineStatusText 							:= 'SYSTE SAFE';		
-	stStatusBanner.nMachineStatusColour 						:= nORANGE;
-	stStatusBanner.nMachineStatusTxtCol 						:= nWHITE;
-	stStatusBanner.sBannerBckColor 								:= sORANGE;
-	stStatusBanner.sBannerTextColor 							:= sWHITE;
+	stStatusBanner.sMachineStatusText 							:= 'SYSTEM INITIALIZING';		
+	stStatusBanner.nMachineStatusColour 						:= nYELLOW;
+	stStatusBanner.nMachineStatusTxtCol 						:= nBLACK;
+	stStatusBanner.sBannerBckColor 								:= sYELLOW;
+	stStatusBanner.sBannerTextColor 							:= sBLACK;
 END_IF
 
 
@@ -131,7 +140,8 @@ stTimers.tStation1TimeOut		:= DINT_TO_TIME(stTimers.nStation1TimeOut * 1000) ;
 stTimers.tStation2TimeOut		:= DINT_TO_TIME(stTimers.nStation2TimeOut * 1000) ;
 stTimers.tStation3TimeOut		:= DINT_TO_TIME(stTimers.nStation3TimeOut * 1000) ;
 stTimers.tTwoHandsSignal		:= DINT_TO_TIME(stTimers.nTwoHandsSignal * 1000) ;
-stTimers.tHeightTest			:= DINT_TO_TIME(stTimers.nHeightTest * 1000) ;]]></ST>
+stTimers.tHeightTest			:= DINT_TO_TIME(stTimers.nHeightTest * 1000) ;
+stTimers.tAutoCycleIDLETimeOut			:= DINT_TO_TIME(stTimers.nAutoCycleIDLETimeOut * 1000) ;]]></ST>
       </Implementation>
     </Action>
     <Action Name="c_ACT_IO" Id="{5594a5d6-af1e-4a8b-85d6-f9bf1b336af1}">

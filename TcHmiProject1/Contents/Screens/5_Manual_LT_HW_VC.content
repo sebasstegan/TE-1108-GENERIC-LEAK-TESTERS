@@ -188,7 +188,7 @@
 }
 </script>
 </div>
-<div id="TcHmiButton_53" data-tchmi-type="TcHmi.Controls.Beckhoff.TcHmiButton" data-tchmi-height="50" data-tchmi-height-unit="px" data-tchmi-left="27" data-tchmi-left-unit="px" data-tchmi-text="UP" data-tchmi-top="71" data-tchmi-top-unit="px" data-tchmi-width="100" data-tchmi-width-unit="px" data-tchmi-word-wrap="True">
+<div id="TcHmiButton_53" data-tchmi-type="TcHmi.Controls.Beckhoff.TcHmiButton" data-tchmi-height="50" data-tchmi-height-unit="px" data-tchmi-left="27" data-tchmi-left-unit="px" data-tchmi-text="UP" data-tchmi-top="71" data-tchmi-top-unit="px" data-tchmi-width="100" data-tchmi-width-unit="px" data-tchmi-word-wrap="True" data-tchmi-is-enabled="%s%ADS.PLC1.B_4_1_PRG_Master_ProcessCylinder.bRetracted.0%/s%">
 
 <script data-tchmi-target-attribute="data-tchmi-trigger" type="application/json">
 [
@@ -227,7 +227,7 @@
 ]
 </script>
 </div>
-<div id="TcHmiButton_54" data-tchmi-type="TcHmi.Controls.Beckhoff.TcHmiButton" data-tchmi-height="50" data-tchmi-height-unit="px" data-tchmi-left="27" data-tchmi-left-unit="px" data-tchmi-text="DOWN" data-tchmi-top="142" data-tchmi-top-unit="px" data-tchmi-width="100" data-tchmi-width-unit="px" data-tchmi-word-wrap="True">
+<div id="TcHmiButton_54" data-tchmi-type="TcHmi.Controls.Beckhoff.TcHmiButton" data-tchmi-height="50" data-tchmi-height-unit="px" data-tchmi-left="27" data-tchmi-left-unit="px" data-tchmi-text="DOWN" data-tchmi-top="142" data-tchmi-top-unit="px" data-tchmi-width="100" data-tchmi-width-unit="px" data-tchmi-word-wrap="True" data-tchmi-is-enabled="%f%!%s%ADS.PLC1.B_4_2_PRG_Master_ProcessDoor.bDoorClosed%/s%%/f%">
 
 <script data-tchmi-target-attribute="data-tchmi-trigger" type="application/json">
 [
@@ -244,20 +244,15 @@
           "value": true
         },
         "asyncWait": true
-      }
-    ]
-  },
-  {
-    "event": "%ctx%owner::Id|EventRegistrationMode=Resolve%/ctx%.onStateReleased",
-    "actions": [
+      },
       {
         "objectType": "WriteToSymbol",
         "active": true,
-        "symbolExpression": "%s%ADS.PLC1.GVL_HMI.bProcessDoor_Down%/s%",
+        "symbolExpression": "%ctrl%CloseProcessDoorMessage::Visibility%/ctrl%",
         "value": {
           "objectType": "StaticValue",
-          "valueType": "tchmi:general#/definitions/BOOL",
-          "value": false
+          "valueType": "tchmi:framework#/definitions/Visibility",
+          "value": "Visible"
         },
         "asyncWait": true
       }
@@ -348,6 +343,66 @@
 {
   "path": "Contents/Manual/Cameras/CameraTriggerPopup.content"
 }
+</script>
+</div>
+
+<script data-tchmi-target-attribute="data-tchmi-trigger" type="application/json">
+[
+  {
+    "event": "%ctx%owner::Id|EventRegistrationMode=Resolve%/ctx%.onInitialized",
+    "actions": [
+      {
+        "objectType": "WriteToSymbol",
+        "active": true,
+        "symbolExpression": "%s%ADS.PLC1.GVL_HMI.bManualScreen%/s%",
+        "value": {
+          "objectType": "StaticValue",
+          "valueType": "tchmi:general#/definitions/BOOL",
+          "value": true
+        },
+        "asyncWait": true
+      }
+    ]
+  },
+  {
+    "event": "%ctx%owner::Id|EventRegistrationMode=Resolve%/ctx%.onDestroyed",
+    "actions": [
+      {
+        "objectType": "WriteToSymbol",
+        "active": true,
+        "symbolExpression": "%s%ADS.PLC1.GVL_HMI.bManualScreen%/s%",
+        "value": {
+          "objectType": "StaticValue",
+          "valueType": "tchmi:general#/definitions/BOOL",
+          "value": false
+        },
+        "asyncWait": true
+      }
+    ]
+  }
+]
+</script>
+<div id="CloseProcessDoorMessage" data-tchmi-type="TcHmi.Controls.System.TcHmiRegion" data-tchmi-height="250" data-tchmi-height-unit="px" data-tchmi-left="119" data-tchmi-left-unit="px" data-tchmi-top="135" data-tchmi-top-unit="px" data-tchmi-width="300" data-tchmi-width-unit="px" data-tchmi-target-content="Contents/Manual/MessageBox.content" data-tchmi-visibility="Collapsed">
+
+<script data-tchmi-target-attribute="data-tchmi-trigger" type="application/json">
+[
+  {
+    "event": "%s%ADS.PLC1.B_4_2_PRG_Master_ProcessDoor.bDoorClosed%/s%",
+    "actions": [
+      {
+        "objectType": "WriteToSymbol",
+        "active": true,
+        "symbolExpression": "%ctx%owner::Visibility%/ctx%",
+        "value": {
+          "objectType": "StaticValue",
+          "valueType": "tchmi:framework#/definitions/Visibility",
+          "value": "Collapsed"
+        },
+        "asyncWait": true
+      }
+    ]
+  }
+]
 </script>
 </div>
 </div>

@@ -125,15 +125,16 @@
   <Target Name="Clean" DependsOnTargets="$(CleanDependsOn)" />
   <Target Name="ReBuild" DependsOnTargets="Clean; Build" />
   <ItemGroup>
+    <Folder Include="Contents\CSS_JAVA\UserManagerControl" />
     <Folder Include="Contents\CSS_JAVA\PDF Maker" />
     <Folder Include="Contents\Hardware" />
     <Folder Include="Contents\Manual" />
     <Folder Include="Contents\CSS_JAVA" />
     <Folder Include="Contents\Events" />
     <Folder Include="Contents\M" />
-    <Folder Include="Contents\Mains" />
     <Folder Include="Contents\IOs" />
     <Folder Include="Contents\Manual\Cameras" />
+    <Folder Include="Contents\Screens" />
     <Folder Include="Contents\UserControl" />
     <Folder Include="Contents\popup" />
     <Folder Include="Contents\pdf" />
@@ -167,21 +168,6 @@
     <Content Include=".eslintrc.json">
       <Visible>false</Visible>
     </Content>
-    <Content Include="Contents\13_Develop.content">
-      <SubType>Content</SubType>
-    </Content>
-    <Content Include="Contents\12_Operatinal_Manual.content">
-      <SubType>Content</SubType>
-    </Content>
-    <Content Include="Contents\5_Manual.content">
-      <SubType>Content</SubType>
-    </Content>
-    <Content Include="Contents\8_Info.content">
-      <SubType>Content</SubType>
-    </Content>
-    <Content Include="Contents\9_Data_HistoryNest2.content">
-      <SubType>Content</SubType>
-    </Content>
     <Content Include="Contents\CSS_JAVA\Enable buttons.js">
       <SubType>Content</SubType>
     </Content>
@@ -194,23 +180,14 @@
     <Content Include="Contents\CSS_JAVA\PDF Maker\relatori.js">
       <SubType>Content</SubType>
     </Content>
-    <Content Include="Contents\9_Data_HistoryNest1.content">
-      <SubType>Content</SubType>
-    </Content>
-    <Content Include="Contents\4_Events.content">
-      <SubType>Content</SubType>
-    </Content>
-    <Content Include="Contents\7_Statistics.content">
-      <SubType>Content</SubType>
-    </Content>
-    <Content Include="Contents\2_Menu.content">
-      <SubType>Content</SubType>
-    </Content>
     <Content Include="Contents\CSS_JAVA\RowClassesProvider.function.json">
       <SubType>Content</SubType>
       <DependentUpon>Contents\CSS_JAVA\RowClassesProvider.js</DependentUpon>
     </Content>
     <Content Include="Contents\CSS_JAVA\RowClassesProvider.js">
+      <SubType>Content</SubType>
+    </Content>
+    <Content Include="Contents\CSS_JAVA\UserManagerControl\userManagerScript 1.js">
       <SubType>Content</SubType>
     </Content>
     <Content Include="Contents\Events\Messages_CycleStopReq.content">
@@ -309,15 +286,6 @@
     <Content Include="Contents\IOs\3_IO_LT_HW_VC.content">
       <SubType>Content</SubType>
     </Content>
-    <Content Include="Contents\Mains\1_Main_LT_HW_VC_ver2.content">
-      <SubType>Content</SubType>
-    </Content>
-    <Content Include="Contents\Mains\1_Main_LT_HW_VC.content">
-      <SubType>Content</SubType>
-    </Content>
-    <Content Include="Contents\10_Manage_Users.content">
-      <SubType>Content</SubType>
-    </Content>
     <Content Include="Contents\Manual\Cameras\CameraTriggerPopup.content">
       <SubType>Content</SubType>
     </Content>
@@ -333,6 +301,9 @@
     <Content Include="Contents\Manual\Height_Test.content">
       <SubType>Content</SubType>
     </Content>
+    <Content Include="Contents\Manual\MessageBox.content">
+      <SubType>Content</SubType>
+    </Content>
     <Content Include="Contents\M\HeadMenu.content">
       <SubType>Content</SubType>
     </Content>
@@ -342,25 +313,70 @@
     <Content Include="Contents\pdf\TM429-EMALC-4_StopperInsertion_ScrewStation_Rev_1.0.pdf">
       <SubType>Content</SubType>
     </Content>
-    <Content Include="Contents\popup\popup.content">
+    <Content Include="Contents\popup\popup6_ChangeSettings_ver2.content">
       <SubType>Content</SubType>
     </Content>
-    <Content Include="Contents\popup\popup4_UserManagement.content">
-      <SubType>Content</SubType>
-    </Content>
-    <Content Include="Contents\popup\popup4_Shutdown.content">
-      <SubType>Content</SubType>
-    </Content>
-    <Content Include="Contents\popup\popup3_QuitHMI.content">
-      <SubType>Content</SubType>
-    </Content>
-    <Content Include="Contents\popup\popup2_ChangeSettings.content">
+    <Content Include="Contents\popup\popup5_UserManagement.content">
       <SubType>Content</SubType>
     </Content>
     <Content Include="Contents\popup\popup1_RejectedPart.content">
       <SubType>Content</SubType>
     </Content>
-    <Content Include="Contents\Settings\6_Settings_LT_HW_VC.content">
+    <Content Include="Contents\Screens\10_Manage_Users.content">
+      <SubType>Content</SubType>
+    </Content>
+    <Content Include="Contents\Screens\13_Develop.content">
+      <SubType>Content</SubType>
+    </Content>
+    <Content Include="Contents\Screens\1_Main_LT_HW_VC.content">
+      <SubType>Content</SubType>
+    </Content>
+    <Content Include="Contents\Screens\1_Main_HW.content">
+      <SubType>Content</SubType>
+    </Content>
+    <Content Include="Contents\Screens\1_Main_LT.content">
+      <SubType>Content</SubType>
+    </Content>
+    <Content Include="Contents\Screens\1_Main_LT_HW_VC_ver2.content">
+      <SubType>Content</SubType>
+    </Content>
+    <Content Include="Contents\Screens\2_Menu.content">
+      <SubType>Content</SubType>
+    </Content>
+    <Content Include="Contents\Screens\4_Events.content">
+      <SubType>Content</SubType>
+    </Content>
+    <Content Include="Contents\Screens\5_Manual_LT.content">
+      <SubType>Content</SubType>
+    </Content>
+    <Content Include="Contents\Screens\5_Manual_HW.content">
+      <SubType>Content</SubType>
+    </Content>
+    <Content Include="Contents\Screens\5_Manual_LT_HW_VC.content">
+      <SubType>Content</SubType>
+    </Content>
+    <Content Include="Contents\Screens\6_Settings.content">
+      <SubType>Content</SubType>
+    </Content>
+    <Content Include="Contents\Screens\7_Statistics_HW.content">
+      <SubType>Content</SubType>
+    </Content>
+    <Content Include="Contents\Screens\7_Statistics_LT.content">
+      <SubType>Content</SubType>
+    </Content>
+    <Content Include="Contents\Screens\7_Statistics_LT_HW_VC.content">
+      <SubType>Content</SubType>
+    </Content>
+    <Content Include="Contents\Screens\8_Info.content">
+      <SubType>Content</SubType>
+    </Content>
+    <Content Include="Contents\Screens\9_Data_HistoryNest1.content">
+      <SubType>Content</SubType>
+    </Content>
+    <Content Include="Contents\Screens\9_Data_HistoryNest2.content">
+      <SubType>Content</SubType>
+    </Content>
+    <Content Include="Contents\Screens\Statistics.content">
       <SubType>Content</SubType>
     </Content>
     <Content Include="Contents\Settings\Calibration_Set1.content">
@@ -452,6 +468,13 @@
       <SubType>Content</SubType>
       <DependentUpon>Contents\UserControl\PopUp\Acknowledge.usercontrol</DependentUpon>
     </Content>
+    <Content Include="Contents\UserControl\PopUp\YesNo_ver2.usercontrol">
+      <SubType>Content</SubType>
+    </Content>
+    <Content Include="Contents\UserControl\PopUp\YesNo_ver2.usercontrol.json">
+      <SubType>Content</SubType>
+      <DependentUpon>Contents\UserControl\PopUp\YesNo_ver2.usercontrol</DependentUpon>
+    </Content>
     <Content Include="Contents\UserControl\PopUp\YesNo.usercontrol">
       <SubType>Content</SubType>
     </Content>
@@ -470,6 +493,12 @@
       <SubType>Content</SubType>
     </Content>
     <Content Include="Images\40-408925_png-file-svg-file-eps-file-psd-file-cdr-file-milk-bottle.png">
+      <SubType>Content</SubType>
+    </Content>
+    <Content Include="Images\animation_base.png">
+      <SubType>Content</SubType>
+    </Content>
+    <Content Include="Images\animation_cylinder.png">
       <SubType>Content</SubType>
     </Content>
     <Content Include="Images\Buttons\AlarmButton.png">
@@ -491,6 +520,9 @@
       <SubType>Content</SubType>
     </Content>
     <Content Include="Images\camera amplifier.png">
+      <SubType>Content</SubType>
+    </Content>
+    <Content Include="Images\camera.png">
       <SubType>Content</SubType>
     </Content>
     <Content Include="Images\ethercat unit.png">
@@ -730,7 +762,13 @@
     <Content Include="Images\left_hand.png">
       <SubType>Content</SubType>
     </Content>
+    <Content Include="Images\messagebox.png">
+      <SubType>Content</SubType>
+    </Content>
     <Content Include="Images\probe.png">
+      <SubType>Content</SubType>
+    </Content>
+    <Content Include="Images\probes positions.png">
       <SubType>Content</SubType>
     </Content>
     <Content Include="Images\right_hand - green.png">

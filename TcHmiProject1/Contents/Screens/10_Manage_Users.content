@@ -91,7 +91,8 @@ void) = null
 </script>
 
 
-<script data-tchmi-target-attribute="data-tchmi-trigger" type="application/json">[
+<script data-tchmi-target-attribute="data-tchmi-trigger" type="application/json">
+[
   {
     "event": "TcHmiTextbox_38.onTextChanged",
     "actions": [
@@ -154,13 +155,13 @@ void) = null
           "\t",
           "}"
         ],
-        "injectContextObject": false,
         "asyncWait": true,
         "waitMode": "Synchronous"
       }
     ]
   }
-]</script>
+]
+</script>
 </div>
 <div id="currentGroupField" data-tchmi-type="TcHmi.Controls.Beckhoff.TcHmiTextbox" data-tchmi-height="52" data-tchmi-height-unit="px" data-tchmi-left="58" data-tchmi-left-unit="px" data-tchmi-text="%i%UserGroups%/i%" data-tchmi-top="160" data-tchmi-top-unit="px" data-tchmi-width="551" data-tchmi-width-unit="px" data-tchmi-zindex="3">
 <script data-tchmi-target-attribute="data-tchmi-content-padding" type="application/json">
@@ -283,12 +284,12 @@ void) = null
                 "compare1": {
                   "objectType": "Symbol",
                   "valueType": "tchmi:general#/definitions/String",
-                  "symbolExpression": "%f%%ctx%owner::selectedRowValue%/ctx%.groups%/f%"
+                  "symbolExpression": "%f%%ctx%owner::selectedRowValue%/ctx%.name%/f%"
                 },
                 "compare2": {
                   "objectType": "StaticValue",
                   "valueType": "tchmi:general#/definitions/String",
-                  "value": "__SystemAdministrators"
+                  "value": "__SystemAdministrator"
                 },
                 "compareOperator": "==",
                 "logic": null
@@ -297,12 +298,12 @@ void) = null
                 "compare1": {
                   "objectType": "Symbol",
                   "valueType": "tchmi:general#/definitions/String",
-                  "symbolExpression": "%f%%ctx%owner::selectedRowValue%/ctx%.groups%/f%"
+                  "symbolExpression": "%f%%ctx%owner::selectedRowValue%/ctx%.name%/f%"
                 },
                 "compare2": {
                   "objectType": "StaticValue",
                   "valueType": "tchmi:general#/definitions/String",
-                  "value": "__SystemGuests"
+                  "value": "__SystemGuest"
                 },
                 "compareOperator": "==",
                 "logic": "OR"
@@ -311,40 +312,12 @@ void) = null
                 "compare1": {
                   "objectType": "Symbol",
                   "valueType": "tchmi:general#/definitions/String",
-                  "symbolExpression": "%f%%ctx%owner::selectedRowValue%/ctx%.groups%/f%"
+                  "symbolExpression": "%f%%ctx%owner::selectedRowValue%/ctx%.name%/f%"
                 },
                 "compare2": {
                   "objectType": "StaticValue",
                   "valueType": "tchmi:general#/definitions/String",
-                  "value": "__SystemUsers"
-                },
-                "compareOperator": "==",
-                "logic": "OR"
-              },
-              {
-                "compare1": {
-                  "objectType": "Symbol",
-                  "valueType": "tchmi:general#/definitions/String",
-                  "symbolExpression": "%f%%ctx%owner::selectedRowValue%/ctx%.groups%/f%"
-                },
-                "compare2": {
-                  "objectType": "StaticValue",
-                  "valueType": "tchmi:general#/definitions/String",
-                  "value": "admin"
-                },
-                "compareOperator": "==",
-                "logic": "OR"
-              },
-              {
-                "compare1": {
-                  "objectType": "Symbol",
-                  "valueType": "tchmi:general#/definitions/String",
-                  "symbolExpression": "%f%%ctx%owner::selectedRowValue%/ctx%.groups%/f%"
-                },
-                "compare2": {
-                  "objectType": "StaticValue",
-                  "valueType": "tchmi:general#/definitions/String",
-                  "value": "Developer"
+                  "value": "__SystemUser"
                 },
                 "compareOperator": "==",
                 "logic": "OR"
@@ -605,7 +578,7 @@ void) = null
 }
 </script>
 </div>
-<div id="Button_CreateUser" data-tchmi-type="TcHmi.Controls.Beckhoff.TcHmiButton" data-tchmi-height="50" data-tchmi-height-unit="px" data-tchmi-left="98" data-tchmi-left-unit="px" data-tchmi-text="Create \nUser" data-tchmi-top="283" data-tchmi-top-unit="px" data-tchmi-width="110" data-tchmi-width-unit="px" data-tchmi-word-wrap="true" data-tchmi-zindex="4" data-tchmi-text-font-size="16" data-tchmi-text-font-weight="Bold" data-tchmi-visibility="Visible">
+<div id="Button_CreateUser" data-tchmi-type="TcHmi.Controls.Beckhoff.TcHmiButton" data-tchmi-height="50" data-tchmi-height-unit="px" data-tchmi-left="98" data-tchmi-left-unit="px" data-tchmi-text="Create \nUser" data-tchmi-top="283" data-tchmi-top-unit="px" data-tchmi-width="110" data-tchmi-width-unit="px" data-tchmi-word-wrap="true" data-tchmi-zindex="4" data-tchmi-text-font-size="16" data-tchmi-text-font-weight="Bold">
 <script data-tchmi-target-attribute="data-tchmi-trigger" type="application/json">
 [
   {
@@ -647,7 +620,7 @@ void) = null
       {
         "objectType": "WriteToSymbol",
         "active": true,
-        "symbolExpression": "%ctrl%UserMangerPopup::Visibility%/ctrl%",
+        "symbolExpression": "%ctrl%UserManager_Popup::Visibility%/ctrl%",
         "value": {
           "objectType": "StaticValue",
           "valueType": "tchmi:framework#/definitions/Visibility",
@@ -732,7 +705,7 @@ void) = null
       {
         "objectType": "WriteToSymbol",
         "active": true,
-        "symbolExpression": "%ctrl%UserMangerPopup::Visibility%/ctrl%",
+        "symbolExpression": "%ctrl%UserManager_Popup::Visibility%/ctrl%",
         "value": {
           "objectType": "StaticValue",
           "valueType": "tchmi:framework#/definitions/Visibility",
@@ -817,7 +790,7 @@ void) = null
       {
         "objectType": "WriteToSymbol",
         "active": true,
-        "symbolExpression": "%ctrl%UserMangerPopup::Visibility%/ctrl%",
+        "symbolExpression": "%ctrl%UserManager_Popup::Visibility%/ctrl%",
         "value": {
           "objectType": "StaticValue",
           "valueType": "tchmi:framework#/definitions/Visibility",
@@ -902,7 +875,7 @@ void) = null
       {
         "objectType": "WriteToSymbol",
         "active": true,
-        "symbolExpression": "%ctrl%UserMangerPopup::Visibility%/ctrl%",
+        "symbolExpression": "%ctrl%UserManager_Popup::Visibility%/ctrl%",
         "value": {
           "objectType": "StaticValue",
           "valueType": "tchmi:framework#/definitions/Visibility",
@@ -987,7 +960,7 @@ void) = null
       {
         "objectType": "WriteToSymbol",
         "active": true,
-        "symbolExpression": "%ctrl%UserMangerPopup::Visibility%/ctrl%",
+        "symbolExpression": "%ctrl%UserManager_Popup::Visibility%/ctrl%",
         "value": {
           "objectType": "StaticValue",
           "valueType": "tchmi:framework#/definitions/Visibility",
@@ -1072,7 +1045,7 @@ void) = null
       {
         "objectType": "WriteToSymbol",
         "active": true,
-        "symbolExpression": "%ctrl%UserMangerPopup::Visibility%/ctrl%",
+        "symbolExpression": "%ctrl%UserManager_Popup::Visibility%/ctrl%",
         "value": {
           "objectType": "StaticValue",
           "valueType": "tchmi:framework#/definitions/Visibility",
@@ -1115,27 +1088,6 @@ void) = null
 ]
 </script>
 </div>
-<div id="UserMangerPopup" data-tchmi-type="TcHmi.Controls.System.TcHmiRegion" data-tchmi-height="300" data-tchmi-height-unit="px" data-tchmi-left="419" data-tchmi-left-unit="px" data-tchmi-top="58" data-tchmi-top-unit="px" data-tchmi-width="500" data-tchmi-width-unit="px" data-tchmi-target-content="Contents/popup/popup4_UserManagement.content" data-tchmi-zindex="6" data-tchmi-visibility="Collapsed">
-
-<script data-tchmi-target-attribute="data-tchmi-trigger" type="application/json">
-[
-  {
-    "event": "%i%UserManager_ClosePopup%/i%",
-    "actions": [
-      {
-        "objectType": "WriteToSymbol",
-        "active": true,
-        "symbolExpression": "%ctx%owner::Visibility%/ctx%",
-        "value": {
-          "objectType": "StaticValue",
-          "valueType": "tchmi:framework#/definitions/Visibility",
-          "value": "Collapsed"
-        },
-        "asyncWait": true
-      }
-    ]
-  }
-]
-</script>
+<div id="UserManager_Popup" data-tchmi-type="TcHmi.Controls.System.TcHmiRegion" data-tchmi-height="300" data-tchmi-height-unit="px" data-tchmi-left="398" data-tchmi-left-unit="px" data-tchmi-top="79" data-tchmi-top-unit="px" data-tchmi-width="500" data-tchmi-width-unit="px" data-tchmi-target-content="Contents/popup/popup5_UserManagement.content" data-tchmi-zindex="6" data-tchmi-visibility="Collapsed" data-tchmi-creator-visibility="Visible">
 </div>
 </div>

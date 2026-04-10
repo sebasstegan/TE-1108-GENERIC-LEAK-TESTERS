@@ -8,10 +8,10 @@ VAR
 	
 	
 /////////////////////////////////////////////////////////////////////////////////////I O/////////////////////////////////////////////////////////////////////////////////////	
-	bExtended							: ARRAY [0..1] OF BOOL;
-	bRetracted							: ARRAY [0..1] OF BOOL;
-	bExtend								: ARRAY [0..1] OF BOOL;
-	bRetract							: ARRAY [0..1] OF BOOL;
+	bExtended							: BOOL;
+	bRetracted							: BOOL;
+	bExtend								: BOOL;
+	bRetract							: BOOL;
 
 	
 END_VAR
@@ -33,10 +33,6 @@ c_Manual();
 IF stProcessCylinder.CMD.bAbort THEN
 	
 	stProcessCylinder.State				:= E_ProcessCylinder_State.RESET;
-	
-ELSIF stProcessCylinder.CMD.bEndCycle THEN
-	
-	stProcessCylinder.State				:= E_ProcessCylinder_State.STOPPING;
 
 END_IF
 
@@ -52,11 +48,11 @@ CASE stProcessCylinder.State OF
 								
 	E_ProcessCylinder_State.HOMING:
 	
-								bRetract[0]								:= TRUE;
+								bRetract								:= TRUE;
 								
-								IF bRetracted[0] THEN
+								IF bRetracted THEN
 									
-									bRetract[0]							:= FALSE;
+									bRetract							:= FALSE;
 									stProcessCylinder.State				:= E_ProcessCylinder_State.READY;
 									
 								
@@ -64,13 +60,11 @@ CASE stProcessCylinder.State OF
 	
 	E_ProcessCylinder_State.READY:
 	
-								IF stProcessCylinder.CMD.bExecute AND 	(stProcessCylinder.CMD.ProcessCylinderCMD.ExtendCylinder1 OR 
-																		stProcessCylinder.CMD.ProcessCylinderCMD.ExtendCylinder2)	THEN
+								IF stProcessCylinder.CMD.bExecute AND stProcessCylinder.CMD.ProcessCylinderCMD.ExtendCylinder1 THEN
 
 									stProcessCylinder.State				:= E_ProcessCylinder_State.EXTEND;
 									
-								ELSIF stProcessCylinder.CMD.bExecute AND 	(stProcessCylinder.CMD.ProcessCylinderCMD.RetractCylinder1 OR 
-																		stProcessCylinder.CMD.ProcessCylinderCMD.RetractCylinder2)	THEN
+								ELSIF stProcessCylinder.CMD.bExecute AND stProcessCylinder.CMD.ProcessCylinderCMD.RetractCylinder1 THEN
 									
 									stProcessCylinder.State				:= E_ProcessCylinder_State.RETRACT;;									
 																		
@@ -78,30 +72,13 @@ CASE stProcessCylinder.State OF
 	
 	E_ProcessCylinder_State.EXTEND:
 	
-								bExtend[0]								:= stProcessCylinder.CMD.ProcessCylinderCMD.ExtendCylinder1;
-								bExtend[1]								:= stProcessCylinder.CMD.ProcessCylinderCMD.ExtendCylinder2;
+								bExtend									:= stProcessCylinder.CMD.ProcessCylinderCMD.ExtendCylinder1;
 								
-								IF bExtend[0] AND bExtend[1] THEN
+								IF bExtend THEN
 									
-									IF bExtended[0] AND bExtended[1] THEN
+									IF bExtended THEN
 
-										stProcessCylinder.State				:= E_ProcessCylinder_State.DONE;
-									
-									END_IF	
-								
-								ELSIF bExtend[0] AND NOT bExtend[1] THEN	
-
-									IF 	bExtended[0] THEN
-
-										stProcessCylinder.State				:= E_ProcessCylinder_State.DONE;
-									
-									END_IF
-
-								ELSIF NOT bExtend[0] AND bExtend[1] THEN	
-
-									IF 	bExtended[1] THEN
-
-										stProcessCylinder.State				:= E_ProcessCylinder_State.DONE;
+										stProcessCylinder.State			:= E_ProcessCylinder_State.DONE;
 									
 									END_IF						
 	
@@ -109,32 +86,16 @@ CASE stProcessCylinder.State OF
 								
 	E_ProcessCylinder_State.RETRACT:
 	
-								bRetract[0]								:= stProcessCylinder.CMD.ProcessCylinderCMD.RetractCylinder1;
-								bRetract[1]								:= stProcessCylinder.CMD.ProcessCylinderCMD.RetractCylinder2;
+								bRetract								:= stProcessCylinder.CMD.ProcessCylinderCMD.RetractCylinder1;
 								
-								IF bRetract[0] AND bRetract[1] THEN
-									
-									IF bRetracted[0] AND bRetracted[1] THEN
-
-										stProcessCylinder.State				:= E_ProcessCylinder_State.DONE;
-									
-									END_IF	
 								
-								ELSIF bRetract[0] AND NOT bRetract[1] THEN	
-
-									IF 	bRetracted[0] THEN
+								IF bRetract THEN
+									
+									IF bRetracted THEN
 
 										stProcessCylinder.State				:= E_ProcessCylinder_State.DONE;
 									
-									END_IF
-
-								ELSIF NOT bRetract[0] AND bRetract[1] THEN	
-
-									IF 	bRetracted[1] THEN
-
-										stProcessCylinder.State				:= E_ProcessCylinder_State.DONE;
-									
-									END_IF						
+									END_IF					
 	
 								END_IF
 								
@@ -150,10 +111,9 @@ CASE stProcessCylinder.State OF
 	
 	E_ProcessCylinder_State.RESET:	
 	
-								bExtend[0]									:= FALSE;
-								bExtend[1]									:= FALSE;
-								bRetract[0]									:= FALSE;
-								bRetract[1]									:= FALSE;
+								bExtend										:= FALSE;								
+								bRetract									:= FALSE;
+								
 								
 								IF NOT stProcessCylinder.CMD.bAbort AND NOT stProcessCylinder.CMD.bEndCycle THEN
 									
@@ -161,26 +121,6 @@ CASE stProcessCylinder.State OF
 									
 								ELSE stProcessCylinder.State					:= E_ProcessCylinder_State.ABORTED;
 								END_IF
-	
-					
-	E_ProcessCylinder_State.STOPPING:
-								
-								IF stProcessCylinder.CMD.bEndCycle THEN
-									
-									bRetract[0]									:= TRUE;
-									bRetract[1]									:= TRUE;
-								
-									IF bRetracted[0] AND bRetracted[0] (*remove if you are working with 1 cylinder*) THEN
-									
-										bRetract[0]								:= FALSE;
-										bRetract[1]								:= FALSE;
-										stProcessCylinder.State					:= E_ProcessCylinder_State.RESET;
-								
-									END_IF
-								
-								END_IF
-								
-														
 									
 
 ELSE stProcessCylinder.State	:= E_ProcessCylinder_State.ABORTED;
@@ -202,39 +142,25 @@ stProcessCylinder.Status.bStopped	:= 	NOT stProcessCylinder.Status.bBusy;]]></ST
     <Action Name="b_ACT_IO_A" Id="{29d1f0f3-bcef-4a52-aeb7-dd0a6b1253cf}">
       <Implementation>
         <ST><![CDATA[
-bExtended[0]							:= dw_T08_EL1809.iProcessCylinder1Extended;
-bExtended[1]							:= dw_T08_EL1809.iProcessCylinder2Extended;
-bRetracted[0]							:= stTwinSAFE.qProcessCylinder1Retracted;
-bRetracted[1]							:= stTwinSAFE.qProcessCylinder2Retracted;
+bExtended								:= dw_T08_EL1809.iProcessCylinder1Extended;
+bRetracted								:= stTwinSAFE.qProcessCylinder1Retracted;
 
-dw_T09_EL2809.qExtendProcessCylinder1	:= bExtend[0] OR bProcessCylinder1_Down ;	
-dw_T10_EL2809.qExtendProcessCylinder2	:= bExtend[1];	
-dw_T09_EL2809.qRetractProcessCylinder1	:= bRetract[0] OR bProcessCylinder1_Up OR bProcessCylinderSafetyPosition;
-dw_T10_EL2809.qRetractProcessCylinder2	:= bRetract[1];
+dw_T09_EL2809.qExtendProcessCylinder1	:= bExtend OR bProcessCylinder1_Down ;	
+dw_T09_EL2809.qRetractProcessCylinder1	:= bRetract OR bProcessCylinder1_Up OR bProcessCylinderSafetyPosition;
 
 IF stStationEvents[3].aEvents[0].bEventTimer.Q THEN
 	
-	bRetract[0] := FALSE;
+	bRetract := FALSE;
 
 END_IF
 
 IF stStationEvents[3].aEvents[1].bEventTimer.Q THEN
 	
-	bExtended[0] := FALSE;
+	bExtended := FALSE;
 
 END_IF
 
-IF stStationEvents[3].aEvents[2].bEventTimer.Q THEN
-	
-	bRetract[1] := FALSE;
 
-END_IF
-
-IF stStationEvents[3].aEvents[3 ].bEventTimer.Q THEN
-	
-	bExtended[1] := FALSE;
-
-END_IF
 
 ]]></ST>
       </Implementation>
@@ -288,29 +214,17 @@ END_IF
       <Implementation>
         <ST><![CDATA[//FAULTS
 
-stStationEvents[3].aEvents[0].bEventTimer( IN := (bExtend[0] AND NOT bExtended[0]), PT := T#5S);
+stStationEvents[3].aEvents[0].bEventTimer( IN := (bExtend AND NOT bExtended), PT := T#5S);
 stStationEvents[3].aEvents[0].bFault						:= TRUE;
 stStationEvents[3].aEvents[0].bEventFlag					:= stStationEvents[3].aEvents[0].bEventTimer.Q;
 stStationEvents[3].aEvents[0].bEventText					:= 'Process Cylinder 1 extend timeout';
 stStationEvents[3].aEvents[0].sSolution						:= 'Check cylinder, neumatic connections and sensors';
 
-stStationEvents[3].aEvents[1].bEventTimer( IN := (bRetract[0] AND NOT bRetracted[0]), PT := T#5S);
+stStationEvents[3].aEvents[1].bEventTimer( IN := (bRetract AND NOT bRetracted), PT := T#5S);
 stStationEvents[3].aEvents[1].bFault						:= TRUE;
 stStationEvents[3].aEvents[1].bEventFlag					:= stStationEvents[3].aEvents[1].bEventTimer.Q;
 stStationEvents[3].aEvents[1].bEventText					:= 'Process Cylinder retract timeout';
 stStationEvents[3].aEvents[1].sSolution						:= 'Check cylinder, neumatic connections and sensors';
-
-stStationEvents[3].aEvents[2].bEventTimer( IN := (bExtend[1] AND NOT bExtended[1]), PT := T#5S);
-stStationEvents[3].aEvents[2].bFault						:= TRUE;
-stStationEvents[3].aEvents[2].bEventFlag					:= stStationEvents[3].aEvents[2].bEventTimer.Q;
-stStationEvents[3].aEvents[2].bEventText					:= 'Process Cylinder 2 extend timeout';
-stStationEvents[3].aEvents[2].sSolution						:= 'Check cylinder, neumatic connections and sensors';
-
-stStationEvents[3].aEvents[3].bEventTimer( IN := (bRetract[1] AND NOT bRetracted[1]), PT := T#5S);
-stStationEvents[3].aEvents[3].bFault						:= TRUE;
-stStationEvents[3].aEvents[3].bEventFlag					:= stStationEvents[3].aEvents[3].bEventTimer.Q;
-stStationEvents[3].aEvents[3].bEventText					:= 'Process Cylinder 2 retract timeout';
-stStationEvents[3].aEvents[3].sSolution						:= 'Check cylinder, neumatic connections and sensors';
 
 
 //CYCLE STOP REQUEST

@@ -38,13 +38,9 @@ c_ACT_Statistics_Station_3();]]></ST>
 
 /////////////////////////////////////////////////////////////////////////////////////CONDITIONS/////////////////////////////////////////////////////////////////////////////////////
 
-IF bError[1] OR bError[2] OR bError[3] OR bError[4] THEN
+IF bError[1] OR bError[2] OR bError[3] OR bError[4] OR stCamera.CMD.bAbort THEN
 	
-	stCamera.State						:= E_Camera_State.ERROR;
-	
-ELSIF stCamera.CMD.bAbort OR stCamera.CMD.bEndCycle THEN
-	
-	stCamera.State						:= E_Camera_State.ABORTED;
+	stCamera.State						:= E_Camera_State.RESET_CMD;
 
 END_IF
 
@@ -55,11 +51,12 @@ CASE stCamera.State OF
 								
 								
 	
-								IF bReady AND stCamera.CMD.bEnable THEN
+								IF  stCamera.CMD.bEnable THEN
 									
 									stCamera.State						:= E_Camera_State.HOMING;
 								
 								END_IF
+													
 	E_Camera_State.HOMING:
 	
 								IF bReady THEN
@@ -168,10 +165,21 @@ CASE stCamera.State OF
 								Camera2_IO.bResultReadyAck				:= FALSE;
 								Camera3_IO.bResultReadyAck				:= FALSE;
 								Camera4_IO.bResultReadyAck				:= FALSE;
-								stCamera.State						:= E_Camera_State.RESET_CMD;
+								stCamera.State						:= E_Camera_State.DONE;
+								
+		E_Camera_State.DONE:		
+	
+								IF stCamera.CMD.bAcknowledge THEN
+									
+									stCamera.CMD.bAcknowledge			:= FALSE;
+									stCamera.State						:= E_Camera_State.RESET_CMD;
+								
+								END_IF
 								
 	E_Camera_State.RESET_CMD:						
 	
+								
+									
 								bTtigger[1]								:= FALSE;
 								bTtigger[2]								:= FALSE;
 								bTtigger[3]								:= FALSE;
@@ -182,16 +190,21 @@ CASE stCamera.State OF
 								bFail[1]								:= FALSE;
 								bFail[2]								:= FALSE;
 								
-								stCamera.State						:= E_Camera_State.DONE;
-								
-	E_Camera_State.DONE:		
-	
-								IF stCamera.CMD.bAcknowledge THEN
+					
+								IF  bError[1] OR bError[2] OR bError[3] OR bError[4] THEN
 									
-									stCamera.CMD.bAcknowledge			:= FALSE;
-									stCamera.State						:= E_Camera_State.READY;
+									stCamera.State						:= E_Camera_State.ERROR;
+									
+								ELSIF  stCamera.CMD.bAbort THEN
+
+									stCamera.State						:= E_Camera_State.ABORTED;
 								
+								ELSE 
+									stCamera.State						:= E_Camera_State.READY;
 								END_IF
+								
+								
+
 								
 	
 	E_Camera_State.ERROR:	
@@ -235,8 +248,8 @@ bReady									:=  (Camera1_IO.bReady AND Camera1_IO.bRun) AND (Camera2_IO.bRead
 bDone[1]								:= Camera1_IO.bResultReady AND Camera2_IO.bResultReady;
 bDone[2]								:= Camera3_IO.bResultReady AND Camera4_IO.bResultReady;
 
-rsPass[1]( SET := bDone[1] AND (Camera1_IO.bTotalResult = TRUE AND Camera2_IO.bTotalResult = TRUE), RESET1 := stCamera.State = E_Camera_State.ABORTED);
-rsPass[2]( SET := bDone[2] AND (Camera3_IO.bTotalResult = TRUE AND Camera4_IO.bTotalResult = TRUE), RESET1 := stCamera.State = E_Camera_State.ABORTED);
+rsPass[1]( SET := bDone[1] AND (Camera1_IO.bTotalResult = TRUE AND Camera2_IO.bTotalResult = TRUE), RESET1 := (stCamera.State = E_Camera_State.ABORTED) OR (stCamera.State = E_Camera_State.READY));
+rsPass[2]( SET := bDone[2] AND (Camera3_IO.bTotalResult = TRUE AND Camera4_IO.bTotalResult = TRUE), RESET1 := (stCamera.State = E_Camera_State.ABORTED) OR (stCamera.State = E_Camera_State.READY));
 
 
 bBusy[1]								:= Camera1_IO.bBusy;
@@ -385,29 +398,7 @@ ELSE stStatisticsHMI[6].nEfficency		:= CONCAT(STR1 := '%', STR2 := (DINT_TO_STRI
 	
 END_IF
 
-//RESET
-
-IF stStatisticsHMI[5].bResetGood THEN
-	
-	stStatisticsHMI[5].nGood		:= 0;
-
-END_IF
-IF stStatisticsHMI[5].bResetBad THEN
-	
-	stStatisticsHMI[5].nBad			:= 0;
-
-END_IF
-
-IF stStatisticsHMI[6].bResetGood THEN
-	
-	stStatisticsHMI[6].nGood		:= 0;
-
-END_IF
-IF stStatisticsHMI[6].bResetBad THEN
-	
-	stStatisticsHMI[6].nBad			:= 0;
-
-END_IF]]></ST>
+]]></ST>
       </Implementation>
     </Action>
     <Action Name="d_ACT_Set_Events_Station_3" Id="{05e142ea-c5f7-47d9-a898-cf4cc797e73e}">
@@ -433,6 +424,12 @@ stStationEvents[3].aEvents[3].bFault						:= TRUE;
 stStationEvents[3].aEvents[3].bEventFlag					:= bError[4];
 stStationEvents[3].aEvents[3].bEventText					:= 'Error camera 4';
 stStationEvents[3].aEvents[3].sSolution						:= 'Check camera 4';
+
+stStationEvents[3].aEvents[4].bFault						:= TRUE;
+stStationEvents[3].aEvents[4].bEventTimer(IN := stCamera.Status.bBusy, PT := stTimers.tStation3TimeOut);
+stStationEvents[3].aEvents[4].bEventFlag					:= stStationEvents[3].aEvents[4].bEventTimer.Q;
+stStationEvents[3].aEvents[4].bEventText					:= 'Camera Cycle Timeout';
+stStationEvents[3].aEvents[4].sSolution						:= 'Reset Sytem';
 
 
 //CYCLE STOP FAULT

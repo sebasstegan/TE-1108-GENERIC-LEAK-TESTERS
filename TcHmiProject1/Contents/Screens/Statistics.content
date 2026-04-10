@@ -1,0 +1,267 @@
+<div id="Content1_10" data-tchmi-type="TcHmi.Controls.System.TcHmiContent" data-tchmi-top="0" data-tchmi-left="0" data-tchmi-width="100" data-tchmi-height="100" data-tchmi-width-unit="%" data-tchmi-height-unit="%" data-tchmi-creator-viewport-width="1360" data-tchmi-creator-viewport-height="480">
+
+<div id="TcHmiDatagrid_16" data-tchmi-type="TcHmi.Controls.Beckhoff.TcHmiDatagrid" data-tchmi-height="470" data-tchmi-height-unit="px" data-tchmi-left="258" data-tchmi-left-unit="px" data-tchmi-top="19" data-tchmi-top-unit="px" data-tchmi-width="892" data-tchmi-width-unit="px" data-tchmi-row-height="60" data-tchmi-grid-font-style="Normal" data-tchmi-grid-font-weight="Bold" data-tchmi-grid-font-size="25" data-tchmi-src-data="%s%ADS.PLC1.GVL_HMI.stStatisticsHMI%/s%" data-tchmi-row-numbers-start-number="0">
+
+<script data-tchmi-target-attribute="data-tchmi-cell-content-padding" type="application/json">
+{
+  "left": 3,
+  "leftUnit": "px",
+  "right": 3,
+  "rightUnit": "px",
+  "top": 0,
+  "topUnit": "px",
+  "bottom": 0,
+  "bottomUnit": "px"
+}
+</script>
+
+
+<script data-tchmi-target-attribute="data-tchmi-src-column" type="application/json">
+[
+  {
+    "name": "sName",
+    "label": "NAME",
+    "control": "TextBox",
+    "width": 150,
+    "widthUnit": "px",
+    "resize": false,
+    "minWidth": 100,
+    "minWidthUnit": "px",
+    "editable": false,
+    "horizontalAlignment": "Left",
+    "verticalAlignment": "Center",
+    "textColor": {
+      "color": "rgba(0, 0, 0, 1)"
+    },
+    "headerHorizontalAlignment": "Center",
+    "headerVerticalAlignment": "Center",
+    "ignoreEscapeSequences": false,
+    "autoFocusOut": true,
+    "autoSelectText": false,
+    "sortable": false
+  },
+  {
+    "name": "nGood",
+    "label": "GOOD",
+    "control": "TextBox",
+    "width": 0,
+    "widthUnit": "px",
+    "resize": false,
+    "minWidth": 100,
+    "minWidthUnit": "px",
+    "editable": false,
+    "horizontalAlignment": "Center",
+    "verticalAlignment": "Center",
+    "cellBackground": {
+      "angle": 250.0,
+      "stopPoints": [
+        {
+          "color": "rgba(255, 255, 255, 1)",
+          "stop": "1.31%"
+        },
+        {
+          "color": "rgba(101, 255, 0, 1)",
+          "stop": "25%"
+        }
+      ]
+    },
+    "textColor": {
+      "color": "rgba(0, 0, 0, 1)"
+    },
+    "headerHorizontalAlignment": "Center",
+    "headerVerticalAlignment": "Center",
+    "ignoreEscapeSequences": false,
+    "autoFocusOut": true,
+    "autoSelectText": false,
+    "sortable": false
+  },
+  {
+    "name": "nTotalGood",
+    "label": "TOTAL GOOD",
+    "control": "TextBox",
+    "width": 0,
+    "widthUnit": "px",
+    "resize": false,
+    "minWidth": 100,
+    "minWidthUnit": "px",
+    "editable": false,
+    "horizontalAlignment": "Center",
+    "verticalAlignment": "Center",
+    "cellBackground": {
+      "angle": 250.0,
+      "stopPoints": [
+        {
+          "color": "rgba(255, 255, 255, 1)",
+          "stop": "0%"
+        },
+        {
+          "color": "rgba(101, 255, 0, 1)",
+          "stop": "25%"
+        }
+      ]
+    },
+    "textColor": {
+      "color": "rgba(0, 0, 0, 1)"
+    },
+    "headerHorizontalAlignment": "Center",
+    "headerVerticalAlignment": "Center",
+    "ignoreEscapeSequences": false,
+    "autoFocusOut": true,
+    "autoSelectText": false,
+    "sortable": false
+  },
+  {
+    "name": "nBad",
+    "label": "BAD",
+    "control": "TextBox",
+    "width": 0,
+    "widthUnit": "px",
+    "resize": false,
+    "minWidth": 100,
+    "minWidthUnit": "px",
+    "editable": false,
+    "horizontalAlignment": "Center",
+    "verticalAlignment": "Center",
+    "cellBackground": {
+      "angle": 250.0,
+      "stopPoints": [
+        {
+          "color": "rgba(255, 255, 255, 1)",
+          "stop": "0%"
+        },
+        {
+          "color": "rgba(255, 0, 0, 1)",
+          "stop": "25%"
+        }
+      ]
+    },
+    "textColor": {
+      "color": "rgba(0, 0, 0, 1)"
+    },
+    "headerHorizontalAlignment": "Center",
+    "headerVerticalAlignment": "Center",
+    "ignoreEscapeSequences": false,
+    "autoFocusOut": true,
+    "autoSelectText": false,
+    "sortable": false
+  },
+  {
+    "name": "nTotalBad",
+    "label": "TOTAL BAD",
+    "control": "TextBox",
+    "width": 0,
+    "widthUnit": "px",
+    "resize": false,
+    "minWidth": 100,
+    "minWidthUnit": "px",
+    "editable": false,
+    "horizontalAlignment": "Center",
+    "verticalAlignment": "Center",
+    "cellBackground": {
+      "angle": 250.0,
+      "stopPoints": [
+        {
+          "color": "rgba(255, 255, 255, 1)",
+          "stop": "0%"
+        },
+        {
+          "color": "rgba(255, 0, 0, 1)",
+          "stop": "25%"
+        }
+      ]
+    },
+    "textColor": {
+      "color": "rgba(0, 0, 0, 1)"
+    },
+    "headerHorizontalAlignment": "Center",
+    "headerVerticalAlignment": "Center",
+    "ignoreEscapeSequences": false,
+    "autoFocusOut": true,
+    "autoSelectText": false,
+    "sortable": false
+  },
+  {
+    "name": "bResetGood",
+    "label": "RESET GOOD",
+    "control": "Button",
+    "width": 0,
+    "widthUnit": "px",
+    "resize": false,
+    "minWidth": 100,
+    "minWidthUnit": "px",
+    "editable": true,
+    "horizontalAlignment": "Left",
+    "verticalAlignment": "Center",
+    "headerHorizontalAlignment": "Center",
+    "headerVerticalAlignment": "Center",
+    "ignoreEscapeSequences": false,
+    "autoFocusOut": true,
+    "autoSelectText": false,
+    "sortable": false
+  },
+  {
+    "name": "bResetBad",
+    "label": "RESET BAD",
+    "control": "Button",
+    "width": 0,
+    "widthUnit": "px",
+    "resize": false,
+    "minWidth": 100,
+    "minWidthUnit": "px",
+    "editable": true,
+    "horizontalAlignment": "Left",
+    "verticalAlignment": "Center",
+    "headerHorizontalAlignment": "Center",
+    "headerVerticalAlignment": "Center",
+    "ignoreEscapeSequences": false,
+    "autoFocusOut": true,
+    "autoSelectText": false,
+    "sortable": false
+  },
+  {
+    "name": "nEfficency",
+    "label": "EFFICIENCY",
+    "control": "TextBox",
+    "width": 0,
+    "widthUnit": "px",
+    "resize": false,
+    "minWidth": 100,
+    "minWidthUnit": "px",
+    "editable": false,
+    "horizontalAlignment": "Left",
+    "verticalAlignment": "Center",
+    "headerHorizontalAlignment": "Center",
+    "headerVerticalAlignment": "Center",
+    "ignoreEscapeSequences": false,
+    "autoFocusOut": true,
+    "autoSelectText": false,
+    "sortable": false
+  }
+]
+</script>
+
+<script data-tchmi-target-attribute="data-tchmi-header-background-color" type="application/json">
+{
+  "color": "rgba(0, 0, 0, 1)"
+}
+</script>
+
+<script data-tchmi-target-attribute="data-tchmi-header-text-color" type="application/json">
+{
+  "color": "rgba(255, 255, 255, 1)"
+}
+</script>
+
+
+
+<script data-tchmi-target-attribute="data-tchmi-table-border-color" type="application/json">
+{
+  "color": "rgba(0, 0, 0, 1)"
+}
+</script>
+
+
+
+
+</div>
+</div>

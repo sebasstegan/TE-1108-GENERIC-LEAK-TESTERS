@@ -1,5 +1,0 @@
-<div id="Content1_30" data-tchmi-type="TcHmi.Controls.System.TcHmiContent" data-tchmi-top="0" data-tchmi-left="0" data-tchmi-width="500" data-tchmi-height="300">
-
-<div id="Part_Rejected_11" data-tchmi-type="TcHmi.Controls.System.TcHmiUserControlHost" data-tchmi-height="300" data-tchmi-height-unit="px" data-tchmi-left="0" data-tchmi-left-unit="px" data-tchmi-target-user-control="Contents/UserControl/PopUp/YesNo.usercontrol" data-tchmi-top="0" data-tchmi-top-unit="px" data-tchmi-width="500" data-tchmi-width-unit="px" data-tchmi-header="SHUTDOWN" data-tchmi-text="Are you sure that you want to shutdown the PC?" data-tchmi-yes="%s%PLC1.GVL_HMI.bShutDown%/s%" data-tchmi-closepopup="%i%ClosePopUp%/i%">
-</div>
-</div>

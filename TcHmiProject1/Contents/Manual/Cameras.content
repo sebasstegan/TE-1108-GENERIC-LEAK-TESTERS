@@ -154,35 +154,65 @@
 <div id="TcHmiButton_79" data-tchmi-type="TcHmi.Controls.Beckhoff.TcHmiButton" data-tchmi-height="40" data-tchmi-height-unit="px" data-tchmi-left="351" data-tchmi-left-unit="px" data-tchmi-text="Set Treshold" data-tchmi-top="161" data-tchmi-top-unit="px" data-tchmi-width="100" data-tchmi-width-unit="px" data-tchmi-word-wrap="True" data-tchmi-zindex="4">
 
 
+
+
 <script data-tchmi-target-attribute="data-tchmi-trigger" type="application/json">
 [
   {
-    "event": "%ctx%owner::Id|EventRegistrationMode=Resolve%/ctx%.onStatePressed",
+    "event": "%ctx%owner::Id|EventRegistrationMode=Resolve%/ctx%.onPressed",
     "actions": [
       {
         "objectType": "WriteToSymbol",
         "active": true,
-        "symbolExpression": "%s%ADS.PLC1.GVL_HMI.bCameraSetTreshold.1%/s%",
-        "value": {
-          "objectType": "StaticValue",
-          "valueType": "tchmi:general#/definitions/BOOL",
-          "value": true
-        },
-        "asyncWait": true
-      }
-    ]
-  },
-  {
-    "event": "%ctx%owner::Id|EventRegistrationMode=Resolve%/ctx%.onStateReleased",
-    "actions": [
-      {
-        "objectType": "WriteToSymbol",
-        "active": true,
-        "symbolExpression": "%s%ADS.PLC1.GVL_HMI.bCameraSetTreshold.1%/s%",
+        "symbolExpression": "%i%YESNOpopup_close%/i%",
         "value": {
           "objectType": "StaticValue",
           "valueType": "tchmi:general#/definitions/BOOL",
           "value": false
+        },
+        "asyncWait": true
+      },
+      {
+        "objectType": "WriteToSymbol",
+        "active": true,
+        "symbolExpression": "%ctrl%yes_no_popup::Visibility%/ctrl%",
+        "value": {
+          "objectType": "StaticValue",
+          "valueType": "tchmi:framework#/definitions/Visibility",
+          "value": "Visible"
+        },
+        "asyncWait": true
+      },
+      {
+        "objectType": "WriteToSymbol",
+        "active": true,
+        "symbolExpression": "%i%YESNOpopup_Header%/i%",
+        "value": {
+          "objectType": "StaticValue",
+          "valueType": "tchmi:general#/definitions/String",
+          "value": "SET CAMERA 2 TRESHOLD"
+        },
+        "asyncWait": true
+      },
+      {
+        "objectType": "WriteToSymbol",
+        "active": true,
+        "symbolExpression": "%i%YESNOpopup_Text%/i%",
+        "value": {
+          "objectType": "StaticValue",
+          "valueType": "tchmi:general#/definitions/String",
+          "value": "DO YOU WANT TO SET TRESHOLD OF IA FUNCTION IN CAMERA 2?"
+        },
+        "asyncWait": true
+      },
+      {
+        "objectType": "WriteToSymbol",
+        "active": true,
+        "symbolExpression": "%i%YESNOpopup_setting_in%/i%",
+        "value": {
+          "objectType": "StaticValue",
+          "valueType": "tchmi:general#/definitions/DINT",
+          "value": 4
         },
         "asyncWait": true
       }
@@ -216,10 +246,75 @@
 </div>
 <div id="TcHmiButton_82" data-tchmi-type="TcHmi.Controls.Beckhoff.TcHmiButton" data-tchmi-height="40" data-tchmi-height-unit="px" data-tchmi-left="618" data-tchmi-left-unit="px" data-tchmi-text="Set Treshold" data-tchmi-top="161" data-tchmi-top-unit="px" data-tchmi-width="100" data-tchmi-width-unit="px" data-tchmi-word-wrap="True" data-tchmi-zindex="4">
 
+
+<script data-tchmi-target-attribute="data-tchmi-trigger" type="application/json">
+[
+  {
+    "event": "%ctx%owner::Id|EventRegistrationMode=Resolve%/ctx%.onPressed",
+    "actions": [
+      {
+        "objectType": "WriteToSymbol",
+        "active": true,
+        "symbolExpression": "%i%YESNOpopup_close%/i%",
+        "value": {
+          "objectType": "StaticValue",
+          "valueType": "tchmi:general#/definitions/BOOL",
+          "value": false
+        },
+        "asyncWait": true
+      },
+      {
+        "objectType": "WriteToSymbol",
+        "active": true,
+        "symbolExpression": "%ctrl%yes_no_popup::Visibility%/ctrl%",
+        "value": {
+          "objectType": "StaticValue",
+          "valueType": "tchmi:framework#/definitions/Visibility",
+          "value": "Visible"
+        },
+        "asyncWait": true
+      },
+      {
+        "objectType": "WriteToSymbol",
+        "active": true,
+        "symbolExpression": "%i%YESNOpopup_Header%/i%",
+        "value": {
+          "objectType": "StaticValue",
+          "valueType": "tchmi:general#/definitions/String",
+          "value": "SET CAMERA 3 TRESHOLD"
+        },
+        "asyncWait": true
+      },
+      {
+        "objectType": "WriteToSymbol",
+        "active": true,
+        "symbolExpression": "%i%YESNOpopup_Text%/i%",
+        "value": {
+          "objectType": "StaticValue",
+          "valueType": "tchmi:general#/definitions/String",
+          "value": "DO YOU WANT TO SET TRESHOLD OF IA FUNCTION IN CAMERA 3?"
+        },
+        "asyncWait": true
+      },
+      {
+        "objectType": "WriteToSymbol",
+        "active": true,
+        "symbolExpression": "%i%YESNOpopup_setting_in%/i%",
+        "value": {
+          "objectType": "StaticValue",
+          "valueType": "tchmi:general#/definitions/DINT",
+          "value": 5
+        },
+        "asyncWait": true
+      }
+    ]
+  }
+]
+</script>
 </div>
 <div id="TcHmiTextblock_1054" data-tchmi-type="TcHmi.Controls.Beckhoff.TcHmiTextblock" data-tchmi-height="26" data-tchmi-height-unit="px" data-tchmi-left="593" data-tchmi-left-unit="px" data-tchmi-text="AI Treshold" data-tchmi-top="282" data-tchmi-top-unit="px" data-tchmi-width="150" data-tchmi-width-unit="px" data-tchmi-word-wrap="True" data-tchmi-text-horizontal-alignment="Center" data-tchmi-text-vertical-alignment="Center" data-tchmi-text-font-size="20" data-tchmi-zindex="4">
 </div>
-<div id="TcHmiNumericInput_13" data-tchmi-type="TcHmi.Controls.Beckhoff.TcHmiNumericInput" data-tchmi-auto-focus-out="True" data-tchmi-decimal-digits="0" data-tchmi-height="26" data-tchmi-height-unit="px" data-tchmi-left="593" data-tchmi-left-unit="px" data-tchmi-reset-to-last-valid-value="True" data-tchmi-top="318" data-tchmi-top-unit="px" data-tchmi-value="0" data-tchmi-width="150" data-tchmi-width-unit="px" data-tchmi-min-value="0" data-tchmi-max-value="100" data-tchmi-value-horizontal-alignment="Center" data-tchmi-zindex="4">
+<div id="TcHmiNumericInput_13" data-tchmi-type="TcHmi.Controls.Beckhoff.TcHmiNumericInput" data-tchmi-auto-focus-out="True" data-tchmi-decimal-digits="0" data-tchmi-height="26" data-tchmi-height-unit="px" data-tchmi-left="593" data-tchmi-left-unit="px" data-tchmi-reset-to-last-valid-value="True" data-tchmi-top="318" data-tchmi-top-unit="px" data-tchmi-value="%s%ADS.PLC1.GVL_HMI.bCameraSettingVal.2|BindingMode=TwoWay%/s%" data-tchmi-width="150" data-tchmi-width-unit="px" data-tchmi-min-value="0" data-tchmi-max-value="100" data-tchmi-value-horizontal-alignment="Center" data-tchmi-zindex="4">
 <script data-tchmi-target-attribute="data-tchmi-content-padding" type="application/json">
 {
   "top": 3,
@@ -242,10 +337,77 @@
 </div>
 <div id="TcHmiButton_85" data-tchmi-type="TcHmi.Controls.Beckhoff.TcHmiButton" data-tchmi-height="40" data-tchmi-height-unit="px" data-tchmi-left="886" data-tchmi-left-unit="px" data-tchmi-text="Set Treshold" data-tchmi-top="161" data-tchmi-top-unit="px" data-tchmi-width="100" data-tchmi-width-unit="px" data-tchmi-word-wrap="True" data-tchmi-zindex="4">
 
+
+
+
+<script data-tchmi-target-attribute="data-tchmi-trigger" type="application/json">
+[
+  {
+    "event": "%ctx%owner::Id|EventRegistrationMode=Resolve%/ctx%.onPressed",
+    "actions": [
+      {
+        "objectType": "WriteToSymbol",
+        "active": true,
+        "symbolExpression": "%i%YESNOpopup_close%/i%",
+        "value": {
+          "objectType": "StaticValue",
+          "valueType": "tchmi:general#/definitions/BOOL",
+          "value": false
+        },
+        "asyncWait": true
+      },
+      {
+        "objectType": "WriteToSymbol",
+        "active": true,
+        "symbolExpression": "%ctrl%yes_no_popup::Visibility%/ctrl%",
+        "value": {
+          "objectType": "StaticValue",
+          "valueType": "tchmi:framework#/definitions/Visibility",
+          "value": "Visible"
+        },
+        "asyncWait": true
+      },
+      {
+        "objectType": "WriteToSymbol",
+        "active": true,
+        "symbolExpression": "%i%YESNOpopup_Header%/i%",
+        "value": {
+          "objectType": "StaticValue",
+          "valueType": "tchmi:general#/definitions/String",
+          "value": "SET CAMERA 4 TRESHOLD"
+        },
+        "asyncWait": true
+      },
+      {
+        "objectType": "WriteToSymbol",
+        "active": true,
+        "symbolExpression": "%i%YESNOpopup_Text%/i%",
+        "value": {
+          "objectType": "StaticValue",
+          "valueType": "tchmi:general#/definitions/String",
+          "value": "DO YOU WANT TO SET TRESHOLD OF IA FUNCTION IN CAMERA 4?"
+        },
+        "asyncWait": true
+      },
+      {
+        "objectType": "WriteToSymbol",
+        "active": true,
+        "symbolExpression": "%i%YESNOpopup_setting_in%/i%",
+        "value": {
+          "objectType": "StaticValue",
+          "valueType": "tchmi:general#/definitions/DINT",
+          "value": 6
+        },
+        "asyncWait": true
+      }
+    ]
+  }
+]
+</script>
 </div>
 <div id="TcHmiTextblock_1055" data-tchmi-type="TcHmi.Controls.Beckhoff.TcHmiTextblock" data-tchmi-height="26" data-tchmi-height-unit="px" data-tchmi-left="861" data-tchmi-left-unit="px" data-tchmi-text="AI Treshold" data-tchmi-top="282" data-tchmi-top-unit="px" data-tchmi-width="150" data-tchmi-width-unit="px" data-tchmi-word-wrap="True" data-tchmi-text-horizontal-alignment="Center" data-tchmi-text-vertical-alignment="Center" data-tchmi-text-font-size="20" data-tchmi-zindex="4">
 </div>
-<div id="TcHmiNumericInput_14" data-tchmi-type="TcHmi.Controls.Beckhoff.TcHmiNumericInput" data-tchmi-auto-focus-out="True" data-tchmi-decimal-digits="0" data-tchmi-height="26" data-tchmi-height-unit="px" data-tchmi-left="861" data-tchmi-left-unit="px" data-tchmi-reset-to-last-valid-value="True" data-tchmi-top="318" data-tchmi-top-unit="px" data-tchmi-value="0" data-tchmi-width="150" data-tchmi-width-unit="px" data-tchmi-min-value="0" data-tchmi-max-value="100" data-tchmi-value-horizontal-alignment="Center" data-tchmi-zindex="4">
+<div id="TcHmiNumericInput_14" data-tchmi-type="TcHmi.Controls.Beckhoff.TcHmiNumericInput" data-tchmi-auto-focus-out="True" data-tchmi-decimal-digits="0" data-tchmi-height="26" data-tchmi-height-unit="px" data-tchmi-left="861" data-tchmi-left-unit="px" data-tchmi-reset-to-last-valid-value="True" data-tchmi-top="318" data-tchmi-top-unit="px" data-tchmi-value="%s%ADS.PLC1.GVL_HMI.bCameraSettingVal.3|BindingMode=TwoWay%/s%" data-tchmi-width="150" data-tchmi-width-unit="px" data-tchmi-min-value="0" data-tchmi-max-value="100" data-tchmi-value-horizontal-alignment="Center" data-tchmi-zindex="4">
 <script data-tchmi-target-attribute="data-tchmi-content-padding" type="application/json">
 {
   "top": 3,
@@ -335,35 +497,67 @@
 <div id="TcHmiButton_88" data-tchmi-type="TcHmi.Controls.Beckhoff.TcHmiButton" data-tchmi-height="40" data-tchmi-height-unit="px" data-tchmi-left="91" data-tchmi-left-unit="px" data-tchmi-text="Set Treshold" data-tchmi-top="161" data-tchmi-top-unit="px" data-tchmi-width="100" data-tchmi-width-unit="px" data-tchmi-word-wrap="True" data-tchmi-zindex="4">
 
 
+
+
+
+
 <script data-tchmi-target-attribute="data-tchmi-trigger" type="application/json">
 [
   {
-    "event": "%ctx%owner::Id|EventRegistrationMode=Resolve%/ctx%.onStatePressed",
+    "event": "%ctx%owner::Id|EventRegistrationMode=Resolve%/ctx%.onPressed",
     "actions": [
       {
         "objectType": "WriteToSymbol",
         "active": true,
-        "symbolExpression": "%s%ADS.PLC1.GVL_IO.Camera1_IO.bSetTreshold%/s%",
-        "value": {
-          "objectType": "StaticValue",
-          "valueType": "tchmi:general#/definitions/BOOL",
-          "value": true
-        },
-        "asyncWait": true
-      }
-    ]
-  },
-  {
-    "event": "%ctx%owner::Id|EventRegistrationMode=Resolve%/ctx%.onStateReleased",
-    "actions": [
-      {
-        "objectType": "WriteToSymbol",
-        "active": true,
-        "symbolExpression": "%s%ADS.PLC1.GVL_IO.Camera1_IO.bSetTreshold%/s%",
+        "symbolExpression": "%i%YESNOpopup_close%/i%",
         "value": {
           "objectType": "StaticValue",
           "valueType": "tchmi:general#/definitions/BOOL",
           "value": false
+        },
+        "asyncWait": true
+      },
+      {
+        "objectType": "WriteToSymbol",
+        "active": true,
+        "symbolExpression": "%ctrl%yes_no_popup::Visibility%/ctrl%",
+        "value": {
+          "objectType": "StaticValue",
+          "valueType": "tchmi:framework#/definitions/Visibility",
+          "value": "Visible"
+        },
+        "asyncWait": true
+      },
+      {
+        "objectType": "WriteToSymbol",
+        "active": true,
+        "symbolExpression": "%i%YESNOpopup_Header%/i%",
+        "value": {
+          "objectType": "StaticValue",
+          "valueType": "tchmi:general#/definitions/String",
+          "value": "SET CAMERA 1 TRESHOLD"
+        },
+        "asyncWait": true
+      },
+      {
+        "objectType": "WriteToSymbol",
+        "active": true,
+        "symbolExpression": "%i%YESNOpopup_Text%/i%",
+        "value": {
+          "objectType": "StaticValue",
+          "valueType": "tchmi:general#/definitions/String",
+          "value": "DO YOU WANT TO SET TRESHOLD OF IA FUNCTION IN CAMERA 1?"
+        },
+        "asyncWait": true
+      },
+      {
+        "objectType": "WriteToSymbol",
+        "active": true,
+        "symbolExpression": "%i%YESNOpopup_setting_in%/i%",
+        "value": {
+          "objectType": "StaticValue",
+          "valueType": "tchmi:general#/definitions/DINT",
+          "value": 3
         },
         "asyncWait": true
       }
@@ -374,7 +568,7 @@
 </div>
 <div id="TcHmiTextblock_1056" data-tchmi-type="TcHmi.Controls.Beckhoff.TcHmiTextblock" data-tchmi-height="26" data-tchmi-height-unit="px" data-tchmi-left="66" data-tchmi-left-unit="px" data-tchmi-text="AI Treshold" data-tchmi-top="282" data-tchmi-top-unit="px" data-tchmi-width="150" data-tchmi-width-unit="px" data-tchmi-word-wrap="True" data-tchmi-text-horizontal-alignment="Center" data-tchmi-text-vertical-alignment="Center" data-tchmi-text-font-size="20" data-tchmi-zindex="4">
 </div>
-<div id="TcHmiNumericInput_15" data-tchmi-type="TcHmi.Controls.Beckhoff.TcHmiNumericInput" data-tchmi-auto-focus-out="True" data-tchmi-decimal-digits="0" data-tchmi-height="26" data-tchmi-height-unit="px" data-tchmi-left="66" data-tchmi-left-unit="px" data-tchmi-reset-to-last-valid-value="True" data-tchmi-top="318" data-tchmi-top-unit="px" data-tchmi-value="%s%ADS.PLC1.GVL_HMI.bCameraSettingVal.0%/s%" data-tchmi-width="150" data-tchmi-width-unit="px" data-tchmi-min-value="0" data-tchmi-max-value="100" data-tchmi-value-horizontal-alignment="Center" data-tchmi-zindex="4">
+<div id="TcHmiNumericInput_15" data-tchmi-type="TcHmi.Controls.Beckhoff.TcHmiNumericInput" data-tchmi-auto-focus-out="True" data-tchmi-decimal-digits="0" data-tchmi-height="26" data-tchmi-height-unit="px" data-tchmi-left="66" data-tchmi-left-unit="px" data-tchmi-reset-to-last-valid-value="True" data-tchmi-top="318" data-tchmi-top-unit="px" data-tchmi-value="%s%ADS.PLC1.GVL_HMI.bCameraSettingVal.0|BindingMode=TwoWay%/s%" data-tchmi-width="150" data-tchmi-width-unit="px" data-tchmi-min-value="0" data-tchmi-max-value="100" data-tchmi-value-horizontal-alignment="Center" data-tchmi-zindex="4" data-tchmi-system-keyboard-input-mode="numeric">
 <script data-tchmi-target-attribute="data-tchmi-content-padding" type="application/json">
 {
   "top": 3,
@@ -616,5 +810,7 @@
   }
 ]
 </script>
+</div>
+<div id="ChangeSettingPopup" data-tchmi-type="TcHmi.Controls.System.TcHmiRegion" data-tchmi-height="300" data-tchmi-height-unit="px" data-tchmi-left="261" data-tchmi-left-unit="px" data-tchmi-top="51" data-tchmi-top-unit="px" data-tchmi-width="500" data-tchmi-width-unit="px" data-tchmi-visibility="Collapsed" data-tchmi-target-content="Contents/popup/popup6_ChangeSettings_Cameras.content" data-tchmi-creator-visibility="Visible" data-tchmi-zindex="5">
 </div>
 </div>

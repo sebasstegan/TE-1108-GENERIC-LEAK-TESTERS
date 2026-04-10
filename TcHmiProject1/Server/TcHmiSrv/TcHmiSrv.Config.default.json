@@ -55,6 +55,14 @@
                 "minItems": 201,
                 "type": "array"
             },
+            "ADS-PLC1.ARRAY_0..2_OF-ST_StatisticsHMI": {
+                "items": {
+                    "$ref": "tchmi:server#/definitions/ADS-PLC1.ST_StatisticsHMI"
+                },
+                "maxItems": 3,
+                "minItems": 3,
+                "type": "array"
+            },
             "ADS-PLC1.ARRAY_0..5_OF-ST_StatisticsHMI": {
                 "items": {
                     "$ref": "tchmi:server#/definitions/ADS-PLC1.ST_StatisticsHMI"
@@ -2288,6 +2296,56 @@
             },
             "USEMAPPING": true
         },
+        "ADS.PLC1.A_2_PRG_MachineCtrl.bProcessedPart.0": {
+            "ACCESS": 3,
+            "DOMAIN": "ADS",
+            "DYNAMIC": true,
+            "MAPPING": "PLC1::A_2_PRG_MachineCtrl::bProcessedPart[0]",
+            "SCHEMA": {
+                "$ref": "tchmi:general#/definitions/BOOL"
+            },
+            "USEMAPPING": true
+        },
+        "ADS.PLC1.B_1_1_PRG_Master_Leak_Test.bBusy.0": {
+            "ACCESS": 3,
+            "DOMAIN": "ADS",
+            "DYNAMIC": true,
+            "MAPPING": "PLC1::B_1_1_PRG_Master_Leak_Test::bBusy[0]",
+            "SCHEMA": {
+                "$ref": "tchmi:general#/definitions/BOOL"
+            },
+            "USEMAPPING": true
+        },
+        "ADS.PLC1.B_1_1_PRG_Master_Leak_Test.bBusy.1": {
+            "ACCESS": 3,
+            "DOMAIN": "ADS",
+            "DYNAMIC": true,
+            "MAPPING": "PLC1::B_1_1_PRG_Master_Leak_Test::bBusy[1]",
+            "SCHEMA": {
+                "$ref": "tchmi:general#/definitions/BOOL"
+            },
+            "USEMAPPING": true
+        },
+        "ADS.PLC1.B_1_1_PRG_Master_Leak_Test.bReady.0": {
+            "ACCESS": 3,
+            "DOMAIN": "ADS",
+            "DYNAMIC": true,
+            "MAPPING": "PLC1::B_1_1_PRG_Master_Leak_Test::bReady[0]",
+            "SCHEMA": {
+                "$ref": "tchmi:general#/definitions/BOOL"
+            },
+            "USEMAPPING": true
+        },
+        "ADS.PLC1.B_1_1_PRG_Master_Leak_Test.bReady.1": {
+            "ACCESS": 3,
+            "DOMAIN": "ADS",
+            "DYNAMIC": true,
+            "MAPPING": "PLC1::B_1_1_PRG_Master_Leak_Test::bReady[1]",
+            "SCHEMA": {
+                "$ref": "tchmi:general#/definitions/BOOL"
+            },
+            "USEMAPPING": true
+        },
         "ADS.PLC1.B_2_1_PRG_Master_Height_Test.anMaximumDistance.0": {
             "ACCESS": 3,
             "DOMAIN": "ADS",
@@ -2418,11 +2476,31 @@
             },
             "USEMAPPING": true
         },
+        "ADS.PLC1.B_4_1_PRG_Master_ProcessCylinder.bRetracted": {
+            "ACCESS": 3,
+            "DOMAIN": "ADS",
+            "DYNAMIC": true,
+            "MAPPING": "PLC1::B_4_1_PRG_Master_ProcessCylinder::bRetracted",
+            "SCHEMA": {
+                "$ref": "tchmi:general#/definitions/BOOL"
+            },
+            "USEMAPPING": true
+        },
         "ADS.PLC1.B_4_1_PRG_Master_ProcessCylinder.bRetracted.0": {
             "ACCESS": 3,
             "DOMAIN": "ADS",
             "DYNAMIC": true,
             "MAPPING": "PLC1::B_4_1_PRG_Master_ProcessCylinder::bRetracted[0]",
+            "SCHEMA": {
+                "$ref": "tchmi:general#/definitions/BOOL"
+            },
+            "USEMAPPING": true
+        },
+        "ADS.PLC1.B_4_2_PRG_Master_ProcessDoor.bCloseDoorHMI": {
+            "ACCESS": 3,
+            "DOMAIN": "ADS",
+            "DYNAMIC": true,
+            "MAPPING": "PLC1::B_4_2_PRG_Master_ProcessDoor::bCloseDoorHMI",
             "SCHEMA": {
                 "$ref": "tchmi:general#/definitions/BOOL"
             },
@@ -2578,11 +2656,41 @@
             },
             "USEMAPPING": true
         },
+        "ADS.PLC1.GVL_HMI.bCameraSetTreshold.0": {
+            "ACCESS": 3,
+            "DOMAIN": "ADS",
+            "DYNAMIC": true,
+            "MAPPING": "PLC1::GVL_HMI::bCameraSetTreshold[0]",
+            "SCHEMA": {
+                "$ref": "tchmi:general#/definitions/BOOL"
+            },
+            "USEMAPPING": true
+        },
         "ADS.PLC1.GVL_HMI.bCameraSetTreshold.1": {
             "ACCESS": 3,
             "DOMAIN": "ADS",
             "DYNAMIC": true,
             "MAPPING": "PLC1::GVL_HMI::bCameraSetTreshold[1]",
+            "SCHEMA": {
+                "$ref": "tchmi:general#/definitions/BOOL"
+            },
+            "USEMAPPING": true
+        },
+        "ADS.PLC1.GVL_HMI.bCameraSetTreshold.2": {
+            "ACCESS": 3,
+            "DOMAIN": "ADS",
+            "DYNAMIC": true,
+            "MAPPING": "PLC1::GVL_HMI::bCameraSetTreshold[2]",
+            "SCHEMA": {
+                "$ref": "tchmi:general#/definitions/BOOL"
+            },
+            "USEMAPPING": true
+        },
+        "ADS.PLC1.GVL_HMI.bCameraSetTreshold.3": {
+            "ACCESS": 3,
+            "DOMAIN": "ADS",
+            "DYNAMIC": true,
+            "MAPPING": "PLC1::GVL_HMI::bCameraSetTreshold[3]",
             "SCHEMA": {
                 "$ref": "tchmi:general#/definitions/BOOL"
             },
@@ -2603,6 +2711,26 @@
             "DOMAIN": "ADS",
             "DYNAMIC": true,
             "MAPPING": "PLC1::GVL_HMI::bCameraSettingVal[1]",
+            "SCHEMA": {
+                "$ref": "tchmi:general#/definitions/UDINT"
+            },
+            "USEMAPPING": true
+        },
+        "ADS.PLC1.GVL_HMI.bCameraSettingVal.2": {
+            "ACCESS": 3,
+            "DOMAIN": "ADS",
+            "DYNAMIC": true,
+            "MAPPING": "PLC1::GVL_HMI::bCameraSettingVal[2]",
+            "SCHEMA": {
+                "$ref": "tchmi:general#/definitions/UDINT"
+            },
+            "USEMAPPING": true
+        },
+        "ADS.PLC1.GVL_HMI.bCameraSettingVal.3": {
+            "ACCESS": 3,
+            "DOMAIN": "ADS",
+            "DYNAMIC": true,
+            "MAPPING": "PLC1::GVL_HMI::bCameraSettingVal[3]",
             "SCHEMA": {
                 "$ref": "tchmi:general#/definitions/UDINT"
             },
@@ -2663,6 +2791,26 @@
             "DOMAIN": "ADS",
             "DYNAMIC": true,
             "MAPPING": "PLC1::GVL_HMI::bEnableSetCablibrationBlock2",
+            "SCHEMA": {
+                "$ref": "tchmi:general#/definitions/BOOL"
+            },
+            "USEMAPPING": true
+        },
+        "ADS.PLC1.GVL_HMI.bEnableSettings": {
+            "ACCESS": 3,
+            "DOMAIN": "ADS",
+            "DYNAMIC": true,
+            "MAPPING": "PLC1::GVL_HMI::bEnableSettings",
+            "SCHEMA": {
+                "$ref": "tchmi:general#/definitions/BOOL"
+            },
+            "USEMAPPING": true
+        },
+        "ADS.PLC1.GVL_HMI.bHMIInitialized": {
+            "ACCESS": 3,
+            "DOMAIN": "ADS",
+            "DYNAMIC": true,
+            "MAPPING": "PLC1::GVL_HMI::bHMIInitialized",
             "SCHEMA": {
                 "$ref": "tchmi:general#/definitions/BOOL"
             },
@@ -2745,6 +2893,46 @@
             },
             "USEMAPPING": true
         },
+        "ADS.PLC1.GVL_HMI.bMachineDefinitionSet2": {
+            "ACCESS": 3,
+            "DOMAIN": "ADS",
+            "DYNAMIC": true,
+            "MAPPING": "PLC1::GVL_HMI::bMachineDefinitionSet2",
+            "SCHEMA": {
+                "$ref": "tchmi:general#/definitions/BOOL"
+            },
+            "USEMAPPING": true
+        },
+        "ADS.PLC1.GVL_HMI.bManualScreen": {
+            "ACCESS": 3,
+            "DOMAIN": "ADS",
+            "DYNAMIC": true,
+            "MAPPING": "PLC1::GVL_HMI::bManualScreen",
+            "SCHEMA": {
+                "$ref": "tchmi:general#/definitions/BOOL"
+            },
+            "USEMAPPING": true
+        },
+        "ADS.PLC1.GVL_HMI.bPartPresent.0": {
+            "ACCESS": 3,
+            "DOMAIN": "ADS",
+            "DYNAMIC": true,
+            "MAPPING": "PLC1::GVL_HMI::bPartPresent[0]",
+            "SCHEMA": {
+                "$ref": "tchmi:general#/definitions/BOOL"
+            },
+            "USEMAPPING": true
+        },
+        "ADS.PLC1.GVL_HMI.bPartPresent.1": {
+            "ACCESS": 3,
+            "DOMAIN": "ADS",
+            "DYNAMIC": true,
+            "MAPPING": "PLC1::GVL_HMI::bPartPresent[1]",
+            "SCHEMA": {
+                "$ref": "tchmi:general#/definitions/BOOL"
+            },
+            "USEMAPPING": true
+        },
         "ADS.PLC1.GVL_HMI.bProcessCylinder1_Down": {
             "ACCESS": 3,
             "DOMAIN": "ADS",
@@ -2815,6 +3003,16 @@
             },
             "USEMAPPING": true
         },
+        "ADS.PLC1.GVL_HMI.bSetDistances": {
+            "ACCESS": 3,
+            "DOMAIN": "ADS",
+            "DYNAMIC": true,
+            "MAPPING": "PLC1::GVL_HMI::bSetDistances",
+            "SCHEMA": {
+                "$ref": "tchmi:general#/definitions/BOOL"
+            },
+            "USEMAPPING": true
+        },
         "ADS.PLC1.GVL_HMI.bSetTolerances": {
             "ACCESS": 3,
             "DOMAIN": "ADS",
@@ -2832,6 +3030,43 @@
             },
             "USEMAPPING": true
         },
+        "ADS.PLC1.GVL_HMI.nAirPressureMaxValue": {
+            "ACCESS": 3,
+            "DOMAIN": "ADS",
+            "DYNAMIC": true,
+            "MAPPING": "PLC1::GVL_HMI::nAirPressureMaxValue",
+            "SCHEMA": {
+                "allOf": [
+                    {
+                        "$ref": "tchmi:general#/definitions/UINT"
+                    },
+                    {
+                        "comment": "//////////////////////////////////////////////////////////////////////////////////SETTINGS/////////////////////////////////////////////////////////////////////////////////////"
+                    }
+                ]
+            },
+            "USEMAPPING": true
+        },
+        "ADS.PLC1.GVL_HMI.nAirPressureMinValue": {
+            "ACCESS": 3,
+            "DOMAIN": "ADS",
+            "DYNAMIC": true,
+            "MAPPING": "PLC1::GVL_HMI::nAirPressureMinValue",
+            "SCHEMA": {
+                "$ref": "tchmi:general#/definitions/UINT"
+            },
+            "USEMAPPING": true
+        },
+        "ADS.PLC1.GVL_HMI.nMachineDefinitionIndex2": {
+            "ACCESS": 3,
+            "DOMAIN": "ADS",
+            "DYNAMIC": true,
+            "MAPPING": "PLC1::GVL_HMI::nMachineDefinitionIndex2",
+            "SCHEMA": {
+                "$ref": "tchmi:general#/definitions/INT"
+            },
+            "USEMAPPING": true
+        },
         "ADS.PLC1.GVL_HMI.stStatisticsHMI": {
             "ACCESS": 3,
             "DOMAIN": "ADS",
@@ -2844,6 +3079,40 @@
                     },
                     {
                         "$ref": "tchmi:server#/definitions/ADS-PLC1.ARRAY_0..5_OF-ST_StatisticsHMI"
+                    }
+                ]
+            },
+            "USEMAPPING": true
+        },
+        "ADS.PLC1.GVL_HMI.stStatisticsHMI.0.bResetBad": {
+            "ACCESS": 3,
+            "DOMAIN": "ADS",
+            "DYNAMIC": true,
+            "MAPPING": "PLC1::GVL_HMI::stStatisticsHMI[0]::bResetBad",
+            "SCHEMA": {
+                "allOf": [
+                    {
+                        "$ref": "tchmi:general#/definitions/BOOL"
+                    },
+                    {
+                        "propertyOrder": 7
+                    }
+                ]
+            },
+            "USEMAPPING": true
+        },
+        "ADS.PLC1.GVL_HMI.stStatisticsHMI.0.bResetGood": {
+            "ACCESS": 3,
+            "DOMAIN": "ADS",
+            "DYNAMIC": true,
+            "MAPPING": "PLC1::GVL_HMI::stStatisticsHMI[0]::bResetGood",
+            "SCHEMA": {
+                "allOf": [
+                    {
+                        "$ref": "tchmi:general#/definitions/BOOL"
+                    },
+                    {
+                        "propertyOrder": 6
                     }
                 ]
             },
@@ -3053,6 +3322,26 @@
             },
             "USEMAPPING": true
         },
+        "ADS.PLC1.GVL_HMI.stStatisticsLT": {
+            "ACCESS": 3,
+            "DOMAIN": "ADS",
+            "DYNAMIC": true,
+            "MAPPING": "PLC1::GVL_HMI::stStatisticsLT",
+            "SCHEMA": {
+                "$ref": "tchmi:server#/definitions/ADS-PLC1.ARRAY_0..2_OF-ST_StatisticsHMI"
+            },
+            "USEMAPPING": true
+        },
+        "ADS.PLC1.GVL_HMI.stStatisticsWH": {
+            "ACCESS": 3,
+            "DOMAIN": "ADS",
+            "DYNAMIC": true,
+            "MAPPING": "PLC1::GVL_HMI::stStatisticsWH",
+            "SCHEMA": {
+                "$ref": "tchmi:server#/definitions/ADS-PLC1.ARRAY_0..2_OF-ST_StatisticsHMI"
+            },
+            "USEMAPPING": true
+        },
         "ADS.PLC1.GVL_HMI.stTableCycleDataNest1": {
             "ACCESS": 3,
             "DOMAIN": "ADS",
@@ -3070,6 +3359,83 @@
             "MAPPING": "PLC1::GVL_HMI::stTableCycleDataNest2",
             "SCHEMA": {
                 "$ref": "tchmi:server#/definitions/ADS-PLC1.ARRAY_0..2000_OF-ST_TableCycleData"
+            },
+            "USEMAPPING": true
+        },
+        "ADS.PLC1.GVL_HMI.stTimers.nAutoCycleIDLETimeOut": {
+            "ACCESS": 3,
+            "DOMAIN": "ADS",
+            "DYNAMIC": true,
+            "MAPPING": "PLC1::GVL_HMI::stTimers::nAutoCycleIDLETimeOut",
+            "SCHEMA": {
+                "allOf": [
+                    {
+                        "$ref": "tchmi:general#/definitions/DINT"
+                    },
+                    {
+                        "propertyOrder": 8
+                    }
+                ]
+            },
+            "USEMAPPING": true
+        },
+        "ADS.PLC1.GVL_HMI.test.0": {
+            "ACCESS": 3,
+            "DOMAIN": "ADS",
+            "DYNAMIC": true,
+            "MAPPING": "PLC1::GVL_HMI::test[0]",
+            "SCHEMA": {
+                "$ref": "tchmi:general#/definitions/BOOL"
+            },
+            "USEMAPPING": true
+        },
+        "ADS.PLC1.GVL_HMI.test.1": {
+            "ACCESS": 3,
+            "DOMAIN": "ADS",
+            "DYNAMIC": true,
+            "MAPPING": "PLC1::GVL_HMI::test[1]",
+            "SCHEMA": {
+                "$ref": "tchmi:general#/definitions/BOOL"
+            },
+            "USEMAPPING": true
+        },
+        "ADS.PLC1.GVL_HMI.test.2": {
+            "ACCESS": 3,
+            "DOMAIN": "ADS",
+            "DYNAMIC": true,
+            "MAPPING": "PLC1::GVL_HMI::test[2]",
+            "SCHEMA": {
+                "$ref": "tchmi:general#/definitions/BOOL"
+            },
+            "USEMAPPING": true
+        },
+        "ADS.PLC1.GVL_HMI.test.3": {
+            "ACCESS": 3,
+            "DOMAIN": "ADS",
+            "DYNAMIC": true,
+            "MAPPING": "PLC1::GVL_HMI::test[3]",
+            "SCHEMA": {
+                "$ref": "tchmi:general#/definitions/BOOL"
+            },
+            "USEMAPPING": true
+        },
+        "ADS.PLC1.GVL_HMI.test.4": {
+            "ACCESS": 3,
+            "DOMAIN": "ADS",
+            "DYNAMIC": true,
+            "MAPPING": "PLC1::GVL_HMI::test[4]",
+            "SCHEMA": {
+                "$ref": "tchmi:general#/definitions/BOOL"
+            },
+            "USEMAPPING": true
+        },
+        "ADS.PLC1.GVL_HMI.test.5": {
+            "ACCESS": 3,
+            "DOMAIN": "ADS",
+            "DYNAMIC": true,
+            "MAPPING": "PLC1::GVL_HMI::test[5]",
+            "SCHEMA": {
+                "$ref": "tchmi:general#/definitions/BOOL"
             },
             "USEMAPPING": true
         },
@@ -4876,6 +5242,41 @@
                 "allOf": [
                     {
                         "$ref": "tchmi:general#/definitions/STRING%2880%29"
+                    },
+                    {
+                        "propertyOrder": 2
+                    }
+                ]
+            },
+            "USEMAPPING": true
+        },
+        "ADS.PLC1.GVL_IO.stTwinSAFE.iAirPressureMaxValue": {
+            "ACCESS": 3,
+            "DOMAIN": "ADS",
+            "DYNAMIC": true,
+            "MAPPING": "PLC1::GVL_IO::stTwinSAFE::iAirPressureMaxValue",
+            "SCHEMA": {
+                "allOf": [
+                    {
+                        "$ref": "tchmi:general#/definitions/UINT"
+                    },
+                    {
+                        "comment": "////////////////////////////////////////////////////////////////////////Safety OUTPUTS///////////////////////////////////////////////////////////////////////////////////////",
+                        "propertyOrder": 1
+                    }
+                ]
+            },
+            "USEMAPPING": true
+        },
+        "ADS.PLC1.GVL_IO.stTwinSAFE.iAirPressureMinValue": {
+            "ACCESS": 3,
+            "DOMAIN": "ADS",
+            "DYNAMIC": true,
+            "MAPPING": "PLC1::GVL_IO::stTwinSAFE::iAirPressureMinValue",
+            "SCHEMA": {
+                "allOf": [
+                    {
+                        "$ref": "tchmi:general#/definitions/UINT"
                     },
                     {
                         "propertyOrder": 2
@@ -9025,6 +9426,63 @@
             "SCHEMA": {},
             "USEMAPPING": true
         },
+        "TcHmiSrv.GetCurrentUser.groups": {
+            "ACCESS": 3,
+            "DOMAIN": "TcHmiSrv",
+            "DYNAMIC": true,
+            "MAPPING": "GetCurrentUser",
+            "SCHEMA": {
+                "allOf": [
+                    {
+                        "items": {
+                            "type": "string"
+                        },
+                        "type": "array"
+                    },
+                    {
+                        "function": true
+                    }
+                ]
+            },
+            "SUBSYMBOL_MAPPING": "::groups",
+            "USEMAPPING": true
+        },
+        "TcHmiSrv.GetCurrentUser.groups.0": {
+            "ACCESS": 3,
+            "DOMAIN": "TcHmiSrv",
+            "DYNAMIC": true,
+            "MAPPING": "GetCurrentUser",
+            "SCHEMA": {
+                "allOf": [
+                    {
+                        "type": "string"
+                    },
+                    {
+                        "function": true
+                    }
+                ]
+            },
+            "SUBSYMBOL_MAPPING": "::groups[0]",
+            "USEMAPPING": true
+        },
+        "TcHmiSrv.GetCurrentUser.name": {
+            "ACCESS": 3,
+            "DOMAIN": "TcHmiSrv",
+            "DYNAMIC": true,
+            "MAPPING": "GetCurrentUser",
+            "SCHEMA": {
+                "allOf": [
+                    {
+                        "type": "string"
+                    },
+                    {
+                        "function": true
+                    }
+                ]
+            },
+            "SUBSYMBOL_MAPPING": "::name",
+            "USEMAPPING": true
+        },
         "TcHmiUserManagement.AddUser": {
             "ACCESS": 3,
             "DOMAIN": "TcHmiUserManagement",
@@ -9514,11 +9972,8 @@
             "ENABLED": true,
             "FILEACCESS": 3,
             "FILES": {},
-            "SYMBOLACCESS": 0,
+            "SYMBOLACCESS": 3,
             "SYMBOLS": {
-                "AddOrChangeUser": 0,
-                "ChangeUserSettings": 0,
-                "RemoveUser": 0,
                 "TcHmiUserManagement.AddUser": 0,
                 "TcHmiUserManagement.DisableUser": 0,
                 "TcHmiUserManagement.EnableUser": 0,
@@ -9530,12 +9985,9 @@
             "ENABLED": true,
             "FILEACCESS": 3,
             "FILES": {},
-            "SYMBOLACCESS": 0,
+            "SYMBOLACCESS": 3,
             "SYMBOLS": {
-                "AddOrChangeUser": 0,
-                "ChangeUserSettings": 0,
                 "GetCurrentUser": 3,
-                "RemoveUser": 0,
                 "TcHmiUserManagement.AddUser": 0,
                 "TcHmiUserManagement.DisableUser": 0,
                 "TcHmiUserManagement.EnableUser": 0,
@@ -9547,12 +9999,9 @@
             "ENABLED": true,
             "FILEACCESS": 3,
             "FILES": {},
-            "SYMBOLACCESS": 0,
+            "SYMBOLACCESS": 3,
             "SYMBOLS": {
-                "AddOrChangeUser": 0,
-                "ChangeUserSettings": 0,
                 "GetCurrentUser": 3,
-                "RemoveUser": 0,
                 "TcHmiUserManagement.AddUser": 0,
                 "TcHmiUserManagement.DisableUser": 0,
                 "TcHmiUserManagement.EnableUser": 0,
@@ -9610,6 +10059,11 @@
                 "ADS.AdsSyncReadStateReq": 3,
                 "ADS.CheckLicense": 3,
                 "ADS.Diagnostics": 3,
+                "ADS.PLC1.A_2_PRG_MachineCtrl.bProcessedPart.0": 3,
+                "ADS.PLC1.B_1_1_PRG_Master_Leak_Test.bBusy.0": 3,
+                "ADS.PLC1.B_1_1_PRG_Master_Leak_Test.bBusy.1": 3,
+                "ADS.PLC1.B_1_1_PRG_Master_Leak_Test.bReady.0": 3,
+                "ADS.PLC1.B_1_1_PRG_Master_Leak_Test.bReady.1": 3,
                 "ADS.PLC1.B_2_1_PRG_Master_Height_Test.anMaximumDistance.0": 3,
                 "ADS.PLC1.B_2_1_PRG_Master_Height_Test.anMaximumDistance.1": 3,
                 "ADS.PLC1.B_2_1_PRG_Master_Height_Test.anMaximumDistance.2": 3,
@@ -9623,7 +10077,9 @@
                 "ADS.PLC1.B_2_1_PRG_Master_Height_Test.anRealDistance2.1": 3,
                 "ADS.PLC1.B_2_1_PRG_Master_Height_Test.anRealDistance2.2": 3,
                 "ADS.PLC1.B_4_1_PRG_Master_ProcessCylinder.bExtended.0": 3,
+                "ADS.PLC1.B_4_1_PRG_Master_ProcessCylinder.bRetracted": 3,
                 "ADS.PLC1.B_4_1_PRG_Master_ProcessCylinder.bRetracted.0": 3,
+                "ADS.PLC1.B_4_2_PRG_Master_ProcessDoor.bCloseDoorHMI": 3,
                 "ADS.PLC1.B_4_2_PRG_Master_ProcessDoor.bDoorClosed": 3,
                 "ADS.PLC1.B_4_2_PRG_Master_ProcessDoor.bDoorOpened": 3,
                 "ADS.PLC1.GVL_HMI.abMachineDefinition.0": 3,
@@ -9639,15 +10095,22 @@
                 "ADS.PLC1.GVL_HMI.abPresetProbe.5": 3,
                 "ADS.PLC1.GVL_HMI.abPresetProbe.6": 3,
                 "ADS.PLC1.GVL_HMI.abPresetProbe.7": 3,
+                "ADS.PLC1.GVL_HMI.bCameraSetTreshold.0": 3,
                 "ADS.PLC1.GVL_HMI.bCameraSetTreshold.1": 3,
+                "ADS.PLC1.GVL_HMI.bCameraSetTreshold.2": 3,
+                "ADS.PLC1.GVL_HMI.bCameraSetTreshold.3": 3,
                 "ADS.PLC1.GVL_HMI.bCameraSettingVal.0": 3,
                 "ADS.PLC1.GVL_HMI.bCameraSettingVal.1": 3,
+                "ADS.PLC1.GVL_HMI.bCameraSettingVal.2": 3,
+                "ADS.PLC1.GVL_HMI.bCameraSettingVal.3": 3,
                 "ADS.PLC1.GVL_HMI.bCameraTrigger.0": 3,
                 "ADS.PLC1.GVL_HMI.bCameraTrigger.1": 3,
                 "ADS.PLC1.GVL_HMI.bCameraTrigger.2": 3,
                 "ADS.PLC1.GVL_HMI.bCameraTrigger.3": 3,
                 "ADS.PLC1.GVL_HMI.bEnableSetCablibrationBlock1": 3,
                 "ADS.PLC1.GVL_HMI.bEnableSetCablibrationBlock2": 3,
+                "ADS.PLC1.GVL_HMI.bEnableSettings": 3,
+                "ADS.PLC1.GVL_HMI.bHMIInitialized": 3,
                 "ADS.PLC1.GVL_HMI.bLeaktester1_Reset": 3,
                 "ADS.PLC1.GVL_HMI.bLeaktester1_Start": 3,
                 "ADS.PLC1.GVL_HMI.bLeaktester1_Stop": 3,
@@ -9655,6 +10118,10 @@
                 "ADS.PLC1.GVL_HMI.bLeaktester2_Start": 3,
                 "ADS.PLC1.GVL_HMI.bLeaktester2_Stop": 3,
                 "ADS.PLC1.GVL_HMI.bLeftHand": 3,
+                "ADS.PLC1.GVL_HMI.bMachineDefinitionSet2": 3,
+                "ADS.PLC1.GVL_HMI.bManualScreen": 3,
+                "ADS.PLC1.GVL_HMI.bPartPresent.0": 3,
+                "ADS.PLC1.GVL_HMI.bPartPresent.1": 3,
                 "ADS.PLC1.GVL_HMI.bProcessCylinder1_Down": 3,
                 "ADS.PLC1.GVL_HMI.bProcessCylinder1_Up": 3,
                 "ADS.PLC1.GVL_HMI.bProcessDoor_Down": 3,
@@ -9662,8 +10129,14 @@
                 "ADS.PLC1.GVL_HMI.bRightHand": 3,
                 "ADS.PLC1.GVL_HMI.bSetCalibrationBlock1": 3,
                 "ADS.PLC1.GVL_HMI.bSetCalibrationBlock2": 3,
+                "ADS.PLC1.GVL_HMI.bSetDistances": 3,
                 "ADS.PLC1.GVL_HMI.bSetTolerances": 3,
+                "ADS.PLC1.GVL_HMI.nAirPressureMaxValue": 3,
+                "ADS.PLC1.GVL_HMI.nAirPressureMinValue": 3,
+                "ADS.PLC1.GVL_HMI.nMachineDefinitionIndex2": 3,
                 "ADS.PLC1.GVL_HMI.stStatisticsHMI": 3,
+                "ADS.PLC1.GVL_HMI.stStatisticsHMI.0.bResetBad": 3,
+                "ADS.PLC1.GVL_HMI.stStatisticsHMI.0.bResetGood": 3,
                 "ADS.PLC1.GVL_HMI.stStatisticsHMI.1.bResetBad": 3,
                 "ADS.PLC1.GVL_HMI.stStatisticsHMI.1.bResetGood": 3,
                 "ADS.PLC1.GVL_HMI.stStatisticsHMI.2.bResetBad": 3,
@@ -9676,8 +10149,17 @@
                 "ADS.PLC1.GVL_HMI.stStatisticsHMI.5.bResetGood": 3,
                 "ADS.PLC1.GVL_HMI.stStatisticsHMI.6.bResetBad": 3,
                 "ADS.PLC1.GVL_HMI.stStatisticsHMI.6.bResetGood": 3,
+                "ADS.PLC1.GVL_HMI.stStatisticsLT": 3,
+                "ADS.PLC1.GVL_HMI.stStatisticsWH": 3,
                 "ADS.PLC1.GVL_HMI.stTableCycleDataNest1": 3,
                 "ADS.PLC1.GVL_HMI.stTableCycleDataNest2": 3,
+                "ADS.PLC1.GVL_HMI.stTimers.nAutoCycleIDLETimeOut": 3,
+                "ADS.PLC1.GVL_HMI.test.0": 3,
+                "ADS.PLC1.GVL_HMI.test.1": 3,
+                "ADS.PLC1.GVL_HMI.test.2": 3,
+                "ADS.PLC1.GVL_HMI.test.3": 3,
+                "ADS.PLC1.GVL_HMI.test.4": 3,
+                "ADS.PLC1.GVL_HMI.test.5": 3,
                 "ADS.PLC1.GVL_IO.Camera1_IO.bResetStatistics": 3,
                 "ADS.PLC1.GVL_IO.Camera1_IO.bSetTreshold": 3,
                 "ADS.PLC1.GVL_IO.Camera1_IO.bSettingVal": 3,
@@ -9789,6 +10271,8 @@
                 "ADS.PLC1.GVL_IO.dw_T12_EL1918.stTerminalInfo.sTerminalInfo": 3,
                 "ADS.PLC1.GVL_IO.dw_T13_EL6633.stTerminalInfo.bTerminalOperational": 3,
                 "ADS.PLC1.GVL_IO.dw_T13_EL6633.stTerminalInfo.sTerminalInfo": 3,
+                "ADS.PLC1.GVL_IO.stTwinSAFE.iAirPressureMaxValue": 3,
+                "ADS.PLC1.GVL_IO.stTwinSAFE.iAirPressureMinValue": 3,
                 "ADS.PLC1.GVL_IO.stTwinSAFE.iAirSupplyMeasurement": 3,
                 "ADS.PLC1.GVL_Master.stCycleData.bFail1": 3,
                 "ADS.PLC1.GVL_Master.stCycleData.bFail2": 3,
@@ -9951,6 +10435,9 @@
                 "SetLocale": 3,
                 "SubscribeEvents": 3,
                 "TcHmiSqliteLogger.Diagnostics": 3,
+                "TcHmiSrv.GetCurrentUser.groups": 3,
+                "TcHmiSrv.GetCurrentUser.groups.0": 3,
+                "TcHmiSrv.GetCurrentUser.name": 3,
                 "TcHmiUserManagement.ChangePassword": 3,
                 "TcHmiUserManagement.Disable2FA": 3,
                 "TcHmiUserManagement.Enable2FA": 3,
@@ -9965,6 +10452,39 @@
     },
     "USERGROUPUSERS": {
         "TcHmiUserManagement": {
+            "Administrator": {
+                "USERGROUPUSERS_AUTO_LOGOFF": "PT15M",
+                "USERGROUPUSERS_FORCE_PASSWORD_CHANGE": false,
+                "USERGROUPUSERS_GROUPS": [
+                    "__SystemUsers",
+                    "Administrator"
+                ],
+                "USERGROUPUSERS_LOCALE": "client",
+                "USERGROUPUSERS_TIMEFORMATLOCALE": "project",
+                "USERGROUPUSERS_TIMEZONE": "project"
+            },
+            "Engineer": {
+                "USERGROUPUSERS_AUTO_LOGOFF": "PT15M",
+                "USERGROUPUSERS_FORCE_PASSWORD_CHANGE": false,
+                "USERGROUPUSERS_GROUPS": [
+                    "__SystemUsers",
+                    "Engineer"
+                ],
+                "USERGROUPUSERS_LOCALE": "client",
+                "USERGROUPUSERS_TIMEFORMATLOCALE": "project",
+                "USERGROUPUSERS_TIMEZONE": "project"
+            },
+            "Operator": {
+                "USERGROUPUSERS_AUTO_LOGOFF": "P30D",
+                "USERGROUPUSERS_FORCE_PASSWORD_CHANGE": false,
+                "USERGROUPUSERS_GROUPS": [
+                    "__SystemUsers",
+                    "Operator"
+                ],
+                "USERGROUPUSERS_LOCALE": "client",
+                "USERGROUPUSERS_TIMEFORMATLOCALE": "project",
+                "USERGROUPUSERS_TIMEZONE": "project"
+            },
             "__SystemAdministrator": {
                 "USERGROUPUSERS_AUTO_LOGOFF": "PT0S",
                 "USERGROUPUSERS_GROUPS": [
@@ -9992,30 +10512,21 @@
                 "USERGROUPUSERS_TIMEFORMATLOCALE": "project",
                 "USERGROUPUSERS_TIMEZONE": "project"
             },
-            "newUser": {
-                "USERGROUPUSERS_AUTO_LOGOFF": "PT0S",
-                "USERGROUPUSERS_GROUPS": [
-                    "__SystemUsers"
-                ],
-                "USERGROUPUSERS_LOCALE": "project"
-            },
             "sebastian.ulloa": {
                 "USERGROUPUSERS_AUTO_LOGOFF": "PT1H",
                 "USERGROUPUSERS_FORCE_PASSWORD_CHANGE": false,
                 "USERGROUPUSERS_GROUPS": [
                     "__SystemUsers",
-                    "Developer"
+                    "Developer",
+                    "Administrator",
+                    "Engineer",
+                    "Operator",
+                    "__SystemAdministrators",
+                    "__SystemGuests"
                 ],
                 "USERGROUPUSERS_LOCALE": "client",
                 "USERGROUPUSERS_TIMEFORMATLOCALE": "project",
                 "USERGROUPUSERS_TIMEZONE": "project"
-            },
-            "sq": {
-                "USERGROUPUSERS_AUTO_LOGOFF": "PT0S",
-                "USERGROUPUSERS_GROUPS": [
-                    "__SystemUsers"
-                ],
-                "USERGROUPUSERS_LOCALE": "project"
             }
         }
     },
